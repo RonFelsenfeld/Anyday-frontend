@@ -17,6 +17,7 @@ export function BoardHeader() {
 
         <button className="activity-container flex align-center">
           Activity
+          {/* CHANGE TO ACTUAL MEMBERS */}
           <div className="img-container">
             <img
               src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg"
