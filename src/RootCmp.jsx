@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { boardService } from '../src/services/board.service'
 
+import { AppHeader } from './cmps/AppHeader'
+
 // import { store } from './store/store'
 
 export function App() {
@@ -10,6 +12,7 @@ export function App() {
     // <Provider store={store}>
     <Router>
       <section className="app">
+        <AppHeader />
         <main></main>
       </section>
       {/* <UserMsg /> */}
