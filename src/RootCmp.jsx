@@ -10,9 +10,7 @@ export function App() {
     // <Provider store={store}>
     <Router>
       <section className="app">
-        <main>
-          <h1></h1>
-        </main>
+        <main></main>
       </section>
       {/* <UserMsg /> */}
     </Router>
