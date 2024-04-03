@@ -1,0 +1,57 @@
+// Main colors
+$surface-clr: rgb(236, 239, 248);
+$main-bg-clr: rgb(255, 255, 255);
+$main-font-clr: rgb(50, 51, 56);
+$main-border-clr: rgb(102, 102, 102); // Secondary font color
+
+// Task status colors
+$task-blank-clr: rgb(196, 196, 196);
+$task-done-clr: rgb(0, 200, 117);
+$task-progress-clr: rgb(253, 171, 61);
+$task-stuck-clr: rgb(223, 47, 74);
+
+// Button color
+$btn-compose-clr: rgb(0, 115, 234); // Add board btn size: 32*32
+
+// Layout
+$main-header-height: 48px;
+$task-preview-height: 36px;
+$main-gap: 10px;
+$board-details-padding: 40px;
+
+// Border radius
+$cmp-br: 8px;
+$el-br: 4px;
+
+// Pseudo classes
+$selected-task-clr: rgba(204, 229, 255, 0.97);
+$selected-task-border-clr: rgb(208, 212, 228);
+$hover-clr: rgba(103, 104, 121, 0.1);
+// active-btn-clr: rgb(204, 229, 255)
+
+// Groupe color palette (color picker size: 24*24)
+// rgb(3, 127, 76)
+// rgb(0, 200, 117)
+// rgb(156, 211, 38)
+// rgb(202, 182, 65)
+// rgb(255, 203, 0)
+// rgb(120, 75, 209)
+// rgb(120, 75, 209)
+// rgb(0, 126, 181)
+// rgb(87, 155, 252)
+// rgb(102, 204, 255)
+// rgb(187, 51, 84)
+// rgb(223, 47, 74)
+// rgb(255, 0, 127)
+// rgb(255, 90, 196)
+// rgb(255, 100, 46)
+// rgb(127, 83, 71)
+// rgb(196, 196, 196)
+// rgb(117, 117, 117)
+
+// Main-fz: 14px
+// Main-title-size: 24px
+// Group-title-size:18px
+
+// Header-icons-size: 20px
+// Side-bar-width: 265px
