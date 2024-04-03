@@ -1,9 +1,11 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import { boardService } from '../src/services/board.service'
-
 import { AppHeader } from './cmps/AppHeader'
+import { HomePage } from './pages/HomePage'
+import { BoardIndex } from './pages/BoardIndex'
+import { BoardDetails } from './pages/BoardDetails'
+import { BoardHeader } from './cmps/BoardHeader'
 import { SideBar } from './cmps/Sidebar'
 
 // import { store } from './store/store'
@@ -15,7 +17,15 @@ export function App() {
       <section className="app">
         <AppHeader />
         <SideBar/>
-        <main></main>
+        <main>
+          <Routes>
+            <Route element={<HomePage />} path="/" />
+            <Route element={<BoardIndex />} path="/board" />
+            <Route element={<BoardDetails />} path="/board/:boardId" />
+          </Routes>
+        
+          <BoardHeader />
+        </main>
       </section>
       {/* <UserMsg /> */}
     </Router>

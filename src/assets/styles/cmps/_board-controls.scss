@@ -1,0 +1,41 @@
+.board-controls {
+  padding-inline-start: 8px;
+
+  // ! ADD BLUE BORDER WHEN ACTIVE (AS ROUTE)
+  .view-btn {
+    @include btn;
+
+    padding: 8px;
+    font-size: em(14px);
+  }
+
+  .controls-container {
+    padding-block: em(16px);
+    gap: em(8px);
+
+    .btn {
+      height: em(32px);
+      border-radius: $el-br;
+    }
+
+    .btn-new-task {
+      padding: 4px 8px;
+      margin-inline-end: em(14px);
+
+      background-color: $btn-compose-clr;
+      color: rgb(255, 255, 255);
+
+      &:hover {
+        background-color: rgb(0, 96, 185);
+      }
+    }
+
+    .btn-action {
+      @include btn;
+
+      span {
+        padding: 1px 5px;
+      }
+    }
+  }
+}

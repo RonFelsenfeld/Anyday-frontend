@@ -1,16 +1,43 @@
+import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 
-const STORAGE_KEY = 'boardDB'
+const BOARDS_KEY = 'boardDB'
 _createDemoBoard()
 
-export const boardService = {}
+export const boardService = {
+  query,
+  getById,
+  remove,
+  save,
+}
+
+function query() {
+  return storageService.query(BOARDS_KEY)
+    .then(boards => boards)
+}
+
+function getById(boardId) {
+  return storageService.get(BOARDS_KEY, boardId)
+}
+
+function remove(boardId) {
+  return storageService.remove(BOARDS_KEY, boardId)
+}
+
+function save(board) {
+  if (board._id) {
+    return storageService.put(BOARDS_KEY, board)
+  } else {
+    return storageService.post(BOARDS_KEY, board)
+  }
+}
 
 function _createDemoBoard() {
-  let board = utilService.loadFromStorage(STORAGE_KEY)
+  let board = utilService.loadFromStorage(BOARDS_KEY)
 
   if (!board) {
     board = {
-      _id: utilService.makeId(),
+      _id: 'b12345',
       title: 'Electric Store Project',
       isStarred: false,
       archivedAt: null,
@@ -26,9 +53,9 @@ function _createDemoBoard() {
         { id: utilService.makeId(), title: '', color: '#c4c4c4' },
       ],
       persons: [
-        { id: 'u101', fullName: 'Atar Mor', imgUrl: 'http://some-img' },
-        { id: 'u102', fullName: 'Ido Yotvat', imgUrl: 'http://some-img' },
-        { id: 'u103', fullName: 'Ron Felsenfeld', imgUrl: 'http://some-img' },
+        { id: 'u101', fullName: 'Atar Mor', imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg' },
+        { id: 'u102', fullName: 'Ido Yotvat', imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg' },
+        { id: 'u103', fullName: 'Ron Felsenfeld', imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg' },
       ],
       priorities: [
         { id: utilService.makeId(), title: 'Critical', color: '#333333' },
@@ -68,15 +95,11 @@ function _createDemoBoard() {
               title: 'Develop RESTful API',
               status: 'Done',
               priority: 'High',
-              personsIds: ['u101, u102'],
-              startDate: Date.now(),
-              dueDate: Date.now() + 1000 * 60 * 60 * 24,
-              byPerson: {
-                _id: 'u101',
-                username: 'Atar',
-                fullname: 'Atar Mor',
-                imgUrl: 'http://some-img',
-              },
+              personsIds: ['u101', 'u102'],
+              timeline: {
+                startDate: Date.now(),
+                dueDate: Date.now() + 1000 * 60 * 60 * 24
+              }
             },
             {
               id: utilService.makeId(),
@@ -118,6 +141,8 @@ function _createDemoBoard() {
       ],
     }
 
-    utilService.saveToStorage(STORAGE_KEY, board)
+    const boards = []
+    boards.push(board)
+    utilService.saveToStorage(BOARDS_KEY, boards)
   }
 }
