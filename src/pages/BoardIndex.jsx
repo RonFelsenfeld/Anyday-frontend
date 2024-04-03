@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router'
 import { BoardList } from '../cmps/BoardList'
 
 export function BoardIndex() {
@@ -17,6 +18,8 @@ export function BoardIndex() {
       </header>
 
       <BoardList />
+
+      <Outlet />
     </section>
   )
 }
