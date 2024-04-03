@@ -9,7 +9,8 @@
 @import 'basics/layout';
 @import 'basics/base';
 
-// Views
+// Pages
+@import 'pages/board-index';
 
 // Components
 @import 'cmps/app-header';
@@ -17,3 +18,5 @@
 @import 'cmps/board-controls';
 @import 'cmps/task-preview';
 @import 'cmps/side-bar';
+@import 'cmps/board-list';
+@import 'cmps/board-preview';

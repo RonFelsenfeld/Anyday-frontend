@@ -1,0 +1,21 @@
+.board-index {
+  border-top-left-radius: $cmp-br;
+  padding-inline: em(20px);
+
+  background-color: $board-index-bg-clr;
+
+  .index-header {
+    height: em(75px);
+    background-color: $main-bg-clr;
+
+    .title {
+      font-size: em(16px);
+      line-height: em(22px);
+    }
+
+    .header-background-img {
+      height: 100%;
+      margin-inline-start: 12px;
+    }
+  }
+}

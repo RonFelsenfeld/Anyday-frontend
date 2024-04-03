@@ -16,15 +16,16 @@ export function App() {
     <Router>
       <section className="app">
         <AppHeader />
-        <SideBar/>
+        <SideBar />
         <main>
           <Routes>
             <Route element={<HomePage />} path="/" />
             <Route element={<BoardIndex />} path="/board" />
             <Route element={<BoardDetails />} path="/board/:boardId" />
           </Routes>
-        
+
           <BoardHeader />
+          <BoardIndex />
         </main>
       </section>
       {/* <UserMsg /> */}
