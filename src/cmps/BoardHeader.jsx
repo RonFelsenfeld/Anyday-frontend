@@ -1,4 +1,5 @@
 import { Favorite, Info } from '../services/svg.service'
+import { BoardControls } from './BoardControls'
 
 export function BoardHeader() {
   return (
@@ -37,6 +38,8 @@ export function BoardHeader() {
           </div>
         </button>
       </div>
+
+      <BoardControls />
     </header>
   )
 }

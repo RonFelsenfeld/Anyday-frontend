@@ -21,16 +21,11 @@
     }
 
     .btn {
-      width: 32px;
-      height: 32px;
+      @include btn(rgb(103, 104, 121));
+
+      width: em(32px);
+      height: em(32px);
       padding: 4px;
-
-      color: rgb(103, 104, 121);
-      background-color: transparent;
-
-      &:hover {
-        background-color: $hover-clr;
-      }
     }
 
     .activity-container {
@@ -45,8 +40,8 @@
         margin-inline-start: 4px;
 
         .user-img {
-          width: 24px;
-          height: 24px;
+          width: em(24px);
+          height: em(24px);
 
           border-radius: 50%;
           border: 1px solid $main-bg-clr;
