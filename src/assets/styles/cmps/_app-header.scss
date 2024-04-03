@@ -1,4 +1,18 @@
 .app-header {
   height: 48px;
-  background-color: red;
+  padding-inline: em(4px) em(24px);
+
+  .logo {
+    font-size: em(16px);
+  }
+
+  .btn {
+    @include btn;
+
+    width: em(40px);
+    height: em(40px);
+    margin-inline-end: 4px;
+
+    padding: em(10px);
+  }
 }
