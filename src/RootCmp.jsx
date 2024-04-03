@@ -8,7 +8,9 @@ export function App() {
     // <Provider store={store}>
     <Router>
       <section className="app">
-        <main></main>
+        <main>
+          <h1>aojfp[</h1>
+        </main>
       </section>
       {/* <UserMsg /> */}
     </Router>
