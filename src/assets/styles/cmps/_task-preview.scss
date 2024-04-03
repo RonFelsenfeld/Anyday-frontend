@@ -1,0 +1,18 @@
+.task-persons-img {
+    margin-inline-start: 4px;
+
+    img {
+        width: em(24px);
+        height: em(24px);
+        border-radius: 50%;
+        border: 1px solid $main-bg-clr;
+    }
+
+    img:nth-child(2) {
+        transform: translateX(-10px);
+    }
+
+    img:nth-child(3) {
+        transform: translateX(-20px);
+    }
+}
