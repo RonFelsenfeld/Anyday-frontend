@@ -2,7 +2,7 @@ import { Help, Inbox, MenuGrid, NotificationBell } from '../services/svg.service
 
 export function AppHeader() {
   return (
-    <section className="app-header flex align-center justify-between">
+    <header className="app-header flex align-center justify-between">
       <div className="flex align-center">
         <button className="btn">
           <MenuGrid />
@@ -23,6 +23,6 @@ export function AppHeader() {
           <Help />
         </button>
       </div>
-    </section>
+    </header>
   )
 }

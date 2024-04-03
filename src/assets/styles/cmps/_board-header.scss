@@ -1,0 +1,61 @@
+.board-header {
+  background-color: $main-bg-clr;
+  padding: em(16px) em(30px) 0 em(38px);
+
+  .board-title {
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: $el-br;
+    margin-inline-end: 4px;
+
+    font-size: em(24px);
+    font-family: PoppinsRegular, RobotoRegular, sans-serif;
+    font-weight: 600;
+
+    &:hover {
+      border-color: rgb(195, 198, 212);
+    }
+  }
+
+  .btn {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+
+    color: rgb(103, 104, 121);
+    background-color: transparent;
+
+    &:hover {
+      background-color: $hover-clr;
+    }
+  }
+
+  .activity-container {
+    padding: 4px 8px;
+    font-size: em(15px);
+
+    &:hover {
+      background-color: $hover-clr;
+    }
+
+    .img-container {
+      margin-inline-start: 4px;
+
+      .user-img {
+        width: 24px;
+        height: 24px;
+
+        border-radius: 50%;
+        border: 1px solid $main-bg-clr;
+      }
+
+      .user-img:nth-child(2) {
+        transform: translateX(-10px);
+      }
+
+      .user-img:nth-child(3) {
+        transform: translateX(-20px);
+      }
+    }
+  }
+}
