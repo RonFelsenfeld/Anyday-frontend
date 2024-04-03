@@ -5,10 +5,10 @@ $main-font-clr: rgb(50, 51, 56);
 $main-border-clr: rgb(102, 102, 102); // Secondary font color
 
 // Task status colors
-$task-blank-clr: rgb(196, 196, 196);
-$task-done-clr: rgb(0, 200, 117);
-$task-progress-clr: rgb(253, 171, 61);
-$task-stuck-clr: rgb(223, 47, 74);
+$task-blank-clr: #c4c4c4;
+$task-done-clr: #00c875;
+$task-progress-clr: #fdab3d;
+$task-stuck-clr: #df2f4a;
 
 // Button color
 $btn-compose-clr: rgb(0, 115, 234); // Add board btn size: 32*32
@@ -30,7 +30,7 @@ $hover-clr: rgba(103, 104, 121, 0.1);
 // active-btn-clr: rgb(204, 229, 255)
 
 // Groupe color palette (color picker size: 24*24)
-// rgb(3, 127, 76)
+// #037f4c
 // rgb(0, 200, 117)
 // rgb(156, 211, 38)
 // rgb(202, 182, 65)
@@ -38,7 +38,7 @@ $hover-clr: rgba(103, 104, 121, 0.1);
 // rgb(120, 75, 209)
 // rgb(120, 75, 209)
 // rgb(0, 126, 181)
-// rgb(87, 155, 252)
+// #579bfc
 // rgb(102, 204, 255)
 // rgb(187, 51, 84)
 // rgb(223, 47, 74)
