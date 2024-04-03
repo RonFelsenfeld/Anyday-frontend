@@ -7,7 +7,7 @@ export function AppHeader() {
         <button className="btn">
           <MenuGrid />
         </button>
-        <h1>Logo</h1>
+        <h1 className="logo">Logo</h1>
       </div>
 
       <div className="actions-container flex">

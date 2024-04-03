@@ -11,7 +11,6 @@ export function App() {
   return (
     // <Provider store={store}>
     <Router>
-      <AppHeader />
       <section className="app">
         <AppHeader />
         <main></main>
