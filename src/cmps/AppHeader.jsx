@@ -1,4 +1,4 @@
-import { Help, Inbox, MenuGrid, NotificationBell } from '../services/svg.service'
+import { Help, Inbox, MenuGrid, NotificationBell, UserImg } from '../services/svg.service'
 
 export function AppHeader() {
   return (
@@ -21,6 +21,10 @@ export function AppHeader() {
 
         <button className="btn">
           <Help />
+        </button>
+
+        <button className="btn">
+          <UserImg />
         </button>
       </div>
     </header>
