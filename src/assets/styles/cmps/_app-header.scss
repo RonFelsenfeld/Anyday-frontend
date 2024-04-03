@@ -1,6 +1,6 @@
 .app-header {
-  height: 48px;
   padding-inline: em(4px) em(24px);
+  grid-column: 1 / -1;
 
   .logo {
     font-size: em(16px);

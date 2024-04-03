@@ -1,88 +1,87 @@
 .side-bar-container {
-    // padding: em(12px); 
-    width: em(255px);
-    height: 100vh;
-    border-top-right-radius: $cmp-br;
-    background-color: $main-bg-clr;
+  // padding: em(12px);
+  height: calc(100dvh - 48px);
+  border-top-right-radius: $cmp-br;
+  background-color: $main-bg-clr;
 }
 
 .home-my-work-container {
-    flex-direction: column;
-    gap: em(2px);
-    padding-left: em(12px);
-    padding-right: em(12px);
-    padding-block: em(12px);
-    border-radius: em(4px);
-    width: 100%;
+  flex-direction: column;
+  gap: em(2px);
+  padding-left: em(12px);
+  padding-right: em(12px);
+  padding-block: em(12px);
+  border-radius: em(4px);
+  width: 100%;
 }
 
 .home,
 .my-work {
-    height: em(32px);
-    padding-left: 6px;
-    padding: em(8px) em(4px) em(8px) em(6px);
-    border-radius: em(4px);
+  height: em(32px);
+  padding-left: 6px;
+  padding: em(8px) em(4px) em(8px) em(6px);
+  border-radius: em(4px);
 
-    &:hover{
-        cursor: pointer;
-        background-color: $hover-clr;
-    }
-    &:active{
-        background-color: $selected-task-clr;
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: $hover-clr;
+  }
+  &:active {
+    background-color: $selected-task-clr;
+  }
 }
 
 .svg {
-    align-self: self-start;
-    margin-right: em(8px);
+  align-self: self-start;
+  margin-right: em(8px);
 }
 
 .side-bar-workspace {
-    padding: em(12px);
-    padding-inline-end: em(16px);
-    border-top: 1px solid $secondary-border-clr;
+  padding: em(12px);
+  padding-inline-end: em(16px);
+  border-top: 1px solid $secondary-border-clr;
 }
 
 .workspace-logo {
-    position: relative;
-    align-self: center;
-    width: em(20px);
-    height: em(20px);
-    border-radius: em(4px);
-    background-color: rgb(52, 146, 88);
-    color: #fff;
-    margin-right: em(7px);
+  position: relative;
+  align-self: center;
+  width: em(20px);
+  height: em(20px);
+  border-radius: em(4px);
+  background-color: rgb(52, 146, 88);
+  color: #fff;
+  margin-right: em(7px);
 }
 
 .mini-home-icon {
-    position: absolute;
-    bottom: em(-10px);
-    right: em(-12px);
-    height: em(20px);
-    width: em(20px)
+  position: absolute;
+  bottom: em(-10px);
+  right: em(-12px);
+  height: em(20px);
+  width: em(20px);
 }
 
 .main-workspace-header {
-    font-size: em(16px);
-    font-family: FigtreeBold
+  font-size: em(16px);
+  font-family: FigtreeBold;
 }
 
 .workspace-display {
-    margin-block-start: em(10px);
-    padding: 0;
-    align-items: baseline;
-    margin-left: em(8px);
-    margin-bottom: em(10px);
+  margin-block-start: em(10px);
+  padding: 0;
+  align-items: baseline;
+  margin-left: em(8px);
+  margin-bottom: em(10px);
 }
 
 .main-workspace-option-menu {
-    width: em(32px);
-    height: em(32px);
-    border-right: $cmp-br;
-    background: none;
-    // padding: em(6px);
+  width: em(32px);
+  height: em(32px);
+  border-right: $cmp-br;
+  background: none;
+  // padding: em(6px);
 
-    &:hover {
-        background-color: $hover-clr;
-    }
+  &:hover {
+    background-color: $hover-clr;
+  }
 }
