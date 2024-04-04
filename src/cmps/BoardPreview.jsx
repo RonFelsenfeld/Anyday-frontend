@@ -19,7 +19,9 @@ export function BoardPreview() {
           </div>
 
           <div className="workspace-details flex align-center">
-            <WorkspaceLogo />
+            <span>
+              <WorkspaceLogo />
+            </span>
             <span className="workspace-title">Work management &#62; Main workspace</span>
           </div>
         </div>
