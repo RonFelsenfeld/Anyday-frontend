@@ -1,12 +1,12 @@
 .board-index {
-  border-top-left-radius: $cmp-br;
-  padding-inline: em(20px);
-
   background-color: $board-index-bg-clr;
+  border-top-left-radius: $cmp-br;
 
   .index-header {
     height: em(75px);
+    border-top-left-radius: $cmp-br;
     background-color: $main-bg-clr;
+    padding-inline: em(20px);
 
     .title {
       font-size: em(16px);

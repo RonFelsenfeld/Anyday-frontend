@@ -1,12 +1,12 @@
-import { Filter, Hide, Search, Sort, UserImg } from '../services/svg.service'
+import { Filter, Hide, Home, Search, Sort, UserImg } from '../services/svg.service'
 
 export function BoardControls() {
   return (
     <section className="board-controls">
       <div>
-        <button className="view-btn">
-          {/* <Home/> */}
-          Main Table
+        <button className="view-btn flex align-center">
+          <Home />
+          <span>Main Table</span>
         </button>
       </div>
 
