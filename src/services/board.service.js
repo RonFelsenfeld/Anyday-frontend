@@ -9,6 +9,10 @@ export const boardService = {
   getById,
   remove,
   save,
+  removeGroup,
+  saveGroup,
+  removeTask,
+  saveTask
 }
 
 function query() {
@@ -30,6 +34,87 @@ function save(board) {
     return storageService.post(BOARDS_KEY, board)
   }
 }
+
+
+/// GROUPS ///
+
+function removeGroup(board, groupId) {
+  const groupIdx = board.groups.findIndex(group => group.id === groupId)
+  if (groupIdx < 0) {
+    throw new Error(`Update failed, cannot find group with id: ${groupId}`)
+  }
+  board.groups.splice(groupIdx, 1)
+  save(board)
+}
+
+function saveGroup(board, group) {
+  if (group.id) {
+    _updateGroup(board, group)
+  } else {
+    _addGroup(board, group)
+  }
+}
+
+function _getGroupById(board, groupId) {
+  const group = board.groups.find(group => group.id === groupId)
+  return group
+}
+
+function _addGroup(board, group) {
+  group.id = utilService.makeId()
+  board.groups.push(group)
+  save(board)
+}
+
+function _updateGroup(board, group) {
+  const groupIdx = board.groups.findIndex(currGroup => currGroup.id === group.id)
+  if (groupIdx < 0) {
+    throw new Error(`Update failed, cannot find group with id: ${group.id}`)
+  }
+  board.groups.splice(groupIdx, 1, group)
+  save(board)
+}
+
+
+/// TASKS ///
+
+function removeTask(board, group, taskId) {
+  const taskIdx = group.tasks.findIndex(task => task.id === taskId)
+  if (taskId < 0) {
+    throw new Error(`Update failed, cannot find task with id: ${taskId}`)
+  }
+  group.tasks.splice(taskIdx, 1)
+  save(board)
+}
+
+function saveTask(board, group, task) {
+  if (task.id) {
+    _updateTask(board, group, task)
+  } else {
+    _addTask(board, group, task)
+  }
+}
+
+function _getTaskById(group, taskId) {
+  const task = group.tasks.find(task => task.id === taskId)
+  return task
+}
+
+function _addTask(board, group, task) {
+  task.id = utilService.makeId()
+  group.tasks.push(task)
+  save(board)
+}
+
+function _updateTask(board, group, task) {
+  const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
+  if (taskIdx < 0) {
+    throw new Error(`Update failed, cannot find task with id: ${task.id}`)
+  }
+  group.tasks.splice(taskIdx, 1, task)
+  save(board)
+}
+
 
 function _createDemoBoard() {
   let boards = utilService.loadFromStorage(BOARDS_KEY)

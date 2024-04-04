@@ -1,6 +1,8 @@
 import { createStore, combineReducers } from 'redux'
 
-// const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+  boardModule: boardReducer
+})
 
 const middleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
