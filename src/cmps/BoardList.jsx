@@ -26,7 +26,7 @@ export function BoardList() {
       {isExpanded && (
         <ul className="board-list board-layout clean-list">
           {/* <Link to={`/workspace/board/${board._id}`}> */}
-          <Link to={`/board/b12345`}>
+          <Link to={`/board/b101`}>
             <BoardPreview />
           </Link>
         </ul>

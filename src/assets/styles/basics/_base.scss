@@ -22,6 +22,10 @@ html {
   font-family: FigtreeRegular, RobotoRegular, sans-serif;
 }
 
+body {
+  height: 100dvh;
+}
+
 img {
   max-width: 100%;
 }
@@ -37,7 +41,6 @@ button {
   color: inherit;
   background-color: transparent;
   font-family: inherit;
-
 }
 
 a {

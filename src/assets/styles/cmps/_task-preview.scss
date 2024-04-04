@@ -1,35 +1,34 @@
 .task {
-    &:hover {
-        @include btn;
+  @include btn;
+  cursor: pointer;
+
+  .task-persons-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: em(24px);
+      height: em(24px);
+      border-radius: 50%;
+      border: 1px solid $main-bg-clr;
     }
 
-    .task-persons-img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img {
-            width: em(24px);
-            height: em(24px);
-            border-radius: 50%;
-            border: 1px solid $main-bg-clr;
-        }
-
-        img:nth-child(2) {
-            transform: translateX(-10px);
-        }
-
-        img:nth-child(3) {
-            transform: translateX(-20px);
-        }
+    img:nth-child(2) {
+      transform: translateX(-10px);
     }
 
-    .task-timeline {
-        background-color: $main-font-clr;
-        align-self: center;
-        justify-self: center;
-        height: em(22px);
-        width: em(100px);
-        border-radius: 30px;
+    img:nth-child(3) {
+      transform: translateX(-20px);
     }
+  }
+
+  .task-timeline {
+    background-color: $main-font-clr;
+    align-self: center;
+    justify-self: center;
+    height: em(22px);
+    width: em(100px);
+    border-radius: 30px;
+  }
 }

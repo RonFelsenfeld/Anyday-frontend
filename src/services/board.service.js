@@ -12,8 +12,7 @@ export const boardService = {
 }
 
 function query() {
-  return storageService.query(BOARDS_KEY)
-    .then(boards => boards)
+  return storageService.query(BOARDS_KEY).then(boards => boards)
 }
 
 function getById(boardId) {
@@ -33,105 +32,487 @@ function save(board) {
 }
 
 function _createDemoBoard() {
-  let board = utilService.loadFromStorage(BOARDS_KEY)
+  let boards = utilService.loadFromStorage(BOARDS_KEY)
 
-  if (!board) {
-    board = {
-      _id: 'b12345',
+  if (!boards || !boards.length) {
+    boards = []
+
+    const board = {
+      _id: 'b101',
       title: 'Electric Store Project',
       isStarred: false,
       archivedAt: null,
-      // createdBy: {
-      //   _id: utilService.makeId(),
-      //   fullName: 'Atar Mor',
-      //   imgUrl: 'http://some-img',
-      // },
       statuses: [
-        { id: utilService.makeId(), title: 'Done', color: '#00c875' },
-        { id: utilService.makeId(), title: 'Working on it', color: '#fdab3d' },
-        { id: utilService.makeId(), title: 'Stuck', color: '#df2f4a' },
-        { id: utilService.makeId(), title: '', color: '#c4c4c4' },
+        {
+          id: 's101',
+          title: 'Done',
+          color: '#00c875',
+        },
+        {
+          id: 's102',
+          title: 'Working on it',
+          color: '#fdab3d',
+        },
+        {
+          id: 's103',
+          title: 'Stuck',
+          color: '#df2f4a',
+        },
+        {
+          id: 's104',
+          title: '',
+          color: '#c4c4c4',
+        },
       ],
       persons: [
-        { id: 'u101', fullName: 'Atar Mor', imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg' },
-        { id: 'u102', fullName: 'Ido Yotvat', imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg' },
-        { id: 'u103', fullName: 'Ron Felsenfeld', imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg' },
+        {
+          id: 'u101',
+          fullName: 'Atar Mor',
+          imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+        },
+        {
+          id: 'u102',
+          fullName: 'Ido Yotvat',
+          imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
+        },
+        {
+          id: 'u103',
+          fullName: 'Ron Felsenfeld',
+          imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+        },
       ],
       priorities: [
-        { id: utilService.makeId(), title: 'Critical', color: '#333333' },
-        { id: utilService.makeId(), title: 'High', color: '#401694' },
-        { id: utilService.makeId(), title: 'Medium', color: '#5559df' },
-        { id: utilService.makeId(), title: 'Low', color: '#579bfc' },
-        { id: utilService.makeId(), title: '', color: '#c4c4c4' },
+        {
+          id: 'pri101',
+          title: 'Critical',
+          color: '#333333',
+        },
+        {
+          id: 'pri102',
+          title: 'High',
+          color: '#401694',
+        },
+        {
+          id: 'pri103',
+          title: 'Medium',
+          color: '#5559df',
+        },
+        {
+          id: 'pri104',
+          title: 'Low',
+          color: '#579bfc',
+        },
+        {
+          id: 'pri105',
+          title: '',
+          color: '#c4c4c4',
+        },
       ],
       groups: [
         {
-          id: 'group1',
+          id: 'g1',
           title: 'Frontend',
           archivedAt: null,
           tasks: [
             {
-              id: utilService.makeId(),
-              title: 'Replace logo',
-              status: 'Stuck',
-              priority: 'Low',
+              id: 't101',
+              title: 'Implement responsive design for user dashboard',
+              personsIds: ['u101'],
+              status: 'Working on it',
+              priority: 'High',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712250770,
+              },
             },
             {
-              id: utilService.makeId(),
-              title: 'Add Samples',
+              id: 't102',
+              title: 'Add drag-and-drop functionality',
+              personsIds: ['u103'],
+              status: 'Stuck',
+              priority: 'Medium',
+              timeline: {
+                startDate: 1712164370,
+                dueDate: 1712941970,
+              },
+            },
+            {
+              id: 't103',
+              title: 'Create modal for adding new tasks',
+              personsIds: ['u101', 'u102', 'u103'],
               status: 'Working on it',
+              priority: 'High',
+              timeline: {
+                startDate: 1711991570,
+                dueDate: 1712337170,
+              },
+              files: {
+                type: 'url',
+                url: 'https://www.w3schools.com/howto/howto_css_modals.asp',
+                desc: 'How to modal',
+              },
+            },
+            {
+              id: 't104',
+              title: 'Integrate notification system for task updates',
+              personsIds: ['u101', 'u102'],
+              status: 'Done',
               priority: 'Critical',
+              timeline: {
+                startDate: 1711991570,
+                dueDate: 1712077970,
+              },
+            },
+            {
+              id: 't105',
+              title: 'Develop search functionality for tasks',
+              priority: 'Low',
+              timeline: {
+                startDate: 1712337170,
+                dueDate: 1712509970,
+              },
+              files: {
+                type: 'img',
+                url: 'https://someImgUrl',
+                desc: 'your-canvas.png',
+              },
+            },
+            {
+              id: 't106',
+              title: 'Add color-coded labels for task prioritization',
+              personsIds: ['u101', 'u103'],
+              status: 'Done',
+              priority: 'High',
+              timeline: {
+                startDate: 1711991570,
+                dueDate: 1712164370,
+              },
             },
           ],
-          style: { color: '#579bfc' },
+          style: {
+            color: '#579bfc',
+          },
         },
         {
-          id: utilService.makeId(),
+          id: 'g2',
           title: 'Backend',
           archivedAt: null,
           tasks: [
             {
-              id: 'task1',
-              title: 'Develop RESTful API',
-              status: 'Done',
+              id: 't101',
+              title: 'Implement user registration and login functionality',
+              personsIds: ['u101', 'u103'],
+              status: 'Working on it',
               priority: 'High',
-              personsIds: ['u101', 'u102'],
               timeline: {
-                startDate: Date.now(),
-                dueDate: Date.now() + 1000 * 60 * 60 * 24
-              }
+                startDate: 1711991570,
+                dueDate: 1712337170,
+              },
+              files: {
+                type: 'url',
+                url: 'https://www.youtube.com/watch?v=1BfCnjr_Vjg&t=229s',
+                desc: 'how to',
+              },
             },
             {
-              id: utilService.makeId(),
-              title: 'Connect sockets',
-              status: 'Working on it',
+              id: 't102',
+              title: 'Develop RESTful API',
+              personsIds: ['u102'],
+              status: 'Done',
+              priority: 'Critical',
+              timeline: {
+                startDate: 1711991570,
+                dueDate: 1712164370,
+              },
+              files: {
+                type: 'img',
+                url: 'https://someImgUrl',
+                desc: 'Forme 1.png',
+              },
+            },
+            {
+              id: 't103',
+              title: 'Create database schema for storing user and task data',
+              priority: 'Medium',
+              timeline: {
+                startDate: 1712164370,
+                dueDate: 1713114770,
+              },
+            },
+            {
+              id: 't104',
+              title: 'Implement email notification',
+              personsIds: ['u101'],
+              status: 'Stuck',
               priority: 'Low',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712250770,
+              },
+              files: {
+                type: 'img',
+                url: 'https://someImgUrl',
+                desc: '11210022.JPG',
+              },
+            },
+            {
+              id: 't105',
+              title: 'Integrate third-party authentication',
+              personsIds: ['u102'],
+              status: 'Done',
+              priority: 'High',
+              timeline: {
+                startDate: 1711991570,
+                dueDate: 1712250770,
+              },
+            },
+            {
+              id: 't106',
+              title: 'Implement data analytics dashboard',
+              personsIds: ['u101'],
+              priority: 'High',
+              timeline: {
+                startDate: 1712164370,
+                dueDate: 1713028370,
+              },
+            },
+            {
+              id: 't107',
+              title: 'Develop user profile management functionality',
+              personsIds: ['u101', 'u102', 'u103'],
+              status: 'Stuck',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712250770,
+              },
             },
           ],
-          style: { color: '#037f4c' },
+          style: {
+            color: '#037f4c',
+          },
+        },
+        {
+          id: 'g3',
+          title: 'Design',
+          archivedAt: null,
+          tasks: [
+            {
+              id: 't101',
+              title: 'Design intuitive user interface for task management',
+              personsIds: ['u103'],
+              status: 'Done',
+              priority: 'High',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712164370,
+              },
+            },
+            {
+              id: 't102',
+              title: 'Create icons for task categories',
+              personsIds: ['u101'],
+              status: 'Stuck',
+              priority: 'Critical',
+              timeline: {
+                startDate: 1712164370,
+                dueDate: 1712337170,
+              },
+            },
+            {
+              id: 't103',
+              title: 'Design user onboarding flow for new users',
+              personsIds: ['u101', 'u102', 'u103'],
+              priority: 'Low',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712337170,
+              },
+            },
+            {
+              id: 't104',
+              title: 'Create wireframes for task detail view',
+              personsIds: ['u102'],
+              status: 'Done',
+              priority: 'Low',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712164370,
+              },
+            },
+            {
+              id: 't105',
+              title: 'Design email templates for notifications and reminders',
+              priority: 'Medium',
+              timeline: {
+                startDate: 1712337170,
+                dueDate: 1712337170,
+              },
+              files: {
+                type: 'url',
+                url: 'https://www.mailjet.com/solutions/use-cases/newsletter-templates/?utm_source=google&utm_medium=cpc&utm_campaign=EU%20%7C%20EN%20%7C%20Search%20%7C%20NewsLetter&utm_id=20307673600&utm_content=154296662367&utm_term=newsletter%20templates&utm_term=newsletter%20templates&utm_campaign=20307673600&utm_content=&utm_source=google&utm_medium=cpc&creative=663440392699&keyword=newsletter%20templates&matchtype=b&network=g&device=c&gad_source=1&gclid=CjwKCAjw_LOwBhBFEiwAmSEQATtbImo87GYIN6ZPwCBb_rK-Q2CQgHQh0K8bSbCqP5y99Ix5foPpHBoC2g0QAvD_BwE',
+                desc: 'How to email templates',
+              },
+            },
+            {
+              id: 't106',
+              title: 'Create mockups for mobile and tablet versions of the app',
+              status: 'Working on it',
+              priority: 'High',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712423570,
+              },
+            },
+            {
+              id: 't107',
+              title: 'Design color palette and typography for the interface',
+              personsIds: ['u103'],
+              timeline: {
+                startDate: 1712855570,
+                dueDate: 1713114770,
+              },
+              files: {
+                type: 'url',
+                url: 'https://colorhunt.co/',
+                desc: 'Color pallete',
+              },
+            },
+            {
+              id: 't108',
+              title: 'Create illustrations for empty states (e.g., empty task list)',
+              personsIds: ['u101'],
+              status: 'Done',
+              priority: 'Critical',
+              timeline: {
+                startDate: 1711991570,
+                dueDate: 1712164370,
+              },
+            },
+          ],
+          style: {
+            color: '#9d50dd',
+          },
+        },
+        {
+          id: 'g4',
+          title: 'Bugs',
+          archivedAt: null,
+          tasks: [
+            {
+              id: 't101',
+              title: 'Fix issue with task duplication when editing',
+              personsIds: ['u101'],
+              status: 'Stuck',
+              priority: 'Low',
+              timeline: {
+                startDate: 1712164370,
+                dueDate: 1712337170,
+              },
+              files: {
+                type: 'url',
+                url: 'https://jamie-burns.medium.com/a-short-guide-to-fixing-bugs-in-software-764fc31bb0e5',
+                desc: 'how to fix bugs',
+              },
+            },
+            {
+              id: 't102',
+              title: 'Resolve performance issues with loading large task lists',
+              personsIds: ['u102', 'u103'],
+              status: 'Done',
+              priority: 'Medium',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712164370,
+              },
+            },
+            {
+              id: 't103',
+              title: 'Fix UI glitch causing overlapping elements on mobile devices',
+              priority: 'Medium',
+              timeline: {
+                startDate: 1712164370,
+                dueDate: 1712250770,
+              },
+            },
+            {
+              id: 't104',
+              title: 'Fix alignment issue on task cards',
+              personsIds: ['u102'],
+              status: 'Working on it',
+              priority: 'High',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712337170,
+              },
+            },
+          ],
+          style: {
+            color: '#df2f4a',
+          },
+        },
+        {
+          id: 'g5',
+          title: 'Refactor',
+          archivedAt: null,
+          tasks: [
+            {
+              id: 't101',
+              title: 'Refactor CSS code for improved readability',
+              personsIds: ['u103'],
+              priority: 'Medium',
+              timeline: {
+                startDate: 1712337170,
+                dueDate: 1712509970,
+              },
+            },
+            {
+              id: 't102',
+              title: 'Refactor component structure for better code organization',
+              personsIds: ['u101'],
+              status: 'Done',
+              priority: 'High',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712164370,
+              },
+            },
+            {
+              id: 't103',
+              title: 'Optimize API calls',
+              personsIds: ['u102'],
+              status: 'Working on it',
+              priority: 'Low',
+              timeline: {
+                startDate: 1712077970,
+                dueDate: 1712423570,
+              },
+            },
+          ],
+          style: {
+            color: '#fdab3d',
+          },
         },
       ],
       activities: [
         {
-          id: utilService.makeId(),
+          id: 'a101',
           txt: 'Changed Color',
-          createdAt: Date.now(),
+          createdAt: 1712163768641,
           byPerson: {
             _id: 'u101',
             fullName: 'Atar Mor',
             imgUrl: 'http://some-img',
           },
           group: {
-            id: 'group1',
-            title: 'Frontend',
+            id: 'g3',
+            title: 'Design',
           },
           task: {
-            id: 'task1',
-            title: 'Replace Logo',
+            id: 't101',
+            title: 'Design intuitive user interface for task management',
           },
         },
       ],
-
       cmpsOrder: [
         'PersonsPicker',
         'StatusPicker',
@@ -141,7 +522,6 @@ function _createDemoBoard() {
       ],
     }
 
-    const boards = []
     boards.push(board)
     utilService.saveToStorage(BOARDS_KEY, boards)
   }

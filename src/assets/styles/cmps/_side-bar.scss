@@ -1,7 +1,6 @@
 .side-bar-container {
   position: relative;
   // padding: em(12px);
-  height: calc(100dvh - 48px);
   border-top-right-radius: $cmp-br;
   background-color: $main-bg-clr;
   transition: width 0.1s;
