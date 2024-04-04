@@ -2,14 +2,12 @@ import { useState } from 'react'
 
 import { AddBoardBtn, SearchIconSideBar } from '../services/svg.service'
 import { boardService } from '../services/board.service'
-import { utilService } from '../services/util.service'
 
 export function SidebarSearch({ addBoard }) {
   const [isFocused, setIsFocused] = useState(false)
 
   function onAddBoardClick() {
-    // boardService.getEmptyBoard()
-    const board = utilService.getEmptyBoard()
+    const board = boardService.getEmptyBoard()
     addBoard(board)
   }
 
