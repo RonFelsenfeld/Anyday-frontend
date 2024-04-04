@@ -28,17 +28,17 @@ export function TaskPreview({ board, group, task }) {
     }
 
     return <React.Fragment>
-        <td className="task-title">{task.title}</td>
-        <td className="task-persons-img">{task.personsIds ?
+        <p className="task-title">{task.title}</p>
+        <p className="task-persons-img">{task.personsIds ?
             task.personsIds.map(id => <img key={id} src={`${getPersonUrl(id)}`} alt="" />) : ''}
-        </td>
-        <td style={getStatusBG(task.status)}
+        </p>
+        <p style={getStatusBG(task.status)}
             className="task-status">{task.status ? task.status : ''}
-        </td>
-        <td style={getPriorityBG(task.priority)}
+        </p>
+        <p style={getPriorityBG(task.priority)}
             className="task-priority">{task.priority ? task.priority : ''}
-        </td>
-        <td className="task-timeline">{task.timeline ? getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate) : ''}</td>
-        <td className="task-files">{task.files ? getFileTy : ''}</td>
+        </p>
+        <p className="task-timeline">{task.timeline ? getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate) : '-'}</p>
+        <p className="task-files">{task.files ? getFileTy : ''}</p>
     </React.Fragment>
 }

@@ -11,11 +11,13 @@
 
 // Pages
 @import 'pages/board-index';
+@import 'pages/board-details';
 
 // Components
 @import 'cmps/app-header';
 @import 'cmps/board-header';
 @import 'cmps/board-controls';
+@import 'cmps/task-list';
 @import 'cmps/task-preview';
 @import 'cmps/side-bar';
 @import 'cmps/board-list';
