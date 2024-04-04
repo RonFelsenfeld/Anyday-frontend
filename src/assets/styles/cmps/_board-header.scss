@@ -1,60 +1,181 @@
 .board-header {
+  display: grid;
+  grid-template-columns: auto repeat(2, 1fr) auto;
+  grid-template-rows: 48px 36px 64px;
+  grid-template-areas:
+    'title info activity invite'
+    'views views views expand'
+    'actions actions actions actions';
+  align-items: center;
+
   padding: em(16px) em(30px) 0 em(38px);
 
-  .details-container {
-    margin-block-end: em(8px);
+  &.collapsed {
+    grid-template-columns: auto repeat(2, 1fr) auto;
+    grid-template-rows: 48px 64px;
+    grid-template-areas:
+      'title views invite expand'
+      'actions actions actions actions';
 
     .board-title {
-      padding: 4px;
-      border: 1px solid transparent;
-      border-radius: $el-br;
-      margin-inline-end: 4px;
-
-      font-size: em(24px);
-      font-family: PoppinsRegular, RobotoRegular, sans-serif;
-      font-weight: 600;
-
-      &:hover {
-        border-color: rgb(195, 198, 212);
-      }
+      margin-inline-end: 10px;
     }
+
+    .board-info,
+    .activity-container {
+      display: none;
+    }
+
+    .invite-container {
+      justify-self: end;
+      margin-inline-end: 1em;
+    }
+
+    .btn-collapse-header {
+      transform: rotate(180deg);
+    }
+  }
+
+  .board-title {
+    grid-area: title;
+
+    padding: 4px;
+    border: 1px solid transparent;
+    border-radius: $el-br;
+    margin-inline-end: 4px;
+
+    font-size: em(24px);
+    font-family: PoppinsRegular, RobotoRegular, sans-serif;
+    font-weight: 600;
+
+    &:hover {
+      border-color: rgb(195, 198, 212);
+    }
+  }
+
+  .board-info {
+    grid-area: info;
 
     .btn {
       @include btn(rgb(103, 104, 121));
 
       width: em(32px);
       height: em(32px);
+
       padding: 4px;
     }
+  }
 
-    .activity-container {
-      padding: 4px 8px;
-      font-size: em(15px);
-      border-radius: $el-br;
+  .activity-container {
+    grid-area: activity;
+    justify-self: end;
+    width: 120px;
 
-      &:hover {
-        background-color: $hover-clr;
+    border-radius: $el-br;
+    padding: 4px 8px;
+    margin-inline-end: 8px;
+
+    font-size: em(15px);
+    cursor: pointer;
+
+    &:hover {
+      background-color: $hover-clr;
+    }
+
+    .img-container {
+      margin-inline-start: 4px;
+
+      .user-img {
+        width: em(24px);
+        height: em(24px);
+
+        border-radius: 50%;
+        border: 1px solid $main-bg-clr;
       }
 
-      .img-container {
-        margin-inline-start: 4px;
+      .user-img:nth-child(2) {
+        transform: translateX(-10px);
+      }
 
-        .user-img {
-          width: em(24px);
-          height: em(24px);
-
-          border-radius: 50%;
-          border: 1px solid $main-bg-clr;
-        }
-
-        .user-img:nth-child(2) {
-          transform: translateX(-10px);
-        }
-
-        .user-img:nth-child(3) {
-          transform: translateX(-20px);
-        }
+      .user-img:nth-child(3) {
+        transform: translateX(-20px);
       }
     }
+  }
+
+  .invite-container {
+    grid-area: invite;
+    place-self: center;
+    gap: em(8px);
+
+    .btn-invite {
+      @include btn;
+
+      padding: 4px 8px;
+      border: 1px solid rgb(195, 198, 212);
+
+      .invite {
+        margin-inline-start: 8px;
+      }
+    }
+
+    .btn-options {
+      @include btn;
+
+      width: em(32px);
+      height: em(32px);
+    }
+  }
+
+  .views-container {
+    grid-area: views;
+
+    .view-btn {
+      @include btn;
+
+      padding: 8px;
+      font-size: em(14px);
+
+      span {
+        padding-inline: 6px;
+      }
+    }
+  }
+
+  .btn-collapse-header {
+    @include btn;
+
+    grid-area: expand;
+    justify-self: end;
+
+    width: em(32px);
+    height: em(32px);
+
+    border-radius: 50%;
+    border: 1px solid $secondary-border-clr;
+
+    transition: transform 0.3s;
+
+    &:hover {
+      svg {
+        animation: bounce 1s ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
   }
 }

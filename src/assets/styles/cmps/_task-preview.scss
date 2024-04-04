@@ -1,6 +1,8 @@
 .task {
-  @include btn;
   cursor: pointer;
+  &:hover {
+    background-color: $hover-clr;
+  }
 
   .task-persons-img {
     display: flex;
