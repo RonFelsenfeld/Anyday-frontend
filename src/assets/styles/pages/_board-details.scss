@@ -1,25 +1,26 @@
 .board-details {
-    background-color: $main-bg-clr;
-    padding: em(16px) em(30px) em(40px) em(40px);
-    border-radius: $cmp-br;
+  grid-column: 2;
+  background-color: $main-bg-clr;
+  border-radius: $cmp-br;
+  overflow-x: scroll;
 
-    .board-group {
-        display: grid;
-        grid-template-rows: 40px auto;
-        align-items: center;
+  .board-group {
+    display: grid;
+    grid-template-rows: 40px auto;
+    align-items: center;
+    padding: em(16px) em(30px) em(40px) em(38px);
 
-        .group-title {
-            color: var(--group-clr-9);
-            font-size: rem(18px);
-            font-family: PoppinsRegular, RobotoRegular, Helvetica, sans-serif;
-            font-weight: lighter;
-        }
-
-        .group-content {
-            border: 1px solid $secondary-border-clr;
-            border-radius: $cmp-br;
-            border-inline-start: 6px solid var(--group-clr-9);
-
-        }
+    .group-title {
+      color: var(--group-clr-9);
+      font-size: rem(18px);
+      font-family: PoppinsRegular, RobotoRegular, Helvetica, sans-serif;
+      font-weight: lighter;
     }
+
+    .group-content {
+      border: 1px solid $secondary-border-clr;
+      border-radius: $cmp-br;
+      border-inline-start: 6px solid var(--group-clr-9);
+    }
+  }
 }

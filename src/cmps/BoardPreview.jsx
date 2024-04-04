@@ -8,7 +8,7 @@ export function BoardPreview() {
 
         <div className="board-container">
           <div className="flex align-center justify-between">
-            <div className="board-details flex align-center">
+            <div className="board-details-container flex align-center">
               <BoardIcon />
               <h2 className="board-title">Frontend</h2>
             </div>

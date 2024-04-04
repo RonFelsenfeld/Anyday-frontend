@@ -6,7 +6,7 @@ export function BoardHeader() {
     <header className="board-header">
       <div className="details-container flex align-center justify-between">
         <div className="title-container flex align-center">
-          <h1 className="board-title">Frontend</h1>
+          <h1 className="board-title">TITLE</h1>
           <button className="btn">
             <Info />
           </button>

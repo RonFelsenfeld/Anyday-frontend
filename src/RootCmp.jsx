@@ -16,7 +16,9 @@ export function App() {
         <main>
           <Routes>
             <Route element={<HomePage />} path="/" />
-            <Route element={<BoardIndex />} path="/board">
+
+            <Route element={<WorkspaceIndex />} path="/board">
+              <Route element={<BoardIndex />} path="/board" />
               <Route element={<BoardDetails />} path="/board/:boardId" />
             </Route>
           </Routes>
