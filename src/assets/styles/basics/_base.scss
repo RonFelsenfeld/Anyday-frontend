@@ -37,6 +37,7 @@ button {
   color: inherit;
   background-color: transparent;
   font-family: inherit;
+
 }
 
 a {
@@ -48,4 +49,6 @@ a {
   // }
 }
 
-
+svg:focus {
+  outline: none;
+}
