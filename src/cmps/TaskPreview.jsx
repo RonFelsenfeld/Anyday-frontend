@@ -5,6 +5,7 @@ export function TaskPreview({ board, group, task }) {
     const person = board.persons.find(p => p.id === personId)
     return person?.imgUrl
   }
+
   function getFormattedTimeline(timestamp1, timestamp2) {
     const date1 = new Date(timestamp1)
     const date2 = new Date(timestamp2)

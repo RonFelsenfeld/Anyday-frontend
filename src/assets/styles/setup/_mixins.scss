@@ -1,5 +1,6 @@
 @mixin btn($color: $main-font-clr) {
   color: $color;
+  border-radius: $el-br;
 
   &:hover {
     background-color: $hover-clr;
