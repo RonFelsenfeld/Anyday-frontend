@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 265px 1fr;
   grid-template-rows: 48px 1fr;
+  column-gap: 10px;
 }
 
 .board-layout {
