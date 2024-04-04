@@ -11,15 +11,13 @@ export function BoardIndex() {
         </div>
 
         <img
-          src="https://cdn.monday.com/images/homepage-desktop/header-background-v2.svg"
+          src="/assets/img/workspace-header-preview.svg"
           alt="Confetti"
           className="header-background-img"
         />
       </header>
 
       <BoardList />
-
-      <Outlet />
     </section>
   )
 }

@@ -9,8 +9,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-template-rows: auto;
-  justify-items: center;
   gap: 20px;
 
-  padding: 16px 16px 24px 16px;
+  padding-inline: em(16px);
 }

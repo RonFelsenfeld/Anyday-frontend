@@ -1,2 +1,46 @@
 .board-preview {
+  border-radius: $el-br;
+  border: 1px solid $secondary-border-clr;
+
+  &:hover {
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .preview-container {
+    padding: em(8px);
+
+    .board-img {
+      border-radius: $el-br;
+      width: 100%;
+      margin-block-end: em(8px);
+    }
+
+    .board-details {
+      height: em(32px);
+      gap: 7px;
+
+      .board-title {
+        font-size: em(16px);
+        font-family: PoppinsMedium, RobotoBold, sans-serif;
+      }
+    }
+
+    .btn-favorite {
+      width: em(32px);
+      height: em(32px);
+      @include btn;
+    }
+
+    .workspace-details {
+      margin-block-start: 4px;
+
+      .workspace-title {
+        margin-inline-start: 4px;
+        line-height: em(21px);
+        color: rgb(103, 104, 121);
+      }
+    }
+  }
 }
