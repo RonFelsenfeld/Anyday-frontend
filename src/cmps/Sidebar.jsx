@@ -54,7 +54,7 @@ export function SideBar() {
       {isExpanded && (
         <div>
           <div className="home-my-work-container flex column">
-            <NavLink className="navlink" to={'/workspace/board'}>
+            <NavLink className="navlink" to={'/'}>
               <div className="home flex align-center">
                 <div className="home-svg svg">
                   <Home />
@@ -62,7 +62,7 @@ export function SideBar() {
                 <h4 className="home-h4">Home</h4>
               </div>
             </NavLink>
-            <NavLink className="navlink" to={'/'}>
+            <NavLink className="navlink" to={'/board'}>
               <div className="my-work flex align-center">
                 <div className="my-work-svg svg">
                   <MyWork />

@@ -4,6 +4,8 @@
   border-top-right-radius: $cmp-br;
   background-color: $main-bg-clr;
   transition: width 0.1s;
+  width: 100%;
+  height: 100%;
 
   &:hover {
     .sidebar-btn-expand {
