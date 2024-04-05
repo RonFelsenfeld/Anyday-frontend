@@ -3,14 +3,12 @@ import { useState } from 'react'
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
 import { BoardControls } from './BoardControls'
 
-export function BoardHeader() {
-  const [isExpanded, setIsExpanded] = useState(true)
-
+export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
   function toggleExpanded() {
-    setIsExpanded(prevIsExpanded => !prevIsExpanded)
+    setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
   }
 
-  const collapsedClass = !isExpanded ? 'collapsed' : ''
+  const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
 
   return (
     <header className={`board-header ${collapsedClass}`}>

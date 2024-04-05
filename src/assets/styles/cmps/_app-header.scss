@@ -2,8 +2,29 @@
   padding-inline: em(4px) em(24px);
   grid-column: 1 / -1;
 
-  .logo {
-    font-size: em(16px);
+  .menu-logo-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+
+    .logo-container {
+      font-size: em(16px);
+      letter-spacing: -0.2px;
+
+      .btn-logo {
+        width: (33px);
+        height: (33px);
+      }
+
+      .logo-main {
+        margin-inline: 4px;
+        font-family: PoppinsBold, RobotoBold, sans-serif;
+      }
+
+      .logo-secondary {
+        font-family: PoppinsLight, sans-serif;
+      }
+    }
   }
 
   .btn {

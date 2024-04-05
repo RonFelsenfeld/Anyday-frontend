@@ -9,6 +9,7 @@ export const boardService = {
   getById,
   remove,
   save,
+  getGroupById,
   removeGroup,
   saveGroup,
   removeTask,
@@ -57,7 +58,7 @@ function saveGroup(board, group) {
   }
 }
 
-function _getGroupById(board, groupId) {
+function getGroupById(board, groupId) {
   const group = board.groups.find(group => group.id === groupId)
   return group
 }

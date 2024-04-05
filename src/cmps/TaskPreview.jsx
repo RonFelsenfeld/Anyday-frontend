@@ -28,10 +28,11 @@ export function TaskPreview({ board, group, task }) {
     return { backgroundColor: priority?.color }
   }
 
-  function getFileType() {}
+  function getFileType() { }
 
   return (
-    <React.Fragment>
+    <article className='task-preview'>
+      <input type="checkbox" name="task" />
       <p className="task-title">{task.title}</p>
       <p className="task-persons-img">
         {task.personsIds
@@ -48,6 +49,6 @@ export function TaskPreview({ board, group, task }) {
         {task.timeline ? getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate) : '-'}
       </p>
       <p className="task-files">{task.files ? getFileType() : ''}</p>
-    </React.Fragment>
+    </article>
   )
 }
