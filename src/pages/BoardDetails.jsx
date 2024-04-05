@@ -1,4 +1,4 @@
-import { useEffect, useRef, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { boardService } from '../services/board.service'
