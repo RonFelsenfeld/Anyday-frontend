@@ -1,5 +1,5 @@
 import { boardService } from "../../services/board.service";
-import { ADD_BOARD, ADD_GROUP, ADD_TASK, EDIT_BOARD, EDIT_GROUP, EDIT_TASK, REMOVE_BOARD, REMOVE_GROUP, REMOVE_TASK, SET_BOARDS } from "../reducers/board.reducer";
+import { ADD_BOARD, EDIT_BOARD, REMOVE_BOARD, SET_BOARDS } from "../reducers/board.reducer";
 import { store } from '../store';
 
 export async function loadBoards() {
@@ -25,8 +25,9 @@ export async function removeBoard(boardId) {
 export async function saveBoard(board) {
     const type = board._id ? EDIT_BOARD : ADD_BOARD
     try {
-        const board = await boardService.save(board)
-        store.dispatch({ type, board })
+        const savedBoard = await boardService.save(board)
+        store.dispatch({ type, board: savedBoard })
+        return savedBoard
     } catch (err) {
         console.log('board action -> cannot save board', err)
         throw err
@@ -37,8 +38,9 @@ export async function saveBoard(board) {
 
 export async function removeGroup(board, groupId) {
     try {
-        await boardService.removeGroup(board, groupId)
-        store.dispatch({ type: REMOVE_GROUP, board, groupId })
+        const savedBoard = await boardService.removeGroup(board, groupId)
+        store.dispatch({ type: EDIT_BOARD, board: savedBoard })
+        return savedBoard
     } catch (err) {
         console.log('group action -> cannot remove group', err)
         throw err
@@ -46,10 +48,10 @@ export async function removeGroup(board, groupId) {
 }
 
 export async function saveGroup(board, group) {
-    const type = group.id ? EDIT_GROUP : ADD_GROUP
     try {
-        const savedGroup = await boardService.saveGroup(board, group)
-        store.dispatch({ type, board, group: savedGroup })
+        const savedBoard = await boardService.saveGroup(board, group)
+        store.dispatch({ type: EDIT_BOARD, board: savedBoard })
+        return savedBoard
     } catch (err) {
         console.log('group action -> cannot save group', err)
         throw err
@@ -60,8 +62,9 @@ export async function saveGroup(board, group) {
 
 export async function removeTask(board, group, taskId) {
     try {
-        await boardService.removeTask(board, group, taskId)
-        store.dispatch({ type: REMOVE_TASK, board, group, taskId })
+        const savedBoard = await boardService.removeTask(board, group, taskId)
+        store.dispatch({ type: EDIT_BOARD, board: savedBoard })
+        return savedBoard
     } catch (err) {
         console.log('task action -> cannot remove task', err)
         throw err
@@ -69,10 +72,10 @@ export async function removeTask(board, group, taskId) {
 }
 
 export async function saveTask(board, group, task) {
-    const type = task.id ? EDIT_TASK : ADD_TASK
     try {
-        const savedTask = await boardService.saveTask(board, group, task)
-        store.dispatch({ type, board, task: savedTask })
+        const savedBoard = await boardService.saveTask(board, group, task)
+        store.dispatch({ type: EDIT_BOARD, board: savedBoard })
+        return savedBoard
     } catch (err) {
         console.log('task action -> cannot save task', err)
         throw err

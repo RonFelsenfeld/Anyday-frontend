@@ -819,5 +819,5 @@ function _getRandGroupColor() {
       'rgb(117, 117, 117)'
     ]
 
-  return groupColors[utilService.getRandomIntInclusive(0, groupColors - 1)]
+  return groupColors[utilService.getRandomIntInclusive(0, groupColors.length - 1)]
 }
