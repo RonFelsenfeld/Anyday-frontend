@@ -11,6 +11,9 @@ export function SidebarSearch({ addBoard }) {
     addBoard(board)
   }
 
+
+
+
   const dynClass = isFocused ? 'focused' : ''
 
   return (

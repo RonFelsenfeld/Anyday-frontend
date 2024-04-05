@@ -13,7 +13,7 @@ import {
 import { SidebarSearch } from './SidebarSearch'
 import { boardService } from '../services/board.service'
 import { useSelector } from 'react-redux'
-import { loadBoards, saveBoard } from '../store/actions/board.actions'
+import { loadBoards, removeBoard, saveBoard } from '../store/actions/board.actions'
 
 export function SideBar() {
     const [isExpanded, setIsExpanded] = useState(true)
@@ -34,6 +34,27 @@ export function SideBar() {
             navigate(`/board/${savedBoard._id}`)
         } catch (err) {
             console.log('could not add a board', err)
+        }
+    }
+
+    //todo change to modal!!! button on line - 140
+    async function deleteBoard(boardId) {
+        try {
+            await removeBoard(boardId)
+        } catch (err) {
+            console.log('could not remove,', err);
+        }
+    }
+
+    //Todo change this to  dynamic input modal
+    async function editBoardName(boardId) {
+        const boardToEdit = await boardService.getById(boardId)
+        console.log(boardToEdit);
+        boardToEdit.title = prompt('new title?')||'New Title'
+        try {
+            await saveBoard(boardToEdit)
+        } catch (err) {
+            console.log('could not update board name', err);
         }
     }
 
@@ -117,7 +138,8 @@ export function SideBar() {
                                 <WorkSpaceOption />
                             </button>
                         </div>
-                        <SidebarSearch addBoard={addBoard} />
+                        <SidebarSearch
+                            addBoard={addBoard} />
                     </section>
                     {!!boards.length && (
                         <ul className="side-bar-boards-list clean-list">
@@ -127,7 +149,10 @@ export function SideBar() {
                                         <MiniBoard />
                                         <div key={board._id} className="board-title-options flex align-center">
                                             <span className="board-title-span">{board.title}</span>
+                                            <button onClick={() => deleteBoard(board._id)} className="remove-board-btn btn">x</button>
                                             <button onClick={onBoardOptionsClick} className="board-options-btn btn">
+                                            </button>
+                                            <button onClick={() => editBoardName(board._id)}>
                                                 <WorkSpaceOption />
                                             </button>
                                         </div>
