@@ -29,6 +29,12 @@ export function BoardList() {
           <Link to={`/board/b101`}>
             <BoardPreview />
           </Link>
+          <BoardPreview />
+          <BoardPreview />
+          <BoardPreview />
+          <BoardPreview />
+          <BoardPreview />
+          <BoardPreview />
         </ul>
       )}
     </section>
