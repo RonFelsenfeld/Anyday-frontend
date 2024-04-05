@@ -45,14 +45,14 @@ function removeGroup(board, groupId) {
     throw new Error(`Update failed, cannot find group with id: ${groupId}`)
   }
   board.groups.splice(groupIdx, 1)
-  save(board)
+  return save(board)
 }
 
 function saveGroup(board, group) {
   if (group.id) {
-    _updateGroup(board, group)
+    return _updateGroup(board, group)
   } else {
-    _addGroup(board, group)
+    return _addGroup(board, group)
   }
 }
 
@@ -64,7 +64,7 @@ function _getGroupById(board, groupId) {
 function _addGroup(board, group) {
   group.id = utilService.makeId()
   board.groups.push(group)
-  save(board)
+  return save(board)
 }
 
 function _updateGroup(board, group) {
@@ -73,7 +73,7 @@ function _updateGroup(board, group) {
     throw new Error(`Update failed, cannot find group with id: ${group.id}`)
   }
   board.groups.splice(groupIdx, 1, group)
-  save(board)
+  return save(board)
 }
 
 
@@ -85,14 +85,14 @@ function removeTask(board, group, taskId) {
     throw new Error(`Update failed, cannot find task with id: ${taskId}`)
   }
   group.tasks.splice(taskIdx, 1)
-  save(board)
+  return save(board)
 }
 
 function saveTask(board, group, task) {
   if (task.id) {
-    _updateTask(board, group, task)
+    return _updateTask(board, group, task)
   } else {
-    _addTask(board, group, task)
+    return _addTask(board, group, task)
   }
 }
 
@@ -104,7 +104,7 @@ function _getTaskById(group, taskId) {
 function _addTask(board, group, task) {
   task.id = utilService.makeId()
   group.tasks.push(task)
-  save(board)
+  return save(board)
 }
 
 function _updateTask(board, group, task) {
@@ -113,7 +113,7 @@ function _updateTask(board, group, task) {
     throw new Error(`Update failed, cannot find task with id: ${task.id}`)
   }
   group.tasks.splice(taskIdx, 1, task)
-  save(board)
+  return save(board)
 }
 
 
