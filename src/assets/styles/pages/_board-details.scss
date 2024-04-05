@@ -1,9 +1,10 @@
 .board-details {
   grid-column: 2;
+  border-radius: $cmp-br;
   background-color: $main-bg-clr;
   border-radius: $cmp-br;
   overflow-x: scroll;
-  padding-block-end: 50px; 
+  padding-block-end: 50px;
 
   .board-group {
     display: grid;

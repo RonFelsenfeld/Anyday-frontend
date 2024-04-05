@@ -1,13 +1,27 @@
-import { Help, Inbox, MenuGrid, NotificationBell, UserImg } from '../services/svg.service'
+import {
+  Help,
+  Inbox,
+  MenuGrid,
+  NotificationBell,
+  UserImg,
+  WorkspaceLogo,
+} from '../services/svg.service'
 
 export function AppHeader() {
   return (
     <header className="app-header flex align-center justify-between">
-      <div className="flex align-center">
+      <div className="menu-logo-container">
         <button className="btn">
           <MenuGrid />
         </button>
-        <h1 className="logo">Logo</h1>
+
+        <div className="logo-container flex align-center">
+          <button className="btn-logo">
+            <WorkspaceLogo size={25} />
+          </button>
+          <span className="logo-main">monday</span>
+          <span className="logo-secondary">work management</span>
+        </div>
       </div>
 
       <div className="actions-container flex">
