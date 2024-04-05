@@ -13,7 +13,7 @@ import {
 import { SidebarSearch } from './SidebarSearch'
 import { boardService } from '../services/board.service'
 import { useSelector } from 'react-redux'
-import { loadBoards } from '../store/actions/board.actions'
+import { loadBoards, saveBoard } from '../store/actions/board.actions'
 
 export function SideBar() {
     const [isExpanded, setIsExpanded] = useState(true)
@@ -27,14 +27,15 @@ export function SideBar() {
         if (!boards.length) loadBoards()
     }, [])
 
-    // async function loadBoards() {
-    //     try {
-    //         const boards = await boardService.query()
-    //         setBoards(boards)
-    //     } catch (err) {
-    //         console.log('could not get boards', err)
-    //     }
-    // }
+
+    async function addBoard(board) {
+        try {
+            const savedBoard = await saveBoard(board)
+            navigate(`/board/${savedBoard._id}`)
+        } catch (err) {
+            console.log('could not add a board', err)
+        }
+    }
 
     function calcSidebarWidth() {
         return isExpanded ? sidebarWidthRef.current : 30
@@ -60,16 +61,6 @@ export function SideBar() {
         if (!isHovered) return
         setIsHovered(false)
         setIsExpanded(false)
-    }
-
-    async function addBoard(board) {
-        try {
-            const savedBoard = await boardService.save(board)
-            setBoards(prevBoard => [...prevBoard, savedBoard])
-            navigate(`/board/${savedBoard._id}`)
-        } catch (err) {
-            console.log('could not add a board', err)
-        }
     }
 
     function onBoardOptionsClick() { }
@@ -128,7 +119,7 @@ export function SideBar() {
                         </div>
                         <SidebarSearch addBoard={addBoard} />
                     </section>
-                    {boards.length && (
+                    {!!boards.length && (
                         <ul className="side-bar-boards-list clean-list">
                             {boards.map(board => (
                                 <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
