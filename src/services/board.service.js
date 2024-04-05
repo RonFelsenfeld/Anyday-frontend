@@ -13,7 +13,8 @@ export const boardService = {
   saveGroup,
   removeTask,
   saveTask,
-  getEmptyBoard
+  getEmptyBoard,
+  getEmptyGroup
 }
 
 function query() {
@@ -687,12 +688,12 @@ function getEmptyBoard() {
     ],
     groups: [
       {
-        id: 'g1',
+        id: utilService.makeId(),
         title: 'Group1',
         archivedAt: null,
         tasks: [
           {
-            id: 't101',
+            id: utilService.makeId(),
             title: 'task 1',
             personsIds: ['u101'],
             status: 'Working on it',
@@ -703,7 +704,7 @@ function getEmptyBoard() {
             },
           },
           {
-            id: 't102',
+            id: utilService.makeId(),
             title: 'task 2',
             personsIds: ['u103'],
             status: 'Done',
@@ -714,7 +715,7 @@ function getEmptyBoard() {
             },
           },
           {
-            id: 't103',
+            id: utilService.makeId(),
             title: 'task 3',
             personsIds: ['u101', 'u102', 'u103'],
             status: 'Stuck',
@@ -735,12 +736,12 @@ function getEmptyBoard() {
         },
       },
       {
-        id: 'g2',
+        id: utilService.makeId(),
         title: 'group 2',
         archivedAt: null,
         tasks: [
           {
-            id: 't101',
+            id: utilService.makeId(),
             title: 'task 1',
             personsIds: ['u101', 'u103'],
             priority: 'High',
@@ -755,7 +756,7 @@ function getEmptyBoard() {
             },
           },
           {
-            id: 't102',
+            id: utilService.makeId(),
             title: 'task 2',
             personsIds: ['u102'],
             status: 'Stuck',
@@ -776,32 +777,47 @@ function getEmptyBoard() {
         },
       },
     ],
-    activities: [
-      {
-        id: 'a101',
-        txt: 'Changed Color',
-        createdAt: 1712163768641,
-        byPerson: {
-          _id: 'u101',
-          fullName: 'Atar Mor',
-          imgUrl: 'http://some-img',
-        },
-        group: {
-          id: 'g3',
-          title: 'Design',
-        },
-        task: {
-          id: 't101',
-          title: 'Design intuitive user interface for task management',
-        },
-      },
-    ],
+    activities: [],
     cmpsOrder: [
       'PersonsPicker',
       'StatusPicker',
-      'PriorityPicker',
       'TimelinePicker',
-      'FilesPicker',
     ],
   }
+}
+
+function getEmptyGroup() {
+  return {
+    title: 'New Group',
+    archivedAt: null,
+    tasks: [],
+    style: {
+      color: _getRandGroupColor(),
+    },
+  }
+}
+
+function _getRandGroupColor() {
+  const groupColors =
+    [
+      'rgb(3, 127, 76)',
+      'rgb(0, 200, 117)',
+      'rgb(156, 211, 38)',
+      'rgb(202, 182, 65)',
+      'rgb(255, 203, 0)',
+      'rgb(120, 75, 209)',
+      'rgb(0, 126, 181)',
+      'rgb(87, 155, 252)',
+      'rgb(102, 204, 255)',
+      'rgb(187, 51, 84)',
+      'rgb(223, 47, 74)',
+      'rgb(255, 0, 127)',
+      'rgb(255, 90, 196)',
+      'rgb(255, 100, 46)',
+      'rgb(127, 83, 71)',
+      'rgb(196, 196, 196)',
+      'rgb(117, 117, 117)'
+    ]
+
+  return groupColors[utilService.getRandomIntInclusive(0, groupColors - 1)]
 }
