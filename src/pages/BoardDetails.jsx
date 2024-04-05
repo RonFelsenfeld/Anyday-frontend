@@ -5,7 +5,7 @@ import { boardService } from '../services/board.service'
 
 import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
-import { saveGroup } from '../store/actions/board.actions'
+import { removeGroup, saveGroup } from '../store/actions/board.actions'
 import { EditableText } from '../cmps/EditableText'
 
 export function BoardDetails() {
@@ -78,6 +78,15 @@ export function BoardDetails() {
     }
   }
 
+  async function onRemoveGroup(groupId) {
+    try {
+      const savedBoard = await removeGroup(board, groupId)
+      setBoard(savedBoard)
+    } catch (err) {
+      console.log('Had issues removing group', err)
+    }
+  }
+
   if (!board) return <div>Loading...</div>
   return (
     <section className="board-details" ref={boardDetailsRef}>
@@ -92,14 +101,16 @@ export function BoardDetails() {
         {board.groups.map(group => {
           return (
             <article key={group.id} className="board-group">
-              <h2 onClick={()=>onEditGroupTitle(group.id)} className="group-title">{group.title}</h2>
+              <h2 onClick={() => onEditGroupTitle(group.id)} className="group-title">{group.title}
+              </h2>
+                <button style={{justifySelf:'start'}} onClick={() => onRemoveGroup(group.id)}>x</button>
               {/* {editedGroupTitle.current !== group.id && <h2 onClick={()=>{editedGroupTitle.current = group.id; setIsEditMode(true)}} className="group-title">{group.title}</h2>}
           {isEditMode && editedGroupTitle.current === group.id && <h2><EditableText
                 name="Edit-group"
                 func={onEditGroup}
                 value={group.title}
             /></h2>} */}
-          <div className="group-content">
+              <div className="group-content">
                 <TaskList board={board} group={group} />
               </div>
             </article>
