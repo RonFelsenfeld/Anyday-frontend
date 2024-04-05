@@ -3,6 +3,7 @@
   background-color: $main-bg-clr;
   border-radius: $cmp-br;
   overflow-x: scroll;
+  padding-block-end: 50px; 
 
   .board-group {
     display: grid;
