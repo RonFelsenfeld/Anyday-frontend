@@ -1,4 +1,4 @@
-import { EditableText } from "./EditableText";
+import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
 
 export function TaskList({ board, group }) {
@@ -19,8 +19,7 @@ export function TaskList({ board, group }) {
     }
   }
 
-  function onAddTask(task) {
-  }
+  function onAddTask(task) {}
 
   return <ul className='group-list clean-list'>
     <li className="group-header">

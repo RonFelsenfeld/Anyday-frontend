@@ -20,7 +20,7 @@ export function BoardPreview() {
 
           <div className="workspace-details flex align-center">
             <span>
-              <WorkspaceLogo />
+              <WorkspaceLogo size={14} />
             </span>
             <span className="workspace-title">Work management &#62; Main workspace</span>
           </div>
