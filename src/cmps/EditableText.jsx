@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function EditableText({ name, placeholder, func }) {
+export function EditableText({ name, placeholder, func, value }) {
     const [txt, setTxt] = useState()
     
     function handleChange({ target }) {
@@ -17,9 +17,10 @@ export function EditableText({ name, placeholder, func }) {
         <input
             type="text"
             name={name}
-            placeholder={placeholder}
+            placeholder={placeholder || ''}
             onChange={handleChange}
-            onBlur={onSaveText}>
+            onBlur={onSaveText}
+            value={value || ''}>
         </input>
         </form>
     )
