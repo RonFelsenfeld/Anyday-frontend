@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
+import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
 
-export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setTaskToEdit, onSaveTask }) {
+export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setTaskToEdit, onSaveTask, isUpdateLogExpanded, setIsUpdateLogExpanded, setSelectedTask }) {
   const [isEditMode, setIsEditMode] = useState(false)
-
-  function getPersonUrl(personId) {
-    const person = board.persons.find(p => p.id === personId)
-    return person?.imgUrl
-  }
 
   function getFormattedTimeline(timestamp1, timestamp2) {
     const date1 = new Date(timestamp1)
@@ -32,10 +28,17 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
     return { backgroundColor: priority?.color }
   }
 
+  function onOpenUpdateLog(task) {
+    setIsUpdateLogExpanded(true)
+    setSelectedTask(task)
+
+  }
+
   function getFileType() { }
 // console.log('taskToEdit',taskToEdit)
   return (
     <article className='task-preview'>
+
       <button onClick={() => onRemoveTask(task.id)} className='task-menu-btn'><WorkSpaceOption /></button>
       <input type="checkbox" name="task" />
       {/* <p style={{backgroundColor: 'red'}} onClick={()=>{setIsEditMode(true); setTaskToEdit(task)}} 
@@ -49,10 +52,10 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
         prevTxt={task.title}
       />
       </div>
-      <p><MsgIcon/></p>
+      <p onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
       <p className="task-persons-img">
         {task.personsIds
-          ? task.personsIds.map(id => <img key={id} src={`${getPersonUrl(id)}`} alt="" />)
+          ? task.personsIds.map(id => <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />)
           : ''}
       </p>
       <p style={getStatusBG(task.status || '')} className="task-status">

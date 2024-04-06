@@ -7,11 +7,15 @@ import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { removeGroup, saveGroup } from '../store/actions/board.actions'
 import { EditableText } from '../cmps/EditableText'
+import { UpdateLog } from '../cmps/UpdateLog'
 import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 export function BoardDetails() {
   const [board, setBoard] = useState()
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
+  const [isUpdateLogExpanded, setIsUpdateLogExpanded] = useState(false)
+  const [selectedTask, setSelectedTask] = useState(null)
+
 
   const headerRef = useRef()
   const boardDetailsRef = useRef()
@@ -89,16 +93,24 @@ export function BoardDetails() {
     }
   }
 
+  const isUpdateLogOpenClass = !isUpdateLogExpanded ? 'closed' : ''
+
   if (!board) return <div>Loading...</div>
   return (
     <section className="board-details" ref={boardDetailsRef}>
+      <div className={`${isUpdateLogOpenClass}`}>
+        <UpdateLog
+          board={board}
+          selectedTask={selectedTask}
+          setIsUpdateLogExpanded={setIsUpdateLogExpanded}
+          isUpdateLogExpanded={isUpdateLogExpanded} />
+      </div>
       <div ref={headerRef}>
         <BoardHeader
           isHeaderExpanded={isHeaderExpanded}
           setIsHeaderExpanded={setIsHeaderExpanded}
         />
       </div>
-
       <div className="group-container">
         {board.groups.map(group => {
           return (
@@ -117,7 +129,13 @@ export function BoardDetails() {
                 value={group.title}
             /></h2>} */}
               <div className="group-content">
-                <TaskList board={board} group={group} setBoard={setBoard} />
+                <TaskList
+                  setSelectedTask={setSelectedTask}
+                  isUpdateLogExpanded={isUpdateLogExpanded}
+                  setIsUpdateLogExpanded={setIsUpdateLogExpanded}
+                  board={board}
+                  group={group}
+                  setBoard={setBoard} />
               </div>
             </article>
           )

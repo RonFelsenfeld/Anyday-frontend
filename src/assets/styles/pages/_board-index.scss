@@ -4,6 +4,8 @@
   background-color: $board-index-bg-clr;
   border-top-left-radius: $cmp-br;
 
+  overflow-y: scroll;
+
   .index-header {
     height: em(75px);
     border-top-left-radius: $cmp-br;
