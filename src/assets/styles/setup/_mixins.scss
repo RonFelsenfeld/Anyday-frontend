@@ -6,3 +6,12 @@
     background-color: $hover-clr;
   }
 }
+
+@mixin input() {
+  height: 24px;
+  align-self: center;
+  margin: 6px;
+  border: 1px solid transparent;
+  border-radius: $el-br;
+  background: transparent;
+}

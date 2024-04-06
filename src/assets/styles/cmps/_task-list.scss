@@ -43,13 +43,10 @@
             opacity: 0.3;
             
             input[name="add-task"] {
-                height: 24px;
-                align-self: center;
+                width: 97%;
                 padding-inline-start: em(24px);
-                margin: 6px;
-                border: 1px solid transparent;
-                border-radius: $el-br;
-                background: transparent;
+
+                @include input; 
                 opacity: 1;
     
                 &:hover {

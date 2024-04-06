@@ -45,6 +45,19 @@
       padding-inline-start: em(30px);
     }
   
+    .edit-task {
+      // width: 100%;
+      display: grid;
+      border-inline-start: 1px solid $secondary-border-clr;
+      padding-inline-start: em(30px);
+      
+      input {
+        @include input; 
+        width: 100%; 
+      }
+    }
+
+
     .task-persons-img {
       display: flex;
       align-items: center;

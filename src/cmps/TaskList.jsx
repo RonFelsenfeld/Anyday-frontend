@@ -5,7 +5,8 @@ import { TaskPreview } from './TaskPreview'
 import { boardService } from '../services/board.service'
 
 export function TaskList({ board, group, setBoard }) {
-  const [taskToEdit, setTaskToEdit] = useState(boardService.getEmptyTask())
+  const [taskToEdit, setTaskToEdit] = useState(null)
+  // console.log('taskToEdit', taskToEdit)
 
   function getColName(cmp) {
     switch (cmp) {
@@ -24,11 +25,13 @@ export function TaskList({ board, group, setBoard }) {
     }
   }
 
-  async function onAddTask(txt) {
-    const newTask = { ...taskToEdit, title: txt }
+  async function onSubmit(txt) {
+    const editedTask = { ...taskToEdit, title: txt }
+    console.log('savedTask', editedTask)
     try {
-      const savedBoard = await saveTask(board, group, newTask)
+      const savedBoard = await saveTask(board, group, editedTask)
       setBoard(savedBoard)
+      setTaskToEdit(null)
     } catch (err) {
       console.log('Had issues adding task')
     }
@@ -45,7 +48,7 @@ export function TaskList({ board, group, setBoard }) {
 
   return <ul className='group-container clean-list'>
 
-    <div style={{borderColor: group.style.color}} className='group-list'>
+    <div style={{ borderColor: group.style.color }} className='group-list'>
       <li className="group-header">
         <input type="checkbox" name="all-tasks" />
         <h3>Task</h3>
@@ -57,19 +60,27 @@ export function TaskList({ board, group, setBoard }) {
       {group.tasks.map(task => {
         return (
           <li className="task" key={task.id}>
-            <TaskPreview board={board} group={group} task={task} onRemoveTask={onRemoveTask} />
+            <TaskPreview board={board} group={group} task={task}
+              onRemoveTask={onRemoveTask}
+              taskToEdit={taskToEdit}
+              setTaskToEdit={setTaskToEdit}
+              onSaveTask={onSubmit}
+            />
           </li>
         )
       })}
     </div>
 
-    <li style={{borderColor: group.style.color}} className="add-task">
+    <li style={{ borderColor: group.style.color }} className="add-task">
       <div></div>
-      <EditableText
-        name="add-task"
-        placeholder='+ Add task'
-        func={onAddTask}
-      />
+      <div onClick={() => setTaskToEdit(boardService.getEmptyTask())}>
+        <EditableText
+          name="add-task"
+          placeholder='+ Add task'
+          func={onSubmit}
+          isNew={true}
+        />
+      </div>
     </li>
   </ul>
 }

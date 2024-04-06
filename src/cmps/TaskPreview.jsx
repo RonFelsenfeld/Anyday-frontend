@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
+import { EditableText } from './EditableText'
 
-export function TaskPreview({ board, group, task, onRemoveTask }) {
+export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setTaskToEdit, onSaveTask }) {
+  const [isEditMode, setIsEditMode] = useState(false)
+
   function getPersonUrl(personId) {
     const person = board.persons.find(p => p.id === personId)
     return person?.imgUrl
@@ -20,6 +23,7 @@ export function TaskPreview({ board, group, task, onRemoveTask }) {
   }
 
   function getStatusBG(taskStatus) {
+    console.log('taskStatus',taskStatus)
     const status = board.statuses?.find(s => s.title === taskStatus)
     return { backgroundColor: status?.color }
   }
@@ -30,12 +34,22 @@ export function TaskPreview({ board, group, task, onRemoveTask }) {
   }
 
   function getFileType() { }
-
+// console.log('taskToEdit',taskToEdit)
   return (
     <article className='task-preview'>
       <button onClick={() => onRemoveTask(task.id)} className='task-menu-btn'><WorkSpaceOption /></button>
       <input type="checkbox" name="task" />
-      <p className="task-title">{task.title}</p>
+      {/* <p style={{backgroundColor: 'red'}} onClick={()=>{setIsEditMode(true); setTaskToEdit(task)}} 
+      className="task-title">{task.title}</p>} */}
+      <div onClick={()=>{
+        setTaskToEdit(task)}} >
+      <EditableText 
+        className="edit-task"
+        placeholder='+ Add task'
+        func={onSaveTask}
+        prevTxt={task.title}
+      />
+      </div>
       <p><MsgIcon/></p>
       <p className="task-persons-img">
         {task.personsIds
