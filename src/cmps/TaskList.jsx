@@ -4,7 +4,7 @@ import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
 import { boardService } from '../services/board.service'
 
-export function TaskList({ board, group, setBoard }) {
+export function TaskList({ board, group, setBoard,isUpdateLogExpanded,setIsUpdateLogExpanded,setSelectedTask }) {
   const [taskToEdit, setTaskToEdit] = useState(boardService.getEmptyTask())
 
   function getColName(cmp) {
@@ -57,7 +57,14 @@ export function TaskList({ board, group, setBoard }) {
       {group.tasks.map(task => {
         return (
           <li className="task" key={task.id}>
-            <TaskPreview board={board} group={group} task={task} onRemoveTask={onRemoveTask} />
+            <TaskPreview
+            setSelectedTask={setSelectedTask}
+             isUpdateLogExpanded={isUpdateLogExpanded}
+             setIsUpdateLogExpanded={setIsUpdateLogExpanded}
+             board={board}
+              group={group}
+               task={task}
+              onRemoveTask={onRemoveTask} />
           </li>
         )
       })}

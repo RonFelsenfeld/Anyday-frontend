@@ -16,7 +16,8 @@ export const boardService = {
   saveTask,
   getEmptyTask,
   getEmptyBoard,
-  getEmptyGroup
+  getEmptyGroup,
+  getPersonUrl,
 }
 
 function query() {
@@ -25,10 +26,12 @@ function query() {
 
 function getById(boardId) {
   return storageService.get(BOARDS_KEY, boardId)
+
 }
 
 function remove(boardId) {
   return storageService.remove(BOARDS_KEY, boardId)
+    // .then(board => _setPrevBoardId(board))
 }
 
 function save(board) {
@@ -38,6 +41,20 @@ function save(board) {
     return storageService.post(BOARDS_KEY, board)
   }
 }
+
+function getPersonUrl(board, personId) {
+  const person = board.persons.find(p => p.id === personId)
+  return person?.imgUrl
+}
+
+// function _setPrevBoardId(board) {
+//   return storageService.query(BOARDS_KEY).then((boards) => {
+//     const boardIdx = boards.findIndex((currBoard) => currBoard._id === board._id)
+//     const prevBoard = boards[boardIdx - 1] ? boards[boardIdx - 1] : boards[boards.length - 1]
+//     board.prevBoardId = prevBoard.id
+//     return board
+//   })
+// }
 
 
 /// GROUPS ///
