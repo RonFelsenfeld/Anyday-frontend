@@ -8,7 +8,7 @@ export function EditableText({ name, placeholder, func, prevTxt, className, isNe
         setTxt(target.value)
     }
     
-    function onSaveText(ev) {
+    function onSubmit(ev) {
         console.log('txt',txt)
         ev.preventDefault()
         if(!txt) return 
@@ -17,13 +17,13 @@ export function EditableText({ name, placeholder, func, prevTxt, className, isNe
     }
 
     return (
-        <form className={className || ''} onSubmit={onSaveText}>
+        <form className={className || ''} onSubmit={onSubmit}>
         <input
             type="text"
-            name={name}
+            name={name || ''}
             placeholder={placeholder || ''}
             onChange={handleChange}
-            // onBlur={onSaveText}
+            onBlur={onSubmit}
             value={txt}>
         </input>
         </form>

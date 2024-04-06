@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { HomeUpdates, WorkSpaceOption } from '../services/svg.service'
+import { useState } from 'react'
+import { HomeUpdates, WorkSpaceOption, Xbutton } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 
 export function UpdateLog({ isUpdateLogExpanded, setIsUpdateLogExpanded, selectedTask, board }) {
@@ -22,7 +22,9 @@ export function UpdateLog({ isUpdateLogExpanded, setIsUpdateLogExpanded, selecte
       <div className="header">
         <div className="title-container">
           <div className="exit-button-container flex">
-            <button onClick={onCloseUpdateLog}>x</button>
+            <button onClick={onCloseUpdateLog}>
+              <Xbutton />
+            </button>
           </div>
           <div className="title-options flex justify-between">
             <div className="title flex">

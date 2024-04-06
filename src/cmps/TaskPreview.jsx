@@ -66,7 +66,7 @@ export function TaskPreview({
           prevTxt={task.title}
         />
       </div>
-      <p onClick={() => onOpenUpdateLog(task)}>
+      <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
         <MsgIcon />
       </p>
       <p className="task-persons-img">

@@ -19,6 +19,15 @@
     .title-container {
       .exit-button-container {
         height: em(24px);
+        margin-bottom: em(5px);
+
+        button {
+          padding: 0px;
+          & :hover {
+            border-radius: $el-br;
+            background-color: $hover-clr;
+          }
+        }
       }
 
       .title-options {
@@ -27,8 +36,6 @@
 
         .title {
           width: em(350px);
-          h2 {
-          }
         }
 
         .img-options {

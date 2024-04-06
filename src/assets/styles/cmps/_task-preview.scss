@@ -44,6 +44,10 @@
       align-content: center;
       padding-inline-start: em(30px);
     }
+
+    .msg-btn>*:hover{
+      color: $btn-compose-clr
+    }
   
     .edit-task {
       // width: 100%;
