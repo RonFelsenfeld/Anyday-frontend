@@ -1,14 +1,29 @@
 
 .task {
   cursor: pointer;
+  position: relative;
+
+  .task-menu-btn {
+    position: absolute;
+    transform: translate(-40px, 7px);
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+      background-color: $hover-clr;
+    }
+  }
 
   &:hover {
     background-color: $hover-clr;
+    .task-menu-btn {
+      opacity: 1;
+    }
   }
 
   .task-preview {
     display: grid;
-    grid-template-columns: 32px 380px 100px repeat(4, 140px);
+    grid-template-columns: 32px 380px 65px 100px repeat(4, 140px);
     grid-auto-rows: $task-preview-height;
   
     p {

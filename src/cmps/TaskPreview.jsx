@@ -1,6 +1,7 @@
 import React from 'react'
+import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 
-export function TaskPreview({ board, group, task }) {
+export function TaskPreview({ board, group, task, onRemoveTask }) {
   function getPersonUrl(personId) {
     const person = board.persons.find(p => p.id === personId)
     return person?.imgUrl
@@ -32,8 +33,10 @@ export function TaskPreview({ board, group, task }) {
 
   return (
     <article className='task-preview'>
+      <button onClick={() => onRemoveTask(task.id)} className='task-menu-btn'><WorkSpaceOption /></button>
       <input type="checkbox" name="task" />
       <p className="task-title">{task.title}</p>
+      <p><MsgIcon/></p>
       <p className="task-persons-img">
         {task.personsIds
           ? task.personsIds.map(id => <img key={id} src={`${getPersonUrl(id)}`} alt="" />)

@@ -111,7 +111,7 @@ export function BoardDetails() {
                 value={group.title}
             /></h2>} */}
               <div className="group-content">
-                <TaskList board={board} group={group} />
+                <TaskList board={board} group={group} setBoard={setBoard} />
               </div>
             </article>
           )

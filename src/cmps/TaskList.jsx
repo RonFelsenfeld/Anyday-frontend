@@ -1,7 +1,12 @@
+import { useState } from 'react'
+import { saveTask, removeTask } from '../store/actions/board.actions'
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
+import { boardService } from '../services/board.service'
 
-export function TaskList({ board, group }) {
+export function TaskList({ board, group, setBoard }) {
+  const [taskToEdit, setTaskToEdit] = useState(boardService.getEmptyTask())
+
   function getColName(cmp) {
     switch (cmp) {
       case 'PersonsPicker':
@@ -19,20 +24,44 @@ export function TaskList({ board, group }) {
     }
   }
 
-  function onAddTask(task) {}
+  async function onAddTask(txt) {
+    const newTask = { ...taskToEdit, title: txt }
+    try {
+      const savedBoard = await saveTask(board, group, newTask)
+      setBoard(savedBoard)
+    } catch (err) {
+      console.log('Had issues adding task')
+    }
+  }
 
-  return <ul className='group-list clean-list'>
-    <li className="group-header">
-      <input type="checkbox" name="all-tasks" />
-      <h3>Task</h3>
-      {board.cmpsOrder.map((cmp, idx) => (
-        <h3 key={idx}>{getColName(cmp)}</h3>
-      ))}
-    </li>
+  async function onRemoveTask(taskId) {
+    try {
+      const savedBoard = await removeTask(board, group, taskId)
+      setBoard(savedBoard)
+    } catch (err) {
+      console.log('Had issues removing task')
+    }
+  }
 
-    {group.tasks.map(task => <li className="task" key={task.id}>
-      <TaskPreview board={board} group={group} task={task} />
-    </li>)}
+  return <ul className='group-container clean-list'>
+
+    <div className='group-list'>
+      <li className="group-header">
+        <input type="checkbox" name="all-tasks" />
+        <h3>Task</h3>
+        {board.cmpsOrder.map((cmp, idx) => (
+          <h3 key={idx}>{getColName(cmp)}</h3>
+        ))}
+      </li>
+
+      {group.tasks.map(task => {
+        return (
+          <li className="task" key={task.id}>
+            <TaskPreview board={board} group={group} task={task} onRemoveTask={onRemoveTask} />
+          </li>
+        )
+      })}
+    </div>
 
     <li className="add-task">
       <div></div>

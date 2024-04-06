@@ -1,10 +1,19 @@
-.group-list {
+.group-container {
     display: grid;
+
+    .group-list {
+        border-inline-start: 6px solid var(--group-clr-9);
+        border-top-left-radius: $cmp-br;
+    }
 
     li {
         display: grid;
-        grid-template-columns: 32px 380px 100px repeat(4, 140px);
+        grid-template-columns: 32px 445px 100px repeat(4, 140px);
         grid-auto-rows: $task-preview-height;
+
+        &:hover {
+            box-shadow: 4px 3px 6px -3px #c3c6d4;
+        }
 
         input:not([name="add-task"]) {
             align-self: center;
@@ -16,7 +25,6 @@
 
         &:not(.add-task) {
             border-bottom: 1px solid $secondary-border-clr;
-            // border-inline-start: 6px solid var(--group-clr-9);
         }
 
         &.group-header>* {
@@ -31,8 +39,9 @@
     }
 
     .add-task {
-        // border-inline-start: 6px solid var(--group-clr-91);
-
+        border-inline-start: 6px solid var(--group-clr-91);
+        border-bottom-left-radius: $cmp-br;
+        
         input[name="add-task"] {
             height: 24px;
             align-self: center;

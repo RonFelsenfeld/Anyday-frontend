@@ -14,6 +14,7 @@ export const boardService = {
   saveGroup,
   removeTask,
   saveTask,
+  getEmptyTask,
   getEmptyBoard,
   getEmptyGroup
 }
@@ -784,6 +785,13 @@ function getEmptyBoard() {
       'StatusPicker',
       'TimelinePicker',
     ],
+  }
+}
+
+function getEmptyTask() {
+  return {
+    title: '',
+    personsId: []
   }
 }
 
