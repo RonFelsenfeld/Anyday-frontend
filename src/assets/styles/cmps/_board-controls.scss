@@ -1,8 +1,9 @@
 .board-header .board-controls {
-  // ! ADD BLUE BORDER WHEN ACTIVE (AS ROUTE)
-
   grid-area: actions;
   gap: em(8px);
+
+  padding-block: em(16px);
+  border-block-start: 1px solid rgb(208, 212, 228);
 
   .btn {
     height: em(32px);
