@@ -6,7 +6,6 @@
     'title info activity invite'
     'views views views expand'
     'actions actions actions actions';
-  align-items: center;
 
   position: sticky;
   inset: 0 auto auto 0;
@@ -43,6 +42,7 @@
 
   .board-title {
     grid-area: title;
+    align-self: center;
 
     padding: 4px;
     border: 1px solid transparent;
