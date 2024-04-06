@@ -36,29 +36,31 @@
             justify-content: center;
             border-inline-start: 1px solid $secondary-border-clr;
         }
-    }
 
-    .add-task {
-        border-inline-start: 6px solid var(--group-clr-91);
-        border-bottom-left-radius: $cmp-br;
-        
-        input[name="add-task"] {
-            height: 24px;
-            align-self: center;
-            padding-inline-start: em(24px);
-            margin: 6px;
-            border: 1px solid transparent;
-            border-radius: $el-br;
-            background: transparent;
-            // border-inline-end: 1px solid $secondary-border-clr;
-
-            &:hover {
-                border-color: $secondary-border-clr;
+        &.add-task {
+            border-bottom-left-radius: $cmp-br;
+            border-inline-start: 6px solid var(--group-clr-91);
+            opacity: 0.3;
+            
+            input[name="add-task"] {
+                height: 24px;
+                align-self: center;
+                padding-inline-start: em(24px);
+                margin: 6px;
+                border: 1px solid transparent;
+                border-radius: $el-br;
+                background: transparent;
+                opacity: 1;
+    
+                &:hover {
+                    border-color: $secondary-border-clr;
+                }
             }
-        }
-
-        &:hover {
-            background-color: $hover-clr;
+    
+            &:hover {
+                background-color: $hover-clr;
+                opacity: 1;
+            }
         }
     }
 }

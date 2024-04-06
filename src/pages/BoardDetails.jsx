@@ -101,7 +101,7 @@ export function BoardDetails() {
         {board.groups.map(group => {
           return (
             <article key={group.id} className="board-group">
-              <h2 onClick={() => onEditGroupTitle(group.id)} className="group-title">{group.title}
+              <h2 style={{color: group.style.color}} onClick={() => onEditGroupTitle(group.id)} className="group-title">{group.title}
               </h2>
                 <button style={{justifySelf:'start'}} onClick={() => onRemoveGroup(group.id)}>x</button>
               {/* {editedGroupTitle.current !== group.id && <h2 onClick={()=>{editedGroupTitle.current = group.id; setIsEditMode(true)}} className="group-title">{group.title}</h2>}

@@ -45,7 +45,7 @@ export function TaskList({ board, group, setBoard }) {
 
   return <ul className='group-container clean-list'>
 
-    <div className='group-list'>
+    <div style={{borderColor: group.style.color}} className='group-list'>
       <li className="group-header">
         <input type="checkbox" name="all-tasks" />
         <h3>Task</h3>
@@ -63,7 +63,7 @@ export function TaskList({ board, group, setBoard }) {
       })}
     </div>
 
-    <li className="add-task">
+    <li style={{borderColor: group.style.color}} className="add-task">
       <div></div>
       <EditableText
         name="add-task"
