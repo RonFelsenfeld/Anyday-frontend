@@ -15,9 +15,7 @@
     .group-header {
       position: relative;
       display: grid;
-      // justify-self: start;
       grid-template-columns: 40px auto 1fr;
-      // align-items: center;
       cursor: grab;
 
       .board-menu-btn {
@@ -30,13 +28,11 @@
       .collapse-btn {
         margin: 0;
         padding: 0;
-        // justify-self: right;
       }
 
       .group-title {
         color: var(--group-clr-9);
         font-size: 1.29rem;
-        font-family: PoppinsRegular, RobotoRegular, Helvetica, sans-serif;
         align-self: start;
         margin-inline-end: 15px
       }
@@ -44,7 +40,7 @@
       .tasks-left {
         font-size: 1rem;
         padding: 0;
-        padding-top: em(3px);
+        padding-block-end: 3px;
         margin: 0;
         align-self: center;
         opacity: 0;
@@ -63,5 +59,15 @@
       border: 1px solid $secondary-border-clr;
       border-radius: $cmp-br;
     }
+  }
+
+  .add-group-btn {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 4px 8px;
+    margin-inline-start: 38px;
+    border: 1px solid $secondary-border-clr;
+    @include btn
   }
 }

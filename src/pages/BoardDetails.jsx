@@ -8,7 +8,7 @@ import { BoardHeader } from '../cmps/BoardHeader'
 import { removeGroup, saveGroup } from '../store/actions/board.actions'
 import { EditableText } from '../cmps/EditableText'
 import { UpdateLog } from '../cmps/UpdateLog'
-import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
+import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 export function BoardDetails() {
   const [board, setBoard] = useState()
@@ -122,12 +122,6 @@ export function BoardDetails() {
                 </h2>
                 <h2 className='tasks-left'>{`${group.tasks.length} Tasks`}</h2>
               </div>
-              {/* {editedGroupTitle.current !== group.id && <h2 onClick={()=>{editedGroupTitle.current = group.id; setIsEditMode(true)}} className="group-title">{group.title}</h2>}
-          {isEditMode && editedGroupTitle.current === group.id && <h2><EditableText
-                name="Edit-group"
-                func={onEditGroup}
-                value={group.title}
-            /></h2>} */}
               <div className="group-content">
                 <TaskList
                   setSelectedTask={setSelectedTask}
@@ -141,7 +135,8 @@ export function BoardDetails() {
           )
         })}
       </div>
-      <button onClick={onAddGroup}>Add new group</button>
+      
+      <button className="add-group-btn" onClick={onAddGroup}><AddBoardBtn/> Add new group</button>
     </section>
   )
 }

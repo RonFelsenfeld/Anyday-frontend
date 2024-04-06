@@ -23,37 +23,47 @@
             border: 1px solid $secondary-border-clr;
         }
 
-        &:not(.add-task) {
+        &:not(.add-task-li) {
             border-bottom: 1px solid $secondary-border-clr;
         }
 
-        &.group-first-row>* {
-            display: grid;
-            font-family: PoppinsRegular, RobotoRegular, Helvetica, sans-serif;
-            font-weight: lighter;
-            font-size: 1rem;
-            align-items: center;
-            justify-content: center;
-            border-inline-start: 1px solid $secondary-border-clr;
+        &.group-first-row {
+            position: sticky;
+            top: 0;
+            background-color: $main-bg-clr;
+            z-index: 1;
+            // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+            &>* {
+                display: grid;
+                font-weight: lighter;
+                font-size: 1rem;
+                align-items: center;
+                justify-content: center;
+                border-inline-start: 1px solid $secondary-border-clr;
+            }
         }
 
-        &.add-task {
+        &.add-task-li {
             border-bottom-left-radius: $cmp-br;
             border-inline-start: 6px solid var(--group-clr-91);
-            opacity: 0.3;
-            
+            opacity: 0.4;
+
+            .add-task-container {
+                border-inline-start: 1px solid $secondary-border-clr;
+            }
+
             input[name="add-task"] {
                 width: 97%;
                 padding-inline-start: em(24px);
-
-                @include input; 
                 opacity: 1;
-    
+                @include input;
+
                 &:hover {
                     border-color: $secondary-border-clr;
                 }
             }
-    
+
             &:hover {
                 background-color: $hover-clr;
                 opacity: 1;

@@ -4,7 +4,6 @@ import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
 
 export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setTaskToEdit, onSaveTask, isUpdateLogExpanded, setIsUpdateLogExpanded, setSelectedTask }) {
-  const [isEditMode, setIsEditMode] = useState(false)
 
   function getFormattedTimeline(timestamp1, timestamp2) {
     const date1 = new Date(timestamp1)
@@ -35,24 +34,27 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
   }
 
   function getFileType() { }
-// console.log('taskToEdit',taskToEdit)
+
   return (
     <article className='task-preview'>
 
       <button onClick={() => onRemoveTask(task.id)} className='task-menu-btn'><WorkSpaceOption /></button>
-      <input type="checkbox" name="task" />
-      {/* <p style={{backgroundColor: 'red'}} onClick={()=>{setIsEditMode(true); setTaskToEdit(task)}} 
-      className="task-title">{task.title}</p>} */}
-      <div onClick={()=>{
-        setTaskToEdit(task)}} >
-      <EditableText 
-        className="edit-task"
-        placeholder='+ Add task'
-        func={onSaveTask}
-        prevTxt={task.title}
-      />
+
+      <div className="sticky-container">
+        <input type="checkbox" name="task" />
+        <div onClick={() => {
+          setTaskToEdit(task)
+        }} >
+          <EditableText
+            className="edit-task"
+            placeholder='+ Add task'
+            func={onSaveTask}
+            prevTxt={task.title}
+          />
+        </div>
+        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
       </div>
-      <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
+
       <p className="task-persons-img">
         {task.personsIds
           ? task.personsIds.map(id => <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />)

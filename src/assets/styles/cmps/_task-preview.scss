@@ -23,8 +23,14 @@
 
   .task-preview {
     display: grid;
-    grid-template-columns: 32px 380px 65px 100px repeat(4, 140px);
+    grid-template-columns: 477px 100px repeat(4, 140px);
     grid-auto-rows: $task-preview-height;
+
+    .sticky-container {
+      display: grid;
+      grid-template-columns: 32px 380px 65px;
+      position: sticky;
+    }
   
     p {
         border-inline-start: 1px solid $secondary-border-clr;
@@ -43,6 +49,7 @@
       display: grid;
       align-content: center;
       padding-inline-start: em(30px);
+      // font-family: PoppinsMedium;
     }
 
     .msg-btn>*:hover{

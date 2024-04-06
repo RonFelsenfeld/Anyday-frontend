@@ -80,9 +80,9 @@ export function TaskList({ board, group, setBoard, setSelectedTask,
       })}
     </div>
 
-    <li style={{ borderColor: group.style.color }} className="add-task">
-      <div></div>
-      <div onClick={() => setTaskToEdit(boardService.getEmptyTask())}>
+    <li style={{ borderColor: group.style.color }} className="add-task-li">
+      <input disabled className='add-task-checkbox' type="checkbox" name="task" />
+      <div className="add-task-container" onClick={() => setTaskToEdit(boardService.getEmptyTask())}>
         <EditableText
           name="add-task"
           placeholder='+ Add task'
