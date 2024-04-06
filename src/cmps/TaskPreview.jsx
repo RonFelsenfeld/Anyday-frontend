@@ -52,7 +52,7 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
         prevTxt={task.title}
       />
       </div>
-      <p onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
+      <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
       <p className="task-persons-img">
         {task.personsIds
           ? task.personsIds.map(id => <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />)

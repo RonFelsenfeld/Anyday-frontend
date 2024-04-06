@@ -25,7 +25,9 @@ export function TaskList({ board, group, setBoard, setSelectedTask,
     }
   }
 
-  async function onSubmit(txt) {
+  async function onSaveTask(txt) {
+    console.log(taskToEdit)
+    if (!taskToEdit) return
     const editedTask = { ...taskToEdit, title: txt }
     console.log('savedTask', editedTask)
     try {
@@ -67,7 +69,7 @@ export function TaskList({ board, group, setBoard, setSelectedTask,
               onRemoveTask={onRemoveTask}
               taskToEdit={taskToEdit}
               setTaskToEdit={setTaskToEdit}
-              onSaveTask={onSubmit}
+              onSaveTask={onSaveTask}
 
               setSelectedTask={setSelectedTask}
               isUpdateLogExpanded={isUpdateLogExpanded}
@@ -84,7 +86,7 @@ export function TaskList({ board, group, setBoard, setSelectedTask,
         <EditableText
           name="add-task"
           placeholder='+ Add task'
-          func={onSubmit}
+          func={onSaveTask}
           isNew={true}
         />
       </div>
