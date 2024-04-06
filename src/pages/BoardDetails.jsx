@@ -3,24 +3,18 @@ import { useNavigate, useParams } from 'react-router'
 
 import { boardService } from '../services/board.service'
 import { removeGroup, saveGroup } from '../store/actions/board.actions'
-import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
+import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
-import { EditableText } from '../cmps/EditableText'
 import { UpdateLog } from '../cmps/UpdateLog'
-<<<<<<< HEAD
-import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
-=======
 import { Loader } from '../cmps/Loader'
->>>>>>> main
 
 export function BoardDetails() {
   const [board, setBoard] = useState()
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [isUpdateLogExpanded, setIsUpdateLogExpanded] = useState(false)
   const [selectedTask, setSelectedTask] = useState(null)
-  const [isEditMode, setIsEditMode] = useState(false)
 
   const headerRef = useRef()
   const boardDetailsRef = useRef()
@@ -77,7 +71,6 @@ export function BoardDetails() {
 
   async function onEditGroupTitle(groupId) {
     const groupToEdit = boardService.getGroupById(board, groupId)
-    console.log(groupToEdit)
     groupToEdit.title = prompt('Enter new title')
     if (!groupToEdit.title) return
     try {
