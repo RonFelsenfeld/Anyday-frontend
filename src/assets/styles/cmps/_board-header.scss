@@ -6,7 +6,6 @@
     'title info activity invite'
     'views views views expand'
     'actions actions actions actions';
-  align-items: center;
 
   position: sticky;
   inset: 0 auto auto 0;
@@ -17,13 +16,13 @@
 
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
-    grid-template-rows: 48px 64px;
+    grid-template-rows: 36px 64px;
     grid-template-areas:
       'title views invite expand'
       'actions actions actions actions';
 
     .board-title {
-      margin-inline-end: 10px;
+      margin-inline-end: 16px;
     }
 
     .board-info,
@@ -43,6 +42,7 @@
 
   .board-title {
     grid-area: title;
+    align-self: center;
 
     padding: 4px;
     border: 1px solid transparent;
@@ -137,8 +137,10 @@
 
     .view-btn {
       @include btn;
+      @include viewIndicator;
+      position: relative;
 
-      padding: 8px;
+      padding: 8px 8px 12px 8px;
       font-size: em(14px);
 
       span {
@@ -153,8 +155,8 @@
     grid-area: expand;
     justify-self: end;
 
-    width: em(32px);
-    height: em(32px);
+    width: em(30px);
+    height: em(30px);
 
     border-radius: 50%;
     border: 1px solid $secondary-border-clr;

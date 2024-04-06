@@ -3,7 +3,19 @@ import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
 
-export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setTaskToEdit, onSaveTask, isUpdateLogExpanded, setIsUpdateLogExpanded, setSelectedTask }) {
+export function TaskPreview({
+  board,
+  group,
+  task,
+  onRemoveTask,
+  taskToEdit,
+  setTaskToEdit,
+  onSaveTask,
+  isUpdateLogExpanded,
+  setIsUpdateLogExpanded,
+  setSelectedTask,
+}) {
+  const [isEditMode, setIsEditMode] = useState(false)
 
   function getFormattedTimeline(timestamp1, timestamp2) {
     const date1 = new Date(timestamp1)
@@ -30,7 +42,6 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
   function onOpenUpdateLog(task) {
     setIsUpdateLogExpanded(true)
     setSelectedTask(task)
-
   }
 
   function getFileType() { }
@@ -57,7 +68,9 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
 
       <p className="task-persons-img">
         {task.personsIds
-          ? task.personsIds.map(id => <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />)
+          ? task.personsIds.map(id => (
+              <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
+            ))
           : ''}
       </p>
       <p style={getStatusBG(task.status || '')} className="task-status">

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
 import { BoardControls } from './BoardControls'
 
-export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
+export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
   }
@@ -12,7 +12,7 @@ export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
 
   return (
     <header className={`board-header ${collapsedClass}`}>
-      <h1 className="board-title">TITLE</h1>
+      <h1 className="board-title">{board.title}</h1>
 
       <div className="board-info flex align-center">
         <button className="btn">
@@ -23,7 +23,7 @@ export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
         </button>
       </div>
 
-      <div className="activity-container flex align-center">
+      <button className="activity-container flex align-center">
         <span>Activity</span>
 
         <div className="img-container flex">
@@ -45,7 +45,7 @@ export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
             className="user-img"
           />
         </div>
-      </div>
+      </button>
 
       <div className="invite-container flex align-center">
         <button className="btn-invite flex align-center">

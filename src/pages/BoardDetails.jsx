@@ -2,28 +2,32 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { boardService } from '../services/board.service'
+import { removeGroup, saveGroup } from '../store/actions/board.actions'
+import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
-import { removeGroup, saveGroup } from '../store/actions/board.actions'
 import { EditableText } from '../cmps/EditableText'
 import { UpdateLog } from '../cmps/UpdateLog'
+<<<<<<< HEAD
 import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
+=======
+import { Loader } from '../cmps/Loader'
+>>>>>>> main
 
 export function BoardDetails() {
   const [board, setBoard] = useState()
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [isUpdateLogExpanded, setIsUpdateLogExpanded] = useState(false)
   const [selectedTask, setSelectedTask] = useState(null)
-
+  const [isEditMode, setIsEditMode] = useState(false)
 
   const headerRef = useRef()
   const boardDetailsRef = useRef()
+  const editedGroupTitle = useRef(null)
 
   const { boardId } = useParams()
-  const [isEditMode, setIsEditMode] = useState(false)
   const navigate = useNavigate()
-  const editedGroupTitle = useRef(null)
 
   useEffect(() => {
     if (boardId) loadBoard()
@@ -73,7 +77,7 @@ export function BoardDetails() {
 
   async function onEditGroupTitle(groupId) {
     const groupToEdit = boardService.getGroupById(board, groupId)
-    console.log(groupToEdit);
+    console.log(groupToEdit)
     groupToEdit.title = prompt('Enter new title')
     if (!groupToEdit.title) return
     try {
@@ -95,7 +99,7 @@ export function BoardDetails() {
 
   const isUpdateLogOpenClass = !isUpdateLogExpanded ? 'closed' : ''
 
-  if (!board) return <div>Loading...</div>
+  if (!board) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
       <div className={`${isUpdateLogOpenClass}`}>
@@ -103,10 +107,12 @@ export function BoardDetails() {
           board={board}
           selectedTask={selectedTask}
           setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-          isUpdateLogExpanded={isUpdateLogExpanded} />
+          isUpdateLogExpanded={isUpdateLogExpanded}
+        />
       </div>
       <div ref={headerRef}>
         <BoardHeader
+          board={board}
           isHeaderExpanded={isHeaderExpanded}
           setIsHeaderExpanded={setIsHeaderExpanded}
         />
@@ -115,12 +121,21 @@ export function BoardDetails() {
         {board.groups.map(group => {
           return (
             <article key={group.id} className="board-group">
-              <div className='group-header'>
-                <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}><WorkSpaceOption /></button>
-                <button className="collapse-btn" style={{color: group.style.color}}><ArrowDown /></button>
-                <h2 style={{ color: group.style.color }} onClick={() => onEditGroupTitle(group.id)} className="group-title">{group.title}
+              <div className="group-header">
+                <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
+                  <WorkSpaceOption />
+                </button>
+                <button className="collapse-btn" style={{ color: group.style.color }}>
+                  <ArrowDown />
+                </button>
+                <h2
+                  style={{ color: group.style.color }}
+                  onClick={() => onEditGroupTitle(group.id)}
+                  className="group-title"
+                >
+                  {group.title}
                 </h2>
-                <h2 className='tasks-left'>{`${group.tasks.length} Tasks`}</h2>
+                <h2 className="tasks-left">{`${group.tasks.length} Tasks`}</h2>
               </div>
               <div className="group-content">
                 <TaskList
@@ -129,7 +144,8 @@ export function BoardDetails() {
                   setIsUpdateLogExpanded={setIsUpdateLogExpanded}
                   board={board}
                   group={group}
-                  setBoard={setBoard} />
+                  setBoard={setBoard}
+                />
               </div>
             </article>
           )

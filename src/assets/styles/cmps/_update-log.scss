@@ -1,159 +1,153 @@
 .update-log-container {
-    position: fixed;
-    // background-color: $main-bg-clr;
-    background-color: $main-bg-clr;
-    width: em(570px);
-    height: 100%;
-    z-index: 20;
-    right: 0;
-    box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
-    transition: translate .3s;
+  position: fixed;
+  // background-color: $main-bg-clr;
+  background-color: $main-bg-clr;
+  width: em(570px);
+  height: 100%;
+  z-index: 20;
+  right: 0;
+  box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
+  transition: translate 0.3s;
 
+  &.closed {
+    translate: (101%);
+  }
 
-    &.closed {
-        translate: (101%);
-    }
+  .header {
+    margin: em(20px) em(20px) em(6px) em(24px);
 
-    & .header {
-        margin: em(20px) em(20px) em(6px) em(24px);
+    .title-container {
+      .exit-button-container {
+        height: em(24px);
+        margin-bottom: em(5px);
 
-        & .title-container {
+        button {
+          padding: 0px;
+          & :hover {
+            border-radius: $el-br;
+            background-color: $hover-clr;
+          }
+        }
+      }
 
-            & .exit-button-container {
+      .title-options {
+        height: em(41px);
+        height: 65px;
+
+        .title {
+          width: em(350px);
+        }
+
+        .img-options {
+          .menu-options-btn {
+            padding: em(1px);
+            width: em(26px);
+            height: em(26px);
+            margin-left: em(10px);
+
+            &:hover {
+              background-color: $hover-clr;
+              border-radius: $el-br;
+              cursor: pointer;
+            }
+          }
+
+          .user-img {
+            // padding-top: em(3px);
+            // padding-right: em(16px);
+            // margin-right: em(12px);
+            padding-right: em(6px);
+
+            .task-persons-img {
+              height: em(23px);
+              border-right: 1px solid $secondary-border-clr;
+              padding-right: em(10px);
+              // padding-left: 5px;
+
+              img {
+                width: em(24px);
                 height: em(24px);
+                border-radius: 50%;
+                border: 1px solid $main-bg-clr;
+              }
+
+              img:nth-child(2) {
+                transform: translateX(-10px);
+              }
+
+              img:nth-child(3) {
+                transform: translateX(-20px);
+              }
             }
-
-            & .title-options {
-                height: em(41px);
-                height:65px;
-
-                & .title {
-                    width: em(350px);
-                    h2 {}
-                }
-
-                & .img-options {
-
-                    & .menu-options-btn {
-                        padding: em(1px);
-                        width: em(26px);
-                        height: em(26px);
-                        margin-left: em(10px);
-
-
-
-
-                        &:hover {
-                            background-color: $hover-clr;
-                            border-radius: $el-br;
-                            cursor: pointer;
-                        }
-                    }
-
-                    & .user-img {
-                        // padding-top: em(3px);
-                        // padding-right: em(16px);
-                        // margin-right: em(12px);
-                        padding-right: em(6px);
-
-
-                        & .task-persons-img {
-                            height: em(23px);
-                            border-right: 1px solid $secondary-border-clr;
-                            padding-right: em(10px);
-                            // padding-left: 5px;
-
-
-                            img {
-                                width: em(24px);
-                                height: em(24px);
-                                border-radius: 50%;
-                                border: 1px solid $main-bg-clr;
-                            }
-
-                            img:nth-child(2) {
-                                transform: translateX(-10px);
-                            }
-
-                            img:nth-child(3) {
-                                transform: translateX(-20px);
-                            }
-                        }
-
-                    }
-                }
-
-            }
-
-            & .menu-options {
-                height: em(37px);
-                width: 570px;
-
-
-                & span {
-                    padding-left: em(6px);
-
-                }
-
-                & .updates-option {
-                    padding: em(8px);
-
-                    &:hover {
-                        background-color: $hover-clr;
-                        border-radius: $el-br;
-                        cursor: pointer;
-                    }
-                }
-
-                & .files-option {
-                    padding: em(8px);
-
-                    &:hover {
-                        background-color: $hover-clr;
-                        border-radius: $el-br;
-                        cursor: pointer;
-                    }
-
-                }
-
-                & .activity-log-option {
-
-                    padding: em(8px);
-
-                    &:hover {
-                        background-color: $hover-clr;
-                        border-radius: $el-br;
-                        cursor: pointer;
-                    }
-
-                }
-
-            }
+          }
         }
-    }
+      }
 
-    .update-log-content {
-        height: 690px;
+      .menu-options {
+        height: em(36px);
+        width: 570px;
 
-        & .updates-log-txt-area {
-            width: em(520px);
-            min-height: em(125px);
-            margin: em(20px);
-            border-radius: $cmp-br;
-            border: 1px solid $border-input-activity-log-clr;
+        .btn-view {
+          @include viewSeparator;
+          position: relative;
+          font-size: 1rem;
+          padding: 8px;
+          margin-block-end: 4px;
 
-            .txt-input-update-log {
-                margin: 10px;
-                padding: 10px;
-                width: em(400px);
-                font-size: em(16px);
-                border: none;
-                outline: none;
+          &.active {
+            @include viewIndicator(-4px);
+          }
+
+          &.updates-option {
+            .updates {
+              padding-inline-start: 6px;
             }
+
+            &:hover {
+              background-color: $hover-clr;
+              border-radius: $el-br;
+              cursor: pointer;
+            }
+          }
+
+          &.files-option {
+            &:hover {
+              background-color: $hover-clr;
+              border-radius: $el-br;
+              cursor: pointer;
+            }
+          }
+
+          &.activity-log-option {
+            &:hover {
+              background-color: $hover-clr;
+              border-radius: $el-br;
+              cursor: pointer;
+            }
+          }
         }
-
+      }
     }
+  }
 
+  .update-log-content {
+    height: 690px;
 
+    .updates-log-txt-area {
+      width: em(520px);
+      min-height: em(125px);
+      margin: em(20px);
+      border-radius: $cmp-br;
+      border: 1px solid $border-input-activity-log-clr;
 
+      .txt-input-update-log {
+        margin: 10px;
+        padding: 10px;
+        width: em(400px);
+        font-size: em(16px);
+        border: none;
+        outline: none;
+      }
+    }
+  }
 }

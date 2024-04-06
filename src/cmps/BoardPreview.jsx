@@ -1,6 +1,6 @@
 import { BoardIcon, Favorite, WorkspaceLogo } from '../services/svg.service'
 
-export function BoardPreview() {
+export function BoardPreview({ board }) {
   return (
     <article className="board-preview">
       <div className="preview-container">
@@ -10,7 +10,7 @@ export function BoardPreview() {
           <div className="flex align-center justify-between">
             <div className="board-details-container flex align-center">
               <BoardIcon />
-              <h2 className="board-title">Frontend</h2>
+              <h2 className="board-title">{board.title}</h2>
             </div>
 
             <button className="btn-favorite">
