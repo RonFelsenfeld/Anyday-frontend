@@ -13,7 +13,7 @@ import {
 import { SidebarSearch } from './SidebarSearch'
 import { boardService } from '../services/board.service'
 import { useSelector } from 'react-redux'
-import { loadBoards, saveBoard } from '../store/actions/board.actions'
+import { loadBoards, removeBoard, saveBoard } from '../store/actions/board.actions'
 
 export function SideBar() {
     const [isExpanded, setIsExpanded] = useState(true)
@@ -21,6 +21,7 @@ export function SideBar() {
     //   const [boards, setBoards] = useState([])
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const sidebarWidthRef = useRef(265)
+    const optionsModal = useRef()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -34,6 +35,28 @@ export function SideBar() {
             navigate(`/board/${savedBoard._id}`)
         } catch (err) {
             console.log('could not add a board', err)
+        }
+    }
+
+    //todo change to modal!!! button on line - 140
+    async function deleteBoard(boardId) {
+        try {
+            await removeBoard(boardId)
+        } catch (err) {
+            console.log('could not remove,', err);
+        }
+    }
+
+    //Todo change this to  dynamic input modal
+    async function editBoardName(boardId) {
+        const boardToEdit = await boardService.getById(boardId)
+        console.log(boardToEdit);
+        boardToEdit.title = prompt('new title?') || 'New Title'
+        try {
+            await saveBoard(boardToEdit)
+            //todo add navigate
+        } catch (err) {
+            console.log('could not update board name', err);
         }
     }
 
@@ -65,11 +88,16 @@ export function SideBar() {
 
     function onBoardOptionsClick() { }
 
+
+    function onOpenOptionsModal() {
+
+    }
+
     const dynArrowClass = !isExpanded ? 'collapsed' : ''
     const isOpenClass = !isExpanded || isHovered ? 'closed' : ''
-
     return (
         <div
+
             onMouseEnter={handleHover}
             onMouseLeave={handleLeave}
             className={`side-bar-container ${isOpenClass}`}
@@ -117,7 +145,8 @@ export function SideBar() {
                                 <WorkSpaceOption />
                             </button>
                         </div>
-                        <SidebarSearch addBoard={addBoard} />
+                        <SidebarSearch
+                            addBoard={addBoard} />
                     </section>
                     {!!boards.length && (
                         <ul className="side-bar-boards-list clean-list">
@@ -127,7 +156,11 @@ export function SideBar() {
                                         <MiniBoard />
                                         <div key={board._id} className="board-title-options flex align-center">
                                             <span className="board-title-span">{board.title}</span>
-                                            <button onClick={onBoardOptionsClick} className="board-options-btn btn">
+                                            <button onClick={() => deleteBoard(board._id)} className="remove-board-btn btn">x</button>
+                                            {/* <button onClick={onBoardOptionsClick} className="board-options-btn btn">
+                                            </button> */}
+                                            <button className='justify-center align-center'
+                                                onClick={() => editBoardName(board._id)}>
                                                 <WorkSpaceOption />
                                             </button>
                                         </div>
