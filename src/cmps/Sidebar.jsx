@@ -21,6 +21,7 @@ export function SideBar() {
     //   const [boards, setBoards] = useState([])
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const sidebarWidthRef = useRef(265)
+    const optionsModal = useRef()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -50,9 +51,10 @@ export function SideBar() {
     async function editBoardName(boardId) {
         const boardToEdit = await boardService.getById(boardId)
         console.log(boardToEdit);
-        boardToEdit.title = prompt('new title?')||'New Title'
+        boardToEdit.title = prompt('new title?') || 'New Title'
         try {
             await saveBoard(boardToEdit)
+            //todo add navigate
         } catch (err) {
             console.log('could not update board name', err);
         }
@@ -86,11 +88,16 @@ export function SideBar() {
 
     function onBoardOptionsClick() { }
 
+
+    function onOpenOptionsModal() {
+
+    }
+
     const dynArrowClass = !isExpanded ? 'collapsed' : ''
     const isOpenClass = !isExpanded || isHovered ? 'closed' : ''
-
     return (
         <div
+
             onMouseEnter={handleHover}
             onMouseLeave={handleLeave}
             className={`side-bar-container ${isOpenClass}`}
@@ -150,9 +157,10 @@ export function SideBar() {
                                         <div key={board._id} className="board-title-options flex align-center">
                                             <span className="board-title-span">{board.title}</span>
                                             <button onClick={() => deleteBoard(board._id)} className="remove-board-btn btn">x</button>
-                                            <button onClick={onBoardOptionsClick} className="board-options-btn btn">
-                                            </button>
-                                            <button onClick={() => editBoardName(board._id)}>
+                                            {/* <button onClick={onBoardOptionsClick} className="board-options-btn btn">
+                                            </button> */}
+                                            <button className='justify-center align-center'
+                                                onClick={() => editBoardName(board._id)}>
                                                 <WorkSpaceOption />
                                             </button>
                                         </div>

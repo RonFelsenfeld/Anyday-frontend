@@ -209,8 +209,8 @@ function _createDemoBoard() {
               status: 'Working on it',
               priority: 'High',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712250770,
+                startDate: 1712077970111,
+                dueDate: 1712250770111,
               },
             },
             {
@@ -220,8 +220,8 @@ function _createDemoBoard() {
               status: 'Stuck',
               priority: 'Medium',
               timeline: {
-                startDate: 1712164370,
-                dueDate: 1712941970,
+                startDate: 1712164370111,
+                dueDate: 1712941970111,
               },
             },
             {
@@ -231,8 +231,8 @@ function _createDemoBoard() {
               status: 'Working on it',
               priority: 'High',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712337170,
+                startDate: 1711991570111,
+                dueDate: 1712337170111,
               },
               files: {
                 type: 'url',
@@ -247,8 +247,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'Critical',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712077970,
+                startDate: 1711991570111,
+                dueDate: 1712077970111,
               },
             },
             {
@@ -256,8 +256,8 @@ function _createDemoBoard() {
               title: 'Develop search functionality for tasks',
               priority: 'Low',
               timeline: {
-                startDate: 1712337170,
-                dueDate: 1712509970,
+                startDate: 1712337170111,
+                dueDate: 1712509970111,
               },
               files: {
                 type: 'img',
@@ -272,8 +272,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'High',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712164370,
+                startDate: 1711991570111,
+                dueDate: 1712164370111,
               },
             },
           ],
@@ -293,8 +293,8 @@ function _createDemoBoard() {
               status: 'Working on it',
               priority: 'High',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712337170,
+                startDate: 1711991570111,
+                dueDate: 1712337170111,
               },
               files: {
                 type: 'url',
@@ -309,8 +309,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'Critical',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712164370,
+                startDate: 1711991570111,
+                dueDate: 1712164370111,
               },
               files: {
                 type: 'img',
@@ -323,8 +323,8 @@ function _createDemoBoard() {
               title: 'Create database schema for storing user and task data',
               priority: 'Medium',
               timeline: {
-                startDate: 1712164370,
-                dueDate: 1713114770,
+                startDate: 1712164370111,
+                dueDate: 1713114770111,
               },
             },
             {
@@ -334,8 +334,8 @@ function _createDemoBoard() {
               status: 'Stuck',
               priority: 'Low',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712250770,
+                startDate: 1712077970111,
+                dueDate: 1712250770111,
               },
               files: {
                 type: 'img',
@@ -350,8 +350,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'High',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712250770,
+                startDate: 1711991570111,
+                dueDate: 1712250770111,
               },
             },
             {
@@ -360,8 +360,8 @@ function _createDemoBoard() {
               personsIds: ['u101'],
               priority: 'High',
               timeline: {
-                startDate: 1712164370,
-                dueDate: 1713028370,
+                startDate: 1712164370111,
+                dueDate: 1713028370111,
               },
             },
             {
@@ -370,8 +370,8 @@ function _createDemoBoard() {
               personsIds: ['u101', 'u102', 'u103'],
               status: 'Stuck',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712250770,
+                startDate: 1712077970111,
+                dueDate: 1712250770111,
               },
             },
           ],
@@ -391,8 +391,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'High',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712164370,
+                startDate: 1712077970111,
+                dueDate: 1712164370111,
               },
             },
             {
@@ -402,8 +402,8 @@ function _createDemoBoard() {
               status: 'Stuck',
               priority: 'Critical',
               timeline: {
-                startDate: 1712164370,
-                dueDate: 1712337170,
+                startDate: 1712164370111,
+                dueDate: 1712337170111,
               },
             },
             {
@@ -412,8 +412,8 @@ function _createDemoBoard() {
               personsIds: ['u101', 'u102', 'u103'],
               priority: 'Low',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712337170,
+                startDate: 1712077970111,
+                dueDate: 1712337170111,
               },
             },
             {
@@ -423,8 +423,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'Low',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712164370,
+                startDate: 1712077970111,
+                dueDate: 1712164370111,
               },
             },
             {
@@ -432,8 +432,8 @@ function _createDemoBoard() {
               title: 'Design email templates for notifications and reminders',
               priority: 'Medium',
               timeline: {
-                startDate: 1712337170,
-                dueDate: 1712337170,
+                startDate: 1712337170111,
+                dueDate: 1712337170111,
               },
               files: {
                 type: 'url',
@@ -447,8 +447,8 @@ function _createDemoBoard() {
               status: 'Working on it',
               priority: 'High',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712423570,
+                startDate: 1712077970111,
+                dueDate: 1712423570111,
               },
             },
             {
@@ -456,8 +456,8 @@ function _createDemoBoard() {
               title: 'Design color palette and typography for the interface',
               personsIds: ['u103'],
               timeline: {
-                startDate: 1712855570,
-                dueDate: 1713114770,
+                startDate: 1712855570111,
+                dueDate: 1713114770111,
               },
               files: {
                 type: 'url',
@@ -472,8 +472,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'Critical',
               timeline: {
-                startDate: 1711991570,
-                dueDate: 1712164370,
+                startDate: 1711991570111,
+                dueDate: 1712164370111,
               },
             },
           ],
@@ -493,8 +493,8 @@ function _createDemoBoard() {
               status: 'Stuck',
               priority: 'Low',
               timeline: {
-                startDate: 1712164370,
-                dueDate: 1712337170,
+                startDate: 1712164370111,
+                dueDate: 1712337170111,
               },
               files: {
                 type: 'url',
@@ -509,8 +509,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'Medium',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712164370,
+                startDate: 1712077970111,
+                dueDate: 1712164370111,
               },
             },
             {
@@ -518,8 +518,8 @@ function _createDemoBoard() {
               title: 'Fix UI glitch causing overlapping elements on mobile devices',
               priority: 'Medium',
               timeline: {
-                startDate: 1712164370,
-                dueDate: 1712250770,
+                startDate: 1712164370111,
+                dueDate: 1712250770111,
               },
             },
             {
@@ -529,8 +529,8 @@ function _createDemoBoard() {
               status: 'Working on it',
               priority: 'High',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712337170,
+                startDate: 1712077970111,
+                dueDate: 1712337170111,
               },
             },
           ],
@@ -549,8 +549,8 @@ function _createDemoBoard() {
               personsIds: ['u103'],
               priority: 'Medium',
               timeline: {
-                startDate: 1712337170,
-                dueDate: 1712509970,
+                startDate: 1712337170111,
+                dueDate: 1712509970111
               },
             },
             {
@@ -560,8 +560,8 @@ function _createDemoBoard() {
               status: 'Done',
               priority: 'High',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712164370,
+                startDate: 1712077970111,
+                dueDate: 1712164370111,
               },
             },
             {
@@ -571,8 +571,8 @@ function _createDemoBoard() {
               status: 'Working on it',
               priority: 'Low',
               timeline: {
-                startDate: 1712077970,
-                dueDate: 1712423570,
+                startDate: 1712077970111,
+                dueDate: 1712423570111,
               },
             },
           ],
@@ -700,8 +700,8 @@ function getEmptyBoard() {
             status: 'Working on it',
             priority: 'High',
             timeline: {
-              startDate: 1712077970,
-              dueDate: 1712250770,
+              startDate: 1712077970111,
+              dueDate: 1712250770111,
             },
           },
           {
@@ -711,8 +711,8 @@ function getEmptyBoard() {
             status: 'Done',
             priority: 'Medium',
             timeline: {
-              startDate: 1712164370,
-              dueDate: 1712941970,
+              startDate: 1712164370111,
+              dueDate: 1712941970111,
             },
           },
           {
@@ -722,8 +722,8 @@ function getEmptyBoard() {
             status: 'Stuck',
             priority: 'High',
             timeline: {
-              startDate: 1711991570,
-              dueDate: 1712337170,
+              startDate: 1711991570111,
+              dueDate: 1712337170111,
             },
             files: {
               type: 'url',
@@ -747,8 +747,8 @@ function getEmptyBoard() {
             personsIds: ['u101', 'u103'],
             priority: 'High',
             timeline: {
-              startDate: 1711991570,
-              dueDate: 1712337170,
+              startDate: 1711991570111,
+              dueDate: 1712337170111,
             },
             files: {
               type: 'url',
@@ -763,8 +763,8 @@ function getEmptyBoard() {
             status: 'Stuck',
             priority: 'Critical',
             timeline: {
-              startDate: 1711991570,
-              dueDate: 1712164370,
+              startDate: 1711991570111,
+              dueDate: 1712164370111,
             },
             files: {
               type: 'img',
