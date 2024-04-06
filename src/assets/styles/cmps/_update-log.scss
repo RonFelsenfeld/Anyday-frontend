@@ -21,14 +21,25 @@
 
             & .exit-button-container {
                 height: em(24px);
+                margin-bottom: em(5px);
+
+                button {
+                    padding: 0px;
+                    & :hover {
+                        border-radius: $el-br;
+                        background-color: $hover-clr;
+
+                    }
+                }
             }
 
             & .title-options {
                 height: em(41px);
-                height:65px;
+                height: 65px;
 
                 & .title {
                     width: em(350px);
+
                     h2 {}
                 }
 
@@ -39,9 +50,6 @@
                         width: em(26px);
                         height: em(26px);
                         margin-left: em(10px);
-
-
-
 
                         &:hover {
                             background-color: $hover-clr;
@@ -62,7 +70,6 @@
                             border-right: 1px solid $secondary-border-clr;
                             padding-right: em(10px);
                             // padding-left: 5px;
-
 
                             img {
                                 width: em(24px);
@@ -89,18 +96,12 @@
                 height: em(37px);
                 width: 570px;
 
-
-                & span {
-                    padding-left: em(6px);
-
-                }
-
                 & .updates-option {
                     padding: em(8px);
+                    border-radius: $el-br;
 
                     &:hover {
                         background-color: $hover-clr;
-                        border-radius: $el-br;
                         cursor: pointer;
                     }
                 }
@@ -113,7 +114,6 @@
                         border-radius: $el-br;
                         cursor: pointer;
                     }
-
                 }
 
                 & .activity-log-option {
@@ -153,7 +153,6 @@
         }
 
     }
-
 
 
 }

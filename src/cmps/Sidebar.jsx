@@ -41,10 +41,11 @@ export function SideBar() {
     //todo change to modal!!! button on line - 140
     async function deleteBoard(boardId) {
         try {
-            const board = await removeBoard(boardId)
+            await removeBoard(boardId)
         } catch (err) {
             console.log('could not remove,', err);
         } finally {
+            nav
         }
     }
 
