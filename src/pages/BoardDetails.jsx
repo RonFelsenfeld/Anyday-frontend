@@ -7,6 +7,7 @@ import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { removeGroup, saveGroup } from '../store/actions/board.actions'
 import { EditableText } from '../cmps/EditableText'
+import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 export function BoardDetails() {
   const [board, setBoard] = useState()
@@ -70,6 +71,7 @@ export function BoardDetails() {
     const groupToEdit = boardService.getGroupById(board, groupId)
     console.log(groupToEdit);
     groupToEdit.title = prompt('Enter new title')
+    if (!groupToEdit.title) return
     try {
       const savedBoard = await saveGroup(board, groupToEdit)
       setBoard(savedBoard)
@@ -101,9 +103,13 @@ export function BoardDetails() {
         {board.groups.map(group => {
           return (
             <article key={group.id} className="board-group">
-              <h2 style={{color: group.style.color}} onClick={() => onEditGroupTitle(group.id)} className="group-title">{group.title}
-              </h2>
-                <button style={{justifySelf:'start'}} onClick={() => onRemoveGroup(group.id)}>x</button>
+              <div className='group-header'>
+                <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}><WorkSpaceOption /></button>
+                <button className="collapse-btn" style={{color: group.style.color}}><ArrowDown /></button>
+                <h2 style={{ color: group.style.color }} onClick={() => onEditGroupTitle(group.id)} className="group-title">{group.title}
+                </h2>
+                <h2 className='tasks-left'>{`${group.tasks.length} Tasks`}</h2>
+              </div>
               {/* {editedGroupTitle.current !== group.id && <h2 onClick={()=>{editedGroupTitle.current = group.id; setIsEditMode(true)}} className="group-title">{group.title}</h2>}
           {isEditMode && editedGroupTitle.current === group.id && <h2><EditableText
                 name="Edit-group"

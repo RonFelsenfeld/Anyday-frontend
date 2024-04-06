@@ -23,7 +23,6 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
   }
 
   function getStatusBG(taskStatus) {
-    console.log('taskStatus',taskStatus)
     const status = board.statuses?.find(s => s.title === taskStatus)
     return { backgroundColor: status?.color }
   }
@@ -56,10 +55,10 @@ export function TaskPreview({ board, group, task, onRemoveTask, taskToEdit, setT
           ? task.personsIds.map(id => <img key={id} src={`${getPersonUrl(id)}`} alt="" />)
           : ''}
       </p>
-      <p style={getStatusBG(task.status)} className="task-status">
+      <p style={getStatusBG(task.status || '')} className="task-status">
         {task.status ? task.status : ''}
       </p>
-      <p style={getPriorityBG(task.priority)} className="task-priority">
+      <p style={getPriorityBG(task.priority || '')} className="task-priority">
         {task.priority ? task.priority : ''}
       </p>
       <p className="task-timeline">

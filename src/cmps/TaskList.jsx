@@ -49,7 +49,7 @@ export function TaskList({ board, group, setBoard }) {
   return <ul className='group-container clean-list'>
 
     <div style={{ borderColor: group.style.color }} className='group-list'>
-      <li className="group-header">
+      <li className="group-first-row">
         <input type="checkbox" name="all-tasks" />
         <h3>Task</h3>
         {board.cmpsOrder.map((cmp, idx) => (
