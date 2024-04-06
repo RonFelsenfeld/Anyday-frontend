@@ -23,7 +23,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
         </button>
       </div>
 
-      <div className="activity-container flex align-center">
+      <button className="activity-container flex align-center">
         <span>Activity</span>
 
         <div className="img-container flex">
@@ -45,7 +45,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
             className="user-img"
           />
         </div>
-      </div>
+      </button>
 
       <div className="invite-container flex align-center">
         <button className="btn-invite flex align-center">

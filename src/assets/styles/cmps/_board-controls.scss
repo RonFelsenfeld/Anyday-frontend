@@ -8,6 +8,10 @@
   .btn {
     height: em(32px);
     border-radius: $el-br;
+
+    &:not(.btn-new-task):active {
+      scale: 1;
+    }
   }
 
   .btn-new-task {
