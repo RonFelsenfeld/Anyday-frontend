@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
 import { boardService } from '../services/board.service'
+import { removeGroup, saveGroup } from '../store/actions/board.actions'
+import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
-import { removeGroup, saveGroup } from '../store/actions/board.actions'
 import { EditableText } from '../cmps/EditableText'
 import { UpdateLog } from '../cmps/UpdateLog'
-import { ArrowDown, WorkSpaceOption } from '../services/svg.service'
 import { Loader } from '../cmps/Loader'
 
 export function BoardDetails() {
@@ -16,14 +16,14 @@ export function BoardDetails() {
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [isUpdateLogExpanded, setIsUpdateLogExpanded] = useState(false)
   const [selectedTask, setSelectedTask] = useState(null)
+  const [isEditMode, setIsEditMode] = useState(false)
 
   const headerRef = useRef()
   const boardDetailsRef = useRef()
+  const editedGroupTitle = useRef(null)
 
   const { boardId } = useParams()
-  const [isEditMode, setIsEditMode] = useState(false)
   const navigate = useNavigate()
-  const editedGroupTitle = useRef(null)
 
   useEffect(() => {
     if (boardId) loadBoard()
@@ -108,6 +108,7 @@ export function BoardDetails() {
       </div>
       <div ref={headerRef}>
         <BoardHeader
+          board={board}
           isHeaderExpanded={isHeaderExpanded}
           setIsHeaderExpanded={setIsHeaderExpanded}
         />

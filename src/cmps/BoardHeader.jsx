@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
 import { BoardControls } from './BoardControls'
 
-export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
+export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
   }
@@ -12,7 +12,7 @@ export function BoardHeader({ isHeaderExpanded, setIsHeaderExpanded }) {
 
   return (
     <header className={`board-header ${collapsedClass}`}>
-      <h1 className="board-title">TITLE</h1>
+      <h1 className="board-title">{board.title}</h1>
 
       <div className="board-info flex align-center">
         <button className="btn">
