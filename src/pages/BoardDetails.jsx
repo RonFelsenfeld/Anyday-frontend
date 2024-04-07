@@ -18,7 +18,6 @@ export function BoardDetails() {
 
   const headerRef = useRef()
   const boardDetailsRef = useRef()
-  const editedGroupTitle = useRef(null)
 
   const { boardId } = useParams()
   const navigate = useNavigate()
@@ -71,18 +70,6 @@ export function BoardDetails() {
     }
   }
 
-  async function onEditGroupTitle(groupId) {
-    const groupToEdit = boardService.getGroupById(board, groupId)
-    groupToEdit.title = prompt('Enter new title')
-    if (!groupToEdit.title) return
-    try {
-      const savedBoard = await saveGroup(board, groupToEdit)
-      setBoard(savedBoard)
-    } catch (err) {
-      console.log('Had issues adding group', err)
-    }
-  }
-
   async function onRemoveGroup(groupId) {
     try {
       const savedBoard = await removeGroup(board, groupId)
@@ -92,19 +79,30 @@ export function BoardDetails() {
     }
   }
 
-  // const isUpdateLogOpenClass = !isUpdateLogExpanded ? 'closed' : ''
+  async function onEditGroupTitle(groupId) {
+    const groupToEdit = boardService.getGroupById(board, groupId)
+    groupToEdit.title = prompt('Enter new title')
+    if (!groupToEdit.title) return
+
+    try {
+      const savedBoard = await saveGroup(board, groupToEdit)
+      setBoard(savedBoard)
+    } catch (err) {
+      console.log('Had issues adding group', err)
+    }
+  }
 
   if (!board) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
-      {/* <div className={`${isUpdateLogOpenClass}`}> */}
+
       <UpdateLog
         board={board}
         selectedTask={selectedTask}
         setIsUpdateLogExpanded={setIsUpdateLogExpanded}
         isUpdateLogExpanded={isUpdateLogExpanded}
       />
-      {/* </div> */}
+
       <div ref={headerRef}>
         <BoardHeader
           board={board}
@@ -112,17 +110,22 @@ export function BoardDetails() {
           setIsHeaderExpanded={setIsHeaderExpanded}
         />
       </div>
+
       <div className="group-container">
         {board.groups.map(group => {
           return (
+
             <article key={group.id} className="board-group">
               <div className="group-header">
+
                 <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
                   <WorkSpaceOption />
                 </button>
+
                 <button className="collapse-btn" style={{ color: group.style.color }}>
                   <ArrowDown />
                 </button>
+
                 <h2
                   style={{ color: group.style.color }}
                   onClick={() => onEditGroupTitle(group.id)}
@@ -130,8 +133,10 @@ export function BoardDetails() {
                 >
                   {group.title}
                 </h2>
+
                 <h2 className="tasks-left">{`${group.tasks.length} Tasks`}</h2>
               </div>
+
               <div className="group-content">
                 <TaskList
                   setSelectedTask={setSelectedTask}
