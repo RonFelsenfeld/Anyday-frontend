@@ -150,6 +150,8 @@
             height: em(32px);
             // width: 190px;
 
+
+
             button {
                 padding-left: 1px;
                 padding-top: 5px;
@@ -164,6 +166,7 @@
             }
 
             & input {
+                outline: none;
                 border: none;
                 padding: em(3px) 0px;
                 font-size: 14px;
@@ -230,11 +233,23 @@
             }
 
             .board-title-options {
-                // gap: em(35px);
                 flex-grow: 1;
 
                 .board-title-span {
                     flex-grow: 1;
+
+                    input {
+                        background-color: transparent;
+                        border: 1px solid $secondary-border-clr;
+                        height: 23px;
+                        
+                    }
+                }
+
+                .board-title-input {
+                    background-color: transparent;
+                    outline: none;
+                    border: none;
                 }
 
                 button {
@@ -242,11 +257,5 @@
                 }
             }
         }
-    }
-
-    .experiment-div {
-        width: 100px;
-        height: 100px;
-        background-color: red;
     }
 }
