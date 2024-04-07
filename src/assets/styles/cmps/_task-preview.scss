@@ -68,6 +68,7 @@
     input {
       @include input;
       width: 100%;
+      letter-spacing: em(0.4px);
     }
   }
 
@@ -81,18 +82,11 @@
     justify-content: center;
 
     img {
-      width: em(24px);
-      height: em(24px);
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      border: 1px solid $main-bg-clr;
-    }
-
-    img:nth-child(2) {
-      transform: translateX(-10px);
-    }
-
-    img:nth-child(3) {
-      transform: translateX(-20px);
+      border: 2px solid $img-border-clr;
+      margin: 0 -4px;
     }
   }
 

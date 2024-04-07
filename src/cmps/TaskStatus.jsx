@@ -22,7 +22,7 @@ export function TaskStatus({ board, setBoard, group, task }) {
     }
 
     return <>
-        <p onClick={() => setIsOpenModal(true)} style={getStatusBG(task.status)} className="task-status">
+        <p onClick={() => setIsOpenModal(true)} style={getStatusBG(task.status || '')} className="task-status">
             {task.status ? task.status : ''}
         </p>
         {isOpenModal && <TaskEditModal arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG}/>}

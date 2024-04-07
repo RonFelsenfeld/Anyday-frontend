@@ -34,7 +34,9 @@
         color: var(--group-clr-9);
         font-size: 1.29rem;
         align-self: start;
-        margin-inline-end: 15px
+        margin-inline-end: 15px;
+        // letter-spacing: em(0.8px);
+        font-family: PoppinsMedium;
       }
 
       .tasks-left {
