@@ -49,10 +49,11 @@
     border-radius: $el-br;
     margin-inline-end: 4px;
 
-    font-size: em(24px);
+    font-size: em(32px);
     font-family: PoppinsRegular, RobotoRegular, sans-serif;
     font-weight: 600;
 
+    // ? REMOVE
     &:hover {
       border-color: rgb(195, 198, 212);
     }
