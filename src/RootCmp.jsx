@@ -9,6 +9,7 @@ import { BoardIndex } from './pages/BoardIndex'
 import { BoardDetails } from './pages/BoardDetails'
 
 import { store } from './store/store'
+import { UpdateLog } from './cmps/UpdateLog'
 import { Loader } from './cmps/Loader'
 
 export function App() {
@@ -23,7 +24,9 @@ export function App() {
 
                 <Route element={<WorkspaceIndex />} path="/board">
                   <Route element={<BoardIndex />} path="/board" />
-                  <Route element={<BoardDetails />} path="/board/:boardId" />
+                  <Route element={<BoardDetails />} path="/board/:boardId" >
+                  <Route path="/board/:boardId/task/:taskId" element={<UpdateLog />} />
+                </Route>
                 </Route>
               </Routes>
             </main>

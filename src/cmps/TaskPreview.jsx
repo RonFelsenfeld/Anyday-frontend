@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
+import { Link } from 'react-router-dom'
 
 export function TaskPreview({
   board,
@@ -63,14 +64,14 @@ export function TaskPreview({
             prevTxt={task.title}
           />
         </div>
-        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
+        <Link to={`/board/${board._id}/task/${task.id}`}><p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p></Link>
       </div>
 
       <p className="task-persons-img">
         {task.personsIds
           ? task.personsIds.map(id => (
-              <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
-            ))
+            <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
+          ))
           : ''}
       </p>
       <p style={getStatusBG(task.status || '')} className="task-status">
