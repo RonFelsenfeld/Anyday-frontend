@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
+import { TaskEditModal } from './TaskEditModal'
+import { saveTask } from '../store/actions/board.actions'
+import { TaskStatus } from './TaskStatus'
+import { TaskPriority } from './TaskPriority'
 
 export function TaskPreview({
   board,
@@ -14,8 +18,8 @@ export function TaskPreview({
   isUpdateLogExpanded,
   setIsUpdateLogExpanded,
   setSelectedTask,
+  setBoard
 }) {
-  const [isEditMode, setIsEditMode] = useState(false)
 
   function getFormattedTimeline(timestamp1, timestamp2) {
     const date1 = new Date(timestamp1)
@@ -27,16 +31,6 @@ export function TaskPreview({
 
     const formattedDateRange = `${day1} - ${day2} ${month2}`
     return formattedDateRange
-  }
-
-  function getStatusBG(taskStatus) {
-    const status = board.statuses?.find(s => s.title === taskStatus)
-    return { backgroundColor: status?.color }
-  }
-
-  function getPriorityBG(taskPriority) {
-    const priority = board.priorities?.find(p => p.title === taskPriority)
-    return { backgroundColor: priority?.color }
   }
 
   function onOpenUpdateLog(task) {
@@ -69,16 +63,12 @@ export function TaskPreview({
       <p className="task-persons-img">
         {task.personsIds
           ? task.personsIds.map(id => (
-              <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
-            ))
+            <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
+          ))
           : ''}
       </p>
-      <p style={getStatusBG(task.status || '')} className="task-status">
-        {task.status ? task.status : ''}
-      </p>
-      <p style={getPriorityBG(task.priority || '')} className="task-priority">
-        {task.priority ? task.priority : ''}
-      </p>
+      <TaskStatus board={board} setBoard={setBoard} group={group} task={task} />
+      <TaskPriority board={board} setBoard={setBoard} group={group} task={task} />
       <p className="task-timeline">
         {task.timeline ? getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate) : '-'}
       </p>

@@ -64,6 +64,7 @@ export function TaskList({ board, group, setBoard, setSelectedTask,
           <li className="task" key={task.id}>
             <TaskPreview
               board={board}
+              setBoard={setBoard}
               group={group}
               task={task}
               onRemoveTask={onRemoveTask}
