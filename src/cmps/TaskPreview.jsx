@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
+import { itemTypes } from '../dragTypes'
+
 import { EditableText } from './EditableText'
-import { Link } from 'react-router-dom'
 
 export function TaskPreview({
   board,
@@ -45,33 +48,38 @@ export function TaskPreview({
     setSelectedTask(task)
   }
 
-  function getFileType() { }
+  function getFileType() {}
 
   return (
-    <article className='task-preview'>
-
-      <button onClick={() => onRemoveTask(task.id)} className='task-menu-btn'><WorkSpaceOption /></button>
+    <article className="task-preview">
+      <button onClick={() => onRemoveTask(task.id)} className="task-menu-btn">
+        <WorkSpaceOption />
+      </button>
 
       <div className="sticky-container">
         <input type="checkbox" name="task" />
-        <div onClick={() => {
-          setTaskToEdit(task)
-        }} >
+        <div
+          onClick={() => {
+            setTaskToEdit(task)
+          }}
+        >
           <EditableText
             className="edit-task"
-            placeholder='+ Add task'
+            placeholder="+ Add task"
             func={onSaveTask}
             prevTxt={task.title}
           />
         </div>
-        <Link to={`/board/${board._id}/task/${task.id}`}><p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p></Link>
+        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
+          <MsgIcon />
+        </p>
       </div>
 
       <p className="task-persons-img">
         {task.personsIds
           ? task.personsIds.map(id => (
-            <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
-          ))
+              <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
+            ))
           : ''}
       </p>
       <p style={getStatusBG(task.status || '')} className="task-status">

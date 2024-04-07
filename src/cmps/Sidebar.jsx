@@ -37,30 +37,30 @@ export function Sidebar() {
     }
   }
 
-    //todo change to modal!!! button on line - 140
-    async function deleteBoard(boardId) {
-        try {
-            await removeBoard(boardId)
-        } catch (err) {
-            console.log('could not remove,', err);
-        } finally {
-            navigate('/board')
-        }
+  //todo change to modal!!! button on line - 140
+  async function deleteBoard(boardId) {
+    try {
+      await removeBoard(boardId)
+    } catch (err) {
+      console.log('could not remove,', err)
+    } finally {
+      navigate('/board')
     }
+  }
 
-    //Todo change this to  dynamic input modal
-    async function editBoardName(boardId) {
-        const boardToEdit = await boardService.getById(boardId)
-        console.log(boardToEdit);
-        boardToEdit.title = prompt('new title?') || 'New Title'
-        try {
-            await saveBoard(boardToEdit)
-            //todo add navigate
-            navigate(`/board/${boardToEdit._id}`)
-        } catch (err) {
-            console.log('could not update board name', err);
-        }
+  //Todo change this to  dynamic input modal
+  async function editBoardName(boardId) {
+    const boardToEdit = await boardService.getById(boardId)
+    console.log(boardToEdit)
+    boardToEdit.title = prompt('new title?') || 'New Title'
+    try {
+      await saveBoard(boardToEdit)
+      //todo add navigate
+      navigate(`/board/${boardToEdit._id}`)
+    } catch (err) {
+      console.log('could not update board name', err)
     }
+  }
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30
