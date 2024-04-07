@@ -1,11 +1,23 @@
 import { useState } from 'react'
 
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
+import { hideToolTip, showToolTip } from '../services/event-bus.service'
+
 import { BoardControls } from './BoardControls'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
+  }
+
+  function handleMouseIn({ target }, txt) {
+    const { left, top, width } = target.getBoundingClientRect()
+    const pos = { x: left, y: top }
+    showToolTip(txt, pos, width)
+  }
+
+  function handleMouseOut({ target }, txt) {
+    hideToolTip()
   }
 
   const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
@@ -31,18 +43,24 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg"
             alt="User img"
             className="user-img"
+            onMouseEnter={ev => handleMouseIn(ev, 'Atar Mor')}
+            onMouseLeave={handleMouseOut}
           />
 
           <img
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg"
             alt="User img"
             className="user-img"
+            onMouseEnter={ev => handleMouseIn(ev, 'Ron Felsenfeld')}
+            onMouseLeave={handleMouseOut}
           />
 
           <img
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg"
             alt="User img"
             className="user-img"
+            onMouseEnter={ev => handleMouseIn(ev, 'Ido Yotvat')}
+            onMouseLeave={handleMouseOut}
           />
         </div>
       </button>
@@ -53,13 +71,21 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
           <span className="invite">Invite / 1</span>
         </button>
 
-        <button className="btn-options flex align-center">
+        <button
+          className="btn-options flex align-center"
+          onMouseEnter={ev => handleMouseIn(ev, 'Options')}
+          onMouseLeave={handleMouseOut}
+        >
           <Options />
         </button>
       </div>
 
       <div className="views-container">
-        <button className="view-btn flex align-center">
+        <button
+          className="view-btn flex align-center"
+          onMouseEnter={ev => handleMouseIn(ev, 'Main Table')}
+          onMouseLeave={handleMouseOut}
+        >
           <Home />
           <span>Main Table</span>
         </button>
@@ -69,7 +95,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
         <ArrowUp />
       </button>
 
-      <BoardControls />
+      <BoardControls handleMouseIn={handleMouseIn} handleMouseOut={handleMouseOut} />
     </header>
   )
 }
