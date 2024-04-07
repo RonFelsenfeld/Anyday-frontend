@@ -1,7 +1,7 @@
 .board-header {
   display: grid;
   grid-template-columns: auto repeat(2, 1fr) auto;
-  grid-template-rows: 48px 36px 64px;
+  grid-template-rows: 56px 36px 64px;
   grid-template-areas:
     'title info activity invite'
     'views views views expand'
@@ -12,7 +12,7 @@
   z-index: 10;
   background-color: $main-bg-clr;
 
-  padding: em(16px) em(30px) 0 em(38px);
+  padding: em(12px) em(30px) 0 em(35px);
 
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
@@ -52,6 +52,7 @@
     font-size: em(32px);
     font-family: PoppinsRegular, RobotoRegular, sans-serif;
     font-weight: 600;
+    letter-spacing: -0.5px;
 
     // ? REMOVE
     &:hover {
@@ -92,7 +93,7 @@
       margin-inline-start: 4px;
 
       .user-img {
-        @include userImg($size: 24px, $margin-inline: -5px)
+        @include userImg($size: 24px, $margin-inline: -5px);
       }
     }
   }

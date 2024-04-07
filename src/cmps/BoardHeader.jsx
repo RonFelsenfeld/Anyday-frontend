@@ -25,10 +25,19 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
       <h1 className="board-title">{board.title}</h1>
 
       <div className="board-info flex align-center">
-        <button className="btn">
+        <button
+          className="btn"
+          onMouseEnter={ev => handleMouseIn(ev, 'Show board description')}
+          onMouseLeave={handleMouseOut}
+        >
           <Info />
         </button>
-        <button className="btn">
+
+        <button
+          className="btn"
+          onMouseEnter={ev => handleMouseIn(ev, 'Add to favorites')}
+          onMouseLeave={handleMouseOut}
+        >
           <Favorite />
         </button>
       </div>
