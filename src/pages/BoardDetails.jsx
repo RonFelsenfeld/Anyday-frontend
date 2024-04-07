@@ -90,19 +90,18 @@ export function BoardDetails() {
     }
   }
 
-  const isUpdateLogOpenClass = !isUpdateLogExpanded ? 'closed' : ''
+  // const isUpdateLogOpenClass = !isUpdateLogExpanded ? 'closed' : ''
 
   if (!board) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
-      <div className={`${isUpdateLogOpenClass}`}>
+      {/* <div className={`${isUpdateLogOpenClass}`}> */}
         <UpdateLog
           board={board}
           selectedTask={selectedTask}
           setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-          isUpdateLogExpanded={isUpdateLogExpanded}
-        />
-      </div>
+          isUpdateLogExpanded={isUpdateLogExpanded} />
+      {/* </div> */}
       <div ref={headerRef}>
         <BoardHeader
           board={board}

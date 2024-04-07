@@ -716,7 +716,6 @@ function getEmptyBoard() {
             title: 'task 1',
             personsIds: ['u101'],
             status: 'Working on it',
-            priority: 'High',
             timeline: {
               startDate: 1712077970111,
               dueDate: 1712250770111,
@@ -727,7 +726,6 @@ function getEmptyBoard() {
             title: 'task 2',
             personsIds: ['u103'],
             status: 'Done',
-            priority: 'Medium',
             timeline: {
               startDate: 1712164370111,
               dueDate: 1712941970111,
@@ -738,7 +736,6 @@ function getEmptyBoard() {
             title: 'task 3',
             personsIds: ['u101', 'u102', 'u103'],
             status: 'Stuck',
-            priority: 'High',
             timeline: {
               startDate: 1711991570111,
               dueDate: 1712337170111,
@@ -763,7 +760,6 @@ function getEmptyBoard() {
             id: utilService.makeId(),
             title: 'task 1',
             personsIds: ['u101', 'u103'],
-            priority: 'High',
             timeline: {
               startDate: 1711991570111,
               dueDate: 1712337170111,
@@ -779,7 +775,6 @@ function getEmptyBoard() {
             title: 'task 2',
             personsIds: ['u102'],
             status: 'Stuck',
-            priority: 'Critical',
             timeline: {
               startDate: 1711991570111,
               dueDate: 1712164370111,
@@ -800,6 +795,7 @@ function getEmptyBoard() {
     cmpsOrder: [
       'PersonsPicker',
       'StatusPicker',
+      'PriorityPicker',
       'TimelinePicker',
     ],
   }

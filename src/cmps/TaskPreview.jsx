@@ -6,6 +6,7 @@ import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { itemTypes } from '../dragTypes'
 
 import { EditableText } from './EditableText'
+import { Link } from 'react-router-dom'
 
 export function TaskPreview({
   board,
@@ -82,9 +83,11 @@ export function TaskPreview({
             prevTxt={task.title}
           />
         </div>
-        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
-          <MsgIcon />
-        </p>
+        <Link to={`/board/${board._id}/task/${task.id}`}>
+          <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
+            <MsgIcon />
+          </p>
+        </Link>
       </div>
 
       <p className="task-persons-img">
