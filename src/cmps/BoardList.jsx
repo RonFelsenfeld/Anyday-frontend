@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { BoardPreview } from './BoardPreview'
 import { ArrowDown, ArrowRight } from '../services/svg.service'
+
+import { BoardPreview } from './BoardPreview'
 
 export function BoardList({ boards }) {
   const [isExpanded, setIsExpanded] = useState(true)

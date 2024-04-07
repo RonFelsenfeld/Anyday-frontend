@@ -19,6 +19,7 @@ export const boardService = {
   getEmptyGroup,
   getPersonUrl,
   getTotalTasksByBoard,
+  getColTitle,
 }
 
 function query() {
@@ -31,7 +32,6 @@ function getById(boardId) {
 
 function remove(boardId) {
   return storageService.remove(BOARDS_KEY, boardId)
-  // .then(board => _setPrevBoardId(board))
 }
 
 function save(board) {
@@ -53,7 +53,24 @@ function getTotalTasksByBoard(board) {
   return totalTasks
 }
 
-/// GROUPS ///
+function getColTitle(cmp) {
+  switch (cmp) {
+    case 'PersonsPicker':
+      return 'Person'
+    case 'StatusPicker':
+      return 'Status'
+    case 'PriorityPicker':
+      return 'Priority'
+    case 'TimelinePicker':
+      return 'Timeline'
+    case 'FilesPicker':
+      return 'Files'
+    default:
+      cmp
+  }
+}
+
+// * --------------------------------- GROUPS ---------------------------------
 
 function removeGroup(board, groupId) {
   const groupIdx = board.groups.findIndex(group => group.id === groupId)
@@ -92,7 +109,7 @@ function _updateGroup(board, group) {
   return save(board)
 }
 
-/// TASKS ///
+// * --------------------------------- TASKS ---------------------------------
 
 function removeTask(board, group, taskId) {
   const taskIdx = group.tasks.findIndex(task => task.id === taskId)
@@ -130,6 +147,8 @@ function _updateTask(board, group, task) {
   group.tasks.splice(taskIdx, 1, task)
   return save(board)
 }
+
+// * --------------------------------- DEMO DATA ---------------------------------
 
 function _createDemoBoard() {
   let boards = utilService.loadFromStorage(BOARDS_KEY)

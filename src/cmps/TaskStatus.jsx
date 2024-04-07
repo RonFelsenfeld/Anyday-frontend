@@ -1,30 +1,40 @@
-import { useState } from "react";
-import { TaskEditModal } from "./TaskEditModal";
-import { saveTask } from "../store/actions/board.actions";
+import { useState } from 'react'
+import { saveTask } from '../store/actions/board.actions'
+import { TaskEditModal } from './TaskEditModal'
 
 export function TaskStatus({ board, setBoard, group, task }) {
-    const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
-    function getStatusBG(taskStatus) {
-        const status = board.statuses?.find(s => s.title === taskStatus)
-        return { backgroundColor: status?.color }
+  function getStatusBG(taskStatus) {
+    const status = board.statuses?.find(s => s.title === taskStatus)
+    return { backgroundColor: status?.color }
+  }
+
+  async function onUpdateTaskStatus(status) {
+    const editedTask = { ...task, status }
+
+    try {
+      const savedBoard = await saveTask(board, group, editedTask)
+      setBoard(savedBoard)
+      setIsOpenModal(false)
+    } catch (err) {
+      console.log('Had issues updating task status')
     }
+  }
 
-    async function onUpdateTaskStatus(statusTitle) {
-        const editedTask = { ...task, status: statusTitle }
-        try {
-            const savedBoard = await saveTask(board, group, editedTask)
-            setIsOpenModal(false)
-            setBoard(savedBoard)
-        } catch (err) {
-            console.log('Had issues updating task status')
-        }
-    }
+  return (
+    <>
+      <p
+        onClick={() => setIsOpenModal(true)}
+        style={getStatusBG(task.status || '')}
+        className="task-status"
+      >
+        {task.status ? task.status : ''}
+      </p>
 
-    return <>
-        <p onClick={() => setIsOpenModal(true)} style={getStatusBG(task.status || '')} className="task-status">
-            {task.status ? task.status : ''}
-        </p>
-        {isOpenModal && <TaskEditModal arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG}/>}
+      {isOpenModal && (
+        <TaskEditModal arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG} />
+      )}
     </>
+  )
 }

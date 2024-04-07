@@ -17,28 +17,10 @@ export function TaskList({
 }) {
   const [taskToEdit, setTaskToEdit] = useState(null)
 
-  function getColName(cmp) {
-    switch (cmp) {
-      case 'PersonsPicker':
-        return 'Person'
-      case 'StatusPicker':
-        return 'Status'
-      case 'PriorityPicker':
-        return 'Priority'
-      case 'TimelinePicker':
-        return 'Timeline'
-      case 'FilesPicker':
-        return 'Files'
-      default:
-        cmp
-    }
-  }
-
-  async function onSaveTask(txt) {
-    console.log(taskToEdit)
+  async function onSaveTask(title) {
     if (!taskToEdit) return
-    const editedTask = { ...taskToEdit, title: txt }
-    console.log('savedTask', editedTask)
+    const editedTask = { ...taskToEdit, title }
+
     try {
       const savedBoard = await saveTask(board, group, editedTask)
       setBoard(savedBoard)
@@ -59,6 +41,7 @@ export function TaskList({
 
   async function handleOnDragEnd(result) {
     if (!result.destination) return
+
     const items = Array.from(group.tasks)
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
@@ -78,7 +61,7 @@ export function TaskList({
           <input type="checkbox" name="all-tasks" />
           <h3>Task</h3>
           {board.cmpsOrder.map((cmp, idx) => (
-            <h3 key={idx}>{getColName(cmp)}</h3>
+            <h3 key={idx}>{boardService.getColTitle(cmp)}</h3>
           ))}
         </li>
 
@@ -101,12 +84,10 @@ export function TaskList({
                             group={group}
                             setBoard={setBoard}
                             task={task}
-                            onRemoveTask={onRemoveTask}
-                            taskToEdit={taskToEdit}
-                            setTaskToEdit={setTaskToEdit}
                             onSaveTask={onSaveTask}
+                            onRemoveTask={onRemoveTask}
+                            setTaskToEdit={setTaskToEdit}
                             setSelectedTask={setSelectedTask}
-                            isUpdateLogExpanded={isUpdateLogExpanded}
                             setIsUpdateLogExpanded={setIsUpdateLogExpanded}
                           />
                         </li>

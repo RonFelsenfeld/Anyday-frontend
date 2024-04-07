@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
 import { hideToolTip, showToolTip } from '../services/event-bus.service'
 
@@ -16,7 +14,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
     showToolTip(txt, pos, width)
   }
 
-  function handleMouseOut({ target }, txt) {
+  function handleMouseOut() {
     hideToolTip()
   }
 

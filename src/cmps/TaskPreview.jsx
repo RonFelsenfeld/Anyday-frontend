@@ -9,22 +9,20 @@ import { TaskTimeline } from './TaskTimeline'
 export function TaskPreview({
   board,
   group,
+  setBoard,
   task,
+  onSaveTask,
   onRemoveTask,
   setTaskToEdit,
-  onSaveTask,
   setIsUpdateLogExpanded,
-  isUpdateLogExpanded,
   setSelectedTask,
-  setBoard
 }) {
-
   function onOpenUpdateLog(task) {
     setIsUpdateLogExpanded(true)
     setSelectedTask(task)
   }
 
-  function getFileType() { }
+  function getFileType() {}
 
   return (
     <article className="task-preview">
@@ -51,13 +49,12 @@ export function TaskPreview({
         </p>
       </div>
 
-      <TaskPerson board={board} setBoard={setBoard} group={group} task={task} />
+      <TaskPerson board={board} task={task} />
       <TaskStatus board={board} setBoard={setBoard} group={group} task={task} />
       <TaskPriority board={board} setBoard={setBoard} group={group} task={task} />
       <TaskTimeline board={board} setBoard={setBoard} group={group} task={task} />
 
       <p className="task-files">{task.files ? getFileType() : ''}</p>
-
     </article>
   )
 }

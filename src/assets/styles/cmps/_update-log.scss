@@ -1,18 +1,17 @@
 .update-log-container {
-    position: fixed;
-    background-color: $main-bg-clr;
-    width: em(570px);
-    height: 100%;
-    z-index: 20;
-    right: 0;
-    box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
-    transition: transform .3s;
-    transform: translateX(101%);
+  position: fixed;
+  background-color: $main-bg-clr;
+  width: em(570px);
+  height: 100%;
+  z-index: 20;
+  right: 0;
+  box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
+  transition: transform 0.3s;
+  transform: translateX(101%);
 
-
-    &.open {
-        transform: translateX(0);
-    }
+  &.open {
+    transform: translateX(0);
+  }
 
   .header {
     margin: em(20px) em(20px) em(6px) em(24px);
@@ -22,16 +21,15 @@
         height: em(24px);
         margin-bottom: em(5px);
 
-                button {
-                    padding: 0px;
+        button {
+          padding: 0px;
 
-                    & :hover {
-                        border-radius: $el-br;
-                        background-color: $hover-clr;
-
-                    }
-                }
-            }
+          & :hover {
+            border-radius: $el-br;
+            background-color: $hover-clr;
+          }
+        }
+      }
 
       .title-options {
         height: em(41px);
@@ -62,13 +60,13 @@
             padding-right: em(6px);
 
             .task-persons-img {
-              height: em(23px);
+              // height: em(23px);
               border-right: 1px solid $secondary-border-clr;
               padding-right: em(10px);
               // padding-left: 5px;
 
               img {
-                @include userImg($size: 26px)
+                @include userImg($size: 26px);
               }
             }
           }

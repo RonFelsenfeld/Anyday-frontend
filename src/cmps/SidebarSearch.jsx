@@ -1,18 +1,8 @@
 import { useState } from 'react'
-
 import { AddBoardBtn, SearchIconSideBar } from '../services/svg.service'
-import { boardService } from '../services/board.service'
 
-export function SidebarSearch({ addBoard }) {
+export function SidebarSearch({ onAddBoard }) {
   const [isFocused, setIsFocused] = useState(false)
-
-  function onAddBoardClick() {
-    const board = boardService.getEmptyBoard()
-    addBoard(board)
-  }
-
-
-
 
   const dynClass = isFocused ? 'focused' : ''
 
@@ -22,6 +12,7 @@ export function SidebarSearch({ addBoard }) {
         <button>
           <SearchIconSideBar />
         </button>
+
         <input
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
@@ -29,7 +20,8 @@ export function SidebarSearch({ addBoard }) {
           placeholder="Search"
         />
       </div>
-      <button onClick={onAddBoardClick} className="add-board-btn btn">
+
+      <button onClick={onAddBoard} className="add-board-btn btn">
         <AddBoardBtn />
       </button>
     </div>
