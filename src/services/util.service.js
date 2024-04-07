@@ -2,6 +2,7 @@ export const utilService = {
   makeId,
   makeLorem,
   getRandomIntInclusive,
+  getFormattedTimeline,
   debounce,
   randomPastTime,
   saveToStorage,
@@ -75,6 +76,18 @@ function randomPastTime() {
 
   const pastTime = getRandomIntInclusive(HOUR, WEEK)
   return Date.now() - pastTime
+}
+
+function getFormattedTimeline(timestamp1, timestamp2) {
+  const date1 = new Date(timestamp1)
+  const date2 = new Date(timestamp2)
+
+  const day1 = date1.getDate()
+  const day2 = date2.getDate()
+  const month2 = date2.toLocaleString('default', { month: 'short' })
+
+  const formattedDateRange = `${day1} - ${day2} ${month2}`
+  return formattedDateRange
 }
 
 function debounce(func, timeout = 300) {

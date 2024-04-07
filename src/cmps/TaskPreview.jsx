@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
-import { TaskEditModal } from './TaskEditModal'
-import { saveTask } from '../store/actions/board.actions'
 import { TaskStatus } from './TaskStatus'
 import { TaskPriority } from './TaskPriority'
+import { TaskPerson } from './TaskPerson'
+import { TaskTimeline } from './TaskTimeline'
 
 export function TaskPreview({
   board,
@@ -20,18 +18,6 @@ export function TaskPreview({
   setSelectedTask,
   setBoard
 }) {
-
-  function getFormattedTimeline(timestamp1, timestamp2) {
-    const date1 = new Date(timestamp1)
-    const date2 = new Date(timestamp2)
-
-    const day1 = date1.getDate()
-    const day2 = date2.getDate()
-    const month2 = date2.toLocaleString('default', { month: 'short' })
-
-    const formattedDateRange = `${day1} - ${day2} ${month2}`
-    return formattedDateRange
-  }
 
   function onOpenUpdateLog(task) {
     setIsUpdateLogExpanded(true)
@@ -60,19 +46,13 @@ export function TaskPreview({
         <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
       </div>
 
-      <p className="task-persons-img">
-        {task.personsIds
-          ? task.personsIds.map(id => (
-            <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
-          ))
-          : ''}
-      </p>
+      <TaskPerson board={board} setBoard={setBoard} group={group} task={task} />
       <TaskStatus board={board} setBoard={setBoard} group={group} task={task} />
       <TaskPriority board={board} setBoard={setBoard} group={group} task={task} />
-      <p className="task-timeline">
-        {task.timeline ? getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate) : '-'}
-      </p>
+      <TaskTimeline board={board} setBoard={setBoard} group={group} task={task} />
+
       <p className="task-files">{task.files ? getFileType() : ''}</p>
+
     </article>
   )
 }
