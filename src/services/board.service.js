@@ -18,6 +18,7 @@ export const boardService = {
   getEmptyBoard,
   getEmptyGroup,
   getPersonUrl,
+  getTotalTasksByBoard,
 }
 
 function query() {
@@ -26,12 +27,11 @@ function query() {
 
 function getById(boardId) {
   return storageService.get(BOARDS_KEY, boardId)
-
 }
 
 function remove(boardId) {
   return storageService.remove(BOARDS_KEY, boardId)
-    // .then(board => _setPrevBoardId(board))
+  // .then(board => _setPrevBoardId(board))
 }
 
 function save(board) {
@@ -47,15 +47,11 @@ function getPersonUrl(board, personId) {
   return person?.imgUrl
 }
 
-// function _setPrevBoardId(board) {
-//   return storageService.query(BOARDS_KEY).then((boards) => {
-//     const boardIdx = boards.findIndex((currBoard) => currBoard._id === board._id)
-//     const prevBoard = boards[boardIdx - 1] ? boards[boardIdx - 1] : boards[boards.length - 1]
-//     board.prevBoardId = prevBoard.id
-//     return board
-//   })
-// }
-
+function getTotalTasksByBoard(board) {
+  let totalTasks = 0
+  board.groups.forEach(group => (totalTasks += group.tasks.length))
+  return totalTasks
+}
 
 /// GROUPS ///
 
@@ -96,7 +92,6 @@ function _updateGroup(board, group) {
   return save(board)
 }
 
-
 /// TASKS ///
 
 function removeTask(board, group, taskId) {
@@ -135,7 +130,6 @@ function _updateTask(board, group, task) {
   group.tasks.splice(taskIdx, 1, task)
   return save(board)
 }
-
 
 function _createDemoBoard() {
   let boards = utilService.loadFromStorage(BOARDS_KEY)
@@ -568,7 +562,7 @@ function _createDemoBoard() {
               priority: 'Medium',
               timeline: {
                 startDate: 1712337170111,
-                dueDate: 1712509970111
+                dueDate: 1712509970111,
               },
             },
             {
@@ -745,7 +739,7 @@ function getEmptyBoard() {
               url: 'https://www.w3schools.com/howto/howto_css_modals.asp',
               desc: 'How to modal',
             },
-          }
+          },
         ],
         style: {
           color: '#579bfc',
@@ -784,7 +778,7 @@ function getEmptyBoard() {
               url: 'https://someImgUrl',
               desc: 'Forme 1.png',
             },
-          }
+          },
         ],
         style: {
           color: '#037f4c',
@@ -792,19 +786,14 @@ function getEmptyBoard() {
       },
     ],
     activities: [],
-    cmpsOrder: [
-      'PersonsPicker',
-      'StatusPicker',
-      'PriorityPicker',
-      'TimelinePicker',
-    ],
+    cmpsOrder: ['PersonsPicker', 'StatusPicker', 'PriorityPicker', 'TimelinePicker'],
   }
 }
 
 function getEmptyTask() {
   return {
     title: '',
-    personsId: []
+    personsId: [],
   }
 }
 
@@ -820,26 +809,25 @@ function getEmptyGroup() {
 }
 
 function _getRandGroupColor() {
-  const groupColors =
-    [
-      'rgb(3, 127, 76)',
-      'rgb(0, 200, 117)',
-      'rgb(156, 211, 38)',
-      'rgb(202, 182, 65)',
-      'rgb(255, 203, 0)',
-      'rgb(120, 75, 209)',
-      'rgb(0, 126, 181)',
-      'rgb(87, 155, 252)',
-      'rgb(102, 204, 255)',
-      'rgb(187, 51, 84)',
-      'rgb(223, 47, 74)',
-      'rgb(255, 0, 127)',
-      'rgb(255, 90, 196)',
-      'rgb(255, 100, 46)',
-      'rgb(127, 83, 71)',
-      'rgb(196, 196, 196)',
-      'rgb(117, 117, 117)'
-    ]
+  const groupColors = [
+    'rgb(3, 127, 76)',
+    'rgb(0, 200, 117)',
+    'rgb(156, 211, 38)',
+    'rgb(202, 182, 65)',
+    'rgb(255, 203, 0)',
+    'rgb(120, 75, 209)',
+    'rgb(0, 126, 181)',
+    'rgb(87, 155, 252)',
+    'rgb(102, 204, 255)',
+    'rgb(187, 51, 84)',
+    'rgb(223, 47, 74)',
+    'rgb(255, 0, 127)',
+    'rgb(255, 90, 196)',
+    'rgb(255, 100, 46)',
+    'rgb(127, 83, 71)',
+    'rgb(196, 196, 196)',
+    'rgb(117, 117, 117)',
+  ]
 
   return groupColors[utilService.getRandomIntInclusive(0, groupColors.length - 1)]
 }

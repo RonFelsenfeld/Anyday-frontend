@@ -14,6 +14,7 @@ export function TaskPreview({
   setTaskToEdit,
   onSaveTask,
   setIsUpdateLogExpanded,
+  isUpdateLogExpanded,
   setSelectedTask,
   setBoard
 }) {
@@ -23,7 +24,7 @@ export function TaskPreview({
     setSelectedTask(task)
   }
 
-  function getFileType() {}
+  function getFileType() { }
 
   return (
     <article className="task-preview">

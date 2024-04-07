@@ -44,6 +44,8 @@ export function BoardDetails() {
       })
     }
 
+    document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
+
     return () => {
       headerObserver.disconnect()
     }
@@ -96,11 +98,12 @@ export function BoardDetails() {
   return (
     <section className="board-details" ref={boardDetailsRef}>
       {/* <div className={`${isUpdateLogOpenClass}`}> */}
-        <UpdateLog
-          board={board}
-          selectedTask={selectedTask}
-          setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-          isUpdateLogExpanded={isUpdateLogExpanded} />
+      <UpdateLog
+        board={board}
+        selectedTask={selectedTask}
+        setIsUpdateLogExpanded={setIsUpdateLogExpanded}
+        isUpdateLogExpanded={isUpdateLogExpanded}
+      />
       {/* </div> */}
       <div ref={headerRef}>
         <BoardHeader
@@ -143,8 +146,10 @@ export function BoardDetails() {
           )
         })}
       </div>
-      
-      <button className="add-group-btn" onClick={onAddGroup}><AddBoardBtn/> Add new group</button>
+
+      <button className="add-group-btn" onClick={onAddGroup}>
+        <AddBoardBtn /> Add new group
+      </button>
     </section>
   )
 }

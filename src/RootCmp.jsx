@@ -8,6 +8,7 @@ import { BoardDetails } from './pages/BoardDetails'
 
 import { store } from './store/store'
 import { UpdateLog } from './cmps/UpdateLog'
+import { DynamicToolTip } from './cmps/DynamicToolTip'
 
 export function App() {
   return (
@@ -26,6 +27,7 @@ export function App() {
               </Route>
             </Routes>
           </main>
+          <DynamicToolTip />
         </section>
         {/* <UserMsg /> */}
       </Router>

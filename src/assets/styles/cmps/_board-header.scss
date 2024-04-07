@@ -49,10 +49,11 @@
     border-radius: $el-br;
     margin-inline-end: 4px;
 
-    font-size: em(24px);
+    font-size: em(32px);
     font-family: PoppinsRegular, RobotoRegular, sans-serif;
     font-weight: 600;
 
+    // ? REMOVE
     &:hover {
       border-color: rgb(195, 198, 212);
     }
@@ -74,10 +75,10 @@
   .activity-container {
     grid-area: activity;
     justify-self: end;
-    width: 120px;
+    gap: 4px;
 
     border-radius: $el-br;
-    padding: 4px 8px;
+    padding: 4px 11px 4px 8px;
     margin-inline-end: 8px;
 
     font-size: em(15px);
@@ -91,19 +92,7 @@
       margin-inline-start: 4px;
 
       .user-img {
-        width: em(24px);
-        height: em(24px);
-
-        border-radius: 50%;
-        border: 1px solid $main-bg-clr;
-      }
-
-      .user-img:nth-child(2) {
-        transform: translateX(-10px);
-      }
-
-      .user-img:nth-child(3) {
-        transform: translateX(-20px);
+        @include userImg($size: 24px, $margin-inline: -5px)
       }
     }
   }
