@@ -1,7 +1,21 @@
+.task-preview {
+  display: grid;
+  grid-template-columns: 477px 100px repeat(4, 140px);
+  grid-auto-rows: $task-preview-height;
 
-.task {
   cursor: pointer;
   position: relative;
+  border-bottom: 1px solid $secondary-border-clr;
+
+  input {
+    @include checkbox;
+  }
+
+  .sticky-container {
+    display: grid;
+    grid-template-columns: 32px 380px 65px;
+    position: sticky;
+  }
 
   .task-menu-btn {
     position: absolute;
@@ -21,88 +35,79 @@
     }
   }
 
-  .task-preview {
-    display: grid;
-    grid-template-columns: 477px 100px repeat(4, 140px);
-    grid-auto-rows: $task-preview-height;
+  p {
+    border-inline-start: 1px solid $secondary-border-clr;
 
-    .sticky-container {
-      display: grid;
-      grid-template-columns: 32px 380px 65px;
-      position: sticky;
-    }
-  
-    p {
-        border-inline-start: 1px solid $secondary-border-clr;
-  
-        &:not(.task-title) {
-            align-items: center;
-            justify-content: center;
-        }
-  
-        &:not(.task-persons-img) {
-            display: grid;
-        }
-    }
-
-    .task-title {
-      display: grid;
-      align-content: center;
-      padding-inline-start: em(30px);
-      // font-family: PoppinsMedium;
-    }
-
-    .msg-btn>*:hover{
-      color: $btn-compose-clr
-    }
-  
-    .edit-task {
-      // width: 100%;
-      display: grid;
-      border-inline-start: 1px solid $secondary-border-clr;
-      padding-inline-start: em(30px);
-      
-      input {
-        @include input; 
-        width: 100%; 
-      }
-    }
-
-
-    .task-persons-img {
-      display: flex;
+    &:not(.task-title) {
       align-items: center;
       justify-content: center;
-  
-      img {
-        width: em(24px);
-        height: em(24px);
-        border-radius: 50%;
-        border: 1px solid $main-bg-clr;
-      }
-  
-      img:nth-child(2) {
-        transform: translateX(-10px);
-      }
-  
-      img:nth-child(3) {
-        transform: translateX(-20px);
-      }
     }
 
-    .task-status, 
-    .task-priority {
-      color: $main-bg-clr;
+    &:not(.task-persons-img) {
+      display: grid;
     }
-  
-    .task-timeline {
-      color: $main-bg-clr;
-      background-color: $main-font-clr;
-      align-self: center;
-      justify-self: center;
-      height: em(22px);
-      width: em(100px);
-      border-radius: 30px;
+  }
+
+  .task-title {
+    display: grid;
+    align-content: center;
+    padding-inline-start: em(30px);
+    // font-family: PoppinsMedium;
+  }
+
+  .msg-btn > *:hover {
+    color: $btn-compose-clr;
+  }
+
+  .edit-task {
+    // width: 100%;
+    display: grid;
+    border-inline-start: 1px solid $secondary-border-clr;
+    padding-inline-start: em(30px);
+
+    input {
+      @include input;
+      width: 100%;
     }
+  }
+
+  a {
+    display: grid;
+  }
+
+  .task-persons-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: em(24px);
+      height: em(24px);
+      border-radius: 50%;
+      border: 1px solid $main-bg-clr;
+    }
+
+    img:nth-child(2) {
+      transform: translateX(-10px);
+    }
+
+    img:nth-child(3) {
+      transform: translateX(-20px);
+    }
+  }
+
+  .task-status,
+  .task-priority {
+    color: $main-bg-clr;
+  }
+
+  .task-timeline {
+    color: $main-bg-clr;
+    background-color: $main-font-clr;
+    align-self: center;
+    justify-self: center;
+    height: em(22px);
+    width: em(100px);
+    border-radius: 30px;
   }
 }

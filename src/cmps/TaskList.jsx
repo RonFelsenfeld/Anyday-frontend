@@ -1,11 +1,21 @@
 import { useState } from 'react'
-import { saveTask, removeTask } from '../store/actions/board.actions'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
+import { boardService } from '../services/board.service'
+import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
+
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
-import { boardService } from '../services/board.service'
 
-export function TaskList({ board, group, setBoard, setSelectedTask,
-  isUpdateLogExpanded, setIsUpdateLogExpanded }) {
+export function TaskList({
+  board,
+  group,
+  setBoard,
+  setSelectedTask,
+  isUpdateLogExpanded,
+  setIsUpdateLogExpanded,
+}) {
+  const [taskList, setTaskList] = useState(group.tasks)
   const [taskToEdit, setTaskToEdit] = useState(null)
 
   function getColName(cmp) {
@@ -48,49 +58,80 @@ export function TaskList({ board, group, setBoard, setSelectedTask,
     }
   }
 
-  return <ul className='group-container clean-list'>
+  async function handleOnDragEnd(result) {
+    if (!result.destination) return
+    const items = Array.from(taskList)
+    const [reorderedItem] = items.splice(result.source.index, 1)
+    items.splice(result.destination.index, 0, reorderedItem)
+    setTaskList(items)
+    group.tasks = [...items]
 
-    <div style={{ borderColor: group.style.color }} className='group-list'>
-      <li className="group-first-row">
-        <input type="checkbox" name="all-tasks" />
-        <h3>Task</h3>
-        {board.cmpsOrder.map((cmp, idx) => (
-          <h3 key={idx}>{getColName(cmp)}</h3>
-        ))}
-      </li>
+    try {
+      await saveBoard(board, group)
+    } catch (err) {
+      console.log('Dragging -> Had issues saving board')
+    }
+  }
 
-      {group.tasks.map(task => {
-        return (
-          <li className="task" key={task.id}>
-            <TaskPreview
-              board={board}
-              setBoard={setBoard}
-              group={group}
-              task={task}
-              onRemoveTask={onRemoveTask}
-              taskToEdit={taskToEdit}
-              setTaskToEdit={setTaskToEdit}
-              onSaveTask={onSaveTask}
+  return (
+    <ul className="group-container clean-list">
+      <div style={{ borderColor: group.style.color }} className="group-list">
+        <li className="group-first-row">
+          <input type="checkbox" name="all-tasks" />
+          <h3>Task</h3>
+          {board.cmpsOrder.map((cmp, idx) => (
+            <h3 key={idx}>{getColName(cmp)}</h3>
+          ))}
+        </li>
 
-              setSelectedTask={setSelectedTask}
-              isUpdateLogExpanded={isUpdateLogExpanded}
-              setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-            />
-          </li>
-        )
-      })}
-    </div>
-
-    <li style={{ borderColor: group.style.color }} className="add-task-li">
-      <input disabled className='add-task-checkbox' type="checkbox" name="task" />
-      <div className="add-task-container" onClick={() => setTaskToEdit(boardService.getEmptyTask())}>
-        <EditableText
-          name="add-task"
-          placeholder='+ Add task'
-          func={onSaveTask}
-          isNew={true}
-        />
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="tasks">
+            {provider => (
+              <div {...provider.droppableProps} ref={provider.innerRef}>
+                {taskList.map((task, idx) => {
+                  return (
+                    <Draggable key={task.id} draggableId={task.id} index={idx}>
+                      {provider => (
+                        <li
+                          className="task"
+                          {...provider.draggableProps}
+                          {...provider.dragHandleProps}
+                          ref={provider.innerRef}
+                        >
+                          <TaskPreview
+                            board={board}
+                            group={group}
+                            setBoard={setBoard}
+                            task={task}
+                            onRemoveTask={onRemoveTask}
+                            taskToEdit={taskToEdit}
+                            setTaskToEdit={setTaskToEdit}
+                            onSaveTask={onSaveTask}
+                            setSelectedTask={setSelectedTask}
+                            isUpdateLogExpanded={isUpdateLogExpanded}
+                            setIsUpdateLogExpanded={setIsUpdateLogExpanded}
+                          />
+                        </li>
+                      )}
+                    </Draggable>
+                  )
+                })}
+                {provider.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
-    </li>
-  </ul>
+
+      <li style={{ borderColor: group.style.color }} className="add-task-li">
+        <input disabled className="add-task-checkbox" type="checkbox" name="task" />
+        <div
+          className="add-task-container"
+          onClick={() => setTaskToEdit(boardService.getEmptyTask())}
+        >
+          <EditableText name="add-task" placeholder="+ Add task" func={onSaveTask} isNew={true} />
+        </div>
+      </li>
+    </ul>
+  )
 }

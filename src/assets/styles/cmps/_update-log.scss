@@ -1,17 +1,18 @@
 .update-log-container {
-  position: fixed;
-  // background-color: $main-bg-clr;
-  background-color: $main-bg-clr;
-  width: em(570px);
-  height: 100%;
-  z-index: 20;
-  right: 0;
-  box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
-  transition: translate 0.3s;
+    position: fixed;
+    background-color: $main-bg-clr;
+    width: em(570px);
+    height: 100%;
+    z-index: 20;
+    right: 0;
+    box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
+    transition: transform .3s;
+    transform: translateX(101%);
 
-  &.closed {
-    translate: (101%);
-  }
+
+    &.open {
+        transform: translateX(0);
+    }
 
   .header {
     margin: em(20px) em(20px) em(6px) em(24px);
@@ -21,14 +22,16 @@
         height: em(24px);
         margin-bottom: em(5px);
 
-        button {
-          padding: 0px;
-          & :hover {
-            border-radius: $el-br;
-            background-color: $hover-clr;
-          }
-        }
-      }
+                button {
+                    padding: 0px;
+
+                    & :hover {
+                        border-radius: $el-br;
+                        background-color: $hover-clr;
+
+                    }
+                }
+            }
 
       .title-options {
         height: em(41px);

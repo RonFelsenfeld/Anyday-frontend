@@ -37,3 +37,11 @@
     border-inline-end: 1px solid $secondary-border-clr;
   }
 }
+
+@mixin checkbox {
+  align-self: center;
+  justify-self: center;
+  height: rem(16px);
+  width: 1rem;
+  border: 1px solid $secondary-border-clr;
+}
