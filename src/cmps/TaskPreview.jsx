@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { useDrag } from 'react-dnd'
+
 import { boardService } from '../services/board.service'
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
+import { itemTypes } from '../dragTypes'
+
 import { EditableText } from './EditableText'
 
 export function TaskPreview({
@@ -16,6 +20,14 @@ export function TaskPreview({
   setSelectedTask,
 }) {
   const [isEditMode, setIsEditMode] = useState(false)
+  const [{ isDragging }, dragRef] = useDrag(() => ({
+    type: itemTypes.TASK,
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }))
+
+  console.log(`isDragging`, isDragging)
 
   function getFormattedTimeline(timestamp1, timestamp2) {
     const date1 = new Date(timestamp1)
@@ -44,26 +56,35 @@ export function TaskPreview({
     setSelectedTask(task)
   }
 
-  function getFileType() { }
+  function getFileType() {}
 
   return (
-    <article className='task-preview'>
-
-      <button onClick={() => onRemoveTask(task.id)} className='task-menu-btn'><WorkSpaceOption /></button>
+    <article
+      ref={dragRef}
+      className="task-preview"
+      style={{ backgroundColor: isDragging ? 'pink' : '' }}
+    >
+      <button onClick={() => onRemoveTask(task.id)} className="task-menu-btn">
+        <WorkSpaceOption />
+      </button>
 
       <div className="sticky-container">
         <input type="checkbox" name="task" />
-        <div onClick={() => {
-          setTaskToEdit(task)
-        }} >
+        <div
+          onClick={() => {
+            setTaskToEdit(task)
+          }}
+        >
           <EditableText
             className="edit-task"
-            placeholder='+ Add task'
+            placeholder="+ Add task"
             func={onSaveTask}
             prevTxt={task.title}
           />
         </div>
-        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}><MsgIcon /></p>
+        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
+          <MsgIcon />
+        </p>
       </div>
 
       <p className="task-persons-img">
