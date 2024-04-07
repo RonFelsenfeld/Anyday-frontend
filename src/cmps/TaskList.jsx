@@ -65,13 +65,14 @@ export function TaskList({
           ))}
         </li>
 
-        {group.tasks.map(task => {
+        {group.tasks.map((task, idx) => {
           return (
             <li className="task" key={task.id}>
               <TaskPreview
                 board={board}
                 group={group}
                 task={task}
+                taskIdx={idx}
                 onRemoveTask={onRemoveTask}
                 taskToEdit={taskToEdit}
                 setTaskToEdit={setTaskToEdit}
