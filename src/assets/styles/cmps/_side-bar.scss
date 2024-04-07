@@ -85,7 +85,8 @@
         border-top: 1px solid $secondary-border-clr;
 
         .side-bar-workspace-nav {
-            margin: em(10px);
+            margin: 6px em(10px);
+
         }
     }
 
@@ -94,7 +95,7 @@
         align-self: center;
         width: em(20px);
         height: em(20px);
-        border-radius: em(4px);
+        border-radius: 6px;
         background-color: rgb(52, 146, 88);
         color: #fff;
         margin-right: em(7px);
@@ -109,7 +110,7 @@
     }
 
     .main-workspace-header {
-        font-size: em(16px);
+        font-size: 16px;
         font-family: FigtreeBold;
     }
 
@@ -143,11 +144,20 @@
         .side-bar-search-input {
             border: 1px solid $secondary-border-clr;
             border-radius: $el-br;
-            padding-left: em(6px);
+            padding-left: 5px;
             padding-right: em(3px);
             width: em(190px);
             height: em(32px);
             // width: 190px;
+
+            button {
+                padding-left: 1px;
+                padding-top: 5px;
+
+                path {
+                    color: $sidebar-svg-clr;
+                }
+            }
 
             &.focused {
                 border: 1px solid #0073ea;
@@ -155,9 +165,10 @@
 
             & input {
                 border: none;
-                padding: em(3px) em(4px);
+                padding: em(3px) 0px;
+                font-size: 14px;
 
-                &:focus {
+                p &:focus {
                     outline: none;
                 }
             }
@@ -184,16 +195,22 @@
         padding: 12px;
         padding-top: 8px;
 
+
         & .board-li {
-            padding: 8px 0 8px 8px;
-            height: em(32px);
+            padding: 9px 0 9px 8px;
+            height: em(34px);
             gap: 8px;
             border-radius: $el-br;
+
+            path {
+                color: $sidebar-svg-clr;
+            }
 
             &:hover {
                 background-color: $hover-clr;
 
                 .board-title-options {
+
                     & button {
                         border-radius: $el-br;
                         opacity: 1;
@@ -206,6 +223,8 @@
                             background-color: $hover-clr;
 
                         }
+
+                        svg.path {}
                     }
                 }
             }

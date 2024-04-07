@@ -150,7 +150,7 @@ export function Sidebar() {
               {boards.map(board => (
                 <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
                   <li className="board-li flex align-center">
-                    <MiniBoard />
+                    <MiniBoard className="mini-board-svg"/>
                     <div key={board._id} className="board-title-options flex align-center">
                       <span className="board-title-span">{board.title}</span>
                       <button
