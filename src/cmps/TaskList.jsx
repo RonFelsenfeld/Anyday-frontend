@@ -15,7 +15,6 @@ export function TaskList({
   isUpdateLogExpanded,
   setIsUpdateLogExpanded,
 }) {
-  const [taskList, setTaskList] = useState(group.tasks)
   const [taskToEdit, setTaskToEdit] = useState(null)
 
   function getColName(cmp) {
@@ -60,10 +59,9 @@ export function TaskList({
 
   async function handleOnDragEnd(result) {
     if (!result.destination) return
-    const items = Array.from(taskList)
+    const items = Array.from(group.tasks)
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
-    setTaskList(items)
     group.tasks = [...items]
 
     try {
@@ -88,7 +86,7 @@ export function TaskList({
           <Droppable droppableId="tasks">
             {provider => (
               <div {...provider.droppableProps} ref={provider.innerRef}>
-                {taskList.map((task, idx) => {
+                {group.tasks.map((task, idx) => {
                   return (
                     <Draggable key={task.id} draggableId={task.id} index={idx}>
                       {provider => (
