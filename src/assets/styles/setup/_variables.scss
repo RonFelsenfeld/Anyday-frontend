@@ -6,6 +6,7 @@ $main-border-clr: rgb(102, 102, 102); // Secondary font color
 $secondary-border-clr: rgb(208, 212, 228);
 $board-index-bg-clr: rgb(246, 247, 251);
 $img-border-clr: rgb(245,246,248);
+$list-shadow-clr: rgb(195, 198, 212);
 
 // Task status colors
 $task-blank-clr: #c4c4c4;
@@ -15,6 +16,7 @@ $task-stuck-clr: #df2f4a;
 
 // Button color
 $btn-compose-clr: rgb(0, 115, 234); // Add board btn size: 32*32
+$workplace-btn: rgb(0, 154, 255);
 $sidebar-svg-clr: rgb(103, 104, 121);
 
 // Layout
@@ -59,9 +61,3 @@ $tooltip-clr: rgb(51, 51, 51);
   --group-clr-17: rgb(196, 196, 196);
   --group-clr-18: rgb(117, 117, 117);
 }
-
-// Main-fz: 14px
-// Main-title-size: 24px
-// Group-title-size:18px
-
-// Side-bar-width: 265px

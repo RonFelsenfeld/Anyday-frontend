@@ -1,10 +1,10 @@
 .board-details {
   grid-column: 2;
   border-radius: $cmp-br;
-  background-color: $main-bg-clr;
   border-radius: $cmp-br;
   overflow-x: scroll;
   padding-block-end: 50px;
+  background-color: $main-bg-clr;
 
   .board-group {
     display: grid;
@@ -31,21 +31,20 @@
       }
 
       .group-title {
-        color: var(--group-clr-9);
-        font-size: 1.29rem;
         align-self: start;
+        color: var(--group-clr-9);
+        font-size: 1.3rem;
         margin-inline-end: 15px;
-        // letter-spacing: em(0.8px);
         font-family: PoppinsMedium;
       }
 
       .tasks-left {
-        font-size: 1rem;
+        opacity: 0;
+        align-self: center;
         padding: 0;
         padding-block-end: 3px;
         margin: 0;
-        align-self: center;
-        opacity: 0;
+        font-size: 1rem;
       }
 
       &:hover .board-menu-btn {
@@ -65,8 +64,8 @@
 
   .add-group-btn {
     display: flex;
-    gap: 8px;
     align-items: center;
+    gap: 8px;
     padding: 4px 8px;
     margin-inline-start: 38px;
     border: 1px solid $secondary-border-clr;

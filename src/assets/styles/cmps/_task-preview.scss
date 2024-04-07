@@ -12,9 +12,9 @@
   }
 
   .sticky-container {
+    position: sticky;
     display: grid;
     grid-template-columns: 32px 380px 65px;
-    position: sticky;
   }
 
   .task-menu-btn {
@@ -52,7 +52,6 @@
     display: grid;
     align-content: center;
     padding-inline-start: em(30px);
-    // font-family: PoppinsMedium;
   }
 
   .msg-btn > *:hover {
@@ -60,7 +59,6 @@
   }
 
   .edit-task {
-    // width: 100%;
     display: grid;
     border-inline-start: 1px solid $secondary-border-clr;
     padding-inline-start: em(30px);
@@ -92,12 +90,13 @@
   }
 
   .task-timeline {
-    color: $main-bg-clr;
-    background-color: $main-font-clr;
     align-self: center;
     justify-self: center;
     height: em(22px);
     width: em(100px);
+    
     border-radius: 30px;
+    color: $main-bg-clr;
+    background-color: $main-font-clr;
   }
 }

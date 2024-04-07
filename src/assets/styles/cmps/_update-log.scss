@@ -1,13 +1,14 @@
 .update-log-container {
   position: fixed;
-  background-color: $main-bg-clr;
+  transform: translateX(101%);
   width: em(570px);
   height: 100%;
   z-index: 20;
   right: 0;
+
+  background-color: $main-bg-clr;
   box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);
   transition: transform 0.3s;
-  transform: translateX(101%);
 
   &.open {
     transform: translateX(0);
@@ -32,7 +33,6 @@
       }
 
       .title-options {
-        height: em(41px);
         height: 65px;
 
         .title {
@@ -41,9 +41,9 @@
 
         .img-options {
           .menu-options-btn {
-            padding: em(1px);
             width: em(26px);
             height: em(26px);
+            padding: em(1px);
             margin-left: em(10px);
 
             &:hover {
@@ -54,16 +54,11 @@
           }
 
           .user-img {
-            // padding-top: em(3px);
-            // padding-right: em(16px);
-            // margin-right: em(12px);
             padding-right: em(6px);
 
             .task-persons-img {
-              // height: em(23px);
               border-right: 1px solid $secondary-border-clr;
               padding-right: em(10px);
-              // padding-left: 5px;
 
               img {
                 @include userImg($size: 26px);
@@ -75,11 +70,12 @@
 
       .menu-options {
         height: em(36px);
-        width: 570px;
+        width: em(570px);
 
         .btn-view {
-          @include viewSeparator;
           position: relative;
+
+          @include viewSeparator;
           font-size: 1rem;
           padding: 8px;
           margin-block-end: 4px;
@@ -131,9 +127,9 @@
       border: 1px solid $border-input-activity-log-clr;
 
       .txt-input-update-log {
+        width: em(400px);
         margin: 10px;
         padding: 10px;
-        width: em(400px);
         font-size: em(16px);
         border: none;
         outline: none;
