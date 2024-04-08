@@ -24,13 +24,13 @@ export function TaskStatus({ board, setBoard, group, task }) {
 
   return (
     <>
-      <p
+      <div
         onClick={() => setIsOpenModal(true)}
         style={getStatusBG(task.status || '')}
-        className="task-status"
+        className="task-row task-status"
       >
         {task.status ? task.status : ''}
-      </p>
+      </div>
 
       {isOpenModal && (
         <TaskEditModal arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG} />

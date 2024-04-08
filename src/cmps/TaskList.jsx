@@ -12,7 +12,6 @@ export function TaskList({
   group,
   setBoard,
   setSelectedTask,
-  isUpdateLogExpanded,
   setIsUpdateLogExpanded,
 }) {
   const [taskToEdit, setTaskToEdit] = useState(null)

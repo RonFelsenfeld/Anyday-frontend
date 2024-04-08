@@ -44,17 +44,17 @@ export function TaskPreview({
             prevTxt={task.title}
           />
         </div>
-        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
+        <div className="task-row msg-btn" onClick={() => onOpenUpdateLog(task)}>
           <MsgIcon />
-        </p>
+        </div>
       </div>
 
-      <TaskPerson board={board} task={task} />
+      <TaskPerson board={board} setBoard={setBoard} group={group} task={task} />
       <TaskStatus board={board} setBoard={setBoard} group={group} task={task} />
       <TaskPriority board={board} setBoard={setBoard} group={group} task={task} />
       <TaskTimeline board={board} setBoard={setBoard} group={group} task={task} />
 
-      <p className="task-files">{task.files ? getFileType() : ''}</p>
+      <div className="task-row task-files">{task.files ? getFileType() : ''}</div>
     </article>
   )
 }
