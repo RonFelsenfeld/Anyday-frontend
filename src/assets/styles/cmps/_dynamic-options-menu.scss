@@ -1,0 +1,17 @@
+.dynamic-options-menu {
+  padding: em(8px);
+
+  .options-list {
+    .option {
+      @include btn;
+      height: em(32px);
+      width: em(234px);
+
+      .btn-option {
+        .option-title {
+          margin-inline-start: 8px;
+        }
+      }
+    }
+  }
+}

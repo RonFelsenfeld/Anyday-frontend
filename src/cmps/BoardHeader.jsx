@@ -1,17 +1,53 @@
+import { useState } from 'react'
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 import { BoardControls } from './BoardControls'
+import { EditableText } from './EditableText'
+import { saveBoard } from '../store/actions/board.actions'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
+  const [isEditing, setIsEditing] = useState(false)
+
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
   }
 
+  async function onEditBoardTitle(newTitle) {
+    board.title = newTitle || board.title
+    try {
+      await saveBoard(board)
+      setIsEditing(false)
+    } catch (err) {
+      console.log('Could not update board name', err)
+    }
+  }
+
   const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
+  const isEditedClass = isEditing ? 'editing' : ''
 
   return (
     <header className={`board-header ${collapsedClass}`}>
-      <h1 className="board-title">{board.title}</h1>
+      <h1
+        className={`board-title ${isEditedClass}`}
+        onClick={() => {
+          hideToolTip()
+          setIsEditing(true)
+        }}
+        onMouseEnter={ev => {
+          showToolTip(ev.target, 'Click to edit')
+        }}
+        onMouseLeave={() => hideToolTip()} // ! MOVE BELOW HEADING
+      >
+        {!isEditing && board.title}
+        {isEditing && (
+          <EditableText
+            prevTxt={board.title}
+            func={onEditBoardTitle}
+            className={'board-header-input'}
+            isFocused={true}
+          />
+        )}
+      </h1>
 
       <div className="board-info flex align-center">
         <button

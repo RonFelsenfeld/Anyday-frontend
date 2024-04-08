@@ -49,13 +49,12 @@
     border-radius: $el-br;
     margin-inline-end: 4px;
 
-    font-size: em(32px);
-    font-family: PoppinsRegular, RobotoRegular, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.5px;
+    font-size: em(24px);
+    font-family: PoppinsMedium, RobotoRegular, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.1px;
 
-    // ? REMOVE
-    &:hover {
+    &:not(.editing):hover {
       border-color: rgb(195, 198, 212);
     }
   }
@@ -157,6 +156,14 @@
       svg {
         animation: bounce 1s ease-in-out;
       }
+    }
+  }
+
+  .board-header-input {
+    input {
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
     }
   }
 }

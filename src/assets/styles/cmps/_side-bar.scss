@@ -8,8 +8,10 @@
   background-color: $main-bg-clr;
   transition: width 0.1s;
 
-  svg {
-    z-index: -1;
+  .sidebar-btn-expand {
+    svg {
+      z-index: -1;
+    }
   }
 
   &:hover {
@@ -171,9 +173,13 @@
     }
   }
 
-  .navlink.active {
-    background-color: $active-btn-clr;
-    border-radius: $el-br;
+
+  .active {
+    @include activeLink;
+  }
+
+  .navilink .active {
+    @include activeLink;
   }
 
   .side-bar-boards-list {
@@ -182,7 +188,7 @@
     .board-li {
       height: em(34px);
       gap: 8px;
-      padding: 9px 0 9px 8px;
+      padding: 9px 8px;
       border-radius: $el-br;
 
       path {
@@ -199,7 +205,6 @@
             opacity: 1;
             border-radius: $el-br;
             padding: 0px;
-            margin-right: em(5px);
 
             &:hover {
               background-color: $hover-clr;
@@ -217,9 +222,11 @@
 
         .board-title-input {
           input {
-            border: 1px solid $secondary-border-clr;
-            background-color: transparent;
             height: 23px;
+            padding-block: 2px;
+            border: 1px solid $secondary-border-clr;
+
+            background-color: transparent;
             outline: none;
           }
         }
@@ -227,6 +234,14 @@
 
       .options-menu-btn {
         opacity: 0;
+        padding: 1px;
+        width: em(24px);
+        height: em(24px);
+
+        &.menu-open {
+          opacity: 1;
+          @include activeLink;
+        }
       }
     }
 
@@ -243,7 +258,6 @@
       button.dialog-item {
         min-width: 100px;
         border-radius: $el-br;
-
       }
     }
   }

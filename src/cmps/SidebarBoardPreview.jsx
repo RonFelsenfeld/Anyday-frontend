@@ -1,8 +1,12 @@
+import { useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { MiniBoard, WorkSpaceOption } from '../services/svg.service'
+
+import { MiniBoard, Options, WorkSpaceOption } from '../services/svg.service'
+import { showModal } from '../store/actions/system.actions'
+import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
+
 import { EditableText } from './EditableText'
-import { DynamicLabelPicker } from './DynamicLabelPicker'
-import { useState } from 'react'
+import { useClickOutside } from '../customHooks/useClickOutside'
 
 export function SidebarBoardPreview({
   board,
@@ -11,32 +15,53 @@ export function SidebarBoardPreview({
   setBoardToEdit,
   boardToEdit,
 }) {
-  const [isOpenModal, setIsOpenModal] = useState(false)
-
   const isEditing = boardToEdit?._id === board._id
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuBtnRef = useRef()
 
-  const menuOptions = [
-    { id: 'delete101', title: 'Delete' },
+  useClickOutside(menuBtnRef, () => setIsMenuOpen(false))
+
+  const options = [
     {
-      id: 'Rename101',
       title: 'Rename Board',
+      icon: 'pencil',
+      func: () => {
+        setBoardToEdit(board)
+        setIsMenuOpen(false)
+      },
+    },
+    {
+      title: 'Delete',
+      icon: 'trash',
+      func: () => {
+        onDeleteBoard(board._id)
+        setIsMenuOpen(false)
+      },
+    },
+    {
+      title: 'Add to favorites',
+      icon: 'favorite',
+      func: () => {
+        setIsMenuOpen(false)
+      }, // ! ADD REAL FUNCTION
     },
   ]
 
-  function menuOptionsPicker(title) {
-    switch (title) {
-      case 'Delete':
-        onDeleteBoard(board._id)
-
-      case 'Rename Board':
-        setBoardToEdit(board)
+  function handleOptionsClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'optionsMenu',
+      options,
     }
-    setIsOpenModal(false)
+
+    showModal(currentTarget, BOTTOM_LEFT, cmpInfo, false)
+    setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)
   }
 
+  const openMenuClass = isMenuOpen ? 'menu-open' : ''
+
   return (
-    <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
-      <article className="board-li flex align-center">
+    // <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
+      <div className="board-li flex align-center">
         <MiniBoard className="mini-board-svg" />
 
         <div key={board._id} className="board-title-options flex align-center">
@@ -49,20 +74,19 @@ export function SidebarBoardPreview({
               className={'board-title-input'}
               setBoardToEdit={setBoardToEdit}
               func={onEditBoardTitle}
+              isFocused={true}
             />
           )}
 
           <button
-            className="options-menu-btn justify-center align-center"
-            onClick={() => {
-              setIsOpenModal(prev => !prev)
-              setBoardToEdit(board)
-            }}
+            className={`options-menu-btn flex justify-center align-center ${openMenuClass}`}
+            onClick={handleOptionsClick}
+            ref={menuBtnRef}
           >
-            <WorkSpaceOption />
+            <Options />
           </button>
         </div>
-      </article>
-    </NavLink>
+      </div>
+    // {/* </NavLink> */}
   )
 }

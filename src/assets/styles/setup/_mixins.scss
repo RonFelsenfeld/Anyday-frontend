@@ -76,3 +76,18 @@
   inset: -7px 0 auto 50%;
   border-bottom: 7px solid $clr;
 }
+
+@mixin activeLink {
+  background-color: $active-btn-clr;
+  border-radius: $el-br;
+}
+
+@mixin colorBtn($size) {
+  width: rem($size);
+  height: rem($size);
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}

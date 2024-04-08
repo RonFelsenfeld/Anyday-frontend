@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import { useClickOutside } from '../customHooks/useClickOutside'
 import { BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { DynamicLabelPicker } from './DynamicLabelPicker'
+import { DynamicOptionsMenu } from './DynamicOptionsMenu'
+import { ColorPicker } from './ColorPicker'
 import { PersonPicker } from './PersonPicker'
 
 export function DynamicModal() {
@@ -13,6 +15,7 @@ export function DynamicModal() {
   const { isOpen, pos, alignment, cmp, targetDimensions, hasCaret } = modal
   let classList = ''
   // const viewportWidth = window.innerWidth
+  console.log(modal)
 
   useClickOutside(modalRef)
 
@@ -20,6 +23,13 @@ export function DynamicModal() {
     switch (cmp.type) {
       case 'labelPicker':
         return <DynamicLabelPicker {...cmp} />
+
+      case 'optionsMenu':
+        return <DynamicOptionsMenu {...cmp} />
+
+      case 'colorPicker':
+        return <ColorPicker {...cmp} />
+        
       case 'personPicker':
         return <PersonPicker {...cmp} />
     }

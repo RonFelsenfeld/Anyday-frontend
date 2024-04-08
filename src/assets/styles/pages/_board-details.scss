@@ -22,7 +22,7 @@
         position: absolute;
         transform: translate(-30px);
         opacity: 0;
-        @include btn
+        @include btn;
       }
 
       .collapse-btn {
@@ -36,6 +36,33 @@
         font-size: 1.3rem;
         margin-inline-end: 15px;
         font-family: PoppinsMedium;
+
+        .group-title-input {
+          input {
+            font-size: 17px;
+            font-family: PoppinsRegular;
+            color: inherit;
+          }
+        }
+
+        .group-title-edit-container {
+          gap: 4px;
+
+          border: 1px solid $btn-compose-clr;
+          border-radius: $el-br;
+          padding: 0px 3px;
+
+          .btn-change-group-color {
+            @include colorBtn(24px);
+          }
+
+          .group-title-input {
+            input {
+              outline: none;
+              border: none;
+            }
+          }
+        }
       }
 
       .tasks-left {
@@ -68,6 +95,6 @@
     padding: 4px 8px;
     margin-inline-start: 38px;
     border: 1px solid $secondary-border-clr;
-    @include btn
+    @include btn;
   }
 }
