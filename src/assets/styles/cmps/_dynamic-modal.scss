@@ -1,13 +1,13 @@
 .dynamic-modal {
   position: absolute;
-  transform: translate(-50%, 125%);
-
+  transform: translate(0, 3px);
   padding: 7px 14px;
   border-radius: $el-br;
+  margin: 0;
 
   font-size: 1rem;
   font-family: FigtreeRegular, RobotoRegular, sans-serif;
-  color: $main-bg-clr;
+  color: black;
   line-height: em(22.5px);
 
   background-color: $main-bg-clr;
@@ -15,4 +15,21 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
 
   z-index: 50;
+
+  &.centered {
+    transform: translate(-50%, 3px);
+
+    &.caret {
+      transform: translate(-50%, 7px);
+    }
+  }
+
+  &.caret {
+    transform: translate(0, 7px);
+
+    &::after {
+      @include caret(1px);
+      @include caretTop($main-bg-clr);
+    }
+  }
 }

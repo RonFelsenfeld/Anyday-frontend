@@ -6,6 +6,7 @@ import { Home, MiniHome, MyWork, SidebarArrow, WorkSpaceOption } from '../servic
 import { boardService } from '../services/board.service'
 import { loadBoards, removeBoard, saveBoard } from '../store/actions/board.actions'
 import { showModal } from '../store/actions/system.actions'
+import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
 
 import { SidebarSearch } from './SidebarSearch'
 import { SidebarBoardList } from './SidebarBoardList'
@@ -137,7 +138,7 @@ export function Sidebar() {
 
               <button
                 className="main-workspace-option-menu"
-                // onClick={ev => showModal(ev.target, 'Show board description')}
+                onClick={ev => showModal(ev, BOTTOM_LEFT, 'hello', false)}
               >
                 <WorkSpaceOption />
               </button>

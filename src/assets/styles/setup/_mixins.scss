@@ -53,3 +53,26 @@
   border: 2px solid $img-border-clr;
   margin: 0 $margin-inline;
 }
+
+@mixin caret($translateY) {
+  position: absolute;
+  content: '';
+
+  width: 0;
+  height: 0;
+
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+
+  transform: translate(-50%, $translateY);
+}
+
+@mixin caretBottom($clr) {
+  inset: 100% 0 auto 50%;
+  border-top: 7px solid $clr;
+}
+
+@mixin caretTop($clr) {
+  inset: -7px 0 auto 50%;
+  border-bottom: 7px solid $clr;
+}

@@ -16,15 +16,7 @@
   z-index: 50;
 
   &::after {
-    position: absolute;
-    inset: 100% 0 auto 50%;
-    transform: translate(-50%, -1px);
-
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 7px solid $tooltip-clr;
+    @include caret(-1px);
+    @include caretBottom($tooltip-clr);
   }
 }

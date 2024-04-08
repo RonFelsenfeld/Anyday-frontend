@@ -14,8 +14,27 @@ export function hideToolTip() {
   })
 }
 
-export function showModal(target, txt) {
-  const { left, top, width: targetWidth } = target.getBoundingClientRect()
+export function showModal({ currentTarget }, alignment, txt, hasCaret) {
+  const { left, top, width, height } = currentTarget.getBoundingClientRect()
   const pos = { x: left, y: top }
-  store.dispatch({ type: SHOW_MODAL, modal: { isOpen: true, pos, txt, targetWidth } })
+  const targetDimensions = { width, height }
+
+  store.dispatch({
+    type: SHOW_MODAL,
+    modal: { isOpen: true, pos, alignment, txt, targetDimensions, hasCaret },
+  })
+}
+
+export function hideModal() {
+  store.dispatch({
+    type: SHOW_MODAL,
+    modal: {
+      isOpen: false,
+      pos: null,
+      alignment: null,
+      txt: '',
+      targetDimensions: null,
+      hasCaret: false,
+    },
+  })
 }
