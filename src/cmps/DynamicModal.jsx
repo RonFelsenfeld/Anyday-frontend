@@ -8,6 +8,7 @@ import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { DynamicOptionsMenu } from './DynamicOptionsMenu'
 import { ColorPicker } from './ColorPicker'
 import { TimelinePicker } from './TimelinePicker'
+import { PersonPicker } from './PersonPicker'
 
 export function DynamicModal() {
   const modal = useSelector(storeState => storeState.systemModule.modal)
@@ -29,6 +30,9 @@ export function DynamicModal() {
 
       case 'colorPicker':
         return <ColorPicker {...cmp} />
+
+      case 'personPicker':
+        return <PersonPicker {...cmp} />
 
       case 'timelinePicker':
         return <TimelinePicker {...cmp} />

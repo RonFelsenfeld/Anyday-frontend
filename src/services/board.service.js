@@ -17,6 +17,7 @@ export const boardService = {
   getEmptyTask,
   getEmptyBoard,
   getEmptyGroup,
+  getPerson,
   getPersonUrl,
   getTotalTasksByBoard,
   getColTitle,
@@ -44,6 +45,10 @@ function save(board) {
   } else {
     return storageService.post(BOARDS_KEY, board)
   }
+}
+
+function getPerson(board, personId) {
+  return board.persons.find(p => p.id === personId)
 }
 
 function getPersonUrl(board, personId) {

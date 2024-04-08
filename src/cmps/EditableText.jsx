@@ -53,6 +53,7 @@ export function EditableText({
         onChange={handleChange}
         onBlur={onSubmit}
         value={txt}
+        autoComplete='off'
       ></input>
     </form>
   )

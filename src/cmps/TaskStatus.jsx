@@ -16,7 +16,7 @@ export function TaskStatus({ group, task }) {
     const editedTask = { ...task, status }
 
     try {
-      const savedBoard = await saveTask(board, group, editedTask)
+      await saveTask(board, group, editedTask)
     } catch (err) {
       console.log('Had issues updating task status')
     }

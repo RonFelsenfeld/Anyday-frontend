@@ -19,6 +19,7 @@ export function Sidebar() {
   const [isHovered, setIsHovered] = useState(false)
   const [boardToEdit, setBoardToEdit] = useState(null)
 
+
   const sidebarWidthRef = useRef(265)
   const navigate = useNavigate()
 
@@ -44,7 +45,7 @@ export function Sidebar() {
     } catch (err) {
       console.log('Could not remove,', err)
     } finally {
-      navigate('/board')
+      navigate(`/board/delete/${boardId}`)
     }
   }
 
@@ -58,7 +59,7 @@ export function Sidebar() {
     }
   }
 
-  function onOpenSidebarMenu(title) {}
+  function onOpenSidebarMenu(title) { }
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30

@@ -47,7 +47,7 @@ export function TaskPreview({
         </div>
       </div>
 
-      <TaskPerson task={task} />
+      <TaskPerson group={group} task={task} />
       <TaskStatus group={group} task={task} />
       <TaskPriority group={group} task={task} />
       <TaskTimeline group={group} task={task} />

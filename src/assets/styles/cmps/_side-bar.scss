@@ -173,7 +173,12 @@
     }
   }
 
-  .navlink.active {
+
+  .active {
+    @include activeLink;
+  }
+
+  .navilink .active {
     @include activeLink;
   }
 

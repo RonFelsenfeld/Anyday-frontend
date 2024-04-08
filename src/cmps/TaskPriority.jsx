@@ -15,8 +15,7 @@ export function TaskPriority({ group, task }) {
     const editedTask = { ...task, priority }
 
     try {
-      const savedBoard = await saveTask(board, group, editedTask)
-      setBoard(savedBoard)
+      await saveTask(board, group, editedTask)
     } catch (err) {
       console.log('Had issues updating task status')
     }
