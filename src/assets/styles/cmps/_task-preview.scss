@@ -59,7 +59,7 @@
     padding-inline-start: em(30px);
   }
 
-  .msg-btn > *:hover {
+  .msg-btn>*:hover {
     color: $btn-compose-clr;
   }
 
@@ -83,27 +83,34 @@
   }
 
   .task-persons-img {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    .img-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    img {
+      @include userImg;
+    }
 
-      img {
-        @include userImg;
-      }
+    .person-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include userImg($size: 25px);
+      border: none;
+      background-color: $text-color;
+      color: $main-bg-clr;
+      font-size: 12px;
     }
 
     .add-person-btn {
+      position: absolute;
+      transform: translateX(-35px);
       display: flex;
       justify-content: center;
       align-items: center;
       width: 14px;
       height: 14px;
+      opacity: 0;
 
       border-radius: 50%;
       padding: 0;
@@ -113,8 +120,12 @@
       font-size: 11px;
       background-color: $btn-compose-clr;
       color: white;
+
     }
   }
+  &:hover .add-person-btn{
+    opacity: 1;
+}
 
   .task-status,
   .task-priority {
