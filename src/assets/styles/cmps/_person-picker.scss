@@ -1,101 +1,101 @@
 .person-edit-modal {
-    padding: 8px 20px;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 360px;
+  background-color: $main-bg-clr;
+  border-radius: $cmp-br;
+
+  .task-persons {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 360px;
-    background-color: $main-bg-clr;
-    border-radius: $cmp-br;
+    flex-wrap: wrap;
 
-    .task-persons {
+    .task-person {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-inline-end: 8px;
+      background-color: rgb(229 244 255);
+      font-size: 12px;
+      color: $text-color;
+      border-radius: 24px;
+      margin: 4px;
+
+      .person-img {
+        @include userImg($size: 22px, $margin-inline: 2px);
+        border: none;
+      }
+
+      .person-name {
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
+      }
 
-        .task-person {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding-inline-end: 8px;
-            background-color: rgb(229 244 255);
-            font-size: 12px;
-            color: $text-color;
-            border-radius: 24px;
-            margin: 4px;
-
-            .person-img {
-                @include userImg($size: 22px, $margin-inline: 2px);
-                border: none;
-            }
-
-            .person-name {
-                display: flex;
-                align-items: center;
-            }
-
-            .delete-person-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                width: 16px;
-                height: 16px;
-                margin: 0;
-                padding: 0;
-
-                &:hover {
-                    background-color: $main-bg-clr;
-                    border-radius: 50%;
-                }
-            }
-        }
-    }
-
-    .search-person-form {
+      .delete-person-btn {
         display: flex;
-        outline: 0;
-        font-family: FigtreeLight;
-        margin-block: 20px;
-        border: 1px solid $secondary-border-clr;
-        border-radius: $el-br;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        padding: 0;
 
-        .search-person-input {
-            padding: 8px 24px 8px 16px;
-            width: 90%;
-            border: none;
+        &:hover {
+          background-color: $main-bg-clr;
+          border-radius: 50%;
         }
+      }
+    }
+  }
 
-        .search-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            @include btn;
-            color: $sidebar-svg-clr;
-        }
+  .search-person-form {
+    display: flex;
+    outline: 0;
+    font-family: FigtreeLight;
+    margin-block: 20px;
+    border: 1px solid $secondary-border-clr;
+    border-radius: $el-br;
+
+    .search-person-input {
+      padding: 8px 24px 8px 16px;
+      width: 90%;
+      border: none;
     }
 
-    .suggested-people-title {
-        font-size: 1rem;
-        color: $sidebar-svg-clr;
-        font-family: FigtreeLight;
-        margin-bottom: 4px;
+    .search-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include btn;
+      color: $sidebar-svg-clr;
     }
+  }
 
-    .suggested-people-list {
-        .suggested-person {
-            display: flex;
-            align-items: center;
-            @include btn;
-            padding: 8px;
+  .suggested-people-title {
+    font-size: 1rem;
+    color: $sidebar-svg-clr;
+    font-family: FigtreeLight;
+    margin-bottom: 4px;
+  }
 
+  .suggested-people-list {
+    .suggested-person {
+      display: flex;
+      align-items: center;
+      @include btn;
+      padding: 8px;
+      cursor: pointer;
 
-            .suggested-person-img {
-                @include userImg($size: 26px, $margin-inline: 2px);
-                border: none;
-            }
+      .suggested-person-img {
+        @include userImg($size: 26px, $margin-inline: 2px);
+        border: none;
+      }
 
-            .suggested-person-name {
-                padding-inline: 8px;
-            }
-        }
+      .suggested-person-name {
+        padding-inline: 8px;
+      }
     }
+  }
 }
