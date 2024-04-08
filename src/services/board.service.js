@@ -22,8 +22,11 @@ export const boardService = {
   getColTitle,
 }
 
-function query() {
-  return storageService.query(BOARDS_KEY).then(boards => boards)
+async function query() {
+  var boards = await storageService.query(BOARDS_KEY)
+  return boards
+
+  // boards = boards.map(({ _id, title, imgUlr }) => ({ _id, title, imgUlr }))
 }
 
 function getById(boardId) {

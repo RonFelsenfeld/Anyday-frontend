@@ -24,7 +24,7 @@ export function BoardDetails() {
 
   useEffect(() => {
     if (boardId) loadBoard()
-  }, [boardId])
+  }, [boardId]) // ! STORE STATE?
 
   useEffect(() => {
     if (!headerRef.current || !boardDetailsRef.current) return
@@ -95,7 +95,6 @@ export function BoardDetails() {
   if (!board) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
-
       <UpdateLog
         board={board}
         selectedTask={selectedTask}
@@ -114,10 +113,8 @@ export function BoardDetails() {
       <div className="group-container">
         {board.groups.map(group => {
           return (
-
             <article key={group.id} className="board-group">
               <div className="group-header">
-
                 <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
                   <WorkSpaceOption />
                 </button>

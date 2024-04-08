@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AddBoardBtn, SearchIconSideBar } from '../services/svg.service'
+import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function SidebarSearch({ onAddBoard }) {
   const [isFocused, setIsFocused] = useState(false)
@@ -21,7 +22,12 @@ export function SidebarSearch({ onAddBoard }) {
         />
       </div>
 
-      <button onClick={onAddBoard} className="add-board-btn btn">
+      <button
+        onClick={onAddBoard}
+        className="add-board-btn btn"
+        onMouseEnter={ev => showToolTip(ev.target, 'Add item to workspace')}
+        onMouseLeave={() => hideToolTip()}
+      >
         <AddBoardBtn />
       </button>
     </div>

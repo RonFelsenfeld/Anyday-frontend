@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { Home, MiniHome, MyWork, SidebarArrow, WorkSpaceOption } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { loadBoards, removeBoard, saveBoard } from '../store/actions/board.actions'
+import { showModal } from '../store/actions/system.actions'
 
 import { SidebarSearch } from './SidebarSearch'
 import { SidebarBoardList } from './SidebarBoardList'
@@ -134,7 +135,10 @@ export function Sidebar() {
                 <span className="main-workspace-header">Main workspace</span>
               </div>
 
-              <button className="main-workspace-option-menu">
+              <button
+                className="main-workspace-option-menu"
+                // onClick={ev => showModal(ev.target, 'Show board description')}
+              >
                 <WorkSpaceOption />
               </button>
             </div>

@@ -1,0 +1,18 @@
+.dynamic-modal {
+  position: absolute;
+  transform: translate(-50%, 125%);
+
+  padding: 7px 14px;
+  border-radius: $el-br;
+
+  font-size: 1rem;
+  font-family: FigtreeRegular, RobotoRegular, sans-serif;
+  color: $main-bg-clr;
+  line-height: em(22.5px);
+
+  background-color: $main-bg-clr;
+  --animate-duration: 0.3s;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
+
+  z-index: 50;
+}

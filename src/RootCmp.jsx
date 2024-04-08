@@ -9,6 +9,7 @@ import { BoardDetails } from './pages/BoardDetails'
 import { store } from './store/store'
 import { UpdateLog } from './cmps/UpdateLog'
 import { DynamicToolTip } from './cmps/DynamicToolTip'
+import { DynamicModal } from './cmps/DynamicModal'
 
 export function App() {
   return (
@@ -28,6 +29,7 @@ export function App() {
             </Routes>
           </main>
           <DynamicToolTip />
+          <DynamicModal />
         </section>
         {/* <UserMsg /> */}
       </Router>
