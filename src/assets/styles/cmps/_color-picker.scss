@@ -1,0 +1,18 @@
+.color-picker {
+  padding: em(5px);
+  border: 1px solid $list-shadow-clr;
+  border-radius: $el-br;
+
+  .color-list {
+    display: grid;
+    grid-template-columns: repeat(5, 20px);
+    grid-auto-flow: row;
+    gap: 6px;
+
+    .color {
+      .btn-color {
+        @include colorBtn(22.8px);
+      }
+    }
+  }
+}
