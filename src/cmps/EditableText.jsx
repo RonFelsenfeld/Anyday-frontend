@@ -25,6 +25,7 @@ export function EditableText({ name, placeholder, func, prevTxt, className, isNe
         onChange={handleChange}
         onBlur={onSubmit}
         value={txt}
+        autoComplete='off'
       ></input>
     </form>
   )

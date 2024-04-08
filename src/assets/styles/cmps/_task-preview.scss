@@ -48,9 +48,6 @@
       display: grid;
     }
 
-    &:last-of-type {
-      border-inline-end: 1px solid $secondary-border-clr;
-    }
   }
 
   .task-title {
@@ -70,11 +67,23 @@
 
     input {
       @include input;
-      width: 100%;
+      width: 95%;
+      justify-self: start;
       font-family: FigtreeRegular;
+      font-size: 14px;
       font-weight: 400;
       letter-spacing: em(0.2px);
       color: $main-font-clr;
+      outline-style: none;
+
+      &:hover {
+        border-color: $secondary-border-clr;
+      }
+
+      &:focus {
+        border-color: $btn-compose-clr;
+        // background-color: $active-btn-clr;
+      }
     }
   }
 
@@ -123,9 +132,10 @@
 
     }
   }
-  &:hover .add-person-btn{
+
+  &:hover .add-person-btn {
     opacity: 1;
-}
+  }
 
   .task-status,
   .task-priority {
@@ -157,17 +167,9 @@
     border-radius: 30px;
     color: $main-bg-clr;
     background-color: $main-font-clr;
+  }
 
-    // .progress-bar {
-    //   align-self: center;
-    //   justify-self: center;
-    //   display: grid;
-    //   height: em(22px);
-    //   width: 25%;
-
-    //   border-radius: 30px;
-    //   color: $main-bg-clr;
-    //   background-color: blue;
-    // }
+  .task-files {
+    border-inline-end: 1px solid $secondary-border-clr;
   }
 }

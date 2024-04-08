@@ -30,7 +30,7 @@
       z-index: 1;
       // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
-      & > * {
+      &>* {
         display: grid;
         font-weight: lighter;
         font-size: 1rem;
@@ -58,11 +58,18 @@
         padding-inline-start: em(24px);
         opacity: 1;
         @include input;
+        outline-style: none;
 
         &:hover {
           border-color: $secondary-border-clr;
         }
+
+        &:focus {
+          border-color: $btn-compose-clr;
+          // background-color: $active-btn-clr;
+        }
       }
+
 
       &:hover {
         background-color: $hover-clr;
@@ -71,3 +78,8 @@
     }
   }
 }
+
+
+// .add-task-li:has(> input:focus) {
+//   background-color: $active-btn-clr;
+// }
