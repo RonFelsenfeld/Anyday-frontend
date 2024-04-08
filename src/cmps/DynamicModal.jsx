@@ -1,12 +1,13 @@
-import 'animate.css'
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
+import 'animate.css'
 
 import { useClickOutside } from '../customHooks/useClickOutside'
 import { BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { DynamicOptionsMenu } from './DynamicOptionsMenu'
 import { ColorPicker } from './ColorPicker'
+import { TimelinePicker } from './TimelinePicker'
 
 export function DynamicModal() {
   const modal = useSelector(storeState => storeState.systemModule.modal)
@@ -28,6 +29,9 @@ export function DynamicModal() {
 
       case 'colorPicker':
         return <ColorPicker {...cmp} />
+
+      case 'timelinePicker':
+        return <TimelinePicker {...cmp} />
     }
   }
 

@@ -27,7 +27,7 @@ export function BoardList({ boards }) {
       {isExpanded && (
         <ul className="board-list board-layout clean-list">
           {boards.map(board => (
-            <li key={board._id}>
+            <li key={board._id} className="board-preview-li">
               <Link to={`/board/${board._id}`}>
                 <BoardPreview board={board} />
               </Link>

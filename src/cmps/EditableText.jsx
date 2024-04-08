@@ -40,10 +40,11 @@ export function EditableText({
       {btnInfo && (
         <input
           className={btnInfo.className}
-          style={btnInfo.style}
+          style={{ ...btnInfo.style, marginInlineEnd: '3px' }}
           onClick={btnInfo.onClick}
         ></input>
       )}
+
       <input
         ref={inputRef}
         type="text"

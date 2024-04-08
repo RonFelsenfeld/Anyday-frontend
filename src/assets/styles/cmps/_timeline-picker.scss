@@ -1,0 +1,22 @@
+.timeline-picker {
+  padding-inline: 1px;
+  .timeline-header {
+    height: em(47px);
+
+    padding-inline: em(16px);
+    border-block-end: 1px solid $list-shadow-clr;
+
+    .timeline-title {
+      font-size: em(16px);
+      font-family: FigtreeRegular;
+      font-weight: 500;
+      line-height: em(24px);
+    }
+  }
+
+  .timeline-dialog {
+    border-radius: 0;
+    border-bottom-left-radius: $el-br;
+    border-bottom-right-radius: $el-br;
+  }
+}

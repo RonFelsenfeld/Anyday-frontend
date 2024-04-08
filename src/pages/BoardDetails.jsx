@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { boardService } from '../services/board.service'
 import { loadBoard, removeGroup, saveGroup } from '../store/actions/board.actions'
 import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
+import { SET_BOARD } from '../store/reducers/board.reducer'
 
 import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
@@ -26,10 +28,13 @@ export function BoardDetails() {
   const boardDetailsRef = useRef()
 
   const { boardId } = useParams()
+  const dispatch = useDispatch()
   // const navigate = useNavigate()
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
+
+    return () => dispatch({ type: SET_BOARD, board: null })
   }, [boardId])
 
   useEffect(() => {
