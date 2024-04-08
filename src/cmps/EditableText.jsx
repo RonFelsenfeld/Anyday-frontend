@@ -1,7 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-export function EditableText({ name, placeholder, func, prevTxt, className, isNew = false }) {
+export function EditableText({
+  name,
+  placeholder,
+  func,
+  prevTxt,
+  className,
+  isNew = false,
+  isFocused = false,
+}) {
   const [txt, setTxt] = useState(prevTxt || '')
+  const inputRef = useRef()
+
+  useEffect(() => {
+    if (isFocused) inputRef.current.focus()
+  }, [])
 
   function handleChange({ target }) {
     setTxt(target.value)
@@ -19,6 +32,7 @@ export function EditableText({ name, placeholder, func, prevTxt, className, isNe
   return (
     <form className={className || ''} onSubmit={onSubmit}>
       <input
+        ref={inputRef}
         type="text"
         name={name || ''}
         placeholder={placeholder || ''}

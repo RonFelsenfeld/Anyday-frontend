@@ -74,6 +74,7 @@ export function SidebarBoardPreview({
               className={'board-title-input'}
               setBoardToEdit={setBoardToEdit}
               func={onEditBoardTitle}
+              isFocused={true}
             />
           )}
 

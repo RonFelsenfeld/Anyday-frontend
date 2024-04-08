@@ -215,9 +215,11 @@
 
         .board-title-input {
           input {
-            border: 1px solid $secondary-border-clr;
-            background-color: transparent;
             height: 23px;
+            padding-block: 2px;
+            border: 1px solid $secondary-border-clr;
+
+            background-color: transparent;
             outline: none;
           }
         }
