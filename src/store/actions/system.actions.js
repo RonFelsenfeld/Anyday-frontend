@@ -14,14 +14,14 @@ export function hideToolTip() {
   })
 }
 
-export function showModal({ currentTarget }, alignment, txt, hasCaret) {
+export function showModal({ currentTarget }, alignment, cmp, hasCaret) {
   const { left, top, width, height } = currentTarget.getBoundingClientRect()
   const pos = { x: left, y: top }
   const targetDimensions = { width, height }
 
   store.dispatch({
     type: SHOW_MODAL,
-    modal: { isOpen: true, pos, alignment, txt, targetDimensions, hasCaret },
+    modal: { isOpen: true, pos, alignment, cmp, targetDimensions, hasCaret },
   })
 }
 
