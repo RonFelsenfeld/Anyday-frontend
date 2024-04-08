@@ -8,6 +8,7 @@ import { loadBoards, removeBoard, saveBoard } from '../store/actions/board.actio
 
 import { SidebarSearch } from './SidebarSearch'
 import { SidebarBoardList } from './SidebarBoardList'
+import { showSuccessMsg,} from '../services/event-bus.service'
 
 export function Sidebar() {
   const boards = useSelector(storeState => storeState.boardModule.boards)
@@ -16,11 +17,15 @@ export function Sidebar() {
   const [isHovered, setIsHovered] = useState(false)
   const [boardToEdit, setBoardToEdit] = useState(null)
 
+
   const sidebarWidthRef = useRef(265)
   const navigate = useNavigate()
 
   useEffect(() => {
     loadBoards()
+    showSuccessMsg('We successfully deleted the board ')
+
+
   }, [])
 
   async function onAddBoard() {
@@ -37,6 +42,7 @@ export function Sidebar() {
   async function onDeleteBoard(boardId) {
     try {
       await removeBoard(boardId)
+      showSuccessMsg('We successfully deleted the board ')
     } catch (err) {
       console.log('Could not remove,', err)
     } finally {
@@ -53,6 +59,9 @@ export function Sidebar() {
     } catch (err) {
       console.log('Could not update board name', err)
     }
+  }
+
+  function onOpenSidebarMenu(title) {
   }
 
   function calcSidebarWidth() {
@@ -82,9 +91,9 @@ export function Sidebar() {
     setIsExpanded(prevIsExpanded => !prevIsExpanded)
   }
 
+
   const dynArrowClass = !isExpanded ? 'collapsed' : ''
   const isOpenClass = !isExpanded || isHovered ? 'closed' : ''
-
   return (
     <div
       onMouseEnter={handleHover}
