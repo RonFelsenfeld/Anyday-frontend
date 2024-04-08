@@ -1,11 +1,6 @@
 import { boardService } from '../../services/board.service'
-import {
-  ADD_BOARD,
-  EDIT_BOARD,
-  REMOVE_BOARD,
-  SET_BOARDS,
-  SET_IS_LOADING,
-} from '../reducers/board.reducer'
+import { ADD_BOARD, EDIT_BOARD, REMOVE_BOARD, SET_BOARDS } from '../reducers/board.reducer'
+import { SET_IS_LOADING } from '../reducers/system.reducer'
 import { store } from '../store'
 
 export async function loadBoards() {

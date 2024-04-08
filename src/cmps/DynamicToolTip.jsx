@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react'
-import { eventBus } from '../services/event-bus.service'
 import 'animate.css'
+import { useSelector } from 'react-redux'
 
 export function DynamicToolTip() {
-  const [txt, setTxt] = useState(null)
-  const [pos, setPos] = useState(null)
+  const tooltip = useSelector(storeState => storeState.systemModule.tooltip)
+  const { isOpen, pos, txt, targetWidth } = tooltip
 
-  useEffect(() => {
-    const unsubscribe = eventBus.on('show-tooltip', ({ txt, pos }) => {
-      setTxt(txt)
-      setPos({ ...pos })
-    })
+  if (targetWidth) pos.x = pos.x + targetWidth / 2 // For the tool tip to be centered
 
-    return unsubscribe
-  }, [])
-
-  if (!txt) return <span></span>
+  if (!isOpen) return <span></span>
   return (
     <span
       className="dynamic-tooltip animate__animated animate__fadeIn"

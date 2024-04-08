@@ -1,21 +1,10 @@
 import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
-import { hideToolTip, showToolTip } from '../services/event-bus.service'
-
+import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 import { BoardControls } from './BoardControls'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
-  }
-
-  function handleMouseIn({ target }, txt) {
-    const { left, top, width } = target.getBoundingClientRect()
-    const pos = { x: left, y: top }
-    showToolTip(txt, pos, width)
-  }
-
-  function handleMouseOut() {
-    hideToolTip()
   }
 
   const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
@@ -27,16 +16,16 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
       <div className="board-info flex align-center">
         <button
           className="btn"
-          onMouseEnter={ev => handleMouseIn(ev, 'Show board description')}
-          onMouseLeave={handleMouseOut}
+          onMouseEnter={ev => showToolTip(ev.target, 'Show board description')}
+          onMouseLeave={() => hideToolTip()}
         >
           <Info />
         </button>
 
         <button
           className="btn"
-          onMouseEnter={ev => handleMouseIn(ev, 'Add to favorites')}
-          onMouseLeave={handleMouseOut}
+          onMouseEnter={ev => showToolTip(ev.target, 'Add to favorites')}
+          onMouseLeave={() => hideToolTip()}
         >
           <Favorite />
         </button>
@@ -50,24 +39,24 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg"
             alt="User img"
             className="user-img"
-            onMouseEnter={ev => handleMouseIn(ev, 'Atar Mor')}
-            onMouseLeave={handleMouseOut}
+            onMouseEnter={ev => showToolTip(ev.target, 'Atar Mor')}
+            onMouseLeave={() => hideToolTip()}
           />
 
           <img
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg"
             alt="User img"
             className="user-img"
-            onMouseEnter={ev => handleMouseIn(ev, 'Ron Felsenfeld')}
-            onMouseLeave={handleMouseOut}
+            onMouseEnter={ev => showToolTip(ev.target, 'Ron Felsenfeld')}
+            onMouseLeave={() => hideToolTip()}
           />
 
           <img
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg"
             alt="User img"
             className="user-img"
-            onMouseEnter={ev => handleMouseIn(ev, 'Ido Yotvat')}
-            onMouseLeave={handleMouseOut}
+            onMouseEnter={ev => showToolTip(ev.target, 'Ido Yotvat')}
+            onMouseLeave={() => hideToolTip()}
           />
         </div>
       </button>
@@ -80,8 +69,8 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
 
         <button
           className="btn-options flex align-center"
-          onMouseEnter={ev => handleMouseIn(ev, 'Options')}
-          onMouseLeave={handleMouseOut}
+          onMouseEnter={ev => showToolTip(ev.target, 'Options')}
+          onMouseLeave={() => hideToolTip()}
         >
           <Options />
         </button>
@@ -90,8 +79,8 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
       <div className="views-container">
         <button
           className="view-btn flex align-center"
-          onMouseEnter={ev => handleMouseIn(ev, 'Main Table')}
-          onMouseLeave={handleMouseOut}
+          onMouseEnter={ev => showToolTip(ev.target, 'Main Table')}
+          onMouseLeave={() => hideToolTip()}
         >
           <Home />
           <span>Main Table</span>
@@ -102,7 +91,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
         <ArrowUp />
       </button>
 
-      <BoardControls handleMouseIn={handleMouseIn} handleMouseOut={handleMouseOut} />
+      <BoardControls />
     </header>
   )
 }

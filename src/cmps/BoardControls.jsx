@@ -1,6 +1,7 @@
 import { Filter, Hide, Search, Sort, UserImg } from '../services/svg.service'
+import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
-export function BoardControls({ handleMouseIn, handleMouseOut }) {
+export function BoardControls() {
   return (
     <section className="board-controls flex align-center">
       <button className="btn btn-new-task">New task</button>
@@ -12,8 +13,8 @@ export function BoardControls({ handleMouseIn, handleMouseOut }) {
 
       <button
         className="btn btn-action flex align-center"
-        onMouseEnter={ev => handleMouseIn(ev, 'Filter board by person')}
-        onMouseLeave={handleMouseOut}
+        onMouseEnter={ev => showToolTip(ev.target, 'Filter board by person')}
+        onMouseLeave={() => hideToolTip()}
       >
         <UserImg />
         <span className="btn-title">Person</span>
@@ -21,8 +22,8 @@ export function BoardControls({ handleMouseIn, handleMouseOut }) {
 
       <button
         className="btn btn-action flex align-center"
-        onMouseEnter={ev => handleMouseIn(ev, 'Filter board by anything')}
-        onMouseLeave={handleMouseOut}
+        onMouseEnter={ev => showToolTip(ev.target, 'Filter board by anything')}
+        onMouseLeave={() => hideToolTip()}
       >
         <Filter />
         <span className="btn-title">Filter</span>
@@ -30,8 +31,8 @@ export function BoardControls({ handleMouseIn, handleMouseOut }) {
 
       <button
         className="btn btn-action flex align-center"
-        onMouseEnter={ev => handleMouseIn(ev, 'Sort board by any column')}
-        onMouseLeave={handleMouseOut}
+        onMouseEnter={ev => showToolTip(ev.target, 'Sort board by any column')}
+        onMouseLeave={() => hideToolTip()}
       >
         <Sort />
         <span className="btn-title">Sort</span>
@@ -39,8 +40,8 @@ export function BoardControls({ handleMouseIn, handleMouseOut }) {
 
       <button
         className="btn btn-action flex align-center"
-        onMouseEnter={ev => handleMouseIn(ev, 'Hidden columns')}
-        onMouseLeave={handleMouseOut}
+        onMouseEnter={ev => showToolTip(ev.target, 'Hidden columns')}
+        onMouseLeave={() => hideToolTip()}
       >
         <Hide />
         <span className="btn-title">Hide</span>
