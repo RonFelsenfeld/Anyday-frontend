@@ -79,7 +79,7 @@ export function SidebarBoardPreview({
           )}
 
           <button
-            className={`options-menu-btn justify-center align-center ${openMenuClass}`}
+            className={`options-menu-btn flex justify-center align-center ${openMenuClass}`}
             onClick={handleOptionsClick}
             ref={menuBtnRef}
           >
