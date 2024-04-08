@@ -221,8 +221,25 @@
         }
       }
 
-      button {
+      .options-menu-btn {
         opacity: 0;
+      }
+    }
+
+    dialog {
+      padding: 10px 10px;
+    }
+
+    .options-container {
+      min-width: 100px;
+      display: flex;
+      padding: 0;
+      margin-left: 10px;
+
+      button.dialog-item {
+        min-width: 100px;
+        border-radius: $el-br;
+
       }
     }
   }

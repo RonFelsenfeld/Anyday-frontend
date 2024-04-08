@@ -7,6 +7,7 @@ export function SidebarBoardList({
   boardToEdit,
   setBoardToEdit,
 }) {
+  
   return (
     <ul className="side-bar-boards-list clean-list">
       {boards.map(board => (

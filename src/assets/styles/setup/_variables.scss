@@ -5,7 +5,7 @@ $main-font-clr: rgb(50, 51, 56);
 $main-border-clr: rgb(102, 102, 102); // Secondary font color
 $secondary-border-clr: rgb(208, 212, 228);
 $board-index-bg-clr: rgb(246, 247, 251);
-$img-border-clr: rgb(245,246,248);
+$img-border-clr: rgb(245, 246, 248);
 $list-shadow-clr: rgb(195, 198, 212);
 
 // Task status colors
@@ -29,6 +29,10 @@ $main-header-height: 48px;
 // Border radius
 $cmp-br: 8px;
 $el-br: 4px;
+
+
+//useMsg
+$user-msg-bgc: rgb(0, 133, 77);
 
 // Pseudo classes
 $selected-task-clr: rgba(204, 229, 255, 0.97);

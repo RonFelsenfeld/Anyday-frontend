@@ -9,6 +9,7 @@ import { BoardDetails } from './pages/BoardDetails'
 import { store } from './store/store'
 import { UpdateLog } from './cmps/UpdateLog'
 import { DynamicToolTip } from './cmps/DynamicToolTip'
+import { UserMsg } from './cmps/UserMsg'
 
 export function App() {
   return (
@@ -29,7 +30,7 @@ export function App() {
           </main>
           <DynamicToolTip />
         </section>
-        {/* <UserMsg /> */}
+        <UserMsg />
       </Router>
     </Provider>
   )
