@@ -1,6 +1,6 @@
 import { EditPencil } from '../services/svg.service'
 
-export function TaskEditModal({ arr, func, getStyle }) {
+export function TaskEditModal({ arr, func, getStyle='', isMenu=false }) {
   return (
     <dialog open>
       <div className="options-container">
@@ -17,11 +17,11 @@ export function TaskEditModal({ arr, func, getStyle }) {
         ))}
       </div>
 
-      <div className="btn-container">
+      {!isMenu && <div className="btn-container">
         <button className="edit-labels-btn">
           <EditPencil /> Edit Labels
         </button>
-      </div>
+      </div>}
     </dialog>
   )
 }
