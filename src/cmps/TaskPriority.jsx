@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
-
-import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { saveTask } from '../store/actions/board.actions'
+import { showModal } from '../store/actions/system.actions'
+import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 export function TaskPriority({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
-  const [isOpenModal, setIsOpenModal] = useState(false)
 
   function getPriorityBG(taskPriority) {
     const priority = board.priorities?.find(p => p.title === taskPriority)
@@ -19,29 +17,29 @@ export function TaskPriority({ group, task }) {
     try {
       const savedBoard = await saveTask(board, group, editedTask)
       setBoard(savedBoard)
-      setIsOpenModal(false)
     } catch (err) {
       console.log('Had issues updating task status')
     }
   }
 
-  return (
-    <>
-      <div
-        onClick={() => setIsOpenModal(true)}
-        style={getPriorityBG(task?.priority || '')}
-        className="task-row task-priority"
-      >
-        {task?.priority ? task.priority : ''}
-      </div>
+  function handlePickerClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'labelPicker',
+      options: board.priorities,
+      submitFunc: onUpdateTaskPriority,
+      styleFunc: getPriorityBG,
+    }
 
-      {isOpenModal && (
-        <DynamicLabelPicker
-          arr={board.priorities}
-          func={onUpdateTaskPriority}
-          getStyle={getPriorityBG}
-        />
-      )}
-    </>
+    showModal(currentTarget, BOTTOM_CENTER, cmpInfo, true)
+  }
+
+  return (
+    <div
+      onClick={handlePickerClick}
+      style={getPriorityBG(task?.priority || '')}
+      className="task-row task-priority"
+    >
+      {task?.priority ? task.priority : ''}
+    </div>
   )
 }

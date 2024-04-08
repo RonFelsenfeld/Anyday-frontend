@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import { saveTask } from '../store/actions/board.actions'
+import { showModal } from '../store/actions/system.actions'
+import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { useSelector } from 'react-redux'
 
 export function TaskStatus({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
-  const [isOpenModal, setIsOpenModal] = useState(false)
 
   function getStatusBG(taskStatus) {
     const status = board.statuses?.find(s => s.title === taskStatus)
@@ -17,25 +17,29 @@ export function TaskStatus({ group, task }) {
 
     try {
       const savedBoard = await saveTask(board, group, editedTask)
-      setIsOpenModal(false)
     } catch (err) {
       console.log('Had issues updating task status')
     }
   }
 
-  return (
-    <>
-      <div
-        onClick={() => setIsOpenModal(true)}
-        style={getStatusBG(task.status || '')}
-        className="task-row task-status"
-      >
-        {task.status ? task.status : ''}
-      </div>
+  function handlePickerClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'labelPicker',
+      options: board.statuses,
+      submitFunc: onUpdateTaskStatus,
+      styleFunc: getStatusBG,
+    }
 
-      {isOpenModal && (
-        <DynamicLabelPicker arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG} />
-      )}
-    </>
+    showModal(currentTarget, BOTTOM_CENTER, cmpInfo, true)
+  }
+
+  return (
+    <div
+      onClick={handlePickerClick}
+      style={getStatusBG(task.status || '')}
+      className="task-row task-status"
+    >
+      {task.status ? task.status : ''}
+    </div>
   )
 }

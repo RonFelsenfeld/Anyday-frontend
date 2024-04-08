@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { useClickOutside } from '../customHooks/useClickOutside'
 import { BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
+import { DynamicLabelPicker } from './DynamicLabelPicker'
 
 export function DynamicModal() {
   const modal = useSelector(storeState => storeState.systemModule.modal)
@@ -13,6 +14,13 @@ export function DynamicModal() {
   // const viewportWidth = window.innerWidth
 
   useClickOutside(modalRef)
+
+  function dynamicCmp() {
+    switch (cmp.type) {
+      case 'labelPicker':
+        return <DynamicLabelPicker {...cmp} />
+    }
+  }
 
   switch (alignment) {
     case BOTTOM_LEFT:
@@ -42,6 +50,8 @@ export function DynamicModal() {
       ref={modalRef}
       className={`dynamic-modal animate__animated animate__fadeIn ${classList}`}
       style={{ left: pos.x, top: pos.y }}
-    ></dialog>
+    >
+      {dynamicCmp()}
+    </dialog>
   )
 }

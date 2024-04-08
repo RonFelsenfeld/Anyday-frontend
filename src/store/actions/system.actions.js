@@ -14,7 +14,7 @@ export function hideToolTip() {
   })
 }
 
-export function showModal({ currentTarget }, alignment, cmp, hasCaret) {
+export function showModal(currentTarget, alignment, cmp, hasCaret) {
   const { left, top, width, height } = currentTarget.getBoundingClientRect()
   const pos = { x: left, y: top }
   const targetDimensions = { width, height }

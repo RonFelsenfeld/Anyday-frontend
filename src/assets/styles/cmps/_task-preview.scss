@@ -47,6 +47,10 @@
     &:not(.task-persons-img) {
       display: grid;
     }
+
+    &:last-of-type {
+      border-inline-end: 1px solid $secondary-border-clr;
+    }
   }
 
   .task-title {
@@ -67,7 +71,10 @@
     input {
       @include input;
       width: 100%;
-      letter-spacing: em(0.4px);
+      font-family: FigtreeRegular;
+      font-weight: 400;
+      letter-spacing: em(0.2px);
+      color: $main-font-clr;
     }
   }
 

@@ -1,15 +1,18 @@
 import { EditPencil } from '../services/svg.service'
+import { hideModal } from '../store/actions/system.actions'
 
-export function DynamicLabelPicker({ arr, func, getStyle = '', isMenu = false }) {
+export function DynamicLabelPicker({ options, submitFunc, styleFunc }) {
   return (
-    <dialog open>
+    <article className="label-picker-container">
       <div className="options-container">
-        {arr.map(item => (
+        {options.map(item => (
           <button
-            style={getStyle(item.title)}
-            type="dialog"
+            style={styleFunc(item.title)}
             className="dialog-item"
-            onClick={() => func(item.title)}
+            onClick={() => {
+              submitFunc(item.title)
+              hideModal()
+            }}
             key={item.id}
           >
             {item.title}
@@ -17,13 +20,11 @@ export function DynamicLabelPicker({ arr, func, getStyle = '', isMenu = false })
         ))}
       </div>
 
-      {!isMenu && (
-        <div className="btn-container">
-          <button className="edit-labels-btn">
-            <EditPencil /> Edit Labels
-          </button>
-        </div>
-      )}
-    </dialog>
+      <div className="btn-container">
+        <button className="edit-labels-btn">
+          <EditPencil /> Edit Labels
+        </button>
+      </div>
+    </article>
   )
 }

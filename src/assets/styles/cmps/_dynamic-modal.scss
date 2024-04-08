@@ -1,20 +1,21 @@
 .dynamic-modal {
-  position: absolute;
   transform: translate(0, 3px);
-  padding: 7px 14px;
-  border-radius: $el-br;
-  margin: 0;
 
-  font-size: 1rem;
-  font-family: FigtreeRegular, RobotoRegular, sans-serif;
-  color: black;
-  line-height: em(22.5px);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3;
+  width: 200px;
+
+  border: none;
+  border-radius: $cmp-br;
+  padding: 0;
+  margin: 0;
 
   background-color: $main-bg-clr;
   --animate-duration: 0.3s;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.32);
-
-  z-index: 50;
 
   &.centered {
     transform: translate(-50%, 3px);
