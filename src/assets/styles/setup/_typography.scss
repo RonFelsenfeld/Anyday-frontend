@@ -33,21 +33,20 @@
   src: url(/assets/fonts/Figtree/Figtree-Bold.ttf);
 }
 
-
 /// FONT AWESOME ///
 
 @font-face {
   font-family: faRegular;
-  src: url("../../fonts/fa/fa-regular-400.ttf");
-}
-
-.fa-regular::before {
-  font-family: faRegular;
+  src: url(/assets/fonts/fa/fa-regular-400.ttf);
 }
 
 @font-face {
   font-family: faSolid;
-  src: url("../../fonts/fa/fa-solid-900.ttf");
+  src: url(/assets/fonts/fa/fa-solid-900.ttf);
+}
+
+.fa-regular::before {
+  font-family: faRegular;
 }
 
 .fa-solid::before {
@@ -55,5 +54,5 @@
 }
 
 .fa-solid.plus::before {
-  content: "\2b";
+  content: '\2b';
 }

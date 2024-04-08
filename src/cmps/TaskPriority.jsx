@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { TaskEditModal } from './TaskEditModal'
+import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { saveTask } from '../store/actions/board.actions'
 
 export function TaskPriority({ group, task }) {
@@ -36,7 +36,7 @@ export function TaskPriority({ group, task }) {
       </div>
 
       {isOpenModal && (
-        <TaskEditModal
+        <DynamicLabelPicker
           arr={board.priorities}
           func={onUpdateTaskPriority}
           getStyle={getPriorityBG}

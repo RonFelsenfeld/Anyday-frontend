@@ -14,7 +14,7 @@ const initialState = {
     isOpen: false,
     pos: null,
     alignment: null,
-    cmp: '', // ! Change to options
+    cmp: null,
     targetDimensions: null,
     hasCaret: false,
   },

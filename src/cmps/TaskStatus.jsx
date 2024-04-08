@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { saveTask } from '../store/actions/board.actions'
-import { TaskEditModal } from './TaskEditModal'
+import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { useSelector } from 'react-redux'
 
 export function TaskStatus({ group, task }) {
@@ -34,7 +34,7 @@ export function TaskStatus({ group, task }) {
       </div>
 
       {isOpenModal && (
-        <TaskEditModal arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG} />
+        <DynamicLabelPicker arr={board.statuses} func={onUpdateTaskStatus} getStyle={getStatusBG} />
       )}
     </>
   )

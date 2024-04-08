@@ -55,7 +55,7 @@
     padding-inline-start: em(30px);
   }
 
-  .msg-btn>*:hover {
+  .msg-btn > *:hover {
     color: $btn-compose-clr;
   }
 
@@ -89,8 +89,8 @@
       img {
         @include userImg;
       }
-
     }
+
     .add-person-btn {
       display: flex;
       justify-content: center;
@@ -103,7 +103,7 @@
       margin: 7px;
 
       font-weight: bolder;
-      font-size: 15px;
+      font-size: 11px;
       background-color: $btn-compose-clr;
       color: white;
     }

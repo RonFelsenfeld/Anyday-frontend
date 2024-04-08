@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { MiniBoard, WorkSpaceOption } from '../services/svg.service'
 import { EditableText } from './EditableText'
-import { TaskEditModal } from './TaskEditModal'
+import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { useState } from 'react'
 
 export function SidebarBoardPreview({
@@ -16,22 +16,20 @@ export function SidebarBoardPreview({
   const isEditing = boardToEdit?._id === board._id
 
   const menuOptions = [
-    { id: 'delete101', title: 'Delete' }, {
-      id: 'Rename101', title: 'Rename Board'
-    }
+    { id: 'delete101', title: 'Delete' },
+    {
+      id: 'Rename101',
+      title: 'Rename Board',
+    },
   ]
 
   function menuOptionsPicker(title) {
     switch (title) {
-      case "Delete":
+      case 'Delete':
         onDeleteBoard(board._id)
-        
 
-      case "Rename Board":
+      case 'Rename Board':
         setBoardToEdit(board)
-
-
-
     }
     setIsOpenModal(false)
   }
@@ -54,10 +52,6 @@ export function SidebarBoardPreview({
             />
           )}
 
-          {/* <button onClick={() => onDeleteBoard(board._id)} className="remove-board-btn btn">
-            x
-          </button> */}
-
           <button
             className="options-menu-btn justify-center align-center"
             onClick={() => {
@@ -67,12 +61,6 @@ export function SidebarBoardPreview({
           >
             <WorkSpaceOption />
           </button>
-          {isOpenModal && <TaskEditModal
-            arr={menuOptions}
-            func={menuOptionsPicker}
-            isMenu={true}
-            getStyle={{ color: 'black' }}
-          />}
         </div>
       </article>
     </NavLink>
