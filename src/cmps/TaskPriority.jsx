@@ -27,13 +27,13 @@ export function TaskPriority({ group, task }) {
 
   return (
     <>
-      <p
+      <div
         onClick={() => setIsOpenModal(true)}
         style={getPriorityBG(task?.priority || '')}
-        className="task-priority"
+        className="task-row task-priority"
       >
         {task?.priority ? task.priority : ''}
-      </p>
+      </div>
 
       {isOpenModal && (
         <TaskEditModal

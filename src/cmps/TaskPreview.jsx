@@ -42,9 +42,9 @@ export function TaskPreview({
             prevTxt={task.title}
           />
         </div>
-        <p className="msg-btn" onClick={() => onOpenUpdateLog(task)}>
+        <div className="task-row msg-btn" onClick={() => onOpenUpdateLog(task)}>
           <MsgIcon />
-        </p>
+        </div>
       </div>
 
       <TaskPerson task={task} />
@@ -52,7 +52,7 @@ export function TaskPreview({
       <TaskPriority group={group} task={task} />
       <TaskTimeline group={group} task={task} />
 
-      <p className="task-files">{task.files ? getFileType() : ''}</p>
+      <div className="task-row task-files">{task.files ? getFileType() : ''}</div>
     </article>
   )
 }

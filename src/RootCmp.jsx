@@ -10,6 +10,7 @@ import { store } from './store/store'
 import { UpdateLog } from './cmps/UpdateLog'
 import { DynamicToolTip } from './cmps/DynamicToolTip'
 import { DynamicModal } from './cmps/DynamicModal'
+import { UserMsg } from './cmps/UserMsg'
 
 export function App() {
   return (
@@ -31,7 +32,7 @@ export function App() {
           <DynamicToolTip />
           <DynamicModal />
         </section>
-        {/* <UserMsg /> */}
+        <UserMsg />
       </Router>
     </Provider>
   )

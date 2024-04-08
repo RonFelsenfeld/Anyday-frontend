@@ -1,27 +1,30 @@
 import { EditPencil } from '../services/svg.service'
 
-export function TaskEditModal({ arr, func, getStyle }) {
+export function TaskEditModal({ arr, func, getStyle = '', isMenu = false }) {
+
   return (
     <dialog open>
       <div className="options-container">
         {arr.map(item => (
           <button
-            style={getStyle(item.title)}
+            // style={getStyle(item.title)}
+            style={getStyle}
             type="dialog"
             className="dialog-item"
             onClick={() => func(item.title)}
             key={item.id}
+           
           >
             {item.title}
           </button>
         ))}
       </div>
 
-      <div className="btn-container">
+      {!isMenu && <div className="btn-container">
         <button className="edit-labels-btn">
           <EditPencil /> Edit Labels
         </button>
-      </div>
+      </div>}
     </dialog>
   )
 }

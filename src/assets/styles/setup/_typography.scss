@@ -32,3 +32,28 @@
   font-family: FigtreeBold;
   src: url(/assets/fonts/Figtree/Figtree-Bold.ttf);
 }
+
+
+/// FONT AWESOME ///
+
+@font-face {
+  font-family: faRegular;
+  src: url("../../fonts/fa/fa-regular-400.ttf");
+}
+
+.fa-regular::before {
+  font-family: faRegular;
+}
+
+@font-face {
+  font-family: faSolid;
+  src: url("../../fonts/fa/fa-solid-900.ttf");
+}
+
+.fa-solid::before {
+  font-family: faSolid;
+}
+
+.fa-solid.plus::before {
+  content: "\2b";
+}
