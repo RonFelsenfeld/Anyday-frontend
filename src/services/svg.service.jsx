@@ -843,3 +843,4 @@ export function FavoriteSmall() {
     </svg>
   )
 }
+

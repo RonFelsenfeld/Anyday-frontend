@@ -1,0 +1,27 @@
+.img-container-trash {
+    margin: auto;
+    margin-top: 200px;
+
+    .trash-img {
+        position: relative;
+        height: 340px;
+        width: 340px;
+        padding-top: 3%;
+        left: -70px;
+    }
+
+    .main-info-trash{
+        margin-bottom: 12px;
+    }
+
+    .back-to-main{
+        margin-top: 16px;
+        padding: 8px 16px;
+
+        background-color: $btn-compose-clr;
+        border-radius: $el-br;
+        color: white;
+        font-family: FigtreeRegular;
+    }
+}
+

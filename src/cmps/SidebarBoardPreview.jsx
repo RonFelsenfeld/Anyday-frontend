@@ -60,8 +60,8 @@ export function SidebarBoardPreview({
   const openMenuClass = isMenuOpen ? 'menu-open' : ''
 
   return (
-    <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
-      <article className="board-li flex align-center">
+    // <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
+      <div className="board-li flex align-center">
         <MiniBoard className="mini-board-svg" />
 
         <div key={board._id} className="board-title-options flex align-center">
@@ -86,7 +86,7 @@ export function SidebarBoardPreview({
             <Options />
           </button>
         </div>
-      </article>
-    </NavLink>
+      </div>
+    // {/* </NavLink> */}
   )
 }
