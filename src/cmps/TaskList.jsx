@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { boardService } from '../services/board.service'
@@ -7,14 +8,8 @@ import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
 
-export function TaskList({
-  board,
-  group,
-  setBoard,
-  setSelectedTask,
-  isUpdateLogExpanded,
-  setIsUpdateLogExpanded,
-}) {
+export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpdateLogExpanded }) {
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [taskToEdit, setTaskToEdit] = useState(null)
 
   async function onSaveTask(title) {
@@ -23,7 +18,6 @@ export function TaskList({
 
     try {
       const savedBoard = await saveTask(board, group, editedTask)
-      setBoard(savedBoard)
       setTaskToEdit(null)
     } catch (err) {
       console.log('Had issues adding task')
@@ -33,7 +27,6 @@ export function TaskList({
   async function onRemoveTask(taskId) {
     try {
       const savedBoard = await removeTask(board, group, taskId)
-      setBoard(savedBoard)
     } catch (err) {
       console.log('Had issues removing task')
     }
@@ -80,9 +73,7 @@ export function TaskList({
                           ref={provider.innerRef}
                         >
                           <TaskPreview
-                            board={board}
                             group={group}
-                            setBoard={setBoard}
                             task={task}
                             onSaveTask={onSaveTask}
                             onRemoveTask={onRemoveTask}

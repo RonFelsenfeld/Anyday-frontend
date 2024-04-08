@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { saveTask } from '../store/actions/board.actions'
 import { TaskEditModal } from './TaskEditModal'
+import { useSelector } from 'react-redux'
 
-export function TaskStatus({ board, setBoard, group, task }) {
+export function TaskStatus({ group, task }) {
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   function getStatusBG(taskStatus) {
@@ -15,7 +17,6 @@ export function TaskStatus({ board, setBoard, group, task }) {
 
     try {
       const savedBoard = await saveTask(board, group, editedTask)
-      setBoard(savedBoard)
       setIsOpenModal(false)
     } catch (err) {
       console.log('Had issues updating task status')

@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+
 import { TaskEditModal } from './TaskEditModal'
 import { saveTask } from '../store/actions/board.actions'
 
-export function TaskPriority({ board, setBoard, group, task }) {
+export function TaskPriority({ group, task }) {
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   function getPriorityBG(taskPriority) {

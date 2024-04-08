@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { useSelector } from 'react-redux'
 
 import { boardService } from '../services/board.service'
-import { removeGroup, saveGroup } from '../store/actions/board.actions'
+import { loadBoard, removeGroup, saveGroup } from '../store/actions/board.actions'
 import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
 
 import { TaskList } from '../cmps/TaskList'
@@ -11,7 +12,8 @@ import { UpdateLog } from '../cmps/UpdateLog'
 import { Loader } from '../cmps/Loader'
 
 export function BoardDetails() {
-  const [board, setBoard] = useState()
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [isUpdateLogExpanded, setIsUpdateLogExpanded] = useState(false)
   const [selectedTask, setSelectedTask] = useState(null)
@@ -20,11 +22,11 @@ export function BoardDetails() {
   const boardDetailsRef = useRef()
 
   const { boardId } = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   useEffect(() => {
-    if (boardId) loadBoard()
-  }, [boardId]) // ! STORE STATE?
+    if (boardId) loadBoard(boardId)
+  }, [boardId])
 
   useEffect(() => {
     if (!headerRef.current || !boardDetailsRef.current) return
@@ -49,16 +51,6 @@ export function BoardDetails() {
       headerObserver.disconnect()
     }
   }, [board])
-
-  async function loadBoard() {
-    try {
-      const board = await boardService.getById(boardId)
-      setBoard(board)
-    } catch (err) {
-      console.log('Had issues loading board', err)
-      navigate('/board')
-    }
-  }
 
   async function onAddGroup() {
     const newGroup = boardService.getEmptyGroup()
@@ -139,9 +131,7 @@ export function BoardDetails() {
                   setSelectedTask={setSelectedTask}
                   isUpdateLogExpanded={isUpdateLogExpanded}
                   setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-                  board={board}
                   group={group}
-                  setBoard={setBoard}
                 />
               </div>
             </article>

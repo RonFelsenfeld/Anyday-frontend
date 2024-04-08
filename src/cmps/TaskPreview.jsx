@@ -7,9 +7,7 @@ import { TaskPerson } from './TaskPerson'
 import { TaskTimeline } from './TaskTimeline'
 
 export function TaskPreview({
-  board,
   group,
-  setBoard,
   task,
   onSaveTask,
   onRemoveTask,
@@ -49,10 +47,10 @@ export function TaskPreview({
         </p>
       </div>
 
-      <TaskPerson board={board} task={task} />
-      <TaskStatus board={board} setBoard={setBoard} group={group} task={task} />
-      <TaskPriority board={board} setBoard={setBoard} group={group} task={task} />
-      <TaskTimeline board={board} setBoard={setBoard} group={group} task={task} />
+      <TaskPerson task={task} />
+      <TaskStatus group={group} task={task} />
+      <TaskPriority group={group} task={task} />
+      <TaskTimeline group={group} task={task} />
 
       <p className="task-files">{task.files ? getFileType() : ''}</p>
     </article>

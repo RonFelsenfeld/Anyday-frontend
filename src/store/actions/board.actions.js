@@ -1,5 +1,11 @@
 import { boardService } from '../../services/board.service'
-import { ADD_BOARD, EDIT_BOARD, REMOVE_BOARD, SET_BOARDS } from '../reducers/board.reducer'
+import {
+  ADD_BOARD,
+  EDIT_BOARD,
+  REMOVE_BOARD,
+  SET_BOARD,
+  SET_BOARDS,
+} from '../reducers/board.reducer'
 import { SET_IS_LOADING } from '../reducers/system.reducer'
 import { store } from '../store'
 
@@ -10,6 +16,19 @@ export async function loadBoards() {
     store.dispatch({ type: SET_BOARDS, boards })
   } catch (err) {
     console.log('board action -> cannot load boards', err)
+    throw err
+  } finally {
+    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+  }
+}
+
+export async function loadBoard(boardId) {
+  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+  try {
+    const board = await boardService.getById(boardId)
+    store.dispatch({ type: SET_BOARD, board })
+  } catch (err) {
+    console.log('board action -> cannot load board', err)
     throw err
   } finally {
     store.dispatch({ type: SET_IS_LOADING, isLoading: false })
