@@ -172,8 +172,7 @@
   }
 
   .navlink.active {
-    background-color: $active-btn-clr;
-    border-radius: $el-br;
+    @include activeLink;
   }
 
   .side-bar-boards-list {
@@ -182,7 +181,7 @@
     .board-li {
       height: em(34px);
       gap: 8px;
-      padding: 9px 0 9px 8px;
+      padding: 9px 8px;
       border-radius: $el-br;
 
       path {
@@ -199,7 +198,6 @@
             opacity: 1;
             border-radius: $el-br;
             padding: 0px;
-            margin-right: em(5px);
 
             &:hover {
               background-color: $hover-clr;
@@ -227,6 +225,14 @@
 
       .options-menu-btn {
         opacity: 0;
+        padding: 1px;
+        width: em(24px);
+        height: em(24px);
+
+        &.menu-open {
+          opacity: 1;
+          @include activeLink;
+        }
       }
     }
 
@@ -243,7 +249,6 @@
       button.dialog-item {
         min-width: 100px;
         border-radius: $el-br;
-
       }
     }
   }

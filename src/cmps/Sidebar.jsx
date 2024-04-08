@@ -10,7 +10,7 @@ import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
 
 import { SidebarSearch } from './SidebarSearch'
 import { SidebarBoardList } from './SidebarBoardList'
-import { showSuccessMsg,} from '../services/event-bus.service'
+import { showSuccessMsg } from '../services/event-bus.service'
 
 export function Sidebar() {
   const boards = useSelector(storeState => storeState.boardModule.boards)
@@ -19,15 +19,11 @@ export function Sidebar() {
   const [isHovered, setIsHovered] = useState(false)
   const [boardToEdit, setBoardToEdit] = useState(null)
 
-
   const sidebarWidthRef = useRef(265)
   const navigate = useNavigate()
 
   useEffect(() => {
     loadBoards()
-    showSuccessMsg('We successfully deleted the board ')
-
-
   }, [])
 
   async function onAddBoard() {
@@ -40,11 +36,11 @@ export function Sidebar() {
     }
   }
 
-  //todo - change to modal
   async function onDeleteBoard(boardId) {
+    console.log(boardId)
     try {
       await removeBoard(boardId)
-      showSuccessMsg('We successfully deleted the board ')
+      showSuccessMsg('We successfully deleted the board')
     } catch (err) {
       console.log('Could not remove,', err)
     } finally {
@@ -52,7 +48,6 @@ export function Sidebar() {
     }
   }
 
-  //Todo - change to dynamic input modal
   async function onEditBoardTitle(newTitle) {
     boardToEdit.title = newTitle || boardToEdit.title
     try {
@@ -63,8 +58,7 @@ export function Sidebar() {
     }
   }
 
-  function onOpenSidebarMenu(title) {
-  }
+  function onOpenSidebarMenu(title) {}
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30
@@ -92,7 +86,6 @@ export function Sidebar() {
     }
     setIsExpanded(prevIsExpanded => !prevIsExpanded)
   }
-
 
   const dynArrowClass = !isExpanded ? 'collapsed' : ''
   const isOpenClass = !isExpanded || isHovered ? 'closed' : ''
@@ -145,10 +138,7 @@ export function Sidebar() {
                 <span className="main-workspace-header">Main workspace</span>
               </div>
 
-              <button
-                className="main-workspace-option-menu"
-                onClick={ev => showModal(ev, BOTTOM_LEFT, 'hello', false)}
-              >
+              <button className="main-workspace-option-menu">
                 <WorkSpaceOption />
               </button>
             </div>
