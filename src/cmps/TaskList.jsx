@@ -7,6 +7,7 @@ import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
 
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
+import { PlusIcon } from '../services/svg.service'
 
 export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpdateLogExpanded }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -56,6 +57,7 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
           {board.cmpsOrder.map((cmp, idx) => (
             <h3 key={idx}>{boardService.getColTitle(cmp)}</h3>
           ))}
+          <h3 className='add-col-btn'><PlusIcon/></h3>
         </li>
 
         <DragDropContext onDragEnd={handleOnDragEnd}>

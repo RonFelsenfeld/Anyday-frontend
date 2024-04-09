@@ -8,7 +8,7 @@
 
   li:not(.task) {
     display: grid;
-    grid-template-columns: 32px 445px 100px repeat(4, 140px);
+    grid-template-columns: 32px 445px 100px repeat(4, 140px) 1fr;
     grid-auto-rows: $task-preview-height;
 
     &:hover {
@@ -37,10 +37,12 @@
         align-items: center;
         justify-content: center;
         border-inline-start: 1px solid $secondary-border-clr;
+      }
 
-        &:last-of-type {
-          border-inline-end: 1px solid $secondary-border-clr;
-        }
+      .add-col-btn {
+        justify-self: start;
+        padding: 10px;
+        // border: none;
       }
     }
 

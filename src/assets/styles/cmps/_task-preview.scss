@@ -1,6 +1,6 @@
 .task-preview {
   display: grid;
-  grid-template-columns: 477px 100px repeat(4, 140px);
+  grid-template-columns: 477px 100px repeat(4, 140px) 1fr;
   grid-auto-rows: $task-preview-height;
 
   cursor: pointer;
@@ -171,6 +171,6 @@
   }
 
   .task-files {
-    border-inline-end: 1px solid $secondary-border-clr;
+    // border-inline-end: 1px solid $secondary-border-clr;
   }
 }

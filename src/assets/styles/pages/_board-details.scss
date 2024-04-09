@@ -10,7 +10,7 @@
     display: grid;
     grid-template-rows: 40px auto;
     align-items: center;
-    padding: 0 em(30px) em(40px) em(38px);
+    padding: 0 0 em(40px) em(38px);
 
     .group-header {
       position: relative;
@@ -83,7 +83,7 @@
     }
 
     .group-content {
-      border: 1px solid $secondary-border-clr;
+      border-block: 1px solid $secondary-border-clr;
       border-radius: $cmp-br;
     }
   }

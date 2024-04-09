@@ -52,6 +52,10 @@ a {
   text-decoration: none;
 }
 
-svg:focus {
-  outline: none;
+svg {
+  color: $sidebar-svg-clr;
+
+  &:focus {
+    outline: none;
+  }
 }

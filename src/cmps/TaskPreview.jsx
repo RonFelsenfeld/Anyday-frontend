@@ -53,6 +53,7 @@ export function TaskPreview({
       <TaskTimeline group={group} task={task} />
 
       <div className="task-row task-files">{task.files ? getFileType() : ''}</div>
+      <div className='task-row add-new-col'></div>
     </article>
   )
 }
