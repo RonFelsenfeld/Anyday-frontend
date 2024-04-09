@@ -86,6 +86,10 @@
 }
 
 
-// .add-task-li:has(> input:focus) {
+// form:has(.add-task-li:has(>input:focus)) {
+//   background-color: $active-btn-clr;
+// }
+
+// form:has(.edit-task:focus-within) {
 //   background-color: $active-btn-clr;
 // }

@@ -12,7 +12,7 @@
   z-index: 10;
   background-color: $main-bg-clr;
 
-  padding: em(12px) em(30px) 0 em(35px);
+  padding: em(12px) em(30px) 0 em(38px);
 
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
