@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
@@ -11,13 +11,15 @@ import { TaskPreview } from './TaskPreview'
 export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpdateLogExpanded }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [taskToEdit, setTaskToEdit] = useState(null)
+  const [placeholderProps, setPlaceholderProps] = useState({})
+  const draggableDOMref = useRef()
 
   async function onSaveTask(title) {
     if (!taskToEdit) return
     const editedTask = { ...taskToEdit, title }
 
     try {
-      const savedBoard = await saveTask(board, group, editedTask)
+      await saveTask(board, group, editedTask)
       setTaskToEdit(null)
     } catch (err) {
       console.log('Had issues adding task')
@@ -26,10 +28,35 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
 
   async function onRemoveTask(taskId) {
     try {
-      const savedBoard = await removeTask(board, group, taskId)
+      await removeTask(board, group, taskId)
     } catch (err) {
       console.log('Had issues removing task')
     }
+  }
+
+  function handleOnDragUpdate(update) {
+    if (!update.destination) return
+
+    const { index } = update.destination
+    const draggedDOM = draggableDOMref.current
+    if (!draggedDOM) return
+
+    const { clientHeight, clientWidth } = draggedDOM
+
+    const clientY =
+      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
+      [...draggedDOM.parentNode.children].slice(0, index).reduce((total, curr) => {
+        const style = curr.currentStyle || window.getComputedStyle(curr)
+        const marginBottom = parseFloat(style.marginBottom)
+        return total + curr.clientHeight + marginBottom
+      }, 0)
+
+    setPlaceholderProps({
+      clientHeight,
+      clientWidth,
+      clientY,
+      clientX: parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft),
+    })
   }
 
   async function handleOnDragEnd(result) {
@@ -39,6 +66,8 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
     group.tasks = [...items]
+
+    setPlaceholderProps({})
 
     try {
       await saveBoard(board, group)
@@ -58,19 +87,24 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
           ))}
         </li>
 
-        <DragDropContext onDragEnd={handleOnDragEnd}>
+        <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
           <Droppable droppableId="tasks">
-            {provider => (
-              <div {...provider.droppableProps} ref={provider.innerRef}>
+            {(provider, snapshot) => (
+              <div {...provider.droppableProps} ref={provider.innerRef} className="droppable-area">
                 {group.tasks.map((task, idx) => {
                   return (
                     <Draggable key={task.id} draggableId={task.id} index={idx}>
-                      {provider => (
+                      {(provider, snapshot) => (
                         <li
-                          className="task"
+                          className={`task ${snapshot.isDragging ? 'dragging' : ''}`}
                           {...provider.draggableProps}
                           {...provider.dragHandleProps}
-                          ref={provider.innerRef}
+                          ref={el => {
+                            provider.innerRef(el)
+                            if (snapshot.isDragging) {
+                              draggableDOMref.current = el
+                            }
+                          }}
                         >
                           <TaskPreview
                             group={group}
@@ -87,6 +121,16 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
                   )
                 })}
                 {provider.placeholder}
+                <div
+                  className="dragging-placeholder"
+                  style={{
+                    position: 'absolute',
+                    top: placeholderProps.clientY,
+                    left: placeholderProps.clientX + 6 + 'px',
+                    height: placeholderProps.clientHeight,
+                    width: placeholderProps.clientWidth - 6 + 'px',
+                  }}
+                />
               </div>
             )}
           </Droppable>
