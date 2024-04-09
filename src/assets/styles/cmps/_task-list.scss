@@ -6,14 +6,18 @@
     border-top-left-radius: $cmp-br;
   }
 
+  li:not(.group-first-row) {
+
+    &:hover {
+      box-shadow: 4px 3px 6px -3px $list-shadow-clr;
+      opacity: .8;
+    }
+  }
+
   li:not(.task) {
     display: grid;
     grid-template-columns: 32px 445px 100px repeat(4, 140px) 1fr;
     grid-auto-rows: $task-preview-height;
-
-    &:hover {
-      box-shadow: 4px 3px 6px -3px $list-shadow-clr;
-    }
 
     input:not([name='add-task']) {
       @include checkbox;
@@ -39,7 +43,8 @@
         border-inline-start: 1px solid $secondary-border-clr;
       }
 
-      input:hover {   // checkbox
+      input:hover {
+        // checkbox
         border-color: $secondary-font-clr;
       }
 
@@ -68,6 +73,7 @@
 
         &:hover {
           border-color: $secondary-border-clr;
+          opacity: 1 // z-index: 0;
         }
 
         &:focus {
@@ -76,7 +82,6 @@
         }
       }
 
-
       &:hover {
         background-color: $hover-clr;
         opacity: 1;
@@ -84,12 +89,3 @@
     }
   }
 }
-
-
-// form:has(.add-task-li:has(>input:focus)) {
-//   background-color: $active-btn-clr;
-// }
-
-// form:has(.edit-task:focus-within) {
-//   background-color: $active-btn-clr;
-// }
