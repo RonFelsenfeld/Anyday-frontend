@@ -231,6 +231,11 @@ function _createDemoBoard() {
           fullName: 'Ron Felsenfeld',
           imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
         },
+        {
+          id: 'u104',
+          fullName: 'Jhon Doe',
+          imgUrl: '',
+        },
       ],
       priorities: [
         {
@@ -393,7 +398,7 @@ function _createDemoBoard() {
             {
               id: 't104',
               title: 'Implement email notification',
-              personsIds: ['u101'],
+              personsIds: ['u101', 'u104'],
               status: 'Stuck',
               priority: 'Low',
               timeline: {
@@ -517,7 +522,7 @@ function _createDemoBoard() {
             {
               id: 't107',
               title: 'Design color palette and typography for the interface',
-              personsIds: ['u103'],
+              personsIds: ['u103', 'u104'],
               timeline: {
                 startDate: 1712855570111,
                 dueDate: 1713114770111,

@@ -116,6 +116,15 @@
       font-size: 12px;
     }
 
+    .person-initials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include userImg;
+      background-color: $img-initials-clr;
+      color: $main-bg-clr;
+    }
+
     .add-person-btn {
       position: absolute;
       transform: translateX(-35px);
