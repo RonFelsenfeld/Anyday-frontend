@@ -14,21 +14,26 @@ export function TaskPreview({
   setTaskToEdit,
   setIsUpdateLogExpanded,
   setSelectedTask,
+  activeTaskId,
+  setActiveTaskId
 }) {
+
   function onOpenUpdateLog(task) {
     setIsUpdateLogExpanded(true)
     setSelectedTask(task)
   }
 
-  function getFileType() {}
+  function getFileType() { }
+
+  const activeClass = (task.id === activeTaskId) ? 'active' : ''
 
   return (
-    <article className="task-preview">
+    <article onClick={() => setActiveTaskId(task.id)} className={`task-preview ${activeClass}`}>
       <button onClick={() => onRemoveTask(task.id)} className="task-menu-btn">
         <WorkSpaceOption />
       </button>
 
-      <div className="sticky-container">
+      <div className={`sticky-container ${activeClass}`}>
         <input type="checkbox" name="task" />
         <div
           onClick={() => {

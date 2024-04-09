@@ -64,8 +64,8 @@ export function TaskPerson({ group, task }) {
       )}
       {taskPersons &&
         taskPersons.length <= 2 &&
-        taskPersons.map(person => ( person.imgUrl ?
-          <img key={person.id} src={person.imgUrl} alt={person.fullName} /> :
+        taskPersons.map((person, idx) => ( person.imgUrl ?
+          <img key={`${person.id}-${idx}`} src={person.imgUrl} alt={person.fullName} /> :
           <div className='person-initials'>{utilService.getInitials(person.fullName)}</div>
         ))}
     </div>

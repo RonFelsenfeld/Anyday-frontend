@@ -12,6 +12,7 @@ import { PlusIcon } from '../services/svg.service'
 export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpdateLogExpanded }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [taskToEdit, setTaskToEdit] = useState(null)
+  const [activeTaskId, setActiveTaskId] = useState(null)
 
   async function onSaveTask(title) {
     if (!taskToEdit) return
@@ -68,7 +69,7 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
                   return (
                     <Draggable key={task.id} draggableId={task.id} index={idx}>
                       {provider => (
-                        <li
+                        <li 
                           className="task"
                           {...provider.draggableProps}
                           {...provider.dragHandleProps}
@@ -82,6 +83,8 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
                             setTaskToEdit={setTaskToEdit}
                             setSelectedTask={setSelectedTask}
                             setIsUpdateLogExpanded={setIsUpdateLogExpanded}
+                            activeTaskId={activeTaskId}
+                            setActiveTaskId={setActiveTaskId}
                           />
                         </li>
                       )}
