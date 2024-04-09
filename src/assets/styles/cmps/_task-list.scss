@@ -39,6 +39,10 @@
         border-inline-start: 1px solid $secondary-border-clr;
       }
 
+      input:hover {   // checkbox
+        border-color: $secondary-font-clr;
+      }
+
       .add-col-btn {
         justify-self: start;
         padding: 10px;

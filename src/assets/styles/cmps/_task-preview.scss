@@ -9,6 +9,9 @@
 
   input {
     @include checkbox;
+    &:hover {
+      border-color: $secondary-font-clr;
+    }
   }
 
   .sticky-container {
@@ -67,6 +70,7 @@
 
     input {
       @include input;
+      @include overflow3Dots;
       width: 95%;
       justify-self: start;
       font-family: FigtreeRegular;
@@ -75,7 +79,7 @@
       letter-spacing: em(0.2px);
       color: $main-font-clr;
       outline-style: none;
-      @include overflow3Dots;
+      margin-inline: 0;
 
       &:hover {
         border-color: $secondary-border-clr;

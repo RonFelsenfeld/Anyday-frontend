@@ -146,7 +146,7 @@
         padding-top: 4px;
 
         path {
-          color: $sidebar-svg-clr;
+          color: $secondary-font-clr;
         }
       }
 
@@ -173,7 +173,6 @@
     }
   }
 
-
   .active {
     @include activeLink;
   }
@@ -192,7 +191,7 @@
       border-radius: $el-br;
 
       path {
-        color: $sidebar-svg-clr;
+        color: $secondary-font-clr;
       }
 
       &:hover {

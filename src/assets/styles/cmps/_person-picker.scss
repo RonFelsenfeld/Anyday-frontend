@@ -69,13 +69,13 @@
       align-items: center;
       justify-content: center;
       @include btn;
-      color: $sidebar-svg-clr;
+      color: $secondary-font-clr;
     }
   }
 
   .suggested-people-title {
     font-size: 1rem;
-    color: $sidebar-svg-clr;
+    color: $secondary-font-clr;
     font-family: FigtreeLight;
     margin-bottom: 4px;
   }
