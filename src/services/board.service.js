@@ -22,6 +22,7 @@ export const boardService = {
   getTotalTasksByBoard,
   getColTitle,
   getGroupColors,
+  getTaskById,
 }
 
 async function query() {
@@ -137,8 +138,11 @@ function saveTask(board, group, task) {
   }
 }
 
-function _getTaskById(group, taskId) {
-  const task = group.tasks.find(task => task.id === taskId)
+function getTaskById(board, taskId) {
+  const taskGroup = board.groups.find(group => group.tasks.some(t => t.id === taskId))
+  if (!taskGroup) throw new Error('Cannot find tasks in board')
+
+  const task = taskGroup.tasks.find(currTask => currTask.id === taskId)
   return task
 }
 
@@ -350,7 +354,7 @@ function _createDemoBoard() {
           archivedAt: null,
           tasks: [
             {
-              id: 't101',
+              id: 't201',
               title: 'Implement user registration and login functionality',
               personsIds: ['u101', 'u103'],
               status: 'Working on it',
@@ -366,7 +370,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't102',
+              id: 't202',
               title: 'Develop RESTful API',
               personsIds: ['u102'],
               status: 'Done',
@@ -382,7 +386,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't103',
+              id: 't203',
               title: 'Create database schema for storing user and task data',
               priority: 'Medium',
               timeline: {
@@ -391,7 +395,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't104',
+              id: 't204',
               title: 'Implement email notification',
               personsIds: ['u101'],
               status: 'Stuck',
@@ -407,7 +411,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't105',
+              id: 't205',
               title: 'Integrate third-party authentication',
               personsIds: ['u102'],
               status: 'Done',
@@ -418,7 +422,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't106',
+              id: 't206',
               title: 'Implement data analytics dashboard',
               personsIds: ['u101'],
               priority: 'High',
@@ -428,7 +432,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't107',
+              id: 't207',
               title: 'Develop user profile management functionality',
               personsIds: ['u101', 'u102', 'u103'],
               status: 'Stuck',
@@ -448,7 +452,7 @@ function _createDemoBoard() {
           archivedAt: null,
           tasks: [
             {
-              id: 't101',
+              id: 't301',
               title: 'Design intuitive user interface for task management',
               personsIds: ['u103'],
               status: 'Done',
@@ -459,7 +463,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't102',
+              id: 't302',
               title: 'Create icons for task categories',
               personsIds: ['u101'],
               status: 'Stuck',
@@ -470,7 +474,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't103',
+              id: 't303',
               title: 'Design user onboarding flow for new users',
               personsIds: ['u101', 'u102', 'u103'],
               priority: 'Low',
@@ -480,7 +484,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't104',
+              id: 't304',
               title: 'Create wireframes for task detail view',
               personsIds: ['u102'],
               status: 'Done',
@@ -491,7 +495,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't105',
+              id: 't305',
               title: 'Design email templates for notifications and reminders',
               priority: 'Medium',
               timeline: {
@@ -505,7 +509,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't106',
+              id: 't306',
               title: 'Create mockups for mobile and tablet versions of the app',
               status: 'Working on it',
               priority: 'High',
@@ -515,7 +519,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't107',
+              id: 't307',
               title: 'Design color palette and typography for the interface',
               personsIds: ['u103'],
               timeline: {
@@ -529,7 +533,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't108',
+              id: 't308',
               title: 'Create illustrations for empty states (e.g., empty task list)',
               personsIds: ['u101'],
               status: 'Done',
@@ -550,7 +554,7 @@ function _createDemoBoard() {
           archivedAt: null,
           tasks: [
             {
-              id: 't101',
+              id: 't401',
               title: 'Fix issue with task duplication when editing',
               personsIds: ['u101'],
               status: 'Stuck',
@@ -566,7 +570,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't102',
+              id: 't402',
               title: 'Resolve performance issues with loading large task lists',
               personsIds: ['u102', 'u103'],
               status: 'Done',
@@ -577,7 +581,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't103',
+              id: 't403',
               title: 'Fix UI glitch causing overlapping elements on mobile devices',
               priority: 'Medium',
               timeline: {
@@ -586,7 +590,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't104',
+              id: 't404',
               title: 'Fix alignment issue on task cards',
               personsIds: ['u102'],
               status: 'Working on it',
@@ -607,7 +611,7 @@ function _createDemoBoard() {
           archivedAt: null,
           tasks: [
             {
-              id: 't101',
+              id: 't501',
               title: 'Refactor CSS code for improved readability',
               personsIds: ['u103'],
               priority: 'Medium',
@@ -617,7 +621,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't102',
+              id: 't502',
               title: 'Refactor component structure for better code organization',
               personsIds: ['u101'],
               status: 'Done',
@@ -628,7 +632,7 @@ function _createDemoBoard() {
               },
             },
             {
-              id: 't103',
+              id: 't503',
               title: 'Optimize API calls',
               personsIds: ['u102'],
               status: 'Working on it',

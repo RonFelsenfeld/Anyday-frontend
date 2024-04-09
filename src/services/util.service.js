@@ -120,7 +120,7 @@ function animateCSS(el, animation = 'bounce') {
 
     function handleAnimationEnd(event) {
       event.stopPropagation()
-      el.classList.remove(`${prefix}animated`, animationName)
+      // el.classList.remove(`${prefix}animated`, animationName)
       resolve('Animation ended')
     }
   })

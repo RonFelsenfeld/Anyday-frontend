@@ -1,14 +1,40 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { HomeUpdates, WorkSpaceOption, Xbutton } from '../services/svg.service'
 import { boardService } from '../services/board.service'
+import { utilService } from '../services/util.service'
 
-export function UpdateLog({ isUpdateLogExpanded, setIsUpdateLogExpanded, selectedTask, board }) {
+export function UpdateLog() {
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+
+  const [selectedTask, setSelectedTask] = useState(null)
   const [activeView, setActiveView] = useState('updates')
 
-  function onCloseUpdateLog() {
-    setIsUpdateLogExpanded(false)
+  const taskLogRef = useRef()
+  const navigate = useNavigate()
+  const { taskId } = useParams()
+
+  useEffect(() => {
+    if (taskId) loadTask()
+  }, [])
+
+  async function loadTask() {
+    try {
+      const task = await boardService.getTaskById(board, taskId)
+      setSelectedTask(task)
+    } catch (err) {
+      console.log('Task activity -> Has issues with loading task')
+    }
+  }
+
+  function handleCloseTaskLog() {
+    utilService.animateCSS(taskLogRef.current, 'slideOutRight')
+
+    setTimeout(() => {
+      navigate(`/board/${board._id}/`)
+    }, 100)
   }
 
   function getIsActiveClass(view) {
@@ -16,19 +42,18 @@ export function UpdateLog({ isUpdateLogExpanded, setIsUpdateLogExpanded, selecte
     return ''
   }
 
-  const isOpenClass = isUpdateLogExpanded ? 'open' : ''
-
   if (!selectedTask) return
   return (
-    <div className={`update-log-container ${isOpenClass}`}>
+    <div
+      ref={taskLogRef}
+      className={`update-log-container animate__animated animate__slideInRight`}
+    >
       <div className="header">
         <div className="title-container">
           <div className="exit-button-container flex">
-            <Link to={`/board/${board._id}/`}>
-              <button onClick={onCloseUpdateLog}>
-                <Xbutton />
-              </button>
-            </Link>
+            <button onClick={handleCloseTaskLog}>
+              <Xbutton />
+            </button>
           </div>
 
           <div className="title-options flex justify-between">

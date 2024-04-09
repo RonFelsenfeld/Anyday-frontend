@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router'
+import { Outlet, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
@@ -12,7 +12,6 @@ import { SET_BOARD } from '../store/reducers/board.reducer'
 
 import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
-import { UpdateLog } from '../cmps/UpdateLog'
 import { Loader } from '../cmps/Loader'
 import { EditableText } from '../cmps/EditableText'
 
@@ -20,8 +19,6 @@ export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
-  const [isUpdateLogExpanded, setIsUpdateLogExpanded] = useState(false)
-  const [selectedTask, setSelectedTask] = useState(null)
   const [groupToEdit, setGroupToEdit] = useState(null)
 
   const headerRef = useRef()
@@ -29,7 +26,6 @@ export function BoardDetails() {
 
   const { boardId } = useParams()
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
@@ -39,8 +35,6 @@ export function BoardDetails() {
 
   useEffect(() => {
     if (!headerRef.current || !boardDetailsRef.current) return
-    console.log(headerRef.current)
-    console.log(boardDetailsRef.current)
 
     const headerObserver = new IntersectionObserver(handleIntersection, {
       // root: boardDetailsRef.current,
@@ -52,7 +46,7 @@ export function BoardDetails() {
     function handleIntersection(entries) {
       entries.forEach(entry => {
         const { isIntersecting } = entry
-        console.log(isIntersecting)
+        // console.log(isIntersecting)
         setIsHeaderExpanded(isIntersecting)
       })
     }
@@ -121,13 +115,6 @@ export function BoardDetails() {
   if (!board) return <Loader />
   return (
     <section className="board-details">
-      <UpdateLog
-        board={board}
-        selectedTask={selectedTask}
-        setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-        isUpdateLogExpanded={isUpdateLogExpanded}
-      />
-
       <div ref={headerRef} className="sticky">
         <BoardHeader
           board={board}
@@ -182,12 +169,7 @@ export function BoardDetails() {
               </div>
 
               <div className="group-content">
-                <TaskList
-                  setSelectedTask={setSelectedTask}
-                  isUpdateLogExpanded={isUpdateLogExpanded}
-                  setIsUpdateLogExpanded={setIsUpdateLogExpanded}
-                  group={group}
-                />
+                <TaskList group={group} />
               </div>
             </article>
           )
@@ -197,6 +179,8 @@ export function BoardDetails() {
       <button className="add-group-btn" onClick={onAddGroup}>
         <AddBoardBtn /> Add new group
       </button>
+
+      <Outlet />
     </section>
   )
 }

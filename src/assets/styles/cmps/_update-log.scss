@@ -1,10 +1,13 @@
 .update-log-container {
-  position: fixed;
-  transform: translateX(101%);
+  position: absolute;
+  // transform: translateY(-101%);
   width: em(570px);
-  height: 100%;
-  z-index: 20;
+  height: 100dvh;
+  z-index: 100;
+  top: $main-header-height;
   right: 0;
+
+  --animate-duration: 0.2s;
 
   background-color: $main-bg-clr;
   box-shadow: 4px 11px 20px 0px rgba(56, 55, 55, 0.7);

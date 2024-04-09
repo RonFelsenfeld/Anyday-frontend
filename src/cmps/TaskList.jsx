@@ -8,7 +8,7 @@ import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
 
-export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpdateLogExpanded }) {
+export function TaskList({ group }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [taskToEdit, setTaskToEdit] = useState(null)
   const [placeholderProps, setPlaceholderProps] = useState({})
@@ -112,8 +112,6 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
                             onSaveTask={onSaveTask}
                             onRemoveTask={onRemoveTask}
                             setTaskToEdit={setTaskToEdit}
-                            setSelectedTask={setSelectedTask}
-                            setIsUpdateLogExpanded={setIsUpdateLogExpanded}
                           />
                         </li>
                       )}
