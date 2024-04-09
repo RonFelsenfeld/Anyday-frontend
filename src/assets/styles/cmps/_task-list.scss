@@ -6,18 +6,22 @@
     border-top-left-radius: $cmp-br;
   }
 
-  li:not(.group-first-row){
+  li:not(.group-first-row) {
+    
     &:hover {
       box-shadow: 4px 3px 6px -3px $list-shadow-clr;
+      opacity: .8;
     }
   }
+
+
 
   li:not(.task) {
     display: grid;
     grid-template-columns: 32px 445px 100px repeat(4, 140px);
     grid-auto-rows: $task-preview-height;
 
-    
+
 
     input:not([name='add-task']) {
       @include checkbox;
@@ -41,7 +45,7 @@
         align-items: center;
         justify-content: center;
         border-inline-start: 1px solid $secondary-border-clr;
-       
+
 
         &:last-of-type {
           border-inline-end: 1px solid $secondary-border-clr;
@@ -67,6 +71,7 @@
 
         &:hover {
           border-color: $secondary-border-clr;
+          opacity: 1 // z-index: 0;
         }
 
         &:focus {
