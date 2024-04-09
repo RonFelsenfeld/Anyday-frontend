@@ -121,16 +121,18 @@ export function TaskList({ group, setSelectedTask, isUpdateLogExpanded, setIsUpd
                   )
                 })}
                 {provider.placeholder}
-                <div
-                  className="dragging-placeholder"
-                  style={{
-                    position: 'absolute',
-                    top: placeholderProps.clientY,
-                    left: placeholderProps.clientX + 6 + 'px',
-                    height: placeholderProps.clientHeight,
-                    width: placeholderProps.clientWidth - 6 + 'px',
-                  }}
-                />
+                {snapshot.isDraggingOver && (
+                  <div
+                    className="dragging-placeholder"
+                    style={{
+                      position: 'absolute',
+                      top: placeholderProps.clientY,
+                      left: placeholderProps.clientX + 6 + 'px',
+                      height: placeholderProps.clientHeight,
+                      width: placeholderProps.clientWidth - 6 + 'px',
+                    }}
+                  />
+                )}
               </div>
             )}
           </Droppable>

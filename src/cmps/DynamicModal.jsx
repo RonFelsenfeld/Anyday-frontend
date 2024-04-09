@@ -2,42 +2,20 @@ import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import 'animate.css'
 
-import { useClickOutside } from '../customHooks/useClickOutside'
 import { BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
-import { DynamicLabelPicker } from './DynamicLabelPicker'
-import { DynamicOptionsMenu } from './DynamicOptionsMenu'
-import { ColorPicker } from './ColorPicker'
-import { TimelinePicker } from './TimelinePicker'
-import { PersonPicker } from './PersonPicker'
+import { useClickOutside } from '../customHooks/useClickOutside'
+
+import { DynamicModalContent } from './DynamicModalContent'
 
 export function DynamicModal() {
   const modal = useSelector(storeState => storeState.systemModule.modal)
   const modalRef = useRef()
-  const { isOpen, pos, alignment, cmp, targetDimensions, hasCaret } = modal
+  const { isOpen, pos, alignment = BOTTOM_CENTER, cmp, targetDimensions, hasCaret = false } = modal
   let classList = ''
-  // const viewportWidth = window.innerWidth
+
   console.log(modal)
 
   useClickOutside(modalRef)
-
-  function dynamicCmp() {
-    switch (cmp.type) {
-      case 'labelPicker':
-        return <DynamicLabelPicker {...cmp} />
-
-      case 'optionsMenu':
-        return <DynamicOptionsMenu {...cmp} />
-
-      case 'colorPicker':
-        return <ColorPicker {...cmp} />
-
-      case 'personPicker':
-        return <PersonPicker {...cmp} />
-
-      case 'timelinePicker':
-        return <TimelinePicker {...cmp} />
-    }
-  }
 
   switch (alignment) {
     case BOTTOM_LEFT:
@@ -68,7 +46,7 @@ export function DynamicModal() {
       className={`dynamic-modal animate__animated animate__fadeIn ${classList}`}
       style={{ left: pos.x, top: pos.y }}
     >
-      {dynamicCmp()}
+      <DynamicModalContent {...cmp} />
     </dialog>
   )
 }

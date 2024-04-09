@@ -19,7 +19,7 @@ export function TimelinePicker({ group, task }) {
       <header className="timeline-header flex align-center">
         <h2 className="timeline-title">Set Dates</h2>
       </header>
-      <DialogContentContainer className="timeline-dialog">
+      <DialogContentContainer className="timeline-dialog" style={{ boxShadow: 'none' }}>
         <DatePicker
           numberOfMonths={2}
           data-testid="date-picker"
