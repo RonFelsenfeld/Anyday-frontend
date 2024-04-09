@@ -202,7 +202,7 @@
 
   }
 
-  .active li{
+  .navlink.active li{
     @include activeLink;
   }
 
