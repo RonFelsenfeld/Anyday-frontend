@@ -43,6 +43,7 @@
 
     &:hover {
       background-color: $hover-clr;
+
     }
 
     &.collapsed {
@@ -56,16 +57,34 @@
     gap: em(2px);
     width: 100%;
     padding-left: em(12px);
-    padding-right: em(40px);
     padding-block: em(12px);
-    border-radius: em(4px);
+    padding-block: em(12px);
+    border-radius: $el-br;
 
-    .home,
+
+
+    .home {
+      height: em(32px);
+      border-radius: em(4px);
+      padding-left: 6px;
+      padding: em(8px) em(4px) em(8px) em(6px);
+      padding-right: em(40px);
+      width: 212px;
+
+
+      &:hover {
+        cursor: pointer;
+        background-color: $hover-clr;
+      }
+    }
+
     .my-work {
       height: em(32px);
       padding-left: 6px;
       padding: em(8px) em(4px) em(8px) em(6px);
       border-radius: $el-br;
+      width: 242px;
+
 
       &:hover {
         cursor: pointer;
@@ -77,6 +96,8 @@
       margin-right: em(8px);
       margin-top: 1px;
     }
+
+
   }
 
   .side-bar-workspace {
@@ -176,6 +197,9 @@
 
   .active {
     @include activeLink;
+    width: 242px;
+    // border-radius: $el-br
+
   }
 
   .navilink .active {
