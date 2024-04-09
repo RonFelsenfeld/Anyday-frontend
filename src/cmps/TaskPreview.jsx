@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
@@ -8,19 +9,37 @@ import { TaskPriority } from './TaskPriority'
 import { TaskPerson } from './TaskPerson'
 import { TaskTimeline } from './TaskTimeline'
 import { useSelector } from 'react-redux'
+import { useClickOutside } from '../customHooks/useClickOutside'
 
-export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEdit }) {
+export function TaskPreview({
+  group,
+  task,
+  onSaveTask,
+  onRemoveTask,
+  setTaskToEdit,
+  activeTaskId,
+  setActiveTaskId,
+}) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const taskPreviewRef = useRef()
+
+  useClickOutside(taskPreviewRef, () => setActiveTaskId(null))
 
   function getFileType() {}
 
+  const activeClass = task.id === activeTaskId ? 'active' : ''
+
   return (
-    <article className="task-preview">
+    <article
+      ref={taskPreviewRef}
+      onClick={() => setActiveTaskId(task.id)}
+      className={`task-preview ${activeClass}`}
+    >
       <button onClick={() => onRemoveTask(task.id)} className="task-menu-btn">
         <WorkSpaceOption />
       </button>
 
-      <div className="sticky-container">
+      <div className={`sticky-container ${activeClass}`}>
         <input type="checkbox" name="task" />
         <div
           onClick={() => {
@@ -48,6 +67,7 @@ export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEd
       <TaskTimeline group={group} task={task} />
 
       <div className="task-row task-files">{task.files ? getFileType() : ''}</div>
+      <div className="task-row add-new-col"></div>
     </article>
   )
 }

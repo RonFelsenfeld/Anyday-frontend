@@ -17,7 +17,7 @@
     display: grid;
     grid-template-rows: 40px auto;
     align-items: center;
-    padding: 0 em(30px) em(40px) em(38px);
+    padding: 0 0 em(40px) em(38px);
 
     .group-header {
       position: relative;
@@ -33,6 +33,9 @@
       }
 
       .collapse-btn {
+        display: grid;
+        justify-content: center;
+        align-items: end;
         margin: 0;
         padding: 0;
       }
@@ -90,8 +93,15 @@
     }
 
     .group-content {
-      border: 1px solid $secondary-border-clr;
-      border-radius: $cmp-br;
+      border-block: 1px solid $secondary-border-clr;
+      border-top-left-radius: $cmp-br;
+      border-bottom-left-radius: $cmp-br;
+
+      .add-col-btn {
+        svg {
+          color: $secondary-font-clr;
+        }
+      }
     }
   }
 

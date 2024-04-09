@@ -8,6 +8,7 @@ export const utilService = {
   saveToStorage,
   loadFromStorage,
   animateCSS,
+  getInitials
 }
 
 function makeId(length = 6) {
@@ -124,4 +125,14 @@ function animateCSS(el, animation = 'bounce') {
       resolve('Animation ended')
     }
   })
+}
+
+function getInitials(fullName) {
+  const words = fullName.split(' ');
+  let initials = '';
+
+  for (let i = 0; i < words.length && initials.length < 2; i++) {
+      initials += words[i][0].toUpperCase();
+  }
+  return initials;
 }

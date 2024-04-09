@@ -17,6 +17,7 @@ export function UpdateLog() {
   const { taskId } = useParams()
 
   useEffect(() => {
+    console.log('rendred')
     if (taskId) loadTask()
   }, [])
 
@@ -48,64 +49,53 @@ export function UpdateLog() {
       ref={taskLogRef}
       className={`update-log-container animate__animated animate__slideInRight`}
     >
-      <div className="header">
-        <div className="title-container">
-          <div className="exit-button-container flex">
-            <button onClick={handleCloseTaskLog}>
-              <Xbutton />
-            </button>
-          </div>
+      <div className="exit-button-container flex">
+        <button onClick={handleCloseTaskLog}>
+          <Xbutton />
+        </button>
+      </div>
 
-          <div className="title-options flex justify-between">
-            <div className="title flex">
-              <h2>{selectedTask.title}</h2>
-            </div>
+      <div className="title">
+        <h2>{selectedTask.title}</h2>
+      </div>
 
-            <div className="img-options flex">
-              <div className="user-img">
-                <p className="task-persons-img">
-                  {selectedTask.personsIds
-                    ? selectedTask.personsIds.map(id => (
-                        <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
-                      ))
-                    : ''}
-                </p>
-              </div>
+      <div className="img-options flex align-center">
+        {selectedTask.personsIds &&
+          !!selectedTask.personsIds.length &&
+          selectedTask.personsIds.map(id => (
+            <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
+          ))}
 
-              <div>
-                <button className="menu-options-btn">
-                  <WorkSpaceOption />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="menu-options flex align-center">
-            <button
-              className={`btn-view updates-option flex align-center ${getIsActiveClass('updates')}`}
-              onClick={() => setActiveView('updates')}
-            >
-              <HomeUpdates />
-              <span className="updates">Updates</span>
-            </button>
-
-            <button
-              className={`btn-view files-option ${getIsActiveClass('files')}`}
-              onClick={() => setActiveView('files')}
-            >
-              <span>Files</span>
-            </button>
-
-            <button
-              className={`btn-view activity-log-option ${getIsActiveClass('activity')}`}
-              onClick={() => setActiveView('activity')}
-            >
-              <span>Activity Log</span>
-            </button>
-          </div>
+        <div>
+          <button className="menu-options-btn">
+            <WorkSpaceOption />
+          </button>
         </div>
       </div>
 
+      <div className="menu-options flex align-center">
+        <button
+          className={`btn-view updates-option flex align-center ${getIsActiveClass('updates')}`}
+          onClick={() => setActiveView('updates')}
+        >
+          <HomeUpdates />
+          <span className="updates">Updates</span>
+        </button>
+
+        <button
+          className={`btn-view files-option ${getIsActiveClass('files')}`}
+          onClick={() => setActiveView('files')}
+        >
+          <span>Files</span>
+        </button>
+
+        <button
+          className={`btn-view activity-log-option ${getIsActiveClass('activity')}`}
+          onClick={() => setActiveView('activity')}
+        >
+          <span>Activity Log</span>
+        </button>
+      </div>
       <div className="update-log-content">
         <div className="updates-log-txt-area">
           <input className="txt-input-update-log" type="text" placeholder="Write an update..." />

@@ -1,7 +1,11 @@
 .task-preview {
   display: grid;
-  grid-template-columns: 477px 100px repeat(4, 140px);
+  grid-template-columns: 477px 100px repeat(4, 140px) 1fr;
   grid-auto-rows: $task-preview-height;
+
+  &.active {
+    background-color: $active-btn-clr;
+  }
 
   cursor: pointer;
   position: relative;
@@ -9,12 +13,21 @@
 
   input {
     @include checkbox;
+
+    &:hover {
+      border-color: $btn-compose-clr;
+    }
   }
 
   .sticky-container {
     position: sticky;
     display: grid;
     grid-template-columns: 32px 380px 65px;
+
+    &.active {
+      // border: 1px solid $btn-compose-clr;
+      border-inline-start: none;
+    }
   }
 
   .task-menu-btn {
@@ -28,7 +41,7 @@
     }
   }
 
-  &:hover {
+  &:hover:not(.active) {
     background-color: $hover-clr;
 
     .task-menu-btn {
@@ -47,7 +60,6 @@
     &:not(.task-persons-img) {
       display: grid;
     }
-
   }
 
   .task-title {
@@ -56,8 +68,14 @@
     padding-inline-start: em(30px);
   }
 
-  .msg-btn>*:hover {
-    color: $btn-compose-clr;
+  .msg-btn {
+    svg {
+      color: $secondary-font-clr;
+
+      &:hover {
+        color: $btn-compose-clr;
+      }
+    }
   }
 
   .edit-task {
@@ -67,6 +85,7 @@
 
     input {
       @include input;
+      @include overflow3Dots;
       width: 95%;
       justify-self: start;
       font-family: FigtreeRegular;
@@ -75,6 +94,7 @@
       letter-spacing: em(0.2px);
       color: $main-font-clr;
       outline-style: none;
+      margin-inline: 0;
 
       &:hover {
         border-color: $secondary-border-clr;
@@ -82,7 +102,7 @@
 
       &:focus {
         border-color: $btn-compose-clr;
-        // background-color: $active-btn-clr;
+        background-color: $main-bg-clr;
       }
     }
   }
@@ -111,6 +131,15 @@
       font-size: 12px;
     }
 
+    .person-initials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include userImg;
+      background-color: $img-initials-clr;
+      color: $main-bg-clr;
+    }
+
     .add-person-btn {
       position: absolute;
       transform: translateX(-35px);
@@ -129,7 +158,6 @@
       font-size: 11px;
       background-color: $btn-compose-clr;
       color: white;
-
     }
 
     &:hover .add-person-btn {
@@ -149,7 +177,6 @@
       border-style: solid;
       border-width: 0;
       border-color: #64646462 $main-bg-clr;
-      // border-color: #c1c1c1 $main-bg-clr;
       transition: all ease 0.5s;
     }
 
@@ -168,9 +195,5 @@
     border-radius: 30px;
     color: $main-bg-clr;
     background-color: $main-font-clr;
-  }
-
-  .task-files {
-    border-inline-end: 1px solid $secondary-border-clr;
   }
 }

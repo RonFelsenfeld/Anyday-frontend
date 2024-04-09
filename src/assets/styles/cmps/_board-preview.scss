@@ -33,7 +33,7 @@
       @include btn;
 
       svg {
-        color: $sidebar-svg-clr;
+        color: $secondary-font-clr;
       }
     }
 
@@ -43,7 +43,7 @@
       .workspace-title {
         margin-inline-start: 6px;
         line-height: em(21px);
-        color: $sidebar-svg-clr;
+        color: $secondary-font-clr;
       }
     }
   }

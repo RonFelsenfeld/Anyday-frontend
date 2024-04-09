@@ -58,7 +58,7 @@
     grid-area: info;
 
     .btn {
-      @include btn($sidebar-svg-clr);
+      @include btn($secondary-font-clr);
 
       width: em(32px);
       height: em(32px);

@@ -41,9 +41,12 @@
 @mixin checkbox {
   align-self: center;
   justify-self: center;
-  height: rem(16px);
-  width: 1rem;
+  height: 16px;
+  width: 16px;
   border: 1px solid $secondary-border-clr;
+  appearance: none;
+  border-radius: 2px;
+  margin: 0;
 }
 
 @mixin userImg($size: 30px, $margin-inline: -4px) {
@@ -90,4 +93,10 @@
   &:hover {
     opacity: 0.75;
   }
+}
+
+@mixin overflow3Dots() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

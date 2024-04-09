@@ -8,7 +8,7 @@
     justify-content: center;
     gap: 10px;
 
-    padding: 24px 24px 8px;
+    padding: 24px 24px 16px;
     color: $main-bg-clr;
 
     button {
@@ -26,6 +26,7 @@
 
     .edit-labels-btn {
       height: 35px;
+      width: 168px;
       display: flex;
       justify-content: center;
       align-items: center;
