@@ -62,15 +62,12 @@
       border-color: $main-font-clr;
     }
 
-    &:focus {
-      border-color: $btn-compose-clr;
-      outline-style: none;
-    }
-
     .search-person-input {
       padding: 8px 24px 8px 16px;
       width: 90%;
       border: none;
+      border-radius: $el-br;
+      outline-style: none;
     }
 
     .search-btn {
@@ -80,6 +77,10 @@
       @include btn;
       color: $secondary-font-clr;
     }
+
+&:focus-within {
+  border-color: $btn-compose-clr;
+}
   }
 
   .suggested-people-title {
@@ -100,6 +101,7 @@
       .suggested-person-img {
         @include userImg($size: 26px, $margin-inline: 2px);
         border: none;
+        border: 1px solid $main-bg-clr
       }
 
       .suggested-person-name {
