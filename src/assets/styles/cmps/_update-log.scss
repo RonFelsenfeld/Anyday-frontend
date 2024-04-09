@@ -22,8 +22,6 @@
     transform: translateX(0);
   }
 
-
-
   .exit-button-container {
     height: em(24px);
     margin-bottom: em(5px);
@@ -41,7 +39,6 @@
     }
   }
 
-
   .title {
     grid-area: title;
   }
@@ -50,17 +47,10 @@
     grid-area: options;
     margin-inline-end: 3px;
 
-    // .img-container {
-    //   position: relative;
-    //   margin-inline-end: 15px;
-    //   padding-inline-end: 6px;
-    //   
-    // }
-
-
     .menu-options-btn {
       position: relative;
       margin-inline-start: 11px;
+
       &::after {
         display: block;
         position: absolute;
@@ -70,7 +60,6 @@
         height: 16px;
         width: 1px;
         background-color: #efefef;
-        // background-color: black
       }
 
       &:hover {
@@ -80,11 +69,9 @@
       }
     }
 
-
     img {
       @include userImg($size: 26px);
     }
-
   }
 
   .menu-options {

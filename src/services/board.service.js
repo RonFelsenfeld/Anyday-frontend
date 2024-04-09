@@ -235,7 +235,7 @@ function _createDemoBoard() {
       priorities: [
         {
           id: 'pri101',
-          title: 'Critical',
+          title: `Critical \u{26A0}`,
           color: '#333333',
         },
         {
@@ -308,7 +308,7 @@ function _createDemoBoard() {
               title: 'Integrate notification system for task updates',
               personsIds: ['u101', 'u102'],
               status: 'Done',
-              priority: 'Critical',
+              priority: `Critical \u{26A0}`,
               timeline: {
                 startDate: 1711991570111,
                 dueDate: 1712077970111,
@@ -370,7 +370,7 @@ function _createDemoBoard() {
               title: 'Develop RESTful API',
               personsIds: ['u102'],
               status: 'Done',
-              priority: 'Critical',
+              priority: `Critical \u{26A0}`,
               timeline: {
                 startDate: 1711991570111,
                 dueDate: 1712164370111,
@@ -463,7 +463,7 @@ function _createDemoBoard() {
               title: 'Create icons for task categories',
               personsIds: ['u101'],
               status: 'Stuck',
-              priority: 'Critical',
+              priority: `Critical \u{26A0}`,
               timeline: {
                 startDate: 1712164370111,
                 dueDate: 1712337170111,
@@ -533,7 +533,7 @@ function _createDemoBoard() {
               title: 'Create illustrations for empty states (e.g., empty task list)',
               personsIds: ['u101'],
               status: 'Done',
-              priority: 'Critical',
+              priority: `Critical \u{26A0}`,
               timeline: {
                 startDate: 1711991570111,
                 dueDate: 1712164370111,
@@ -726,7 +726,7 @@ function getEmptyBoard() {
     priorities: [
       {
         id: 'pri101',
-        title: 'Critical',
+        title: `Critical \u{26A0}`,
         color: '#333333',
       },
       {
