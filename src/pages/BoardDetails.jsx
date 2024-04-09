@@ -64,8 +64,7 @@ export function BoardDetails() {
   async function onAddGroup() {
     const newGroup = boardService.getEmptyGroup()
     try {
-      const savedBoard = await saveGroup(board, newGroup)
-      setBoard(savedBoard)
+      await saveGroup(board, newGroup)
     } catch (err) {
       console.log('Had issues adding group', err)
     }
@@ -73,8 +72,7 @@ export function BoardDetails() {
 
   async function onRemoveGroup(groupId) {
     try {
-      const savedBoard = await removeGroup(board, groupId)
-      setBoard(savedBoard)
+      await removeGroup(board, groupId)
     } catch (err) {
       console.log('Had issues removing group', err)
     }
