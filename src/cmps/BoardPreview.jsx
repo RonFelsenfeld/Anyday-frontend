@@ -1,4 +1,5 @@
 import { BoardIcon, Favorite, WorkspaceLogo } from '../services/svg.service'
+import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function BoardPreview({ board }) {
   return (
@@ -13,7 +14,11 @@ export function BoardPreview({ board }) {
               <h2 className="board-title">{board.title}</h2>
             </div>
 
-            <button className="btn-favorite">
+            <button
+              className="btn-favorite flex align-center"
+              onMouseEnter={ev => showToolTip(ev.target, 'Add to favorites')}
+              onMouseLeave={() => hideToolTip()}
+            >
               <Favorite />
             </button>
           </div>

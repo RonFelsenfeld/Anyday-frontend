@@ -28,9 +28,13 @@
     }
 
     .btn-favorite {
-      width: em(32px);
-      height: em(32px);
+      padding: 6px;
+      margin-inline-end: 4px;
       @include btn;
+
+      svg {
+        color: $sidebar-svg-clr;
+      }
     }
 
     .workspace-details {
@@ -39,7 +43,7 @@
       .workspace-title {
         margin-inline-start: 6px;
         line-height: em(21px);
-        color: rgb(103, 104, 121);
+        color: $sidebar-svg-clr;
       }
     }
   }
