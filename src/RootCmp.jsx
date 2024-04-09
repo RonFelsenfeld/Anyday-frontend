@@ -24,7 +24,7 @@ export function App() {
 
               <Route element={<WorkspaceIndex />} path="/board">
                 <Route element={<BoardIndex />} path="/board" />
-                  <Route element={<DeletedPage />} path="/board/delete/:boardId" />
+                <Route element={<DeletedPage />} path="/board/delete/:boardId" />
                 <Route element={<BoardDetails />} path="/board/:boardId">
                   <Route path="/board/:boardId/task/:taskId" element={<UpdateLog />} />
                 </Route>

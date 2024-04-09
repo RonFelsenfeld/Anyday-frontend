@@ -6,7 +6,7 @@ import { loadBoards } from '../store/actions/board.actions'
 import { Loader } from '../cmps/Loader'
 
 export function BoardIndex() {
-  const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
+  const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
   const boards = useSelector(storeState => storeState.boardModule.boards)
 
   useEffect(() => {

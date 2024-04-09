@@ -1,0 +1,50 @@
+.home-page {
+  height: 100dvh;
+  padding-block-start: 3em;
+  background-color: $main-bg-clr;
+
+  .main-title {
+    margin-block-end: 1.5vw;
+
+    font-size: em(60px);
+    font-family: PoppinsSemiBold, RobotoBold, sans-serif;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .secondary-title {
+    font-size: em(22px);
+    line-height: em(20px);
+    font-family: PoppinsLight, RobotoRegular, sans-serif;
+    text-align: center;
+    margin-block-end: 1em; // ! REMOVE
+  }
+
+  .btn-cta {
+    height: em(49px);
+    padding: 16px 20px 16px 31px;
+    border-radius: 2em;
+    background-color: $btn-cta-clr;
+    gap: em(15px);
+    margin: auto;
+
+    &:hover {
+      background-color: $btn-cta-clr-hover;
+
+      svg {
+        transform: translateX(5px);
+      }
+    }
+
+    span {
+      font-size: em(16px);
+      font-family: PoppinsLight, RobotoRegular, sans-serif;
+      color: $main-bg-clr;
+    }
+
+    svg {
+      fill: white;
+      transition: transform 0.3s;
+    }
+  }
+}
