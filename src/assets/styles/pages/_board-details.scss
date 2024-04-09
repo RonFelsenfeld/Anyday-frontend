@@ -26,6 +26,9 @@
       }
 
       .collapse-btn {
+        display: grid;
+        justify-content: center;
+        align-items: end;
         margin: 0;
         padding: 0;
       }
