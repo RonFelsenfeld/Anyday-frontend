@@ -50,7 +50,7 @@
     letter-spacing: -0.1px;
 
     &:not(.editing):hover {
-      border-color: rgb(195, 198, 212);
+      border-color: $list-shadow-clr;
     }
   }
 
@@ -58,7 +58,7 @@
     grid-area: info;
 
     .btn {
-      @include btn(rgb(103, 104, 121));
+      @include btn($sidebar-svg-clr);
 
       width: em(32px);
       height: em(32px);
@@ -102,7 +102,7 @@
       @include btn;
 
       padding: 4px 8px;
-      border: 1px solid rgb(195, 198, 212);
+      border: 1px solid $list-shadow-clr;
 
       .invite {
         margin-inline-start: 8px;
@@ -157,6 +157,7 @@
 
   .board-header-input {
     input {
+      width: 100%;
       font-size: inherit;
       font-family: inherit;
       color: inherit;
