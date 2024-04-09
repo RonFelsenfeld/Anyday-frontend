@@ -7,11 +7,6 @@
     'views views views expand'
     'actions actions actions actions';
 
-  position: sticky;
-  inset: 0 auto auto 0;
-  z-index: 10;
-  background-color: $main-bg-clr;
-
   padding: em(12px) em(30px) 0 em(35px);
 
   &.collapsed {

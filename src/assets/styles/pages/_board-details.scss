@@ -6,6 +6,13 @@
   padding-block-end: 50px;
   background-color: $main-bg-clr;
 
+  .sticky {
+    position: sticky;
+    inset: 0 auto auto 0;
+    z-index: 10;
+    background-color: $main-bg-clr;
+  }
+
   .board-group {
     display: grid;
     grid-template-rows: 40px auto;

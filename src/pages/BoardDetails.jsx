@@ -39,10 +39,12 @@ export function BoardDetails() {
 
   useEffect(() => {
     if (!headerRef.current || !boardDetailsRef.current) return
+    console.log(headerRef.current)
+    console.log(boardDetailsRef.current)
 
     const headerObserver = new IntersectionObserver(handleIntersection, {
-      root: boardDetailsRef.current,
-      threshold: 0.99999,
+      // root: boardDetailsRef.current,
+      threshold: 0.9999,
     })
 
     headerObserver.observe(headerRef.current)
@@ -50,6 +52,7 @@ export function BoardDetails() {
     function handleIntersection(entries) {
       entries.forEach(entry => {
         const { isIntersecting } = entry
+        console.log(isIntersecting)
         setIsHeaderExpanded(isIntersecting)
       })
     }
@@ -117,7 +120,7 @@ export function BoardDetails() {
 
   if (!board) return <Loader />
   return (
-    <section className="board-details" ref={boardDetailsRef}>
+    <section className="board-details">
       <UpdateLog
         board={board}
         selectedTask={selectedTask}
@@ -125,7 +128,7 @@ export function BoardDetails() {
         isUpdateLogExpanded={isUpdateLogExpanded}
       />
 
-      <div ref={headerRef}>
+      <div ref={headerRef} className="sticky">
         <BoardHeader
           board={board}
           isHeaderExpanded={isHeaderExpanded}
@@ -133,7 +136,7 @@ export function BoardDetails() {
         />
       </div>
 
-      <div className="group-container">
+      <div className="group-container" ref={boardDetailsRef}>
         {board.groups.map(group => {
           return (
             <article key={group.id} className="board-group">
