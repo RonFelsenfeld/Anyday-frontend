@@ -84,7 +84,8 @@
 
     .group-content {
       border-block: 1px solid $secondary-border-clr;
-      border-radius: $cmp-br;
+      border-top-left-radius: $cmp-br;
+      border-bottom-left-radius: $cmp-br;
     }
   }
 
