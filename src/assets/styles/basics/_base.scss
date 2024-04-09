@@ -52,10 +52,6 @@ a {
   text-decoration: none;
 }
 
-svg {
-  color: $secondary-font-clr;
-
-  &:focus {
+svg:focus {
     outline: none;
   }
-}

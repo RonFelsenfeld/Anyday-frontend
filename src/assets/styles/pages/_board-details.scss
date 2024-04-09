@@ -86,6 +86,10 @@
       border-block: 1px solid $secondary-border-clr;
       border-top-left-radius: $cmp-br;
       border-bottom-left-radius: $cmp-br;
+
+      svg {
+        color: $secondary-font-clr;
+      }
     }
   }
 

@@ -14,7 +14,7 @@
     }
 
     // For the tooltip hover to work only on the button itself
-    > * {
+    >* {
       z-index: -1;
     }
   }
@@ -37,5 +37,9 @@
     span {
       padding: 1px 5px;
     }
+  }
+
+  svg {
+    color: $secondary-font-clr;
   }
 }
