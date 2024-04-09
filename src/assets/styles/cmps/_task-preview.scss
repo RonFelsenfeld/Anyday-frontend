@@ -75,6 +75,7 @@
       letter-spacing: em(0.2px);
       color: $main-font-clr;
       outline-style: none;
+      @include overflow3Dots;
 
       &:hover {
         border-color: $secondary-border-clr;

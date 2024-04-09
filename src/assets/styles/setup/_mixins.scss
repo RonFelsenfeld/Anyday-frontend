@@ -91,3 +91,9 @@
     opacity: 0.75;
   }
 }
+
+@mixin overflow3Dots() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
