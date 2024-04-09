@@ -7,6 +7,8 @@
 
   .btn {
     height: em(32px);
+
+    padding: 4px 8px;
     border-radius: $el-br;
 
     &:not(.btn-new-task):active {
@@ -20,14 +22,14 @@
   }
 
   .btn-new-task {
-    padding: 4px 8px;
-    margin-inline-end: em(14px);
+    margin-inline: 4px em(14px);
 
-    background-color: $btn-compose-clr;
+    font-family: FigtreeLight, RobotoBold, sans-serif;
     color: rgb(255, 255, 255);
+    background-color: $btn-compose-clr;
 
     &:hover {
-      background-color: rgb(0, 96, 185);
+      background-color: $btn-compose-hover-clr;
     }
   }
 
