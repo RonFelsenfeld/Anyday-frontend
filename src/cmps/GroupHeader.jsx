@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useRef } from 'react'
 
-import { useSecondRender } from '../customHooks/useSecondRender'
-import { ArrowDown, PlusIcon, WorkSpaceOption } from '../services/svg.service'
+import { ArrowDown, ArrowRight, PlusIcon, WorkSpaceOption } from '../services/svg.service'
 import { saveGroup } from '../store/actions/board.actions'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 
@@ -16,32 +15,34 @@ export function GroupHeader({
   onRemoveGroup,
   setGroupToEdit,
   groupToEdit,
+  isExpanded,
+  toggleIsExpanded,
 }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const groupHeaderRef = useRef()
   const sentinelRef = useRef()
 
-  useSecondRender(createObserver)
+  // useSecondRender(createObserver)
 
-  function createObserver() {
-    const groupHeaderObserver = new IntersectionObserver(handleIntersection, {
-      root: groupHeaderRef.current,
-      threshold: 0.9999,
-    })
+  // function createObserver() {
+  //   const groupHeaderObserver = new IntersectionObserver(handleIntersection, {
+  //     root: groupHeaderRef.current,
+  //     threshold: 0.9999,
+  //   })
 
-    groupHeaderObserver.observe(sentinelRef.current)
+  //   groupHeaderObserver.observe(sentinelRef.current)
 
-    function handleIntersection(entries) {
-      entries.forEach(entry => {
-        const { isIntersecting } = entry
-        console.log(isIntersecting)
-      })
-    }
+  //   function handleIntersection(entries) {
+  //     entries.forEach(entry => {
+  //       const { isIntersecting } = entry
+  //       console.log(isIntersecting)
+  //     })
+  //   }
 
-    return () => {
-      groupHeaderObserver.disconnect()
-    }
-  }
+  //   return () => {
+  //     groupHeaderObserver.disconnect()
+  //   }
+  // }
 
   async function onEditGroupTitle(newTitle) {
     if (!newTitle) return
@@ -89,8 +90,12 @@ export function GroupHeader({
           <WorkSpaceOption />
         </button>
 
-        <button className="collapse-btn" style={{ color: group.style.color }}>
-          <ArrowDown />
+        <button
+          className="collapse-btn"
+          style={{ color: group.style.color }}
+          onClick={toggleIsExpanded}
+        >
+          {isExpanded ? <ArrowDown /> : <ArrowRight />}
         </button>
 
         <h2

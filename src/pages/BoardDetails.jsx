@@ -8,11 +8,10 @@ import { loadBoard, removeGroup, saveGroup } from '../store/actions/board.action
 import { AddBoardBtn } from '../services/svg.service'
 import { SET_BOARD } from '../store/reducers/board.reducer'
 
-import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { Loader } from '../cmps/Loader'
 import { useSecondRender } from '../customHooks/useSecondRender'
-import { GroupHeader } from '../cmps/GroupHeader'
+import { GroupPreview } from '../cmps/GroupPreview'
 
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -87,23 +86,16 @@ export function BoardDetails() {
       </div>
 
       <div className="group-container">
-        {board.groups.map(group => {
-          return (
-            <article key={group.id} className="board-group">
-              <GroupHeader
-                group={group}
-                isHeaderExpanded={isHeaderExpanded}
-                onRemoveGroup={onRemoveGroup}
-                setGroupToEdit={setGroupToEdit}
-                groupToEdit={groupToEdit}
-              />
-
-              <div className="group-content">
-                <TaskList group={group} />
-              </div>
-            </article>
-          )
-        })}
+        {board.groups.map(group => (
+          <GroupPreview
+            key={group.id}
+            group={group}
+            isHeaderExpanded={isHeaderExpanded}
+            onRemoveGroup={onRemoveGroup}
+            setGroupToEdit={setGroupToEdit}
+            groupToEdit={groupToEdit}
+          />
+        ))}
       </div>
 
       <button className="add-group-btn" onClick={onAddGroup}>

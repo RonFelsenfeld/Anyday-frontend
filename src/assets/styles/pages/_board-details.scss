@@ -13,27 +13,6 @@
     background-color: $main-bg-clr;
   }
 
-  .group-header {
-    background-color: red;
-  }
-
-  .board-group {
-    align-items: center;
-    padding: 0 0 em(40px) em(38px);
-
-    .group-content {
-      border-block-end: 1px solid $secondary-border-clr;
-      border-top-left-radius: $cmp-br;
-      border-bottom-left-radius: $cmp-br;
-
-      .add-col-btn {
-        svg {
-          color: $secondary-font-clr;
-        }
-      }
-    }
-  }
-
   .add-group-btn {
     display: flex;
     align-items: center;
