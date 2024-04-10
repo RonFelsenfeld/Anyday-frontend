@@ -13,6 +13,7 @@ export function GroupPreview({
   snapshot,
   idx,
   draggableDOMref,
+  // markedTxt
 }) {
   const [isExpanded, setIsExpanded] = useState(true)
   const prevIsExpandedRef = useRef()
@@ -32,6 +33,7 @@ export function GroupPreview({
   return (
     <section className={`group-preview ${collapsedClass}`}>
       <GroupHeader
+        // markedTxt={markedTxt}
         group={group}
         isHeaderExpanded={isHeaderExpanded}
         onRemoveGroup={onRemoveGroup}
@@ -45,7 +47,10 @@ export function GroupPreview({
 
       {isExpanded && (
         <div className="group-content">
-          <TaskList group={group} />
+          <TaskList
+            // markedTxt={markedTxt}
+            group={group}
+          />
         </div>
       )}
     </section>
