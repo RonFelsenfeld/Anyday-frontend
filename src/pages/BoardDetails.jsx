@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
 import { boardService } from '../services/board.service'
-import { loadBoard, removeGroup, saveGroup } from '../store/actions/board.actions'
+import { loadBoard, onFilterBoard, removeGroup, saveGroup, setBoardFilterBy } from '../store/actions/board.actions'
 import { AddBoardBtn, ArrowDown, WorkSpaceOption } from '../services/svg.service'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
@@ -17,6 +17,7 @@ import { EditableText } from '../cmps/EditableText'
 
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [groupToEdit, setGroupToEdit] = useState(null)
@@ -32,6 +33,13 @@ export function BoardDetails() {
 
     return () => dispatch({ type: SET_BOARD, board: null })
   }, [boardId])
+
+
+  useEffect(() => {
+    onFilterBoard(board._id, groupTaskFilterBy)
+
+  }, [groupTaskFilterBy])
+
 
   // useEffect(() => {
   //   if (!headerRef.current || !boardDetailsRef.current) return
@@ -111,7 +119,7 @@ export function BoardDetails() {
 
     showModal(currentTarget, BOTTOM_LEFT, cmpInfo, false)
   }
-
+  if (board) console.log(board);
   if (!board) return <Loader />
   return (
     <section className="board-details">
@@ -124,7 +132,7 @@ export function BoardDetails() {
       </div>
 
       <div className="group-container" ref={boardDetailsRef}>
-        {board.groups.map(group => {
+        {board.groups?.map(group => {
           return (
             <article key={group.id} className="board-group">
               <div className="group-header">

@@ -1,17 +1,43 @@
+import { useState } from 'react'
 import { Filter, Hide, Search, Sort, UserImg } from '../services/svg.service'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
+import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 
 export function BoardControls() {
+  const [isFilterInput, setIsFilterInput] = useState(false)
+
+  function onSetGroupTaskFilterBy(groupTaskFilterBy) {
+    setGroupTaskFilterBy(groupTaskFilterBy)
+  }
+
+  function handleChange({ target }) {
+    const { value } = target
+    onSetGroupTaskFilterBy({ txt: value })
+  }
+
+
   return (
     <section className="board-controls flex align-baseline">
       <button className="btn btn-new-task">New task</button>
 
       <div className='filter-sort-btns flex align-center'>
-        <button className="btn btn-action flex align-center">
+        {!isFilterInput && <button
+          onClick={() => setIsFilterInput(true)}
+          className="btn btn-action flex align-center">
           <Search />
           <span className="btn-title">Search</span>
-        </button>
+        </button>}
+        {isFilterInput &&
+          <input
+            onChange={handleChange}
+            type='text'
+            placeholder='Search this board '
+            onBlur={() => setIsFilterInput(false)}
+          />
+        }
+
+
 
         <button
           className="btn btn-action flex align-center"

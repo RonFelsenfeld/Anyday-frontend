@@ -10,6 +10,7 @@ export const boardService = {
   remove,
   save,
   getDefaultBoardFilter,
+  getDefaultGroupTaskFilter,
   getGroupById,
   removeGroup,
   saveGroup,
@@ -24,16 +25,16 @@ export const boardService = {
   getColTitle,
   getGroupColors,
   getTaskById,
+  filterBoard,
 }
 
-async function query(filterBy) {
-
+async function query(boardFilterBy) {
   try {
     var boards = await storageService.query(BOARDS_KEY)
     var boardsToReturn = boards.slice()
-    const regExp = new RegExp(filterBy.txt, 'i')
+    const regExp = new RegExp(boardFilterBy.txt, 'i')
     boardsToReturn = boardsToReturn.filter(board => regExp.test(board.title))
-    // console.log(boardsToReturn)
+
     return boardsToReturn
 
   } catch (err) {
@@ -44,8 +45,28 @@ async function query(filterBy) {
   // boards = boards.map(({ _id, title, imgUlr }) => ({ _id, title, imgUlr }))
 }
 
-function getById(boardId) {
-  return storageService.get(BOARDS_KEY, boardId)
+async function getById(boardId, groupTaskFilterBy) {
+  // console.log(groupTaskFilterBy)
+
+  var board = await storageService.get(BOARDS_KEY, boardId)
+  // const filteredBoard = _filterGroupsAndTask(board,groupTaskFilterBy)
+
+  // const filteredGroups = board.groups.filter(group => regExp.test(group.title)) //|| group.task.title))
+
+  // console.log(filteredBoard)
+  return board
+}
+
+function filterBoard(board, filterBy) {
+  let groupesToReturn = board.groups.slice()
+
+  if(filterBy.txt){
+    const regExp = new RegExp(filterBy.txt, 'i')
+    groupesToReturn = groupesToReturn?.filter(group => regExp.test(group.title))
+  }
+  
+
+  return groupesToReturn
 }
 
 function remove(boardId) {
@@ -97,6 +118,10 @@ function getDefaultBoardFilter() {
 }
 
 // * --------------------------------- GROUPS ---------------------------------
+
+function getDefaultGroupTaskFilter() {
+  return { txt: '' }
+}
 
 function removeGroup(board, groupId) {
   const groupIdx = board.groups.findIndex(group => group.id === groupId)

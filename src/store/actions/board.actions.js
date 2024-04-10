@@ -6,13 +6,14 @@ import {
   SET_BOARD,
   SET_BOARDS,
   SET_BOARD_FILTER_BY,
+  SET_GROUP_TASK_FILTER_BY,
 } from '../reducers/board.reducer'
 import { SET_IS_LOADING, } from '../reducers/system.reducer'
 import { store } from '../store'
 
 export async function loadBoards() {
   const boardFilterBy = store.getState().boardModule.boardFilterBy
- 
+
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
     const boards = await boardService.query(boardFilterBy)
@@ -27,9 +28,12 @@ export async function loadBoards() {
 }
 
 export async function loadBoard(boardId) {
+  const groupTaskFilterBy = store.getState().boardModule.groupTaskFilterBy
+  // console.log(groupTaskFilterBy)
+
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
-    const board = await boardService.getById(boardId)
+    const board = await boardService.getById(boardId, groupTaskFilterBy)
     store.dispatch({ type: SET_BOARD, board })
   } catch (err) {
     console.log('board action -> cannot load board', err)
@@ -112,4 +116,20 @@ export async function saveTask(board, group, task) {
 
 export function setBoardFilterBy(boardFilterBy) {
   store.dispatch({ type: SET_BOARD_FILTER_BY, boardFilterBy })
+}
+export function setGroupTaskFilterBy(groupTaskFilterBy) {
+  // console.log(groupTaskFilterBy)
+  store.dispatch({ type: SET_GROUP_TASK_FILTER_BY, groupTaskFilterBy })
+}
+
+export async function onFilterBoard(boardId, filterBy) {
+  try {
+    const board = await boardService.getById(boardId)
+    const filteredGroups = await boardService.filterBoard(board, filterBy)
+    store.dispatch({ type: SET_BOARD, board: { ...board, groups: filteredGroups } })
+
+
+  } catch (err) {
+    console.log(err)
+  }
 }

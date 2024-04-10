@@ -7,16 +7,17 @@ export const ADD_BOARD = 'ADD_BOARD'
 export const EDIT_BOARD = 'EDIT_BOARD'
 
 export const SET_BOARD_FILTER_BY = 'SET_BOARD_FILTER_BY'
+export const SET_GROUP_TASK_FILTER_BY = 'SET_GROUP_TASK_FILTER_BY'
 
 
 const initialState = {
   boards: [],
   currentBoard: null,
-  boardFilterBy: boardService.getDefaultBoardFilter()
+  boardFilterBy: boardService.getDefaultBoardFilter(),
+  groupTaskFilterBy: boardService.getDefaultGroupTaskFilter()
 }
 
 export function boardReducer(state = initialState, action = {}) {
-  console.log(action);
   switch (action.type) {
     case SET_BOARDS:
       return {
@@ -48,11 +49,16 @@ export function boardReducer(state = initialState, action = {}) {
         boards: state.boards.map(board => (board._id === action.board._id ? action.board : board)),
         currentBoard: { ...action.board },
       }
-      case SET_BOARD_FILTER_BY:
-            return {
-                ...state,
-                boardFilterBy: { ...state.boardFilterBy, ...action.boardFilterBy }
-            }
+    case SET_BOARD_FILTER_BY:
+      return {
+        ...state,
+        boardFilterBy: { ...state.boardFilterBy, ...action.boardFilterBy }
+      }
+    case SET_GROUP_TASK_FILTER_BY:
+      return {
+        ...state,
+        groupTaskFilterBy: { ...state.groupTaskFilterBy, ...action.groupTaskFilterBy }
+      }
 
     default:
       return state
