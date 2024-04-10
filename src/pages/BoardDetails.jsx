@@ -16,6 +16,7 @@ import { GroupPreview } from '../cmps/GroupPreview'
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
+  // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [groupToEdit, setGroupToEdit] = useState(null)
@@ -80,6 +81,7 @@ export function BoardDetails() {
     }
   }
 
+
   if (!board) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
@@ -96,6 +98,7 @@ export function BoardDetails() {
       <div className="group-container">
         {board.groups.map(group => (
           <GroupPreview
+            // markedTxt={markedTxt}
             key={group.id}
             group={group}
             isHeaderExpanded={isHeaderExpanded}

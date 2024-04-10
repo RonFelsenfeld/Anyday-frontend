@@ -9,6 +9,7 @@ export function GroupPreview({
   onRemoveGroup,
   setGroupToEdit,
   groupToEdit,
+  // markedTxt
 }) {
   const [isExpanded, setIsExpanded] = useState(true)
 
@@ -19,6 +20,7 @@ export function GroupPreview({
   return (
     <section className="group-preview">
       <GroupHeader
+        // markedTxt={markedTxt}
         group={group}
         isHeaderExpanded={isHeaderExpanded}
         onRemoveGroup={onRemoveGroup}
@@ -30,7 +32,9 @@ export function GroupPreview({
 
       {isExpanded && (
         <div className="group-content">
-          <TaskList group={group} />
+          <TaskList
+            // markedTxt={markedTxt}
+            group={group} />
         </div>
       )}
     </section>

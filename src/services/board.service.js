@@ -45,15 +45,8 @@ async function query(boardFilterBy) {
   // boards = boards.map(({ _id, title, imgUlr }) => ({ _id, title, imgUlr }))
 }
 
-async function getById(boardId, groupTaskFilterBy) {
-  // console.log(groupTaskFilterBy)
-
+async function getById(boardId) {
   var board = await storageService.get(BOARDS_KEY, boardId)
-  // const filteredBoard = _filterGroupsAndTask(board,groupTaskFilterBy)
-
-  // const filteredGroups = board.groups.filter(group => regExp.test(group.title)) //|| group.task.title))
-
-  // console.log(filteredBoard)
   return board
 }
 
@@ -62,16 +55,23 @@ function filterBoard(board, filterBy) {
 
   if (filterBy.txt) {
     const regExp = new RegExp(filterBy.txt, 'i')
+
     const filteredTasksGroups = groupsToReturn.filter(group => group.tasks.some(t => regExp.test(t.title)))
- 
+    const filteredGroupsWithFinalTasks = []
+
+    var filteredAll = filteredTasksGroups.map(group => {
+      const filteredGroup = group.tasks.filter(t => regExp.test(t.title))
+      group.tasks = [...filteredGroup]
+      return group
+    })
+
+
+    console.log(filteredGroupsWithFinalTasks)
+
     groupsToReturn = groupsToReturn?.filter(group => regExp.test(group.title))
 
-    var filteredGroups = [...new Set([...groupsToReturn, ...filteredTasksGroups])]
-
-
   }
-
-  return  filteredGroups || groupsToReturn
+  return filteredAll || groupsToReturn
 }
 
 function remove(boardId) {
