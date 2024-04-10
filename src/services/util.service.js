@@ -8,7 +8,9 @@ export const utilService = {
   saveToStorage,
   loadFromStorage,
   animateCSS,
-  getInitials
+  getInitials,
+  calcPercentageOfElapsedTime,
+  getNumOfDays
 }
 
 function makeId(length = 6) {
@@ -132,7 +134,30 @@ function getInitials(fullName) {
   let initials = '';
 
   for (let i = 0; i < words.length && initials.length < 2; i++) {
-      initials += words[i][0].toUpperCase();
+    initials += words[i][0].toUpperCase();
   }
   return initials;
+}
+
+function calcPercentageOfElapsedTime(startDate, dueDate) {
+  if (dueDate < Date.now()) return 100
+  else if (startDate > Date.now()) return 0
+  else {
+    const timeDiff = dueDate - startDate
+    const timeElapsedSinceStartDate = Date.now() - startDate
+
+    const percentageOfElapsedTime = (timeElapsedSinceStartDate / timeDiff) * 100
+
+    return percentageOfElapsedTime.toFixed(2)
+  }
+}
+
+function getNumOfDays(startDate, dueDate) {
+  console.log('startDate, dueDate',startDate, dueDate)
+  const start = new Date(startDate)
+  const end = new Date(dueDate)
+  const diff = Math.abs(end - start)
+
+  const daysDifference = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  return daysDifference
 }

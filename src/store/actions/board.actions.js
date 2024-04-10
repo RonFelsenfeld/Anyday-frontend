@@ -103,7 +103,6 @@ export async function removeTask(board, group, taskId) {
 }
 
 export async function saveTask(board, group, task) {
-  console.log(task)
   try {
     const savedBoard = await boardService.saveTask(board, group, task)
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })

@@ -195,6 +195,18 @@
 
     border-radius: 30px;
     color: $main-bg-clr;
-    background-color: $main-font-clr;
+    background-color: var(--group-clr-17);
+
+    .days-num {
+      display: none;
+    }
+
+    &:hover .progress-bar{
+      display: none
+    }
+
+    &:hover .days-num {
+        display: grid
+      }
   }
 }
