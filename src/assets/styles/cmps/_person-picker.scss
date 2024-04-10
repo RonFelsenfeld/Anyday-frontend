@@ -78,9 +78,9 @@
       color: $secondary-font-clr;
     }
 
-&:focus-within {
-  border-color: $btn-compose-clr;
-}
+    &:focus-within {
+      border-color: $btn-compose-clr;
+    }
   }
 
   .suggested-people-title {
@@ -101,7 +101,7 @@
       .suggested-person-img {
         @include userImg($size: 26px, $margin-inline: 2px);
         border: none;
-        border: 1px solid $main-bg-clr
+        border: 1px solid $main-bg-clr;
       }
 
       .suggested-person-name {

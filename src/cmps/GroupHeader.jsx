@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useRef } from 'react'
+import { Draggable } from 'react-beautiful-dnd'
 
 import { ArrowDown, ArrowRight, PlusIcon, WorkSpaceOption } from '../services/svg.service'
 import { saveGroup } from '../store/actions/board.actions'
@@ -17,32 +18,10 @@ export function GroupHeader({
   groupToEdit,
   isExpanded,
   toggleIsExpanded,
+  idx,
+  draggableDOMref,
 }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
-  const groupHeaderRef = useRef()
-  const sentinelRef = useRef()
-
-  // useSecondRender(createObserver)
-
-  // function createObserver() {
-  //   const groupHeaderObserver = new IntersectionObserver(handleIntersection, {
-  //     root: groupHeaderRef.current,
-  //     threshold: 0.9999,
-  //   })
-
-  //   groupHeaderObserver.observe(sentinelRef.current)
-
-  //   function handleIntersection(entries) {
-  //     entries.forEach(entry => {
-  //       const { isIntersecting } = entry
-  //       console.log(isIntersecting)
-  //     })
-  //   }
-
-  //   return () => {
-  //     groupHeaderObserver.disconnect()
-  //   }
-  // }
 
   async function onEditGroupTitle(newTitle) {
     if (!newTitle) return
@@ -81,66 +60,97 @@ export function GroupHeader({
     return groupToEdit?.id === group.id
   }
 
+  function getClassList(snapshot) {
+    let classList = ''
+    if (isHeaderExpanded) classList = 'header-expanded '
+    if (!isExpanded) classList += 'collapsed '
+    if (snapshot.isDragging) classList += 'dragging'
+
+    return classList
+  }
+
   return (
-    <header className={`group-header ${isHeaderExpanded ? 'expanded' : ''}`} ref={groupHeaderRef}>
-      {/* <div className="sentinel" ref={sentinelRef}></div> */}
-
-      <div className="group-title-container flex align-center">
-        <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
-          <WorkSpaceOption />
-        </button>
-
-        <button
-          className="collapse-btn"
-          style={{ color: group.style.color }}
-          onClick={toggleIsExpanded}
-        >
-          {isExpanded ? <ArrowDown /> : <ArrowRight />}
-        </button>
-
-        <h2
-          style={{ color: group.style.color }}
-          onClick={() => {
-            setGroupToEdit(group)
-            hideToolTip()
+    <Draggable key={group.id} draggableId={group.id} index={idx}>
+      {(provider, snapshot) => (
+        <header
+          {...provider.draggableProps}
+          {...provider.dragHandleProps}
+          className={`group-header ${getClassList(snapshot)}`}
+          ref={el => {
+            provider.innerRef(el)
+            if (snapshot.isDragging) {
+              draggableDOMref.current = el
+            }
           }}
-          onMouseEnter={ev => showToolTip(ev.target, 'Click to edit')}
-          onMouseLeave={() => hideToolTip()} // ! MOVE BELOW HEADING
-          className="group-title"
         >
-          {!isEditingCurrGroup(group) && group.title}
-          {isEditingCurrGroup(group) && (
-            <div className="group-title-edit-container flex align-center">
-              <EditableText
-                prevTxt={group.title}
-                func={onEditGroupTitle}
-                className={'group-title-input'}
-                isFocused={true}
-                isSubmitOnBlur={false}
-                btnInfo={{
-                  className: 'btn-change-group-color',
-                  style: { backgroundColor: group.style.color },
-                  onClick: handleColorPickerClick,
-                }}
-              />
-            </div>
+          {!isExpanded && (
+            <div
+              className="list-indicator"
+              style={{
+                backgroundColor: group.style.color,
+              }}
+            ></div>
           )}
-        </h2>
+          <div className="group-title-container flex align-center">
+            <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
+              <WorkSpaceOption />
+            </button>
 
-        <h2 className="tasks-left">{`${group.tasks.length} Tasks`}</h2>
-      </div>
+            <button
+              className="collapse-btn"
+              style={{ color: group.style.color }}
+              onClick={toggleIsExpanded}
+            >
+              {isExpanded ? <ArrowDown /> : <ArrowRight />}
+            </button>
 
-      <li className="group-first-row">
-        <div className="task-indicator" style={{ backgroundColor: group.style.color }}></div>
-        <input type="checkbox" name="all-tasks" />
-        <h3>Task</h3>
-        {board.cmpsOrder.map((cmp, idx) => (
-          <h3 key={idx}>{boardService.getColTitle(cmp)}</h3>
-        ))}
-        <h3 className="add-col-btn">
-          <PlusIcon />
-        </h3>
-      </li>
-    </header>
+            <h2
+              style={{ color: group.style.color }}
+              onClick={() => {
+                setGroupToEdit(group)
+                hideToolTip()
+              }}
+              onMouseEnter={ev => isExpanded && showToolTip(ev.target, 'Click to edit')}
+              onMouseLeave={() => isExpanded && hideToolTip()} // ! MOVE BELOW HEADING
+              className="group-title"
+            >
+              {!isEditingCurrGroup(group) && group.title}
+              {isEditingCurrGroup(group) && (
+                <div className="group-title-edit-container flex align-center">
+                  <EditableText
+                    prevTxt={group.title}
+                    func={onEditGroupTitle}
+                    className={'group-title-input'}
+                    isFocused={true}
+                    isSubmitOnBlur={false}
+                    btnInfo={{
+                      className: 'btn-change-group-color',
+                      style: { backgroundColor: group.style.color },
+                      onClick: handleColorPickerClick,
+                    }}
+                  />
+                </div>
+              )}
+            </h2>
+
+            <h2 className="tasks-left">{`${group.tasks.length} Tasks`}</h2>
+          </div>
+
+          {isExpanded && (
+            <li className="group-first-row">
+              <div className="task-indicator" style={{ backgroundColor: group.style.color }}></div>
+              <input type="checkbox" name="all-tasks" />
+              <h3>Task</h3>
+              {board.cmpsOrder.map((cmp, idx) => (
+                <h3 key={idx}>{boardService.getColTitle(cmp)}</h3>
+              ))}
+              <h3 className="add-col-btn">
+                <PlusIcon />
+              </h3>
+            </li>
+          )}
+        </header>
+      )}
+    </Draggable>
   )
 }

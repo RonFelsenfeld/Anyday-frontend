@@ -1,0 +1,15 @@
+.dragging-placeholder {
+  position: absolute;
+  border: 1px dashed $dragging-placeholder-border-clr;
+  border-radius: $el-br;
+}
+
+.droppable-area {
+  position: relative;
+}
+
+.dragging {
+  rotate: 1deg;
+  background-color: $dragged-task-clr;
+  opacity: 0.85;
+}

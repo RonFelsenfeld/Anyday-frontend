@@ -3,17 +3,29 @@ import { Filter, Hide, Search, Sort, UserImg } from '../services/svg.service'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 import { setGroupTaskFilterBy } from '../store/actions/board.actions'
+import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 export function BoardControls() {
   const [isFilterInput, setIsFilterInput] = useState(false)
+  // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
+  const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
+
 
   function onSetGroupTaskFilterBy(groupTaskFilterBy) {
     setGroupTaskFilterBy(groupTaskFilterBy)
   }
 
+  function handlePersonFilter({currentTarget}){
+    console.log(currentTarget);
+  }
+  
+
+
   function handleChange({ target }) {
     const { value } = target
     onSetGroupTaskFilterBy({ txt: value })
+    // markFilteredTxt(value)
   }
 
 
@@ -43,7 +55,7 @@ export function BoardControls() {
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.target, 'Filter board by person')}
           onMouseLeave={() => hideToolTip()}
-          onClick={ev => showModal(ev, BOTTOM_CENTER, 'hello', false)}
+          onClick={handlePersonFilter}
         >
           <UserImg />
           <span className="btn-title">Person</span>

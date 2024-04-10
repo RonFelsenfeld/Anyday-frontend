@@ -1,23 +1,6 @@
 .group-container {
   display: grid;
 
-  .group-list {
-    .droppable-area {
-      position: relative;
-    }
-
-    .dragging-placeholder {
-      border: 1px dashed $dragging-placeholder-border-clr;
-      border-radius: $el-br;
-    }
-  }
-
-  li.task.dragging {
-    rotate: 1deg;
-    background-color: $dragged-task-clr;
-    opacity: 0.85;
-  }
-
   li:not(.group-first-row) {
     &:hover {
       box-shadow: 4px 3px 6px -3px $list-shadow-clr;

@@ -7,6 +7,7 @@ import {
   SET_BOARDS,
   SET_BOARD_FILTER_BY,
   SET_GROUP_TASK_FILTER_BY,
+  // SET_MARKED_TEXT,
 } from '../reducers/board.reducer'
 import { SET_IS_LOADING, } from '../reducers/system.reducer'
 import { store } from '../store'
@@ -117,14 +118,13 @@ export function setBoardFilterBy(boardFilterBy) {
   store.dispatch({ type: SET_BOARD_FILTER_BY, boardFilterBy })
 }
 export function setGroupTaskFilterBy(groupTaskFilterBy) {
-  // console.log(groupTaskFilterBy)
   store.dispatch({ type: SET_GROUP_TASK_FILTER_BY, groupTaskFilterBy })
 }
 
 export async function onFilterBoard(boardId, filterBy) {
   try {
     const board = await boardService.getById(boardId)
-    const filteredGroups = await boardService.filterBoard(board, filterBy)
+    const filteredGroups = boardService.filterBoard(board, filterBy)
     store.dispatch({ type: SET_BOARD, board: { ...board, groups: filteredGroups } })
 
 
@@ -132,3 +132,7 @@ export async function onFilterBoard(boardId, filterBy) {
     console.log(err)
   }
 }
+
+// export function markFilteredTxt(markedTxt) {
+//   store.dispatch({ type: SET_MARKED_TEXT, markedTxt })
+// }

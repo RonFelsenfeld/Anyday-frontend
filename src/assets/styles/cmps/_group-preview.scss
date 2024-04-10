@@ -6,6 +6,31 @@
     'stats';
   padding: 0 0 em(40px) em(38px);
 
+  &.collapsed {
+    padding-block-end: em(14px);
+
+    .group-header {
+      .group-title-container {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        grid-template-rows: 30px 22px;
+        border-radius: $cmp-br;
+        border: 1px solid $secondary-border-clr;
+
+        padding: em(4px) em(8px);
+
+        .board-menu-btn {
+          transform: translate(-50px, -10px);
+        }
+      }
+
+      .tasks-left {
+        grid-column: 2;
+        opacity: 1;
+      }
+    }
+  }
+
   .group-header {
     grid-area: header;
   }
