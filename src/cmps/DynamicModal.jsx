@@ -13,7 +13,7 @@ export function DynamicModal() {
   const { isOpen, pos, alignment = BOTTOM_CENTER, cmp, targetDimensions, hasCaret = false } = modal
   let classList = ''
 
-  console.log(modal)
+  // console.log(modal)
 
   useClickOutside(modalRef)
 
