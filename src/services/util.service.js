@@ -140,6 +140,7 @@ function getInitials(fullName) {
 }
 
 function calcPercentageOfElapsedTime(startDate, dueDate) {
+  if (!startDate || !dueDate) return 0
   if (dueDate < Date.now()) return 100
   else if (startDate > Date.now()) return 0
   else {

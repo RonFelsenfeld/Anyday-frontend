@@ -13,14 +13,8 @@
   .group-content {
     grid-area: list;
 
-    border-block-end: 1px solid $secondary-border-clr;
+    // border-block-end: 1px solid $secondary-border-clr;
     border-top-left-radius: $cmp-br;
-    border-bottom-left-radius: $cmp-br;
-
-    .add-col-btn {
-      svg {
-        color: $secondary-font-clr;
-      }
-    }
+    // border-bottom-left-radius: $cmp-br;
   }
 }
