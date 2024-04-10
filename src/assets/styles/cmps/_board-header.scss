@@ -132,10 +132,14 @@
     .view-btn {
       @include btn;
       @include viewIndicator;
-      position: relative;
+      @include viewSeparator;
+      @include scalableBtn;
 
+      position: relative;
       padding: 8px 8px 12px 8px;
+
       font-size: em(14px);
+      font-family: FigtreeLight, RobotoRegular, sans-serif;
 
       span {
         padding-inline: 6px;

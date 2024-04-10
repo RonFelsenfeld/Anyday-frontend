@@ -10,7 +10,7 @@ export function GroupPreview({
   onRemoveGroup,
   setGroupToEdit,
   groupToEdit,
-  isDragging,
+  snapshot,
   idx,
   draggableDOMref,
 }) {
@@ -18,9 +18,9 @@ export function GroupPreview({
   const prevIsExpandedRef = useRef()
 
   useEffectUpdate(() => {
-    if (!isDragging) setIsExpanded(prevIsExpandedRef.current)
+    if (!snapshot.isDraggingOver) setIsExpanded(prevIsExpandedRef.current)
     else setIsExpanded(false)
-  }, [isDragging])
+  }, [snapshot.isDraggingOver])
 
   function toggleIsExpanded() {
     setIsExpanded(prevIsExpanded => !prevIsExpanded)

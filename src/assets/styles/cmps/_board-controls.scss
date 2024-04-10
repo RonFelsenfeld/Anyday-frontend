@@ -3,15 +3,11 @@
   gap: 4px;
 
   padding-block: em(16px);
-  border-block-start: 1px solid rgb(208, 212, 228);
+  border-block-start: 1px solid $secondary-border-clr;
 
   .btn {
     height: 32px;
     border-radius: $el-br;
-
-    &:not(.btn-new-task):active {
-      scale: 1;
-    }
 
     // For the tooltip hover to work only on the button itself
     > * {
@@ -20,10 +16,11 @@
   }
 
   .btn-new-task {
+    @include scalableBtn;
     margin-inline: 4px em(14px);
 
-    font-family: FigtreeLight, RobotoBold, sans-serif;
-    color: rgb(255, 255, 255);
+    font-family: FigtreeLight, RobotoRegular, sans-serif;
+    color: $main-bg-clr;
     background-color: $btn-compose-clr;
 
     &:hover {

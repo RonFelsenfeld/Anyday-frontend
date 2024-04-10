@@ -6,6 +6,11 @@
   padding-block-end: 50px;
   background-color: $main-bg-clr;
 
+  .group-container {
+    &.dragging-layout {
+    }
+  }
+
   .sticky {
     position: sticky;
     inset: 0 auto auto 0;

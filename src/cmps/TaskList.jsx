@@ -10,6 +10,7 @@ import { TaskPreview } from './TaskPreview'
 
 export function TaskList({ group }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+
   const [taskToEdit, setTaskToEdit] = useState(null)
   const [activeTaskId, setActiveTaskId] = useState(null)
   const [placeholderProps, setPlaceholderProps] = useState({})
@@ -79,7 +80,7 @@ export function TaskList({ group }) {
   }
 
   return (
-    <ul className="group-container clean-list">
+    <ul className={`group-container clean-list`}>
       <div className="group-list">
         <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
           <Droppable droppableId="tasks">

@@ -26,7 +26,6 @@ export function BoardDetails() {
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
-  const [isDragging, setIsDragging] = useState(false)
   const [groupToEdit, setGroupToEdit] = useState(null)
   const [placeholderProps, setPlaceholderProps] = useState({})
 
@@ -71,10 +70,6 @@ export function BoardDetails() {
     }
   }
 
-  function handleOnDragStart(res) {
-    setIsDragging(true)
-  }
-
   function handleOnDragUpdate(update) {
     if (!update.destination) return
 
@@ -92,6 +87,8 @@ export function BoardDetails() {
         return total + curr.clientHeight + marginBottom
       }, 0)
 
+    console.log(clientHeight)
+
     setPlaceholderProps({
       clientHeight,
       clientWidth,
@@ -101,7 +98,6 @@ export function BoardDetails() {
   }
 
   async function handleOnDragEnd(result) {
-    setIsDragging(false)
     if (!result.destination) return
 
     const items = Array.from(board.groups)
@@ -149,17 +145,15 @@ export function BoardDetails() {
       </div>
 
       <div>
-        <DragDropContext
-          onDragStart={handleOnDragStart}
-          onDragEnd={handleOnDragEnd}
-          onDragUpdate={handleOnDragUpdate}
-        >
+        <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
           <Droppable droppableId="groups">
             {(provider, snapshot) => (
               <div
                 {...provider.droppableProps}
                 ref={provider.innerRef}
-                className="group-container droppable-area"
+                className={`group-container droppable-area ${
+                  snapshot.isDraggingOver ? 'dragging-layout' : ''
+                }`}
               >
                 {board.groups.map((group, idx) => (
                   <GroupPreview
@@ -169,7 +163,7 @@ export function BoardDetails() {
                     onRemoveGroup={onRemoveGroup}
                     setGroupToEdit={setGroupToEdit}
                     groupToEdit={groupToEdit}
-                    isDragging={isDragging}
+                    snapshot={snapshot}
                     draggableDOMref={draggableDOMref}
                     idx={idx}
                   />

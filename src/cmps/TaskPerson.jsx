@@ -52,7 +52,7 @@ export function TaskPerson({ group, task }) {
     <div onClick={handlePickerClick} className="task-row task-persons-img">
       <button className="add-person-btn fa-solid plus"></button>
       {(!taskPersons || !taskPersons.length) && (
-        <img src={`https://cdn.monday.com/icons/dapulse-person-column.svg`} alt="person-icon" />
+        <img src={'/assets/img/user-avatar.svg'} alt="person-icon" />
       )}
       {taskPersons && taskPersons.length > 2 && (
         <>
