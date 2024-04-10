@@ -9,8 +9,12 @@
   .sticky {
     position: sticky;
     inset: 0 auto auto 0;
-    z-index: 50;
+    z-index: 60;
     background-color: $main-bg-clr;
+  }
+
+  .group-header {
+    background-color: red;
   }
 
   .board-group {

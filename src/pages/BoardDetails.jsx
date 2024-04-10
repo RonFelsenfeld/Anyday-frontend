@@ -92,6 +92,7 @@ export function BoardDetails() {
             <article key={group.id} className="board-group">
               <GroupHeader
                 group={group}
+                isHeaderExpanded={isHeaderExpanded}
                 onRemoveGroup={onRemoveGroup}
                 setGroupToEdit={setGroupToEdit}
                 groupToEdit={groupToEdit}

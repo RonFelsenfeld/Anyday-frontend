@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux'
+import { useRef } from 'react'
 
+import { useSecondRender } from '../customHooks/useSecondRender'
 import { ArrowDown, PlusIcon, WorkSpaceOption } from '../services/svg.service'
 import { saveGroup } from '../store/actions/board.actions'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
@@ -8,8 +10,38 @@ import { EditableText } from './EditableText'
 import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
 import { boardService } from '../services/board.service'
 
-export function GroupHeader({ group, onRemoveGroup, setGroupToEdit, groupToEdit }) {
+export function GroupHeader({
+  group,
+  isHeaderExpanded,
+  onRemoveGroup,
+  setGroupToEdit,
+  groupToEdit,
+}) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const groupHeaderRef = useRef()
+  const sentinelRef = useRef()
+
+  useSecondRender(createObserver)
+
+  function createObserver() {
+    const groupHeaderObserver = new IntersectionObserver(handleIntersection, {
+      root: groupHeaderRef.current,
+      threshold: 0.9999,
+    })
+
+    groupHeaderObserver.observe(sentinelRef.current)
+
+    function handleIntersection(entries) {
+      entries.forEach(entry => {
+        const { isIntersecting } = entry
+        console.log(isIntersecting)
+      })
+    }
+
+    return () => {
+      groupHeaderObserver.disconnect()
+    }
+  }
 
   async function onEditGroupTitle(newTitle) {
     if (!newTitle) return
@@ -49,7 +81,9 @@ export function GroupHeader({ group, onRemoveGroup, setGroupToEdit, groupToEdit 
   }
 
   return (
-    <header className="group-header">
+    <header className={`group-header ${isHeaderExpanded ? 'expanded' : ''}`} ref={groupHeaderRef}>
+      {/* <div className="sentinel" ref={sentinelRef}></div> */}
+
       <div className="group-title-container flex align-center">
         <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
           <WorkSpaceOption />
