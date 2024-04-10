@@ -40,6 +40,8 @@ export function TaskPreview({
       </button>
 
       <div className={`sticky-container ${activeClass}`}>
+        <div className="task-indicator" style={{ backgroundColor: group.style.color }}></div>
+
         <input type="checkbox" name="task" />
         <div
           onClick={() => {

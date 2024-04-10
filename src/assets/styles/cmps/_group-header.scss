@@ -1,0 +1,89 @@
+.board-details .group-header {
+  display: grid;
+  grid-template-rows: 40px 36px;
+  cursor: grab;
+
+  position: sticky;
+  top: 133px;
+  left: 0;
+  background-color: $main-bg-clr;
+  z-index: 50;
+
+  &.expanded {
+    top: 185px;
+  }
+
+  .group-title-container {
+    grid-column: 1 / -1;
+
+    .board-menu-btn {
+      position: absolute;
+      transform: translate(-30px);
+      opacity: 0;
+      @include btn;
+    }
+
+    .collapse-btn {
+      display: grid;
+      justify-content: center;
+      align-items: end;
+      margin: 0;
+      margin-inline-end: 6px;
+      padding: 0;
+    }
+
+    .group-title {
+      color: var(--group-clr-9);
+      font-size: 1.3rem;
+      margin-inline-end: 15px;
+      font-family: PoppinsMedium;
+
+      .group-title-input {
+        input {
+          font-size: 17px;
+          font-family: PoppinsRegular;
+          color: inherit;
+        }
+      }
+
+      .group-title-edit-container {
+        gap: 4px;
+
+        border: 1px solid $btn-compose-clr;
+        border-radius: $el-br;
+        padding: 0px 3px;
+
+        .btn-change-group-color {
+          @include colorBtn(24px);
+        }
+
+        .group-title-input {
+          input {
+            outline: none;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  .tasks-left {
+    opacity: 0;
+    align-self: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  &:hover .board-menu-btn {
+    opacity: 1;
+  }
+
+  &:hover .tasks-left {
+    opacity: 1;
+  }
+
+  .group-first-row {
+    border-top-left-radius: $cmp-br;
+  }
+}

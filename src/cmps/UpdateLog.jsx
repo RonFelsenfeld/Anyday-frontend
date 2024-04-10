@@ -17,7 +17,6 @@ export function UpdateLog() {
   const { taskId } = useParams()
 
   useEffect(() => {
-    console.log('rendred')
     if (taskId) loadTask()
   }, [])
 

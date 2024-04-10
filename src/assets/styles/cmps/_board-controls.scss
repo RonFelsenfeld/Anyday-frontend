@@ -15,7 +15,7 @@
 
     // For the tooltip hover to work only on the button itself
     > * {
-      z-index: -1;
+      pointer-events: none;
     }
   }
 

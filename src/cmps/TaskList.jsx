@@ -7,7 +7,6 @@ import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
 
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
-import { PlusIcon } from '../services/svg.service'
 
 export function TaskList({ group }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -81,18 +80,7 @@ export function TaskList({ group }) {
 
   return (
     <ul className="group-container clean-list">
-      <div style={{ borderColor: group.style.color }} className="group-list">
-        <li className="group-first-row">
-          <input type="checkbox" name="all-tasks" />
-          <h3>Task</h3>
-          {board.cmpsOrder.map((cmp, idx) => (
-            <h3 key={idx}>{boardService.getColTitle(cmp)}</h3>
-          ))}
-          <h3 className="add-col-btn">
-            <PlusIcon />
-          </h3>
-        </li>
-
+      <div className="group-list">
         <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
           <Droppable droppableId="tasks">
             {(provider, snapshot) => (
@@ -146,6 +134,7 @@ export function TaskList({ group }) {
       </div>
 
       <li style={{ borderColor: group.style.color }} className="add-task-li">
+        <div className="task-indicator" style={{ backgroundColor: group.style.color }}></div>
         <input disabled className="add-task-checkbox" type="checkbox" name="task" />
         <div
           className="add-task-container"

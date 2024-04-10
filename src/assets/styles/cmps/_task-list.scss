@@ -2,9 +2,6 @@
   display: grid;
 
   .group-list {
-    border-inline-start: 6px solid var(--group-clr-9);
-    border-top-left-radius: $cmp-br;
-
     .droppable-area {
       position: relative;
     }
@@ -34,7 +31,7 @@
 
   li:not(.task) {
     display: grid;
-    grid-template-columns: 32px 445px 100px repeat(4, 140px) 1fr;
+    grid-template-columns: 6px 32px 445px 100px repeat(4, 140px) 1fr;
     grid-auto-rows: $task-preview-height;
 
     input:not([name='add-task']) {
@@ -49,7 +46,12 @@
       position: sticky;
       top: 0;
       background-color: $main-bg-clr;
+      border-block: 1px solid $secondary-border-clr;
       z-index: 1;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      border-top-left-radius: $cmp-br;
+      overflow: hidden;
       // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
       & > * {
@@ -58,7 +60,10 @@
         font-size: 1rem;
         align-items: center;
         justify-content: center;
-        border-inline-start: 1px solid $secondary-border-clr;
+
+        &:not(.task-indicator) {
+          border-inline-start: 1px solid $secondary-border-clr;
+        }
       }
 
       input:hover {
@@ -69,13 +74,12 @@
       .add-col-btn {
         justify-self: start;
         padding: 10px;
-        // border: none;
       }
     }
 
     &.add-task-li {
       border-bottom-left-radius: $cmp-br;
-      border-inline-start: 6px solid var(--group-clr-91);
+      overflow: hidden;
       opacity: 0.4;
 
       .add-task-container {
