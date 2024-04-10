@@ -14,9 +14,11 @@ export function TaskTimeline({ group, task }) {
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, true)
   }
 
+  const percentage = utilService.calcPercentageOfElapsedTime(task?.timeline?.startDate, task?.timeline?.dueDate)
+
   return (
     <div
-      style={{ background: `linear-gradient(to right, ${group.style.color} 67%, #333333 67%)` }}
+      style={{ background: `linear-gradient(to right, ${group.style.color} ${percentage}%, #333333 ${percentage}%)` }}
       className="task-row task-timeline"
       onClick={handlePickerClick}
     >
