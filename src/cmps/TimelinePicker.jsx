@@ -8,8 +8,8 @@ import { saveTask } from '../store/actions/board.actions'
 export function TimelinePicker({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
-  const [date, setStartDate] = useState(moment(task.timeline.startDate) || null)
-  const [dueDate, setEndDate] = useState(moment(task.timeline.dueDate) || null)
+  const [date, setStartDate] = useState(moment(task.timeline?.startDate) || null)
+  const [dueDate, setEndDate] = useState(moment(task.timeline?.dueDate) || null)
 
   async function onUpdateTimeline({ startDate, endDate }) {
     if (!endDate) endDate = dueDate
