@@ -15,7 +15,10 @@ export function TaskTimeline({ group, task }) {
   }
 
   const percentage = utilService.calcPercentageOfElapsedTime(task?.timeline?.startDate, task?.timeline?.dueDate)
+  const numOfDays = utilService.getNumOfDays(task?.timeline?.startDate, task?.timeline?.dueDate)
+  const hoverDisplay = task.timeline ? `${numOfDays} days` : 'Set days'
 
+console.log(numOfDays)
   return (
     <div
       style={{ background: `linear-gradient(to right, ${group.style.color} ${percentage}%, #333333 ${percentage}%)` }}
@@ -27,6 +30,7 @@ export function TaskTimeline({ group, task }) {
           ? utilService.getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate)
           : '-'}
       </div>
+      <div className='days-num'>{hoverDisplay}</div>
     </div>
   )
 }

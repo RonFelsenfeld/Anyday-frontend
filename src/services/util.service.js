@@ -9,7 +9,8 @@ export const utilService = {
   loadFromStorage,
   animateCSS,
   getInitials,
-  calcPercentageOfElapsedTime
+  calcPercentageOfElapsedTime,
+  getNumOfDays
 }
 
 function makeId(length = 6) {
@@ -149,4 +150,14 @@ function calcPercentageOfElapsedTime(startDate, dueDate) {
 
     return percentageOfElapsedTime.toFixed(2)
   }
+}
+
+function getNumOfDays(startDate, dueDate) {
+  console.log('startDate, dueDate',startDate, dueDate)
+  const start = new Date(startDate)
+  const end = new Date(dueDate)
+  const diff = Math.abs(end - start)
+
+  const daysDifference = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  return daysDifference
 }

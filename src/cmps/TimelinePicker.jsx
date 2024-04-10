@@ -4,6 +4,7 @@ import { DialogContentContainer, DatePicker } from 'monday-ui-react-core'
 import moment from 'moment'
 
 import { saveTask } from '../store/actions/board.actions'
+import { utilService } from '../services/util.service'
 
 export function TimelinePicker({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
