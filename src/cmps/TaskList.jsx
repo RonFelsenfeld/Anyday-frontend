@@ -72,7 +72,7 @@ export function TaskList({ group }) {
     setPlaceholderProps({})
 
     try {
-      await saveBoard(board, group)
+      await saveBoard(board)
     } catch (err) {
       console.log('Dragging -> Had issues saving board')
     }
@@ -119,7 +119,6 @@ export function TaskList({ group }) {
                   <div
                     className="dragging-placeholder"
                     style={{
-                      position: 'absolute',
                       top: placeholderProps.clientY,
                       left: placeholderProps.clientX + 6 + 'px',
                       height: placeholderProps.clientHeight,
