@@ -1,7 +1,8 @@
 .task-preview {
   display: grid;
-  grid-template-columns: 477px 100px repeat(4, 140px) 1fr;
+  grid-template-columns: 483px 100px repeat(4, 140px) 1fr;
   grid-auto-rows: $task-preview-height;
+  position: relative;
 
   &.active {
     background-color: $active-btn-clr;
@@ -22,7 +23,7 @@
   .sticky-container {
     position: sticky;
     display: grid;
-    grid-template-columns: 32px 380px 65px;
+    grid-template-columns: 6px 32px 380px 65px;
 
     &.active {
       // border: 1px solid $btn-compose-clr;

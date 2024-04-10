@@ -7,7 +7,7 @@
     'views views views expand'
     'actions actions actions actions';
 
-  padding: em(12px) em(30px) 0 em(35px);
+  padding: em(12px) em(30px) em(17px) em(35px);
 
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
