@@ -17,6 +17,7 @@
 
   .btn-new-task {
     @include scalableBtn;
+    padding: 4px 8px;
     margin-inline: 4px em(14px);
 
     font-family: FigtreeLight, RobotoRegular, sans-serif;
@@ -30,6 +31,7 @@
 
   .btn-action {
     @include btn;
+    margin-inline-end: 6px;
 
     span {
       padding: 1px 5px;
