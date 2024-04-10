@@ -1,0 +1,82 @@
+@keyframes bounceSmall {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    background-image: url(/assets/img/confetti_animation.png);
+  }
+  99.9% {
+    background-image: url(/assets/img/confetti_animation.png);
+    background-position: -7500%;
+  }
+}
+
+.confetti {
+  position: absolute;
+  left: calc((100% - 140px) / 2);
+  right: calc((100% - 140px) / 2);
+  top: 0;
+  bottom: 0;
+  background-position: left center;
+  background-size: 10425px;
+  border-inline-start: 1px solid black;
+  animation: confetti 3s steps(75);
+  animation-fill-mode: forwards;
+}
+
+@keyframes balloon {
+  0% {
+    background-image: url(/assets/img/balloon_animation.png);
+  }
+  99.9% {
+    background-image: url(/assets/img/balloon_animation.png);
+    background-position: -7500%;
+  }
+}
+
+.balloon {
+  position: absolute;
+  left: calc((100% - 140px) / 2);
+  right: calc((100% - 140px) / 2);
+  top: 0;
+  bottom: 0;
+  background-position: left center;
+  background-size: 10425px;
+  animation: balloon 3s steps(75);
+  animation-fill-mode: forwards;
+}
+
+@keyframes crazy-balls {
+  0% {
+    background-image: url(/assets/img/crazy_balls_animation.png);
+  }
+  99.9% {
+    background-image: url(/assets/img/crazy_balls_animation.png);
+    background-position: -7500%;
+  }
+}
+
+.crazy-balls {
+  position: absolute;
+  left: calc((100% - 140px) / 2);
+  right: calc((100% - 140px) / 2);
+  top: 0;
+  bottom: 0;
+  background-position: left center;
+  background-size: 10425px;
+  animation: crazy-balls 3s steps(75);
+  animation-fill-mode: forwards;
+}

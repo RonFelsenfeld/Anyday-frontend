@@ -33,30 +33,30 @@ export function BoardDetails() {
     return () => dispatch({ type: SET_BOARD, board: null })
   }, [boardId])
 
-  useEffect(() => {
-    if (!headerRef.current || !boardDetailsRef.current) return
+  // useEffect(() => {
+  //   if (!headerRef.current || !boardDetailsRef.current) return
 
-    const headerObserver = new IntersectionObserver(handleIntersection, {
-      // root: boardDetailsRef.current,
-      threshold: 0.9999,
-    })
+  //   const headerObserver = new IntersectionObserver(handleIntersection, {
+  //     // root: boardDetailsRef.current,
+  //     threshold: 0.9999,
+  //   })
 
-    headerObserver.observe(headerRef.current)
+  //   headerObserver.observe(headerRef.current)
 
-    function handleIntersection(entries) {
-      entries.forEach(entry => {
-        const { isIntersecting } = entry
-        // console.log(isIntersecting)
-        setIsHeaderExpanded(isIntersecting)
-      })
-    }
+  //   function handleIntersection(entries) {
+  //     entries.forEach(entry => {
+  //       const { isIntersecting } = entry
+  //       // console.log(isIntersecting)
+  //       setIsHeaderExpanded(isIntersecting)
+  //     })
+  //   }
 
-    document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
+  //   document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
 
-    return () => {
-      headerObserver.disconnect()
-    }
-  }, [board])
+  //   return () => {
+  //     headerObserver.disconnect()
+  //   }
+  // }, [board])
 
   async function onAddGroup() {
     const newGroup = boardService.getEmptyGroup()
