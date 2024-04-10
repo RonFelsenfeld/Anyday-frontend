@@ -11,13 +11,22 @@
 
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
-    grid-template-rows: 36px 64px;
+    grid-template-rows: 40px 64px;
     grid-template-areas:
       'title views invite expand'
       'actions actions actions actions';
 
     .board-title {
       margin-inline-end: 16px;
+    }
+
+    .views-container {
+      align-self: end;
+      .view-btn {
+        &::before {
+          bottom: 0;
+        }
+      }
     }
 
     .board-info,

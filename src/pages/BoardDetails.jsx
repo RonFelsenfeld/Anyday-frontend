@@ -14,6 +14,7 @@ import { TaskList } from '../cmps/TaskList'
 import { BoardHeader } from '../cmps/BoardHeader'
 import { Loader } from '../cmps/Loader'
 import { EditableText } from '../cmps/EditableText'
+import { useSecondRender } from '../customHooks/useSecondRender'
 
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -21,11 +22,13 @@ export function BoardDetails() {
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [groupToEdit, setGroupToEdit] = useState(null)
 
-  const headerRef = useRef()
   const boardDetailsRef = useRef()
+  const sentinelRef = useRef()
 
   const { boardId } = useParams()
   const dispatch = useDispatch()
+
+  useSecondRender(createObserver)
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
@@ -33,30 +36,27 @@ export function BoardDetails() {
     return () => dispatch({ type: SET_BOARD, board: null })
   }, [boardId])
 
-  // useEffect(() => {
-  //   if (!headerRef.current || !boardDetailsRef.current) return
+  function createObserver() {
+    const headerObserver = new IntersectionObserver(handleIntersection, {
+      root: boardDetailsRef.current,
+      threshold: 0.9999,
+    })
 
-  //   const headerObserver = new IntersectionObserver(handleIntersection, {
-  //     // root: boardDetailsRef.current,
-  //     threshold: 0.9999,
-  //   })
+    headerObserver.observe(sentinelRef.current)
 
-  //   headerObserver.observe(headerRef.current)
+    function handleIntersection(entries) {
+      entries.forEach(entry => {
+        const { isIntersecting } = entry
+        setIsHeaderExpanded(isIntersecting)
+      })
+    }
 
-  //   function handleIntersection(entries) {
-  //     entries.forEach(entry => {
-  //       const { isIntersecting } = entry
-  //       // console.log(isIntersecting)
-  //       setIsHeaderExpanded(isIntersecting)
-  //     })
-  //   }
+    document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
 
-  //   document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
-
-  //   return () => {
-  //     headerObserver.disconnect()
-  //   }
-  // }, [board])
+    return () => {
+      headerObserver.disconnect()
+    }
+  }
 
   async function onAddGroup() {
     const newGroup = boardService.getEmptyGroup()
@@ -114,8 +114,10 @@ export function BoardDetails() {
 
   if (!board) return <Loader />
   return (
-    <section className="board-details">
-      <div ref={headerRef} className="sticky">
+    <section className="board-details" ref={boardDetailsRef}>
+      <div className="sentinel" ref={sentinelRef}></div>
+
+      <div className="sticky">
         <BoardHeader
           board={board}
           isHeaderExpanded={isHeaderExpanded}
@@ -123,7 +125,7 @@ export function BoardDetails() {
         />
       </div>
 
-      <div className="group-container" ref={boardDetailsRef}>
+      <div className="group-container">
         {board.groups.map(group => {
           return (
             <article key={group.id} className="board-group">
