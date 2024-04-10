@@ -58,14 +58,20 @@ async function getById(boardId, groupTaskFilterBy) {
 }
 
 function filterBoard(board, filterBy) {
-  let groupesToReturn = board.groups.slice()
+  let groupsToReturn = board.groups.slice()
 
-  if(filterBy.txt){
+  if (filterBy.txt) {
     const regExp = new RegExp(filterBy.txt, 'i')
-    groupesToReturn = groupesToReturn?.filter(group => regExp.test(group.title))
+    const filteredTasksGroups = groupsToReturn.filter(group => group.tasks.some(t => regExp.test(t.title)))
+ 
+    groupsToReturn = groupsToReturn?.filter(group => regExp.test(group.title))
+
+    var filteredGroups = [...new Set([...groupsToReturn, ...filteredTasksGroups])]
+
+
   }
-  
-  return groupesToReturn
+
+  return  filteredGroups || groupsToReturn
 }
 
 function remove(boardId) {

@@ -125,7 +125,7 @@ export function setGroupTaskFilterBy(groupTaskFilterBy) {
 export async function onFilterBoard(boardId, filterBy) {
   try {
     const board = await boardService.getById(boardId)
-    const filteredGroups = await boardService.filterBoard(board, filterBy)
+    const filteredGroups =  boardService.filterBoard(board, filterBy)
     store.dispatch({ type: SET_BOARD, board: { ...board, groups: filteredGroups } })
 
 
