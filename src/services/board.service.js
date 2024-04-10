@@ -41,7 +41,6 @@ async function query(boardFilterBy) {
     console.log(err);
     throw new Error(err)
   }
-
   // boards = boards.map(({ _id, title, imgUlr }) => ({ _id, title, imgUlr }))
 }
 
