@@ -9,6 +9,7 @@ export const boardService = {
   getById,
   remove,
   save,
+  getDefaultBoardFilter,
   getGroupById,
   removeGroup,
   saveGroup,
@@ -25,9 +26,20 @@ export const boardService = {
   getTaskById,
 }
 
-async function query() {
-  var boards = await storageService.query(BOARDS_KEY)
-  return boards
+async function query(filterBy) {
+
+  try {
+    var boards = await storageService.query(BOARDS_KEY)
+    var boardsToReturn = boards.slice()
+    const regExp = new RegExp(filterBy.txt, 'i')
+    boardsToReturn = boardsToReturn.filter(board => regExp.test(board.title))
+    // console.log(boardsToReturn)
+    return boardsToReturn
+
+  } catch (err) {
+    console.log(err);
+    throw new Error(err)
+  }
 
   // boards = boards.map(({ _id, title, imgUlr }) => ({ _id, title, imgUlr }))
 }
@@ -78,6 +90,10 @@ function getColTitle(cmp) {
     default:
       cmp
   }
+}
+
+function getDefaultBoardFilter() {
+  return { txt: '' }
 }
 
 // * --------------------------------- GROUPS ---------------------------------

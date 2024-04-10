@@ -1,15 +1,22 @@
+import { boardService } from "../../services/board.service"
+
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const EDIT_BOARD = 'EDIT_BOARD'
 
+export const SET_BOARD_FILTER_BY = 'SET_BOARD_FILTER_BY'
+
+
 const initialState = {
   boards: [],
   currentBoard: null,
+  boardFilterBy: boardService.getDefaultBoardFilter()
 }
 
 export function boardReducer(state = initialState, action = {}) {
+  console.log(action);
   switch (action.type) {
     case SET_BOARDS:
       return {
@@ -41,6 +48,11 @@ export function boardReducer(state = initialState, action = {}) {
         boards: state.boards.map(board => (board._id === action.board._id ? action.board : board)),
         currentBoard: { ...action.board },
       }
+      case SET_BOARD_FILTER_BY:
+            return {
+                ...state,
+                boardFilterBy: { ...state.boardFilterBy, ...action.boardFilterBy }
+            }
 
     default:
       return state

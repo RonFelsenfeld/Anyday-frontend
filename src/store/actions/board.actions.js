@@ -5,14 +5,18 @@ import {
   REMOVE_BOARD,
   SET_BOARD,
   SET_BOARDS,
+  SET_BOARD_FILTER_BY,
 } from '../reducers/board.reducer'
-import { SET_IS_LOADING } from '../reducers/system.reducer'
+import { SET_IS_LOADING, } from '../reducers/system.reducer'
 import { store } from '../store'
 
 export async function loadBoards() {
+  const boardFilterBy = store.getState().boardModule.boardFilterBy
+ 
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
-    const boards = await boardService.query()
+    const boards = await boardService.query(boardFilterBy)
+
     store.dispatch({ type: SET_BOARDS, boards })
   } catch (err) {
     console.log('board action -> cannot load boards', err)
@@ -104,4 +108,8 @@ export async function saveTask(board, group, task) {
     console.log('task action -> cannot save task', err)
     throw err
   }
+}
+
+export function setBoardFilterBy(boardFilterBy) {
+  store.dispatch({ type: SET_BOARD_FILTER_BY, boardFilterBy })
 }
