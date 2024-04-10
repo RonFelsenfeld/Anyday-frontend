@@ -149,7 +149,7 @@ function calcPercentageOfElapsedTime(startDate, dueDate) {
 
     const percentageOfElapsedTime = (timeElapsedSinceStartDate / timeDiff) * 100
 
-    return percentageOfElapsedTime.toFixed(2)
+    return percentageOfElapsedTime.toFixed(1)
   }
 }
 

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { utilService } from "../services/util.service"
+import { hideToolTip, showToolTip } from "../store/actions/system.actions"
 
 export function GroupSummary({ group }) {
     const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -15,7 +16,7 @@ export function GroupSummary({ group }) {
     const statusPercantageMap = {}
 
     for (const [key, value] of Object.entries(groupStatusMap)) {
-        statusPercantageMap[key] = (value / group.tasks.length * 100).toFixed(2) + '%';
+        statusPercantageMap[key] = Math.round(value / group.tasks.length * 100) + '%';
     }
 
     /// PRIORITY SUMMARY ///
@@ -49,7 +50,14 @@ export function GroupSummary({ group }) {
         <article className="progress-container status-progress">
             <div className="progress-bar flex">
                 {statuses.map(s =>
-                    <div key={s.id} style={{ backgroundColor: s.color, color: s.color, width: statusPercantageMap[s.title === '' ? 'undefined' : s.title] }}>
+                    <div key={s.id}
+                        onMouseEnter={ev =>
+                            showToolTip(ev.target,
+                                `${groupStatusMap[s.title === '' ? 'undefined' : s.title]}/${group.tasks.length} \u00A0 
+                                ${statusPercantageMap[s.title === '' ? 'undefined' : s.title]}`)}
+                        onMouseLeave={() => hideToolTip()}
+                        style={{ backgroundColor: s.color, color: s.color, width: statusPercantageMap[s.title === '' ? 'undefined' : s.title] }}
+                    >
                     </div>)}
             </div>
         </article>
@@ -57,7 +65,13 @@ export function GroupSummary({ group }) {
         <article className="progress-container">
             <div className="progress-bar flex">
                 {priorities.map(p =>
-                    <div key={p.id} style={{ backgroundColor: p.color, color: p.color, width: priorityPercantageMap[p.title === '' ? 'undefined' : p.title] }}>
+                    <div key={p.id}
+                        onMouseEnter={ev =>
+                            showToolTip(ev.target,
+                                `${groupPriorityMap[p.title === '' ? 'undefined' : p.title]}/${group.tasks.length} \u00A0 
+                            ${priorityPercantageMap[p.title === '' ? 'undefined' : p.title]}`)}
+                        onMouseLeave={() => hideToolTip()}
+                        style={{ backgroundColor: p.color, color: p.color, width: priorityPercantageMap[p.title === '' ? 'undefined' : p.title] }}>
                     </div>)}
             </div>
         </article>
