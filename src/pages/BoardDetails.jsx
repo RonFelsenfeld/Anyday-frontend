@@ -36,7 +36,7 @@ export function BoardDetails() {
 
 
   useEffect(() => {
-    onFilterBoard(board._id, groupTaskFilterBy)
+   if (board) onFilterBoard(board._id, groupTaskFilterBy)
 
   }, [groupTaskFilterBy])
 

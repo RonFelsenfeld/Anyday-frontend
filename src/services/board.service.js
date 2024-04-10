@@ -65,7 +65,6 @@ function filterBoard(board, filterBy) {
     groupesToReturn = groupesToReturn?.filter(group => regExp.test(group.title))
   }
   
-
   return groupesToReturn
 }
 
