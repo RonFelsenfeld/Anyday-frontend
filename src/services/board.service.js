@@ -203,7 +203,7 @@ function _updateTask(board, group, task) {
     throw new Error(`Update failed, cannot find task with id: ${task.id}`)
   }
   group.tasks.splice(taskIdx, 1, task)
-  return save(board)
+  return saveGroup(board, group)
 }
 
 function getGroupColors() {
