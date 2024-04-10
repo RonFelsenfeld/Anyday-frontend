@@ -18,7 +18,6 @@ export function TaskTimeline({ group, task }) {
   const numOfDays = utilService.getNumOfDays(task?.timeline?.startDate, task?.timeline?.dueDate)
   const hoverDisplay = task.timeline ? `${numOfDays} days` : 'Set days'
 
-console.log(numOfDays)
   return (
     <div
       style={{ background: `linear-gradient(to right, ${group.style.color} ${percentage}%, #333333 ${percentage}%)` }}

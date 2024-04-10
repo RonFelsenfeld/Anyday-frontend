@@ -153,7 +153,6 @@ function calcPercentageOfElapsedTime(startDate, dueDate) {
 }
 
 function getNumOfDays(startDate, dueDate) {
-  console.log('startDate, dueDate',startDate, dueDate)
   const start = new Date(startDate)
   const end = new Date(dueDate)
   const diff = Math.abs(end - start)
