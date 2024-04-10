@@ -56,18 +56,33 @@ export function TaskPerson({ group, task }) {
       )}
       {taskPersons && taskPersons.length > 2 && (
         <>
-          {taskPersons[0].imgUrl ? 
-          <img key={taskPersons[0].id} src={taskPersons[0].imgUrl} alt={taskPersons[0].fullName} /> :
-          <div className='person-initials'>{utilService.getInitials(taskPersons[0].fullName)}</div>}
+          {taskPersons[0].imgUrl ? (
+            <>
+              <img
+                key={taskPersons[0].id}
+                src={taskPersons[0].imgUrl}
+                alt={taskPersons[0].fullName}
+              />
+            </>
+          ) : (
+            <div className="person-initials">
+              {utilService.getInitials(taskPersons[0].fullName)}
+            </div>
+          )}
           <span className="person-count">+{taskPersons.length - 1}</span>
         </>
       )}
       {taskPersons &&
         taskPersons.length <= 2 &&
-        taskPersons.map((person, idx) => ( person.imgUrl ?
-          <img key={`${person.id}-${idx}`} src={person.imgUrl} alt={person.fullName} /> :
-          <div className='person-initials'>{utilService.getInitials(person.fullName)}</div>
-        ))}
+        taskPersons.map(person =>
+          person.imgUrl ? (
+            <img key={person.id} src={person.imgUrl} alt={person.fullName} />
+          ) : (
+            <div key={person.id} className="person-initials">
+              {utilService.getInitials(person.fullName)}
+            </div>
+          )
+        )}
     </div>
   )
 }
