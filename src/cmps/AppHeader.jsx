@@ -29,7 +29,7 @@ export function AppHeader() {
         </div>
       </div>
 
-      <div className="actions-container flex">
+      <div className="actions-container flex align-center">
         <button className="btn">
           <NotificationBell />
         </button>
@@ -51,11 +51,11 @@ export function AppHeader() {
         )}
 
         {user && (
-          <Link to={'/auth'}>
-            <button className="btn">
-              <UserImg />
-            </button>
-          </Link>
+          <img
+            src={`${user.imgUrl ? user.imgUrl : '/assets/img/user-avatar.svg'}`}
+            alt="User profile picture"
+            className="user-img"
+          />
         )}
       </div>
     </header>
