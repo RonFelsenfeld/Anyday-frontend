@@ -138,12 +138,8 @@
     }
 
     .person-initials {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       @include userImg;
-      background-color: $img-initials-clr;
-      color: $main-bg-clr;
+      @include personInitials;
     }
 
     .add-person-btn {

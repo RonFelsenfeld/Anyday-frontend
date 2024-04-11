@@ -27,6 +27,11 @@
         border: none;
       }
 
+      .person-initials {
+        @include userImg($size: 22px, $margin-inline: 0);
+        @include personInitials;
+      }
+
       .person-name {
         display: flex;
         align-items: center;
@@ -102,6 +107,11 @@
         @include userImg($size: 26px, $margin-inline: 2px);
         border: none;
         border: 1px solid $main-bg-clr;
+      }
+
+      .person-initials {
+        @include userImg($size: 26px, $margin-inline: 2px);
+        @include personInitials;
       }
 
       .suggested-person-name {

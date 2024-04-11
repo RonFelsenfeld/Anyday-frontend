@@ -282,7 +282,7 @@ function _createDemoBoard() {
         },
         {
           id: 'u104',
-          fullName: 'Jhon Doe',
+          fullName: 'John Doe',
           imgUrl: '',
         },
       ],

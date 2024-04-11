@@ -57,6 +57,15 @@
   margin: 0 $margin-inline;
 }
 
+@mixin personInitials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: $img-initials-clr;
+  color: $main-bg-clr;
+}
+
 @mixin caret($translateY) {
   position: absolute;
   content: '';
