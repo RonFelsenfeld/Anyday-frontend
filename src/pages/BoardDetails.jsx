@@ -137,7 +137,7 @@ export function BoardDetails() {
     <section className="board-details" ref={boardDetailsRef}>
       <div className="sentinel" ref={sentinelRef}></div>
 
-      <div className="sticky">
+      <div className={`sticky ${!isHeaderExpanded ? 'header-collapsed' : ''}`}>
         <BoardHeader
           board={board}
           isHeaderExpanded={isHeaderExpanded}

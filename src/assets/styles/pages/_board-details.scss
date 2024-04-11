@@ -16,6 +16,11 @@
     inset: 0 auto auto 0;
     z-index: 60;
     background-color: $main-bg-clr;
+    height: 185px;
+
+    &.header-collapsed {
+      height: 133px;
+    }
   }
 
   .add-group-btn {
@@ -26,5 +31,9 @@
     margin-inline-start: 38px;
     border: 1px solid $secondary-border-clr;
     @include btn;
+  }
+
+  .group-header-sentinel {
+    grid-area: sentinel;
   }
 }

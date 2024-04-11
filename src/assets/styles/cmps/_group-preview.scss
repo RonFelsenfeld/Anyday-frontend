@@ -1,9 +1,9 @@
 .group-preview {
   display: grid;
   grid-template-areas:
+    'sentinel'
     'header'
-    'list'
-    'stats';
+    'list';
   padding: 0 0 em(40px) em(38px);
 
   &.collapsed {
