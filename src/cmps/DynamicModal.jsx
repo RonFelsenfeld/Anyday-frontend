@@ -30,7 +30,6 @@ export function DynamicModal() {
       const viewportHeight = window.innerHeight
 
       if (modalLeft + modalWidth > viewportWidth) {
-        console.log('OVERFLOW WIDTH')
         var isOverflowingWidth = true
         modalTop += targetDimensions.height
         modalLeft = viewportWidth - modalWidth
@@ -39,7 +38,6 @@ export function DynamicModal() {
       }
 
       if (modalTop + modalHeight > viewportHeight) {
-        console.log('OVERFLOW HEIGHT')
         var isOverflowingHeight = true
         modalTop = pos.y - modalHeight - targetDimensions.height
         const classList = isOverflowingWidth

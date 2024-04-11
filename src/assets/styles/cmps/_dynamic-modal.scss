@@ -30,7 +30,13 @@
 
   &.caret {
     transform: translate(0, 7px);
-    &:not(.overflowing-height)::after {
+
+    &:not(.overflowing-height, .overflowing-width)::after {
+      @include caret(1px);
+      @include caretTop($main-bg-clr);
+    }
+
+    &.overflowing-width:not(.overflowing-height)::after {
       @include caret(1px, 20px);
       @include caretTop($main-bg-clr);
     }
