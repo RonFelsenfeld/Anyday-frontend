@@ -11,7 +11,6 @@ export function DynamicModal() {
   const modal = useSelector(storeState => storeState.systemModule.modal)
   const [modalInfo, setModalInfo] = useState({ top: 0, left: 0, class: '' })
   const modalRef = useRef()
-  console.log(modalInfo)
 
   const { isOpen, alignment = BOTTOM_CENTER, pos, cmp, targetDimensions, hasCaret = false } = modal
 

@@ -63,6 +63,7 @@
 
     &.add-task-li {
       border-bottom-left-radius: $cmp-br;
+      overflow: hidden;
       box-shadow: none;
 
       .task-indicator,
