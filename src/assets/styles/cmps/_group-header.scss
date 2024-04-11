@@ -43,11 +43,20 @@
     .group-title-container {
       grid-column: 1 / -1;
 
-      .board-menu-btn {
+      .group-menu-btn {
         position: absolute;
-        transform: translate(-30px);
+        left: -30px;
         opacity: 0;
-        @include btn;
+        display: grid;
+        justify-content: center;
+        border-radius: $el-br;
+        width: 24px;
+        height: 24px;
+
+        &:hover {
+          opacity: 1;
+          background-color: $selected-task-border-clr;
+        }
       }
 
       .collapse-btn {
@@ -102,7 +111,7 @@
       font-size: 1rem;
     }
 
-    &:hover .board-menu-btn {
+    &:hover .group-menu-btn {
       opacity: 1;
     }
 
