@@ -1,6 +1,7 @@
 import { ColorPicker } from './ColorPicker'
 import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { DynamicOptionsMenu } from './DynamicOptionsMenu'
+import { FilterPersonPicker } from './FilterPersonPicker'
 import { PersonPicker } from './PersonPicker'
 import { TimelinePicker } from './TimelinePicker'
 
@@ -17,6 +18,9 @@ export function DynamicModalContent(cmp) {
 
     case 'personPicker':
       return <PersonPicker {...cmp} />
+
+    case 'filterPersonPicker':
+      return <FilterPersonPicker {...cmp} />
 
     case 'timelinePicker':
       return <TimelinePicker {...cmp} />

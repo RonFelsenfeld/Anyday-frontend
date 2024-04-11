@@ -10,7 +10,7 @@
     border-radius: $el-br;
 
     // For the tooltip hover to work only on the button itself
-    > * {
+    >* {
       pointer-events: none;
     }
   }
@@ -40,5 +40,57 @@
 
   svg {
     color: $secondary-font-clr;
+  }
+
+  .filter-sort-btns {
+    
+    form {
+      height: 32px;
+      width: 265px;
+      outline-style: none;
+      border: 1px solid $btn-compose-clr;
+      border-radius: 4px;
+
+      svg {
+        margin-block-start: 5px;
+        margin-inline-start: 5px
+      }
+
+      input {
+        outline-style: none;
+        border: none;
+        padding-inline-start: 5px;
+        padding-block: 1px;
+      }
+    }
+
+    .filter-by-person-container {
+      .removing-person {
+        padding-inline-end: 5px;
+        padding-block-start: 3px;
+        @include btn;
+        
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
+      .btn-title-person-padded{
+        padding-inline-start: em(8px);
+      }
+    }
+
+    .active {
+      @include activeLink
+    }
+
+    .hidden{
+      display: none;
+    }
+  }
+
+  .filterby-img {
+    @include userImg(24px);
+    border: none
   }
 }

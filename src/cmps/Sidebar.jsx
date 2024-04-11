@@ -14,7 +14,7 @@ import { showSuccessMsg } from '../services/event-bus.service'
 
 export function Sidebar() {
   const boards = useSelector(storeState => storeState.boardModule.boards)
-  const boardFilterBy = useSelector(storeState=> storeState.boardModule.boardFilterBy)
+  const boardFilterBy = useSelector(storeState => storeState.boardModule.boardFilterBy)
 
   const [isExpanded, setIsExpanded] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
@@ -31,7 +31,7 @@ export function Sidebar() {
 
   function onSetBoardFilter(boardFilterBy) {
     setBoardFilterBy(boardFilterBy)
-}
+  }
 
   async function onAddBoard() {
     try {
@@ -44,7 +44,6 @@ export function Sidebar() {
   }
 
   async function onDeleteBoard(boardId) {
-    console.log(boardId)
     try {
       await removeBoard(boardId)
       showSuccessMsg('We successfully deleted the board')
@@ -65,7 +64,6 @@ export function Sidebar() {
     }
   }
 
-  function onOpenSidebarMenu(title) { }
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30
@@ -166,6 +164,14 @@ export function Sidebar() {
               boards={boards}
             />
           )}
+          {!boards.length && 
+          <div className='not-found-container'>
+          <img className='not-found-img' src="/assets/img/search_empty_state.svg"/>
+          <h3>No results found</h3>
+          <p>Please check your search terms of filters</p>
+
+          </div>
+          }
         </div>
       )}
     </div>
