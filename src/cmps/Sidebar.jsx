@@ -44,7 +44,6 @@ export function Sidebar() {
   }
 
   async function onDeleteBoard(boardId) {
-    console.log(boardId)
     try {
       await removeBoard(boardId)
       showSuccessMsg('We successfully deleted the board')
@@ -65,7 +64,6 @@ export function Sidebar() {
     }
   }
 
-  function onOpenSidebarMenu(title) { }
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30

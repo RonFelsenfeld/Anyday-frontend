@@ -58,7 +58,7 @@ function filterBoard(board, filterBy) {
 
     const groupsFilteredByTitle = groupsToReturn.filter(group => regExp.test(group.title));
 
-    const filteredTasksGroups = groupsToReturn.filter(group => group.tasks.some(t => regExp.test(t.title)));
+    const filteredTasksGroups = groupsToReturn.filter(group => group.tasks?.some(t => regExp.test(t.title)));
     const filteredAll = filteredTasksGroups.map(group => {
       const filteredGroup = group.tasks.filter(t => regExp.test(t.title));
       return {...group, tasks: filteredGroup};
