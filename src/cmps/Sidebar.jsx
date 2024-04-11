@@ -4,7 +4,12 @@ import { useSelector } from 'react-redux'
 
 import { Home, MiniHome, MyWork, SidebarArrow, WorkSpaceOption } from '../services/svg.service'
 import { boardService } from '../services/board.service'
-import { loadBoards, removeBoard, saveBoard, setBoardFilterBy } from '../store/actions/board.actions'
+import {
+  loadBoards,
+  removeBoard,
+  saveBoard,
+  setBoardFilterBy,
+} from '../store/actions/board.actions'
 import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
 
@@ -14,13 +19,11 @@ import { showSuccessMsg } from '../services/event-bus.service'
 
 export function Sidebar() {
   const boards = useSelector(storeState => storeState.boardModule.boards)
-  const boardFilterBy = useSelector(storeState=> storeState.boardModule.boardFilterBy)
+  const boardFilterBy = useSelector(storeState => storeState.boardModule.boardFilterBy)
 
   const [isExpanded, setIsExpanded] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
   const [boardToEdit, setBoardToEdit] = useState(null)
-
-
 
   const sidebarWidthRef = useRef(265)
   const navigate = useNavigate()
@@ -31,13 +34,14 @@ export function Sidebar() {
 
   function onSetBoardFilter(boardFilterBy) {
     setBoardFilterBy(boardFilterBy)
-}
+  }
 
   async function onAddBoard() {
     try {
       const board = boardService.getEmptyBoard()
       const savedBoard = await saveBoard(board)
       navigate(`/board/${savedBoard._id}`)
+      showSuccessMsg('We successfully added the board')
     } catch (err) {
       console.log('Could not add a board', err)
     }
@@ -65,7 +69,7 @@ export function Sidebar() {
     }
   }
 
-  function onOpenSidebarMenu(title) { }
+  function onOpenSidebarMenu(title) {}
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30
@@ -93,7 +97,6 @@ export function Sidebar() {
     }
     setIsExpanded(prevIsExpanded => !prevIsExpanded)
   }
-
 
   const dynArrowClass = !isExpanded ? 'collapsed' : ''
   const isOpenClass = !isExpanded || isHovered ? 'closed' : ''
@@ -154,7 +157,8 @@ export function Sidebar() {
             <SidebarSearch
               boardFilterBy={boardFilterBy}
               onSetBoardFilter={onSetBoardFilter}
-              onAddBoard={onAddBoard} />
+              onAddBoard={onAddBoard}
+            />
           </section>
 
           {!!boards.length && (

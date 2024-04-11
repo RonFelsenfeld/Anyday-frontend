@@ -9,7 +9,7 @@ export const BOTTOM_RIGHT = 'BOTTOM_RIGHT'
 
 const initialState = {
   isLoading: true,
-  tooltip: { isOpen: false, pos: null, txt: '', targetWidth: null },
+  tooltip: { isOpen: false, pos: null, txt: '', targetDimensions: null },
   modal: {
     isOpen: false,
     pos: null,

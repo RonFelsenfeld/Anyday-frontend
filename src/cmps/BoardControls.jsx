@@ -11,16 +11,13 @@ export function BoardControls() {
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
   const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
 
-
   function onSetGroupTaskFilterBy(groupTaskFilterBy) {
     setGroupTaskFilterBy(groupTaskFilterBy)
   }
 
-  function handlePersonFilter({currentTarget}){
-    console.log(currentTarget);
+  function handlePersonFilter({ currentTarget }) {
+    console.log(currentTarget)
   }
-  
-
 
   function handleChange({ target }) {
     const { value } = target
@@ -28,32 +25,32 @@ export function BoardControls() {
     // markFilteredTxt(value)
   }
 
-
   return (
     <section className="board-controls flex align-baseline">
       <button className="btn btn-new-task">New task</button>
 
-      <div className='filter-sort-btns flex align-center'>
-        {!isFilterInput && <button
-          onClick={() => setIsFilterInput(true)}
-          className="btn btn-action flex align-center">
-          <Search />
-          <span className="btn-title">Search</span>
-        </button>}
-        {isFilterInput &&
+      <div className="filter-sort-btns flex align-center">
+        {!isFilterInput && (
+          <button
+            onClick={() => setIsFilterInput(true)}
+            className="btn btn-action flex align-center"
+          >
+            <Search />
+            <span className="btn-title">Search</span>
+          </button>
+        )}
+        {isFilterInput && (
           <input
             onChange={handleChange}
-            type='text'
-            placeholder='Search this board '
+            type="text"
+            placeholder="Search this board "
             onBlur={() => setIsFilterInput(false)}
           />
-        }
-
-
+        )}
 
         <button
           className="btn btn-action flex align-center"
-          onMouseEnter={ev => showToolTip(ev.target, 'Filter board by person')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by person')}
           onMouseLeave={() => hideToolTip()}
           onClick={handlePersonFilter}
         >
@@ -63,7 +60,7 @@ export function BoardControls() {
 
         <button
           className="btn btn-action flex align-center"
-          onMouseEnter={ev => showToolTip(ev.target, 'Filter board by anything')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
           onMouseLeave={() => hideToolTip()}
         >
           <Filter />
@@ -72,7 +69,7 @@ export function BoardControls() {
 
         <button
           className="btn btn-action flex align-center"
-          onMouseEnter={ev => showToolTip(ev.target, 'Sort board by any column')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Sort board by any column')}
           onMouseLeave={() => hideToolTip()}
         >
           <Sort />
@@ -81,7 +78,7 @@ export function BoardControls() {
 
         <button
           className="btn btn-action flex align-center"
-          onMouseEnter={ev => showToolTip(ev.target, 'Hidden columns')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Hidden columns')}
           onMouseLeave={() => hideToolTip()}
         >
           <Hide />

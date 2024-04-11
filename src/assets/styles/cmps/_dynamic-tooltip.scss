@@ -1,6 +1,7 @@
 .dynamic-tooltip {
   position: absolute;
   transform: translate(-50%, -125%);
+  white-space: nowrap;
 
   padding: 7px 14px;
   border-radius: $el-br;

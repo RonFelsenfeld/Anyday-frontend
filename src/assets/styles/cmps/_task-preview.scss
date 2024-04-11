@@ -187,6 +187,7 @@
   }
 
   .task-timeline {
+    position: relative;
     align-self: center;
     justify-self: center;
     display: grid;
@@ -201,12 +202,12 @@
       display: none;
     }
 
-    &:hover .progress-bar{
-      display: none
+    &:hover .progress-bar {
+      display: none;
     }
 
     &:hover .days-num {
-        display: grid
-      }
+      display: grid;
+    }
   }
 }

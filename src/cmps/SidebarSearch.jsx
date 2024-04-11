@@ -8,7 +8,6 @@ export function SidebarSearch({ onAddBoard, boardFilterBy, onSetBoardFilter }) {
 
   useEffect(() => {
     onSetBoardFilter(filterByToEdit)
-
   }, [filterByToEdit])
   const dynClass = isFocused ? 'focused' : ''
 
@@ -37,7 +36,7 @@ export function SidebarSearch({ onAddBoard, boardFilterBy, onSetBoardFilter }) {
       <button
         onClick={onAddBoard}
         className="add-board-btn btn"
-        onMouseEnter={ev => showToolTip(ev.target, 'Add item to workspace')}
+        onMouseEnter={ev => showToolTip(ev.currentTarget, 'Add item to workspace')}
         onMouseLeave={() => hideToolTip()}
       >
         <AddBoardBtn />

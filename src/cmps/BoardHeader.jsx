@@ -34,7 +34,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
           setIsEditing(true)
         }}
         onMouseEnter={ev => {
-          showToolTip(ev.target, 'Click to edit')
+          showToolTip(ev.currentTarget, 'Click to edit')
         }}
         onMouseLeave={() => hideToolTip()} // ! MOVE BELOW HEADING
       >
@@ -52,7 +52,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
       <div className="board-info flex align-center">
         <button
           className="btn"
-          onMouseEnter={ev => showToolTip(ev.target, 'Show board description')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Show board description')}
           onMouseLeave={() => hideToolTip()}
         >
           <Info />
@@ -60,7 +60,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
 
         <button
           className="btn"
-          onMouseEnter={ev => showToolTip(ev.target, 'Add to favorites')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Add to favorites')}
           onMouseLeave={() => hideToolTip()}
         >
           <Favorite />
@@ -75,7 +75,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg"
             alt="User img"
             className="user-img"
-            onMouseEnter={ev => showToolTip(ev.target, 'Atar Mor')}
+            onMouseEnter={ev => showToolTip(ev.currentTarget, 'Atar Mor')}
             onMouseLeave={() => hideToolTip()}
           />
 
@@ -83,7 +83,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg"
             alt="User img"
             className="user-img"
-            onMouseEnter={ev => showToolTip(ev.target, 'Ron Felsenfeld')}
+            onMouseEnter={ev => showToolTip(ev.currentTarget, 'Ron Felsenfeld')}
             onMouseLeave={() => hideToolTip()}
           />
 
@@ -91,7 +91,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
             src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg"
             alt="User img"
             className="user-img"
-            onMouseEnter={ev => showToolTip(ev.target, 'Ido Yotvat')}
+            onMouseEnter={ev => showToolTip(ev.currentTarget, 'Ido Yotvat')}
             onMouseLeave={() => hideToolTip()}
           />
         </div>
@@ -105,7 +105,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
 
         <button
           className="btn-options flex align-center"
-          onMouseEnter={ev => showToolTip(ev.target, 'Options')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Options')}
           onMouseLeave={() => hideToolTip()}
         >
           <Options />
@@ -115,7 +115,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
       <div className="views-container">
         <button
           className="view-btn flex align-center"
-          onMouseEnter={ev => showToolTip(ev.target, 'Main Table')}
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Main Table')}
           onMouseLeave={() => hideToolTip()}
         >
           <Home />

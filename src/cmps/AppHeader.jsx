@@ -6,6 +6,7 @@ import {
   UserImg,
   WorkspaceLogo,
 } from '../services/svg.service'
+import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function AppHeader() {
   return (
@@ -25,7 +26,11 @@ export function AppHeader() {
       </div>
 
       <div className="actions-container flex">
-        <button className="btn">
+        <button
+          className="btn"
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
+          onMouseLeave={() => hideToolTip()}
+        >
           <NotificationBell />
         </button>
 
@@ -37,7 +42,11 @@ export function AppHeader() {
           <Help />
         </button>
 
-        <button className="btn">
+        <button
+          className="btn"
+          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
+          onMouseLeave={() => hideToolTip()}
+        >
           <UserImg />
         </button>
       </div>

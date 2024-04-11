@@ -1,10 +1,12 @@
 import { SHOW_MODAL, SHOW_TOOLTIP } from '../reducers/system.reducer'
 import { store } from '../store'
 
-export function showToolTip(target, txt) {
-  const { left, top, width: targetWidth } = target.getBoundingClientRect()
+export function showToolTip(currentTarget, txt) {
+  const { left, top, width, height } = currentTarget.getBoundingClientRect()
   const pos = { x: left, y: top }
-  store.dispatch({ type: SHOW_TOOLTIP, tooltip: { isOpen: true, pos, txt, targetWidth } })
+  const targetDimensions = { width, height }
+
+  store.dispatch({ type: SHOW_TOOLTIP, tooltip: { isOpen: true, pos, txt, targetDimensions } })
 }
 
 export function hideToolTip() {

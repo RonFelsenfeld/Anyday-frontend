@@ -57,7 +57,7 @@
   margin: 0 $margin-inline;
 }
 
-@mixin caret($translateY) {
+@mixin caret($translateY, $translateX: -50%) {
   position: absolute;
   content: '';
 
@@ -67,7 +67,7 @@
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
 
-  transform: translate(-50%, $translateY);
+  transform: translate($translateX, $translateY);
 }
 
 @mixin caretBottom($clr) {

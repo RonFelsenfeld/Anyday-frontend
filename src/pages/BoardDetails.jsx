@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
+import { useScroll } from '../customHooks/useScroll'
+import { hideModal } from '../store/actions/system.actions'
 import { boardService } from '../services/board.service'
 import {
   loadBoard,
@@ -38,6 +40,7 @@ export function BoardDetails() {
   const dispatch = useDispatch()
 
   useSecondRender(createObserver)
+  // useScroll(boardDetailsRef.current, hideModal)
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
@@ -87,8 +90,6 @@ export function BoardDetails() {
         const marginBottom = parseFloat(style.marginBottom)
         return total + curr.clientHeight + marginBottom
       }, 0)
-
-    console.log(clientHeight)
 
     setPlaceholderProps({
       clientHeight,

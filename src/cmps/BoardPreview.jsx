@@ -16,7 +16,7 @@ export function BoardPreview({ board }) {
 
             <button
               className="btn-favorite flex align-center"
-              onMouseEnter={ev => showToolTip(ev.target, 'Add to favorites')}
+              onMouseEnter={ev => showToolTip(ev.currentTarget, 'Add to favorites')}
               onMouseLeave={() => hideToolTip()}
             >
               <Favorite />

@@ -142,7 +142,7 @@ export function GroupHeader({
                     setGroupToEdit(group)
                     hideToolTip()
                   }}
-                  onMouseEnter={ev => isExpanded && showToolTip(ev.target, 'Click to edit')}
+                  onMouseEnter={ev => isExpanded && showToolTip(ev.currentTarget, 'Click to edit')}
                   onMouseLeave={() => isExpanded && hideToolTip()} // ! MOVE BELOW HEADING
                   className="group-title"
                 >

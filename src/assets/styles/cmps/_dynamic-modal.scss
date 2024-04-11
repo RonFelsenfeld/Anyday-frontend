@@ -16,6 +16,10 @@
   --animate-duration: 0.3s;
   box-shadow: 0px 8px 16px 0px rgba(147, 147, 147, 0.32);
 
+  &.overflowing-width {
+    right: 0;
+  }
+
   &.centered {
     transform: translate(-50%, 3px);
 
@@ -26,10 +30,17 @@
 
   &.caret {
     transform: translate(0, 7px);
-
-    &::after {
-      @include caret(1px);
+    &:not(.overflowing-height)::after {
+      @include caret(1px, 20px);
       @include caretTop($main-bg-clr);
+    }
+
+    &.overflowing-height {
+      transform: translate(0, 20px);
+      &::after {
+        @include caret(0px);
+        @include caretBottom($main-bg-clr);
+      }
     }
   }
 }
