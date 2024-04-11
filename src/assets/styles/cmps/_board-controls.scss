@@ -10,7 +10,7 @@
     border-radius: $el-br;
 
     // For the tooltip hover to work only on the button itself
-    > * {
+    >* {
       pointer-events: none;
     }
   }
@@ -40,5 +40,19 @@
 
   svg {
     color: $secondary-font-clr;
+  }
+
+  .filter-sort-btns {
+
+    input {
+      height: 32px;
+      width: 265px;
+      outline-style: none;
+      border: 1px solid blue;
+      border-radius: 4px;
+      padding-inline-start: 5px;
+      padding-block: 1px;
+      transition: width .1s ease, height .1s ease;
+    }
   }
 }
