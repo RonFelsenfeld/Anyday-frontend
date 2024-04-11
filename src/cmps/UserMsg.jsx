@@ -31,7 +31,7 @@ export function UserMsg() {
     : 'animate__animated animate__bounceOutUp'
   if (!msg) return <span></span>
   return (
-    <section className={`user-msg success flex closed ${dynClass} `}>
+    <section className={`user-msg ${msg.type} flex closed ${dynClass} `}>
       <CheckUserMsg />
       <div className="txt-container flex">{msg.txt}</div>
       <button onClick={closeMsg}>

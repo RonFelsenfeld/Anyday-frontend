@@ -15,9 +15,16 @@
   height: 50px;
   border-radius: $el-br;
   top: 20px;
-  background-color: $user-msg-bgc;
   color: white;
   margin-block: 16px;
+
+  &.success {
+    background-color: $user-msg-success;
+  }
+
+  &.error {
+    background-color: $user-msg-error;
+  }
 
   span {
     display: flex;
@@ -40,15 +47,4 @@
       background-color: rgb(50, 51, 57, 0.5);
     }
   }
-
-  .closed {
-  }
 }
-
-// .user-msg.success {
-
-// }
-
-// .user-msg.error {
-//     background-color: var(--clr2);
-// }

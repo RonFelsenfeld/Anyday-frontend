@@ -16,7 +16,7 @@ export const userService = {
 
 async function login({ username, password }) {
   try {
-    const users = storageService.query(STORAGE_KEY)
+    const users = await storageService.query(STORAGE_KEY)
     const user = users.find(user => user.username === username)
     if (user && user.password === password) return _setLoggedInUser(user)
   } catch (err) {
@@ -99,7 +99,7 @@ function _createDemoUsers() {
     const user4 = {
       id: 'u104',
       username: 'John Doe',
-      password: 'joe',
+      password: 'john',
       fullName: 'John Doe',
       imgUrl: '',
     }

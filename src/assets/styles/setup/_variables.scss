@@ -26,6 +26,7 @@ $btn-compose-hover-clr: rgb(0, 96, 185);
 $workplace-btn: rgb(0, 154, 255);
 $btn-cta-clr: #6161ff;
 $btn-cta-clr-hover: #5151d5;
+$login-link-clr: rgb(31, 118, 194);
 
 // Layout
 $main-header-height: 48px;
@@ -39,7 +40,8 @@ $cmp-br: 8px;
 $el-br: 4px;
 
 // UserMsg
-$user-msg-bgc: rgb(0, 133, 77);
+$user-msg-success: rgb(0, 133, 77);
+$user-msg-error: rgb(246 139 139);
 
 // Pseudo classes
 $selected-task-clr: rgba(204, 229, 255, 0.97);
