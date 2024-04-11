@@ -33,17 +33,22 @@
 
   .task-menu-btn {
     position: absolute;
-    transform: translate(-40px, 7px);
+    transform: translate(-30px, 7px);
     opacity: 0;
+    display: grid;
+    justify-content: center;
+    border-radius: $el-br;
+    width: 24px;
+    height: 24px;
 
     &:hover {
       opacity: 1;
-      background-color: $hover-clr;
+      background-color: $selected-task-border-clr;
     }
   }
 
   &:hover:not(.active) {
-    background-color: $hover-clr;
+    background-color: $list-hover-clr;
 
     .task-menu-btn {
       opacity: 1;
@@ -133,12 +138,8 @@
     }
 
     .person-initials {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       @include userImg;
-      background-color: $img-initials-clr;
-      color: $main-bg-clr;
+      @include personInitials;
     }
 
     .add-person-btn {

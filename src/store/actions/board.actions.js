@@ -103,9 +103,9 @@ export async function removeTask(board, group, taskId) {
   }
 }
 
-export async function saveTask(board, group, task) {
+export async function saveTask(board, group, task, unshift) {
   try {
-    const savedBoard = await boardService.saveTask(board, group, task)
+    const savedBoard = await boardService.saveTask(board, group, task, unshift)
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     return savedBoard
   } catch (err) {

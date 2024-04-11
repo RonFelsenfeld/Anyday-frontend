@@ -1,4 +1,5 @@
 import { SmallSearchIcon, Xbutton } from '../services/svg.service'
+import { utilService } from '../services/util.service'
 
 export function PersonPicker({ taskPersons, suggestedPersons, onAddPerson, onRemovePerson }) {
   console.log(suggestedPersons)
@@ -8,7 +9,12 @@ export function PersonPicker({ taskPersons, suggestedPersons, onAddPerson, onRem
         {taskPersons?.map(person => {
           return (
             <li key={person.id} className="task-person">
-              <img className="person-img" src={person.imgUrl} />
+              {person.imgUrl ?
+                <img className="person-img" src={person.imgUrl} alt="" /> :
+                <div key={person.id} className="person-initials">
+                  {utilService.getInitials(person.fullName)}
+                </div>
+              }
               <h4 className="person-name">{person.fullName}</h4>
               <button onClick={() => onRemovePerson(person.id)} className="delete-person-btn">
                 <Xbutton />
@@ -28,7 +34,11 @@ export function PersonPicker({ taskPersons, suggestedPersons, onAddPerson, onRem
         {suggestedPersons?.map(person => {
           return (
             <li key={person.id} onClick={() => onAddPerson(person.id)} className="suggested-person">
-              <img className="suggested-person-img" src={person.imgUrl} />
+              {person.imgUrl ? <img className="suggested-person-img" src={person.imgUrl} alt=""/> :
+                <div key={person.id} className="person-initials">
+                  {utilService.getInitials(person.fullName)}
+                </div>
+              }
               <h4 className="suggested-person-name">{person.fullName}</h4>
             </li>
           )

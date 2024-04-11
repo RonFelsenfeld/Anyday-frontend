@@ -13,7 +13,6 @@ export function TaskList({ group }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
   const [taskToEdit, setTaskToEdit] = useState(null)
-  const [activeTaskId, setActiveTaskId] = useState(null)
   const [placeholderProps, setPlaceholderProps] = useState({})
 
   const draggableDOMref = useRef()
@@ -82,59 +81,57 @@ export function TaskList({ group }) {
 
   return (
     <>
-    <ul className="group-container clean-list">
-      <div className="group-list">
-        <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
-          <Droppable droppableId="tasks">
-            {(provider, snapshot) => (
-              <div {...provider.droppableProps} ref={provider.innerRef} className="droppable-area">
-                {group.tasks.map((task, idx) => {
-                  return (
-                    <Draggable key={task.id} draggableId={task.id} index={idx}>
-                      {(provider, snapshot) => (
-                        <li
-                          className={`task ${snapshot.isDragging ? 'dragging' : ''}`}
-                          {...provider.draggableProps}
-                          {...provider.dragHandleProps}
-                          ref={el => {
-                            provider.innerRef(el)
-                            if (snapshot.isDragging) {
-                              draggableDOMref.current = el
-                            }
-                          }}
-                        >
-                          <TaskPreview
-                            group={group}
-                            task={task}
-                            onSaveTask={onSaveTask}
-                            onRemoveTask={onRemoveTask}
-                            setTaskToEdit={setTaskToEdit}
-                            activeTaskId={activeTaskId}
-                            setActiveTaskId={setActiveTaskId}
-                          />
-                        </li>
-                      )}
-                    </Draggable>
-                  )
-                })}
-                {provider.placeholder}
-                {snapshot.isDraggingOver && (
-                  <div
-                    className="dragging-placeholder"
-                    style={{
-                      position: 'absolute',
-                      top: placeholderProps.clientY,
-                      left: placeholderProps.clientX + 6 + 'px',
-                      height: placeholderProps.clientHeight,
-                      width: placeholderProps.clientWidth - 6 + 'px',
-                    }}
-                  />
-                )}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>
+      <ul className="group-container clean-list">
+        <div className="group-list">
+          <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
+            <Droppable droppableId="tasks">
+              {(provider, snapshot) => (
+                <div {...provider.droppableProps} ref={provider.innerRef} className="droppable-area">
+                  {group.tasks.map((task, idx) => {
+                    return (
+                      <Draggable key={task.id} draggableId={task.id} index={idx}>
+                        {(provider, snapshot) => (
+                          <li
+                            className={`task ${snapshot.isDragging ? 'dragging' : ''}`}
+                            {...provider.draggableProps}
+                            {...provider.dragHandleProps}
+                            ref={el => {
+                              provider.innerRef(el)
+                              if (snapshot.isDragging) {
+                                draggableDOMref.current = el
+                              }
+                            }}
+                          >
+                            <TaskPreview
+                              group={group}
+                              task={task}
+                              onSaveTask={onSaveTask}
+                              onRemoveTask={onRemoveTask}
+                              setTaskToEdit={setTaskToEdit}
+                            />
+                          </li>
+                        )}
+                      </Draggable>
+                    )
+                  })}
+                  {provider.placeholder}
+                  {snapshot.isDraggingOver && (
+                    <div
+                      className="dragging-placeholder"
+                      style={{
+                        position: 'absolute',
+                        top: placeholderProps.clientY,
+                        left: placeholderProps.clientX + 6 + 'px',
+                        height: placeholderProps.clientHeight,
+                        width: placeholderProps.clientWidth - 6 + 'px',
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
 
         <li className="add-task-li">
           <div className="task-indicator" style={{ backgroundColor: group.style.color }}></div>
@@ -148,7 +145,7 @@ export function TaskList({ group }) {
         </li>
       </ul>
 
-      <GroupSummary group={group}/>
+      <GroupSummary group={group} />
     </>
   )
 }

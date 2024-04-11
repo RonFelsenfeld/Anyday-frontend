@@ -7,16 +7,19 @@ import { saveGroup } from '../store/actions/board.actions'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 
 import { EditableText } from './EditableText'
-import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
+import { BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { boardService } from '../services/board.service'
 
 export function GroupHeader({
   group,
   isHeaderExpanded,
+  onAddGroup,
   onRemoveGroup,
   setGroupToEdit,
   groupToEdit,
   isExpanded,
+  setIsExpanded,
+  setIsAllGroupsExpended,
   toggleIsExpanded,
   idx,
   draggableDOMref,
@@ -94,6 +97,58 @@ export function GroupHeader({
     return classList
   }
 
+  function onMenuClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'optionsMenu',
+      options: [
+        {
+          title: 'Collapse this group',
+          icon: 'collapseThis',
+          func: () => {
+            setIsExpanded(false)
+          },
+        },
+        {
+          title: 'Collapse all groups',
+          icon: 'collapseAll',
+          func: () => {
+            setIsAllGroupsExpended(false)
+          },
+        },
+        {
+          title: 'Add group',
+          icon: 'addGroup',
+          func: () => {
+            onAddGroup()
+          },
+        },
+        {
+          title: 'Rename group',
+          icon: 'pencil',
+          func: () => {
+            setGroupToEdit(group)
+          },
+        },
+        {
+          title: 'Change group color',
+          icon: 'changeColor',
+          func: () => {
+            setGroupToEdit(group)
+          },
+        },
+        {
+          title: 'Delete',
+          icon: 'trash',
+          func: () => {
+            onRemoveGroup(group.id)
+          },
+        },
+      ],
+    }
+
+    showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
+  }
+
   return (
     <Draggable key={group.id} draggableId={group.id} index={idx}>
       {(provider, snapshot) => (
@@ -124,7 +179,7 @@ export function GroupHeader({
                 ></div>
               )}
               <div className="group-title-container flex align-center">
-                <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
+                <button className="group-menu-btn" onClick={onMenuClick}>
                   <WorkSpaceOption />
                 </button>
 

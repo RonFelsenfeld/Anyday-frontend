@@ -65,7 +65,12 @@
     &.add-task-li {
       border-bottom-left-radius: $cmp-br;
       overflow: hidden;
-      opacity: 0.4;
+      box-shadow: none;
+
+      .task-indicator,
+      .add-task-checkbox {
+        opacity: 0.4;
+      }
 
       .add-task-container {
         border-inline-start: 1px solid $secondary-border-clr;
@@ -90,7 +95,7 @@
       }
 
       &:hover {
-        background-color: $hover-clr;
+        background-color: $list-hover-clr;
         opacity: 1;
       }
     }

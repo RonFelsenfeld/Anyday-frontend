@@ -48,7 +48,6 @@ export function Sidebar() {
   }
 
   async function onDeleteBoard(boardId) {
-    console.log(boardId)
     try {
       await removeBoard(boardId)
       showSuccessMsg('We successfully deleted the board')
@@ -169,6 +168,13 @@ export function Sidebar() {
               onEditBoardTitle={onEditBoardTitle}
               boards={boards}
             />
+          )}
+          {!boards.length && (
+            <div className="not-found-container">
+              <img className="not-found-img" src="/assets/img/search_empty_state.svg" />
+              <h3>No results found</h3>
+              <p>Please check your search terms of filters</p>
+            </div>
           )}
         </div>
       )}
