@@ -43,6 +43,7 @@
   }
 
   .filter-sort-btns {
+    
     form {
       height: 32px;
       width: 265px;
@@ -60,17 +61,15 @@
         border: none;
         padding-inline-start: 5px;
         padding-block: 1px;
-        transition: width .1s ease, height .1s ease;
       }
     }
 
     .filter-by-person-container {
-
-
       .removing-person {
         padding-inline-end: 5px;
         padding-block-start: 3px;
         @include btn;
+        
         &:hover{
           cursor: pointer;
         }

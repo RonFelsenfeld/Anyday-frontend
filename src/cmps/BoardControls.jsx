@@ -80,11 +80,11 @@ export function BoardControls() {
               type='text'
               placeholder='Search this board '
               onBlur={() => setIsFilterInput(false)}
+              // onFocus={focus}
+              autoFocus
             />
           </form>
         }
-
-
         <div className={`filter-by-person-container flex align-center ${dynFilterClass}`}>
           <button
             className={`btn btn-action flex align-center `}

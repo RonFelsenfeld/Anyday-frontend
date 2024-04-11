@@ -187,7 +187,7 @@
     }
   }
 
-  .active {
+  .navlink.active {
     @include activeLink;
     width: 242px;
     // border-radius: $el-br

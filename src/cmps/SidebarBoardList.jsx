@@ -15,8 +15,7 @@ export function SidebarBoardList({
     <ul className="side-bar-boards-list clean-list">
       {boards.map(board => (
         <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
-          <li
-            className={`navlink`} key={board._id}>
+          <li key={board._id}>
             <SidebarBoardPreview
               boardToEdit={boardToEdit}
               setBoardToEdit={setBoardToEdit}
