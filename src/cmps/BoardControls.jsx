@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Filter, Hide, Search, Sort, UserImg } from '../services/svg.service'
-import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
+import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 import { useSelector } from 'react-redux'
@@ -10,24 +10,43 @@ export function BoardControls() {
   const [isFilterInput, setIsFilterInput] = useState(false)
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
   const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
+  const filterBy = useSelector(stateStore => stateStore.boardModule.groupTaskFilterBy)
 
 
   function onSetGroupTaskFilterBy(groupTaskFilterBy) {
     setGroupTaskFilterBy(groupTaskFilterBy)
   }
 
-  function handlePersonFilter({currentTarget}){
-    console.log(currentTarget);
-  }
-  
+  function onAddPerson(personId) {
+    console.log('added', personId);
 
+    setGroupTaskFilterBy({ ...filterBy, person: personId })
+    hideModal()
+  }
+
+
+
+
+// console.log(filterBy);
+  function handlePersonFilter({ currentTarget }) {
+    const persons = board.persons
+    const suggestedPersons = persons
+    const cmpInfo = {
+      type: 'filterPersonPicker',
+      persons,
+      suggestedPersons,
+      onAddPerson,
+      // onRemovePerson
+    }
+    // console.log(persons);
+    showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
+  }
 
   function handleChange({ target }) {
     const { value } = target
     onSetGroupTaskFilterBy({ txt: value })
     // markFilteredTxt(value)
   }
-
 
   return (
     <section className="board-controls flex align-baseline">
@@ -41,12 +60,15 @@ export function BoardControls() {
           <span className="btn-title">Search</span>
         </button>}
         {isFilterInput &&
-          <input
-            onChange={handleChange}
-            type='text'
-            placeholder='Search this board '
-            onBlur={() => setIsFilterInput(false)}
-          />
+          <form className='filter-form flex'>
+            <Search />
+            <input
+              onChange={handleChange}
+              type='text'
+              placeholder='Search this board '
+              onBlur={() => setIsFilterInput(false)}
+            />
+          </form>
         }
 
 

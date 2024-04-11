@@ -276,4 +276,20 @@
       }
     }
   }
+
+  .not-found-container{
+    padding-block-start: em(56px);
+    margin-inline: em(35px);
+    img{
+      width: 180px;
+    }
+    h3{
+      font-family: PoppinsMedium;
+      text-align: center;
+    }
+    p{
+      text-align: center;
+      width: em(200px);
+    }
+  }
 }

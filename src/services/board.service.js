@@ -50,22 +50,38 @@ async function getById(boardId) {
 }
 
 function filterBoard(board, filterBy) {
-  let groupsToReturn = board.groups.slice()
+  let groupsToReturn = board.groups.slice();
 
   if (filterBy.txt) {
-    const regExp = new RegExp(filterBy.txt, 'i')
+    const regExp = new RegExp(filterBy.txt, 'i');
 
-    const filteredTasksGroups = groupsToReturn.filter(group => group.tasks.some(t => regExp.test(t.title)))
-    var filteredAll = filteredTasksGroups.map(group => {
-      const filteredGroup = group.tasks.filter(t => regExp.test(t.title))
-      group.tasks = [...filteredGroup]
-      return group
-    })
+    const groupsFilteredByTitle = groupsToReturn.filter(group => regExp.test(group.title));
 
-    groupsToReturn = groupsToReturn?.filter(group => regExp.test(group.title))
+    const filteredTasksGroups = groupsToReturn.filter(group => group.tasks.some(t => regExp.test(t.title)));
+    const filteredAll = filteredTasksGroups.map(group => {
+      const filteredGroup = group.tasks.filter(t => regExp.test(t.title));
+      return {...group, tasks: filteredGroup};
+    });
+
+    groupsToReturn = [...groupsFilteredByTitle, ...filteredAll];
   }
-  const combinedFiltered = new Set([...filteredAll, ...groupsToReturn])
-  return [...combinedFiltered]
+
+  if (filterBy.person) {
+    const personGroups = groupsToReturn.filter(group => group.tasks.some(t => t.personsIds.includes(filterBy.person)));
+    const groupWithPersonTasks = personGroups.map(group => {
+      const filteredGroup = group.tasks.filter(t => t.personsIds.includes(filterBy.person));
+      return {...group, tasks: filteredGroup};
+    });
+
+    groupsToReturn = [...groupWithPersonTasks];
+  }
+
+  // Remove duplicate groups
+  groupsToReturn = groupsToReturn.reduce((unique, item) => {
+    return unique.some(u => u.id === item.id) ? unique : [...unique, item];
+  }, []);
+  return groupsToReturn
+
 }
 
 function remove(boardId) {
@@ -119,7 +135,7 @@ function getDefaultBoardFilter() {
 // * --------------------------------- GROUPS ---------------------------------
 
 function getDefaultGroupTaskFilter() {
-  return { txt: '' }
+  return { txt: '', person: null }
 }
 
 function removeGroup(board, groupId) {

@@ -43,16 +43,25 @@
   }
 
   .filter-sort-btns {
-
-    input {
+    form {
       height: 32px;
       width: 265px;
       outline-style: none;
-      border: 1px solid blue;
+      border: 1px solid $btn-compose-clr;
       border-radius: 4px;
-      padding-inline-start: 5px;
-      padding-block: 1px;
-      transition: width .1s ease, height .1s ease;
+
+      svg {
+        margin-block-start: 5px;
+        margin-inline-start: 5px
+      }
+
+      input {
+        outline-style: none;
+        border: none;
+        padding-inline-start: 5px;
+        padding-block: 1px;
+        transition: width .1s ease, height .1s ease;
+      }
     }
   }
 }
