@@ -92,7 +92,7 @@ export function GroupHeader({
             ></div>
           )}
           <div className="group-title-container flex align-center">
-            <button className="board-menu-btn" onClick={() => onRemoveGroup(group.id)}>
+            <button className="group-menu-btn" onClick={() => onRemoveGroup(group.id)}>
               <WorkSpaceOption />
             </button>
 
