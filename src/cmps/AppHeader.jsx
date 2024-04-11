@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import {
   Help,
@@ -10,6 +11,8 @@ import {
 } from '../services/svg.service'
 
 export function AppHeader() {
+  const user = useSelector(storeState => storeState.userModule.loggedInUser)
+
   return (
     <header className="app-header flex align-center justify-between">
       <div className="menu-logo-container">
@@ -39,11 +42,21 @@ export function AppHeader() {
           <Help />
         </button>
 
-        <Link to={'/auth'}>
-          <button className="btn">
-            <UserImg />
-          </button>
-        </Link>
+        {!user && (
+          <Link to={'/auth'}>
+            <button className="btn">
+              <UserImg />
+            </button>
+          </Link>
+        )}
+
+        {user && (
+          <Link to={'/auth'}>
+            <button className="btn">
+              <UserImg />
+            </button>
+          </Link>
+        )}
       </div>
     </header>
   )

@@ -45,6 +45,36 @@
         .login-input {
           border: 1px solid $list-shadow-clr;
           font-size: em(16px);
+          transition: border 0.2s;
+
+          &:focus {
+            outline: none;
+            border: 1px solid $btn-compose-clr;
+
+            &:hover {
+              border: 1px solid $main-font-clr;
+            }
+          }
+
+          &:hover {
+            border: 1px solid $main-font-clr;
+          }
+        }
+
+        .img-input-container {
+          padding-inline-start: 0;
+          gap: 1em;
+
+          .label-container {
+            img {
+              @include userImg(50px);
+              cursor: pointer;
+
+              &:hover {
+                box-shadow: inset 0px 0px 0px 3px #c9c9c9;
+              }
+            }
+          }
         }
 
         .btn-login {

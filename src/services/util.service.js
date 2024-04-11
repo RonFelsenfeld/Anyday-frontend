@@ -10,7 +10,8 @@ export const utilService = {
   animateCSS,
   getInitials,
   calcPercentageOfElapsedTime,
-  getNumOfDays
+  getNumOfDays,
+  greetBasedOnHour,
 }
 
 function makeId(length = 6) {
@@ -130,13 +131,13 @@ function animateCSS(el, animation = 'bounce') {
 }
 
 function getInitials(fullName) {
-  const words = fullName.split(' ');
-  let initials = '';
+  const words = fullName.split(' ')
+  let initials = ''
 
   for (let i = 0; i < words.length && initials.length < 2; i++) {
-    initials += words[i][0].toUpperCase();
+    initials += words[i][0].toUpperCase()
   }
-  return initials;
+  return initials
 }
 
 function calcPercentageOfElapsedTime(startDate, dueDate) {
@@ -158,6 +159,20 @@ function getNumOfDays(startDate, dueDate) {
   const end = new Date(dueDate)
   const diff = Math.abs(end - start)
 
-  const daysDifference = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  const daysDifference = Math.ceil(diff / (1000 * 60 * 60 * 24))
   return daysDifference
+}
+
+function greetBasedOnHour() {
+  const currentHour = new Date().getHours()
+
+  if (currentHour >= 6 && currentHour < 12) {
+    return 'Good morning'
+  } else if (currentHour >= 12 && currentHour < 18) {
+    return 'Good afternoon'
+  } else if (currentHour >= 18 && currentHour < 22) {
+    return 'Good evening'
+  } else {
+    return 'Good night'
+  }
 }

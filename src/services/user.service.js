@@ -73,7 +73,7 @@ function _createDemoUsers() {
     users = []
 
     const user1 = {
-      id: 'u101',
+      _id: 'u101',
       username: 'Atar Mor',
       password: 'atar',
       fullName: 'Atar Mor',
@@ -81,7 +81,7 @@ function _createDemoUsers() {
     }
 
     const user2 = {
-      id: 'u102',
+      _id: 'u102',
       username: 'Ido Yotvat',
       password: 'ido',
       fullName: 'Ido Yotvat',
@@ -89,7 +89,7 @@ function _createDemoUsers() {
     }
 
     const user3 = {
-      id: 'u103',
+      _id: 'u103',
       username: 'Ron Felsenfeld',
       password: 'ron',
       fullName: 'Ron Felsenfeld',
@@ -97,7 +97,7 @@ function _createDemoUsers() {
     }
 
     const user4 = {
-      id: 'u104',
+      _id: 'u104',
       username: 'John Doe',
       password: 'john',
       fullName: 'John Doe',

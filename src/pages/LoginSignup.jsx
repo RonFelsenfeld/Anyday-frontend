@@ -5,7 +5,7 @@ import { login, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function LoginSignup() {
-  const [isSignup, setIsSignup] = useState(false)
+  const [isSignup, setIsSignup] = useState(true)
   const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
   const navigate = useNavigate()
 
@@ -20,25 +20,27 @@ export function LoginSignup() {
   }
 
   function submitCredentials(credentials) {
-    isSignup ? handleSignin(credentials) : handleLogin(credentials)
+    isSignup ? handleSignup(credentials) : handleLogin(credentials)
   }
 
   async function handleLogin(credentials) {
     try {
       const user = await login(credentials)
-      showSuccessMsg(`Welcome, ${user.fullName}`)
+      showSuccessMsg(`Welcome back, ${user.fullName}`)
     } catch (err) {
+      console.log('Login -> Has issues login', err)
       showErrorMsg('Could not login, try again later.')
     } finally {
       navigate('/board')
     }
   }
 
-  async function handleSignin(credentials) {
+  async function handleSignup(credentials) {
     try {
-      const user = await signup()
-      showSuccessMsg(`Welcome back, ${user.fullName}`)
+      const user = await signup(credentials)
+      showSuccessMsg(`Welcome, ${user.fullName}`)
     } catch (err) {
+      console.log('Signup -> Has issues signup', err)
       showErrorMsg('Could not sign-in, try again later.')
     } finally {
       navigate('/board')
@@ -70,16 +72,6 @@ export function LoginSignup() {
               autoFocus
               autoComplete="off"
             />
-            <input
-              type="password"
-              name="password"
-              className="login-input"
-              placeholder="Enter your password"
-              value={credentials.password}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
 
             {isSignup && (
               <input
@@ -94,13 +86,45 @@ export function LoginSignup() {
               />
             )}
 
+            <input
+              type="password"
+              name="password"
+              className="login-input"
+              placeholder="Enter your password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+              autoComplete="off"
+            />
+
+            {isSignup && (
+              <div className="img-input-container flex align-center">
+                <label>Add profile picture</label>
+
+                <label htmlFor="img" className="label-container">
+                  <img src="/assets/img/user-avatar.svg" alt="User default image" />
+                </label>
+
+                <input
+                  type="file"
+                  name="img"
+                  id="img"
+                  className="login-input"
+                  onChange={handleChange}
+                  hidden
+                />
+              </div>
+            )}
+
             <button className="btn-login">Login</button>
           </form>
         </div>
 
         <p className="already-user flex ">
           {`${isSignup ? 'Already have an account?' : "Don't have an account yet?"}`}
-          <span onClick={() => setIsSignup(!isSignup)}>{`${isSignup ? 'Sign up' : 'Log in'}`}</span>
+          <span onClick={() => setIsSignup(!isSignup)}>{`${
+            isSignup ? 'Log in ' : 'Sign up'
+          }`}</span>
         </p>
       </div>
 
