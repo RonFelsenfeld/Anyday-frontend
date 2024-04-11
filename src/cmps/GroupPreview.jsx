@@ -16,7 +16,7 @@ export function GroupPreview({
   // markedTxt
 }) {
   const [isExpanded, setIsExpanded] = useState(true)
-  const prevIsExpandedRef = useRef()
+  const prevIsExpandedRef = useRef(true)
 
   useEffectUpdate(() => {
     if (!snapshot.isDraggingOver) setIsExpanded(prevIsExpandedRef.current)
