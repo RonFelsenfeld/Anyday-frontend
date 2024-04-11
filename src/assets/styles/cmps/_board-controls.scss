@@ -75,6 +75,10 @@
           cursor: pointer;
         }
       }
+
+      .btn-title-person-padded{
+        padding-inline-start: em(8px);
+      }
     }
 
     .active {

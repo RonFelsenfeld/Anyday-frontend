@@ -50,6 +50,7 @@ async function getById(boardId) {
 }
 
 function filterBoard(board, filterBy) {
+ 
   let groupsToReturn = board.groups.slice();
 
   if (filterBy.txt) {
@@ -67,9 +68,9 @@ function filterBoard(board, filterBy) {
   }
 
   if (filterBy.person) {
-    const personGroups = groupsToReturn.filter(group => group.tasks.some(t => t.personsIds.includes(filterBy.person)));
+    const personGroups = groupsToReturn.filter(group => group.tasks.some(t => t.personsIds?.includes(filterBy.person)));
     const groupWithPersonTasks = personGroups.map(group => {
-      const filteredGroup = group.tasks.filter(t => t.personsIds.includes(filterBy.person));
+      const filteredGroup = group.tasks.filter(t => t.personsIds?.includes(filterBy.person));
       return {...group, tasks: filteredGroup};
     });
 
@@ -79,8 +80,9 @@ function filterBoard(board, filterBy) {
   // Remove duplicate groups
   groupsToReturn = groupsToReturn.reduce((unique, item) => {
     return unique.some(u => u.id === item.id) ? unique : [...unique, item];
-  }, [])
+  }, []);
   return groupsToReturn
+
 }
 
 function remove(boardId) {

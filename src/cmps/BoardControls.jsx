@@ -100,7 +100,7 @@ export function BoardControls() {
             {filterBy.person &&
               <div className='filter-active flex align-center'>
                 <img className="filterby-img" src={`${person.imgUrl}`} />
-                <span className="btn-title">Person</span>
+                <span className="btn-title-person-padded">Person</span>
               </div>
             }
           </button>
