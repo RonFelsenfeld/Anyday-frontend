@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
 
@@ -10,6 +10,8 @@ import { TaskPerson } from './TaskPerson'
 import { TaskTimeline } from './TaskTimeline'
 import { useSelector } from 'react-redux'
 import { useClickOutside } from '../customHooks/useClickOutside'
+import { showModal } from '../store/actions/system.actions'
+import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 
 export function TaskPreview({
   group,
@@ -22,10 +24,35 @@ export function TaskPreview({
 }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const taskPreviewRef = useRef()
+  const navigate = useNavigate()
 
   useClickOutside(taskPreviewRef, () => setActiveTaskId(null))
 
-  function getFileType() {}
+  function onTaskMenuClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'optionsMenu',
+      options: [
+        {
+          title: 'Open task',
+          icon: 'openTask',
+          func: () => {
+            navigate(`/board/${board._id}/task/${task.id}`)
+          }
+        },
+        {
+          title: 'Delete',
+          icon: 'trash',
+          func: () => {
+            onRemoveTask(task.id)
+          }
+        }
+      ]
+    }
+
+    showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
+  }
+
+  function getFileType() { }
 
   const activeClass = task.id === activeTaskId ? 'active' : ''
 
@@ -35,7 +62,7 @@ export function TaskPreview({
       onClick={() => setActiveTaskId(task.id)}
       className={`task-preview ${activeClass}`}
     >
-      <button onClick={() => onRemoveTask(task.id)} className="task-menu-btn">
+      <button onClick={onTaskMenuClick} className="task-menu-btn">
         <WorkSpaceOption />
       </button>
 

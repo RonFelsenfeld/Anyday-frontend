@@ -9,7 +9,6 @@ import { hideToolTip, showModal, showToolTip } from '../store/actions/system.act
 import { EditableText } from './EditableText'
 import { BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { boardService } from '../services/board.service'
-import { useClickOutside } from '../customHooks/useClickOutside'
 
 export function GroupHeader({
   group,
@@ -26,10 +25,6 @@ export function GroupHeader({
   draggableDOMref,
 }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const menuBtnRef = useRef()
-
-  useClickOutside(menuBtnRef, () => setIsMenuOpen(false))
 
   async function onEditGroupTitle(newTitle) {
     if (!newTitle) return
@@ -86,7 +81,6 @@ export function GroupHeader({
           icon: 'collapseThis',
           func: () => {
             setIsExpanded(false)
-            setIsMenuOpen(false)
           }
         },
         {
@@ -94,7 +88,6 @@ export function GroupHeader({
           icon: 'collapseAll',
           func: () => {
             setIsAllGroupsExpended(false)
-            setIsMenuOpen(false)
           }
         },
         {
@@ -102,7 +95,6 @@ export function GroupHeader({
           icon: 'addGroup',
           func: () => {
             onAddGroup()
-            setIsMenuOpen(false)
           }
         },
         {
@@ -110,7 +102,6 @@ export function GroupHeader({
           icon: 'pencil',
           func: () => {
             setGroupToEdit(group)
-            setIsMenuOpen(false)
           }
         },
         {
@@ -118,7 +109,6 @@ export function GroupHeader({
           icon: 'changeColor',
           func: () => {
             setGroupToEdit(group)
-            setIsMenuOpen(false)
           }
         },
         {
@@ -126,14 +116,12 @@ export function GroupHeader({
           icon: 'trash',
           func: () => {
             onRemoveGroup(group.id)
-            setIsMenuOpen(false)
           }
         }
       ]
     }
 
     showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
-    setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen)
   }
 
   return (
@@ -161,7 +149,7 @@ export function GroupHeader({
           <div className="group-title-container flex align-center">
             <button className="group-menu-btn"
               onClick={onMenuClick}
-              ref={menuBtnRef}
+              // ref={menuBtnRef}
             >
               <WorkSpaceOption />
             </button>
