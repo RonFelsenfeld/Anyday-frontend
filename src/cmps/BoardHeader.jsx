@@ -5,7 +5,7 @@ import { BoardControls } from './BoardControls'
 import { EditableText } from './EditableText'
 import { saveBoard } from '../store/actions/board.actions'
 
-export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
+export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAddNewTask }) {
   const [isEditing, setIsEditing] = useState(false)
 
   function toggleExpanded() {
@@ -127,7 +127,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded }) {
         <ArrowUp />
       </button>
 
-      <BoardControls />
+      <BoardControls onAddNewTask={onAddNewTask}/>
     </header>
   )
 }

@@ -9,6 +9,8 @@ export const EDIT_BOARD = 'EDIT_BOARD'
 export const SET_BOARD_FILTER_BY = 'SET_BOARD_FILTER_BY'
 export const SET_GROUP_TASK_FILTER_BY = 'SET_GROUP_TASK_FILTER_BY'
 
+export const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID'
+
 // export const SET_MARKED_TEXT = 'SET_MARKED_TEXT'
 
 
@@ -17,6 +19,7 @@ const initialState = {
   currentBoard: null,
   boardFilterBy: boardService.getDefaultBoardFilter(),
   groupTaskFilterBy: boardService.getDefaultGroupTaskFilter(),
+  activeTaskId: null
   // markedTxt: ''
 }
 
@@ -61,6 +64,12 @@ export function boardReducer(state = initialState, action = {}) {
       return {
         ...state,
         groupTaskFilterBy: { ...state.groupTaskFilterBy, ...action.groupTaskFilterBy }
+      }
+
+    case SET_ACTIVE_TASK_ID:
+      return {
+        ...state,
+        activeTaskId: action.taskId
       }
     // case SET_MARKED_TEXT:
     //   return {

@@ -6,7 +6,7 @@ import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 import { useSelector } from 'react-redux'
 // import { useSelector } from 'react-redux'
 
-export function BoardControls() {
+export function BoardControls({onAddNewTask}) {
   const [isFilterInput, setIsFilterInput] = useState(false)
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
   const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
@@ -19,8 +19,6 @@ export function BoardControls() {
   function handlePersonFilter({currentTarget}){
     console.log(currentTarget);
   }
-  
-
 
   function handleChange({ target }) {
     const { value } = target
@@ -28,10 +26,9 @@ export function BoardControls() {
     // markFilteredTxt(value)
   }
 
-
   return (
     <section className="board-controls flex align-baseline">
-      <button className="btn btn-new-task">New task</button>
+      <button onClick={onAddNewTask} className="btn btn-new-task">New task</button>
 
       <div className='filter-sort-btns flex align-center'>
         {!isFilterInput && <button

@@ -11,10 +11,11 @@ import {
   removeGroup,
   saveBoard,
   saveGroup,
+  saveTask,
   setBoardFilterBy,
 } from '../store/actions/board.actions'
 import { AddBoardBtn } from '../services/svg.service'
-import { SET_BOARD } from '../store/reducers/board.reducer'
+import { SET_ACTIVE_TASK_ID, SET_BOARD } from '../store/reducers/board.reducer'
 
 import { BoardHeader } from '../cmps/BoardHeader'
 import { Loader } from '../cmps/Loader'
@@ -133,6 +134,17 @@ export function BoardDetails() {
     }
   }
 
+  async function onAddNewTask() {
+    const newTask = boardService.getEmptyTask()
+    newTask.title = 'New task'
+    try {
+      await saveTask(board, board.groups[0], newTask, true)   // true => add at the beggining
+      dispatch({ type: SET_ACTIVE_TASK_ID, taskId: board.groups[0].tasks[0].id })
+    } catch (err) {
+      console.log('Had issues adding task', err)
+    }
+  }
+
   if (!board) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
@@ -143,6 +155,7 @@ export function BoardDetails() {
           board={board}
           isHeaderExpanded={isHeaderExpanded}
           setIsHeaderExpanded={setIsHeaderExpanded}
+          onAddNewTask={onAddNewTask}
         />
       </div>
 

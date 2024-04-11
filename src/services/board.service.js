@@ -175,11 +175,11 @@ function removeTask(board, group, taskId) {
   return save(board)
 }
 
-function saveTask(board, group, task) {
+function saveTask(board, group, task, unshift) {
   if (task.id) {
     return _updateTask(board, group, task)
   } else {
-    return _addTask(board, group, task)
+    return _addTask(board, group, task, unshift)
   }
 }
 
@@ -191,9 +191,9 @@ function getTaskById(board, taskId) {
   return task
 }
 
-function _addTask(board, group, task) {
+function _addTask(board, group, task, unshift=false) {
   task.id = utilService.makeId()
-  group.tasks.push(task)
+  unshift ? group.tasks.unshift(task) : group.tasks.push(task)
   return save(board)
 }
 
