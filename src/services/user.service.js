@@ -1,15 +1,16 @@
 import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
 
 const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
+_createDemoUsers()
 
 export const userService = {
   login,
   signup,
   logout,
   getById,
-  getLoggedinUser: getLoggedInUser,
-  updateScore,
+  getLoggedInUser,
   getEmptyCredentials,
 }
 
@@ -17,7 +18,7 @@ async function login({ username, password }) {
   try {
     const users = storageService.query(STORAGE_KEY)
     const user = users.find(user => user.username === username)
-    if (user) return _setLoggedInUser(user)
+    if (user && user.password === password) return _setLoggedInUser(user)
   } catch (err) {
     console.log('Login in service --> Has issues login')
     return Promise.reject('Invalid login')
@@ -59,5 +60,51 @@ function getEmptyCredentials() {
     username: '',
     password: '',
     fullName: '',
+    imgUrl: '',
+  }
+}
+
+////////////////////////////////////////////////////
+
+function _createDemoUsers() {
+  let users = utilService.loadFromStorage(STORAGE_KEY)
+
+  if (!users || !users.length) {
+    users = []
+
+    const user1 = {
+      id: 'u101',
+      username: 'Atar Mor',
+      password: 'atar',
+      fullName: 'Atar Mor',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+    }
+
+    const user2 = {
+      id: 'u102',
+      username: 'Ido Yotvat',
+      password: 'ido',
+      fullName: 'Ido Yotvat',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
+    }
+
+    const user3 = {
+      id: 'u103',
+      username: 'Ron Felsenfeld',
+      password: 'ron',
+      fullName: 'Ron Felsenfeld',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+    }
+
+    const user4 = {
+      id: 'u104',
+      username: 'John Doe',
+      password: 'joe',
+      fullName: 'John Doe',
+      imgUrl: '',
+    }
+
+    users = [user1, user2, user3, user4]
+    utilService.saveToStorage(STORAGE_KEY, users)
   }
 }

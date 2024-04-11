@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import {
   Help,
   Inbox,
@@ -6,7 +8,6 @@ import {
   UserImg,
   WorkspaceLogo,
 } from '../services/svg.service'
-import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function AppHeader() {
   return (
@@ -26,11 +27,7 @@ export function AppHeader() {
       </div>
 
       <div className="actions-container flex">
-        <button
-          className="btn"
-          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
-          onMouseLeave={() => hideToolTip()}
-        >
+        <button className="btn">
           <NotificationBell />
         </button>
 
@@ -42,13 +39,11 @@ export function AppHeader() {
           <Help />
         </button>
 
-        <button
-          className="btn"
-          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
-          onMouseLeave={() => hideToolTip()}
-        >
-          <UserImg />
-        </button>
+        <Link to={'/auth'}>
+          <button className="btn">
+            <UserImg />
+          </button>
+        </Link>
       </div>
     </header>
   )
