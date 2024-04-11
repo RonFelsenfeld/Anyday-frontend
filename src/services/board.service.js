@@ -56,21 +56,16 @@ function filterBoard(board, filterBy) {
     const regExp = new RegExp(filterBy.txt, 'i')
 
     const filteredTasksGroups = groupsToReturn.filter(group => group.tasks.some(t => regExp.test(t.title)))
-    const filteredGroupsWithFinalTasks = []
-
     var filteredAll = filteredTasksGroups.map(group => {
       const filteredGroup = group.tasks.filter(t => regExp.test(t.title))
       group.tasks = [...filteredGroup]
       return group
     })
 
-
-    console.log(filteredGroupsWithFinalTasks)
-
     groupsToReturn = groupsToReturn?.filter(group => regExp.test(group.title))
-
   }
-  return filteredAll || groupsToReturn
+  const combinedFiltered = new Set([...filteredAll, ...groupsToReturn])
+  return [...combinedFiltered]
 }
 
 function remove(boardId) {
