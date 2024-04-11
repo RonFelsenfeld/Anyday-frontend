@@ -50,7 +50,7 @@ async function getById(boardId) {
 }
 
 function filterBoard(board, filterBy) {
- 
+
   let groupsToReturn = board.groups.slice();
 
   if (filterBy.txt) {
@@ -61,7 +61,7 @@ function filterBoard(board, filterBy) {
     const filteredTasksGroups = groupsToReturn.filter(group => group.tasks?.some(t => regExp.test(t.title)));
     const filteredAll = filteredTasksGroups.map(group => {
       const filteredGroup = group.tasks.filter(t => regExp.test(t.title));
-      return {...group, tasks: filteredGroup};
+      return { ...group, tasks: filteredGroup };
     });
 
     groupsToReturn = [...groupsFilteredByTitle, ...filteredAll];
@@ -71,7 +71,7 @@ function filterBoard(board, filterBy) {
     const personGroups = groupsToReturn.filter(group => group.tasks.some(t => t.personsIds?.includes(filterBy.person)));
     const groupWithPersonTasks = personGroups.map(group => {
       const filteredGroup = group.tasks.filter(t => t.personsIds?.includes(filterBy.person));
-      return {...group, tasks: filteredGroup};
+      return { ...group, tasks: filteredGroup };
     });
 
     groupsToReturn = [...groupWithPersonTasks];
@@ -203,7 +203,7 @@ function getTaskById(board, taskId) {
   return task
 }
 
-function _addTask(board, group, task, unshift=false) {
+function _addTask(board, group, task, unshift = false) {
   task.id = utilService.makeId()
   unshift ? group.tasks.unshift(task) : group.tasks.push(task)
   return save(board)
@@ -239,6 +239,18 @@ function getGroupColors() {
     'rgb(196, 196, 196)',
     'rgb(117, 117, 117)',
   ]
+}
+
+function getEmptyComment() {
+  return {
+    txt: '',
+    byPerson: {
+      id: 'u102',
+      fullName: 'Ido Yotvat',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
+    },
+    createdAt: utilService.getRandomTimestamp()
+  }
 }
 
 // * --------------------------------- DEMO DATA ---------------------------------
@@ -341,6 +353,18 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712250770111,
               },
+              comments: [
+                {
+                  id: "ZdPnm",
+                  txt: "also @yaronb please CR this",
+                  createdAt: 1590999817436,
+                  byPerson: {
+                    id: 'u101',
+                    fullName: 'Atar Mor',
+                    imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+                  },
+                },
+              ]
             },
             {
               id: 't102',
