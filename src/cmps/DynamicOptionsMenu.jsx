@@ -1,4 +1,4 @@
-import { FavoriteSmall, RenamePencil, Trash } from '../services/svg.service'
+import { AddGroup, ChangeColor, CollapseAll, CollapseThis, FavoriteSmall, RenamePencil, Trash } from '../services/svg.service'
 import { hideModal } from '../store/actions/system.actions'
 
 export function DynamicOptionsMenu({ options }) {
@@ -12,6 +12,18 @@ export function DynamicOptionsMenu({ options }) {
 
       case 'favorite':
         return <FavoriteSmall />
+
+      case 'collapseThis':
+        return <CollapseThis />
+
+      case 'collapseAll':
+        return <CollapseAll />
+
+      case 'addGroup':
+        return <AddGroup />
+
+      case 'changeColor':
+        return <ChangeColor />
     }
   }
 

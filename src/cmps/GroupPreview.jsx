@@ -7,12 +7,15 @@ import { useEffectUpdate } from '../customHooks/useEffectUpdate'
 export function GroupPreview({
   group,
   isHeaderExpanded,
+  onAddGroup,
   onRemoveGroup,
   setGroupToEdit,
   groupToEdit,
   snapshot,
   idx,
   draggableDOMref,
+  isAllGroupsExpended,
+  setIsAllGroupsExpended,
   // markedTxt
 }) {
   const [isExpanded, setIsExpanded] = useState(true)
@@ -22,6 +25,10 @@ export function GroupPreview({
     if (!snapshot.isDraggingOver) setIsExpanded(prevIsExpandedRef.current)
     else setIsExpanded(false)
   }, [snapshot.isDraggingOver])
+
+  useEffect(()=>{       //collapse all groups
+    if (!isAllGroupsExpended) setIsExpanded(false)
+  }, [isAllGroupsExpended]) 
 
   function toggleIsExpanded() {
     setIsExpanded(prevIsExpanded => !prevIsExpanded)
@@ -36,10 +43,13 @@ export function GroupPreview({
         // markedTxt={markedTxt}
         group={group}
         isHeaderExpanded={isHeaderExpanded}
+        onAddGroup={onAddGroup}
         onRemoveGroup={onRemoveGroup}
         setGroupToEdit={setGroupToEdit}
         groupToEdit={groupToEdit}
         isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
+        setIsAllGroupsExpended={setIsAllGroupsExpended}
         toggleIsExpanded={toggleIsExpanded}
         idx={idx}
         draggableDOMref={draggableDOMref}

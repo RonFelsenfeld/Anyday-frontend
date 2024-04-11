@@ -25,6 +25,7 @@ export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
+  const [isAllGroupsExpended, setIsAllGroupsExpended] = useState(true)
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [groupToEdit, setGroupToEdit] = useState(null)
@@ -152,21 +153,23 @@ export function BoardDetails() {
               <div
                 {...provider.droppableProps}
                 ref={provider.innerRef}
-                className={`group-container droppable-area ${
-                  snapshot.isDraggingOver ? 'dragging-layout' : ''
-                }`}
+                className={`group-container droppable-area ${snapshot.isDraggingOver ? 'dragging-layout' : ''
+                  }`}
               >
                 {board.groups.map((group, idx) => (
                   <GroupPreview
                     key={group.id}
                     group={group}
                     isHeaderExpanded={isHeaderExpanded}
+                    onAddGroup={onAddGroup}
                     onRemoveGroup={onRemoveGroup}
                     setGroupToEdit={setGroupToEdit}
                     groupToEdit={groupToEdit}
                     snapshot={snapshot}
                     draggableDOMref={draggableDOMref}
                     idx={idx}
+                    isAllGroupsExpended={isAllGroupsExpended}
+                    setIsAllGroupsExpended={setIsAllGroupsExpended}
                   />
                 ))}
                 {provider.placeholder}
