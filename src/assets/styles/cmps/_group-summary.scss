@@ -28,13 +28,18 @@
             display: flex;
             height: 24px;
             width: 120px;
-            transition: height .2s ease-in-out;
+            
+            >*{
+                align-self: center;
+                height: 24px;
+                transition: height .2s;
+            }
 
             >*:hover {
                 align-self: center;
                 border-radius: 2px;
                 height: 30px;
-                // transition: all 0.2s ease-in-out;
+                transition: height .2s;
             }
         }
 
