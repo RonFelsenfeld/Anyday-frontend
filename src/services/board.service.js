@@ -79,9 +79,8 @@ function filterBoard(board, filterBy) {
   // Remove duplicate groups
   groupsToReturn = groupsToReturn.reduce((unique, item) => {
     return unique.some(u => u.id === item.id) ? unique : [...unique, item];
-  }, []);
+  }, [])
   return groupsToReturn
-
 }
 
 function remove(boardId) {

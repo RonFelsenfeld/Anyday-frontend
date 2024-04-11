@@ -63,5 +63,30 @@
         transition: width .1s ease, height .1s ease;
       }
     }
+
+    .filter-by-person-container {
+
+
+      .removing-person {
+        padding-inline-end: 5px;
+        padding-block-start: 3px;
+        @include btn;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+
+    .active {
+      @include activeLink
+    }
+
+    .hidden{
+      display: none;
+    }
+  }
+
+  .filterby-img {
+    @include userImg(24px)
   }
 }
