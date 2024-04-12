@@ -26,7 +26,13 @@ async function login({ username, password }) {
 }
 
 async function signup({ username, password, fullName }) {
-  const user = { username, password, fullName }
+  const fullNameSplit = fullName.split(' ')
+
+  const capitalizedName = fullNameSplit
+    .map(name => name.charAt(0).toUpperCase() + name.substring(1))
+    .join(' ')
+
+  const user = { username, password, fullName: capitalizedName }
   try {
     const savedUser = await storageService.post(STORAGE_KEY, user)
     return _setLoggedInUser(savedUser)
