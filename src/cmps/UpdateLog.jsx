@@ -22,7 +22,7 @@ export function UpdateLog() {
 
   useEffect(() => {
     if (taskId) loadTask()
-  }, [])
+  }, [taskId])
 
   function loadTask() {
     const [taskGroup, task] = boardService.getTaskById(board, taskId)
