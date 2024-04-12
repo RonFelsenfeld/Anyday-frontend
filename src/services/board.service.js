@@ -17,6 +17,7 @@ export const boardService = {
   removeTask,
   saveTask,
   getEmptyTask,
+  getEmptyComment,
   getEmptyBoard,
   getEmptyGroup,
   getPerson,
@@ -249,7 +250,8 @@ function getEmptyComment() {
       fullName: 'Ido Yotvat',
       imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
     },
-    createdAt: utilService.getRandomTimestamp()
+    createdAt: utilService.getRandomTimestamp(),
+    id: utilService.makeId()
   }
 }
 

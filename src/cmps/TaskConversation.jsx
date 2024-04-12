@@ -7,19 +7,20 @@ export function TaskConversation({ selectedTask }) {
     const [currComment, setCurrComment] = useState(boardService.getEmptyComment())
 
     function handleChange({ target }) {
-        setCurrComment(target.value)
+        setCurrComment({...currComment,txt:target.value})
     }
 
-    function addMsg(ev) {
+    function onAddMsg(ev) {
         ev.preventDefault()
-        console.log(currComment);
+        console.log(currComment)
     }
 
+    console.log(currComment);
     return (
         <div className="update-log-content">
-            <form className="input-btn flex column" onSubmit={addMsg}>
+            <form className="input-btn flex column" onSubmit={onAddMsg}>
                 <div className="updates-log-txt-area">
-                    <input autoFocus onChange={handleChange} className="txt-input-update-log" type="text" placeholder="Write an update..." value={currComment} />
+                    <input autoFocus onChange={handleChange} className="txt-input-update-log" type="text" placeholder="Write an update..." value={currComment.txt} />
                 </div>
                 <button className="update-btn">Update</button>
             </form>
