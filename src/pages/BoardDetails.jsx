@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
-import { useScroll } from '../customHooks/useScroll'
-import { hideModal } from '../store/actions/system.actions'
 import { boardService } from '../services/board.service'
 import {
   loadBoard,
@@ -42,7 +40,6 @@ export function BoardDetails() {
   const dispatch = useDispatch()
 
   useSecondRender(createObserver)
-  // useScroll(boardDetailsRef.current, hideModal)
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
@@ -139,7 +136,7 @@ export function BoardDetails() {
     const newTask = boardService.getEmptyTask()
     newTask.title = 'New task'
     try {
-      await saveTask(board, board.groups[0], newTask, true)   // true => add at the beggining
+      await saveTask(board, board.groups[0], newTask, true) // true => add at the beggining
       dispatch({ type: SET_ACTIVE_TASK_ID, taskId: board.groups[0].tasks[0].id })
     } catch (err) {
       console.log('Had issues adding task', err)
@@ -167,8 +164,9 @@ export function BoardDetails() {
               <div
                 {...provider.droppableProps}
                 ref={provider.innerRef}
-                className={`group-container droppable-area ${snapshot.isDraggingOver ? 'dragging-layout' : ''
-                  }`}
+                className={`group-container droppable-area ${
+                  snapshot.isDraggingOver ? 'dragging-layout' : ''
+                }`}
               >
                 {board.groups.map((group, idx) => (
                   <GroupPreview

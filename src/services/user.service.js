@@ -1,99 +1,116 @@
-import { storageService } from './async-storage.service'
-import { httpService } from './http.service'
+import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
 
-const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY = 'userDB'
+const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
+_createDemoUsers()
 
 export const userService = {
-    login,
-    logout,
-    signup,
-    getLoggedinUser,
-    saveLocalUser,
-    getUsers,
-    getById,
-    remove,
-    update,
-    changeScore
+  login,
+  signup,
+  logout,
+  getById,
+  getLoggedInUser,
+  getEmptyCredentials,
 }
 
-window.userService = userService
-
-
-function getUsers() {
-    return storageService.query('user')
-    // return httpService.get(`user`)
+async function login({ username, password }) {
+  try {
+    const users = await storageService.query(STORAGE_KEY)
+    const user = users.find(user => user.username === username)
+    if (user && user.password === password) return _setLoggedInUser(user)
+  } catch (err) {
+    console.log('Login in service --> Has issues login')
+    return Promise.reject('Invalid login')
+  }
 }
 
+async function signup({ username, password, fullName }) {
+  const fullNameSplit = fullName.split(' ')
 
+  const capitalizedName = fullNameSplit
+    .map(name => name.charAt(0).toUpperCase() + name.substring(1))
+    .join(' ')
 
-async function getById(userId) {
-    const user = await storageService.get('user', userId)
-    // const user = await httpService.get(`user/${userId}`)
-    return user
+  const user = { username, password, fullName: capitalizedName }
+  try {
+    const savedUser = await storageService.post(STORAGE_KEY, user)
+    return _setLoggedInUser(savedUser)
+  } catch (err) {
+    console.log('Signup in service --> Has issues signup')
+    return Promise.reject('Could not signup')
+  }
 }
 
-function remove(userId) {
-    return storageService.remove('user', userId)
-    // return httpService.delete(`user/${userId}`)
+function logout() {
+  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN)
+  return Promise.resolve()
 }
 
-async function update({ _id, score }) {
-    const user = await storageService.get('user', _id)
-    user.score = score
-    await storageService.put('user', user)
-
-    // const user = await httpService.put(`user/${_id}`, {_id, score})
-
-    // When admin updates other user's details, do not update loggedinUser
-    if (getLoggedinUser()._id === user._id) saveLocalUser(user)
-    return user
+function getById(userId) {
+  return storageService.get(STORAGE_KEY, userId)
 }
 
-async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-    // const user = await httpService.post('auth/login', userCred)
-    if (user) return saveLocalUser(user)
+function getLoggedInUser() {
+  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
-async function signup(userCred) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    userCred.score = 10000
-    const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    return saveLocalUser(user)
+function _setLoggedInUser(user) {
+  const userToSave = { _id: user._id, fullName: user.fullName, imgUrl: user.imgUrl }
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
+  return userToSave
 }
 
-async function logout() {
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // return await httpService.post('auth/logout')
+function getEmptyCredentials() {
+  return {
+    username: '',
+    password: '',
+    fullName: '',
+    imgUrl: '',
+  }
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
+////////////////////////////////////////////////////
+
+function _createDemoUsers() {
+  let users = utilService.loadFromStorage(STORAGE_KEY)
+
+  if (!users || !users.length) {
+    users = []
+
+    const user1 = {
+      _id: 'u101',
+      username: 'Atar Mor',
+      password: 'atar',
+      fullName: 'Atar Mor',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+    }
+
+    const user2 = {
+      _id: 'u102',
+      username: 'Ido Yotvat',
+      password: 'ido',
+      fullName: 'Ido Yotvat',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
+    }
+
+    const user3 = {
+      _id: 'u103',
+      username: 'Ron Felsenfeld',
+      password: 'ron',
+      fullName: 'Ron Felsenfeld',
+      imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+    }
+
+    const user4 = {
+      _id: 'u104',
+      username: 'John Doe',
+      password: 'john',
+      fullName: 'John Doe',
+      imgUrl: '',
+    }
+
+    users = [user1, user2, user3, user4]
+    utilService.saveToStorage(STORAGE_KEY, users)
+  }
 }
-
-
-function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score }
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-    return user
-}
-
-function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
-}
-
-
-// ;(async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })()
-
-
-

@@ -37,4 +37,18 @@
 
     padding: em(10px);
   }
+
+  .actions-container {
+    .user-img-container {
+      width: em(40px);
+      height: em(40px);
+
+      .user-img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+  }
 }

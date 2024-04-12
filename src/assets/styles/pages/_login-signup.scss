@@ -1,0 +1,119 @@
+.login-page {
+  display: grid;
+  grid-template-columns: auto 40%;
+  width: 100vw;
+  height: 100dvh;
+
+  .main-container {
+    background-color: $main-bg-clr;
+
+    .main-title {
+      margin-block-end: rem(9.2px);
+
+      font-size: em(32px);
+      font-family: PoppinsMedium, RobotoRegular, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+    }
+
+    .secondary-title {
+      margin-block-end: 48px;
+
+      font-size: em(16px);
+      font-family: PoppinsRegular, RobotoRegular, sans-serif;
+      font-weight: 400;
+      letter-spacing: -0.1px;
+    }
+
+    .form-container {
+      flex-grow: 1;
+
+      .login-form {
+        width: 400px;
+        gap: em(16px);
+
+        > * {
+          width: 100%;
+
+          border-radius: $el-br;
+          padding: 8px 16px;
+
+          font-family: FigtreeLight, RobotoRegular, sans-serif;
+          line-height: 22px;
+        }
+
+        .login-input {
+          border: 1px solid $list-shadow-clr;
+          font-size: em(16px);
+          transition: border 0.2s;
+
+          &:focus {
+            outline: none;
+            border: 1px solid $btn-compose-clr;
+
+            &:hover {
+              border: 1px solid $main-font-clr;
+            }
+          }
+
+          &:hover {
+            border: 1px solid $main-font-clr;
+          }
+        }
+
+        .img-input-container {
+          padding-inline-start: 0;
+          gap: 1em;
+
+          span {
+            font-size: em(16px);
+          }
+
+          .label-container {
+            width: 50px;
+            height: 50px;
+
+            img {
+              @include userImg(50px);
+              cursor: pointer;
+              border: none;
+
+              &:hover {
+                box-shadow: inset 0px 0px 0px 3px $user-add-profile-hover-clr;
+              }
+            }
+          }
+        }
+
+        .btn-login {
+          border-block: 1px solid transparent;
+          font-size: 1rem;
+          background-color: $btn-compose-clr;
+          color: $main-bg-clr;
+        }
+      }
+    }
+
+    .already-user {
+      align-items: baseline;
+      gap: 5px;
+
+      margin-block-end: 64px;
+      margin-inline: auto;
+
+      font-family: FigtreeRegular, RobotoRegular, sans-serif;
+      font-size: em(16px);
+
+      span {
+        cursor: pointer;
+        color: $login-link-clr;
+      }
+    }
+  }
+
+  .login-img {
+    object-fit: cover;
+    height: 100dvh;
+    object-fit: cover;
+  }
+}

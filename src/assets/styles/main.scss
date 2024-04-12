@@ -15,6 +15,7 @@
 @import 'pages/home-page';
 @import 'pages/board-index';
 @import 'pages/board-details';
+@import 'pages/login-signup';
 
 // Components
 @import 'cmps/app-header';
@@ -42,4 +43,5 @@
 @import 'cmps/group-preview';
 @import 'cmps/group-summary';
 @import 'cmps/filter-person-picker';
+@import 'cmps/task-conversation';
 @import 'cmps/task-files';

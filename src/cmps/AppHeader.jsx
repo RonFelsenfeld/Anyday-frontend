@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import {
   Help,
   Inbox,
@@ -6,9 +9,33 @@ import {
   UserImg,
   WorkspaceLogo,
 } from '../services/svg.service'
-import { hideToolTip, showToolTip } from '../store/actions/system.actions'
+import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
+import { showModal } from '../store/actions/system.actions'
+import { logout } from '../store/actions/user.actions'
 
 export function AppHeader() {
+  const user = useSelector(storeState => storeState.userModule.loggedInUser)
+  const navigate = useNavigate()
+
+  function handleAuthClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'optionsMenu',
+      options: [
+        {
+          title: `${user ? 'Logout' : 'Login'}`,
+          icon: `${user ? 'logout' : 'login'}`,
+          func: user ? logout : navigateToLoginPage,
+        },
+      ],
+    }
+
+    function navigateToLoginPage() {
+      navigate(`/auth`)
+    }
+
+    showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
+  }
+
   return (
     <header className="app-header flex align-center justify-between">
       <div className="menu-logo-container">
@@ -25,12 +52,8 @@ export function AppHeader() {
         </div>
       </div>
 
-      <div className="actions-container flex">
-        <button
-          className="btn"
-          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
-          onMouseLeave={() => hideToolTip()}
-        >
+      <div className="actions-container flex align-center">
+        <button className="btn">
           <NotificationBell />
         </button>
 
@@ -42,13 +65,22 @@ export function AppHeader() {
           <Help />
         </button>
 
-        <button
-          className="btn"
-          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
-          onMouseLeave={() => hideToolTip()}
-        >
-          <UserImg />
-        </button>
+        {!user && (
+          <button className="btn" onClick={handleAuthClick}>
+            <UserImg />
+          </button>
+        )}
+
+        {user && (
+          <div className="user-img-container flex align-center justify-center">
+            <img
+              src={`${user.imgUrl ? user.imgUrl : '/assets/img/user-avatar.svg'}`}
+              alt="User profile picture"
+              className="user-img"
+              onClick={handleAuthClick}
+            />
+          </div>
+        )}
       </div>
     </header>
   )

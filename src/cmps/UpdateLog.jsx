@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { HomeUpdates, WorkSpaceOption, Xbutton } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
+import { TaskConversation } from './TaskConversation'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -42,6 +43,10 @@ export function UpdateLog() {
     return ''
   }
 
+  function addMsg(){
+
+  }
+
   if (!selectedTask) return
   return (
     <div
@@ -73,13 +78,14 @@ export function UpdateLog() {
       </div>
 
       <div className="menu-options flex align-center">
-        <button
-          className={`btn-view updates-option flex align-center ${getIsActiveClass('updates')}`}
-          onClick={() => setActiveView('updates')}
-        >
-          <HomeUpdates />
-          <span className="updates">Updates</span>
-        </button>
+        <Link to={`/board/${board._id}/task/${selectedTask.id}/updates`}>
+          <button
+            className={`btn-view updates-option flex align-center ${getIsActiveClass('updates')}`}
+            onClick={() => setActiveView('updates')}>
+            <HomeUpdates />
+            <span className="updates">Updates</span>
+          </button>
+        </Link>
 
         <button
           className={`btn-view files-option ${getIsActiveClass('files')}`}
@@ -95,11 +101,16 @@ export function UpdateLog() {
           <span>Activity Log</span>
         </button>
       </div>
-      <div className="update-log-content">
+
+      <TaskConversation
+      selectedTask={selectedTask}
+       />
+
+      {/* <div className="update-log-content">
         <div className="updates-log-txt-area">
-          <input className="txt-input-update-log" type="text" placeholder="Write an update..." />
+          <input autoFocus className="txt-input-update-log" type="text" placeholder="Write an update..." />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

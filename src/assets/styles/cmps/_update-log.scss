@@ -134,16 +134,16 @@
     height: 690px;
 
     .updates-log-txt-area {
-      width: em(520px);
-      min-height: em(125px);
+      width: em(526px);
+      min-height: em(40px);
       margin-block-start: em(37px);
       border-radius: $cmp-br;
-      border: 1px solid $border-input-activity-log-clr;
+      border: 1px solid $btn-compose-clr;
 
       .txt-input-update-log {
         width: em(400px);
-        margin: 10px;
-        padding: 10px;
+        margin: 2px;
+        padding: 10px 20px;
         font-size: em(16px);
         border: none;
         outline: none;
