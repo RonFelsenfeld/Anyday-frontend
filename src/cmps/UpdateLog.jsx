@@ -43,6 +43,10 @@ export function UpdateLog() {
     return ''
   }
 
+  function addMsg(){
+
+  }
+
   if (!selectedTask) return
   return (
     <div
