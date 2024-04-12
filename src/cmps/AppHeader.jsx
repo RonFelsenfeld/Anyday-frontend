@@ -12,6 +12,7 @@ import {
 import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { showModal } from '../store/actions/system.actions'
 import { logout } from '../store/actions/user.actions'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function AppHeader() {
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
@@ -24,13 +25,25 @@ export function AppHeader() {
         {
           title: `${user ? 'Logout' : 'Login'}`,
           icon: `${user ? 'logout' : 'login'}`,
-          func: user ? logout : navigateToLoginPage,
+          func: user ? handleLogout : navigateToLoginPage,
         },
       ],
     }
 
     function navigateToLoginPage() {
       navigate(`/auth`)
+    }
+
+    async function handleLogout() {
+      try {
+        await logout()
+        showSuccessMsg('See you soon!')
+      } catch (err) {
+        console.log('Logout -> Has issues logging out', err)
+        showErrorMsg('Could not logout, try again later')
+      } finally {
+        navigate('/board')
+      }
     }
 
     showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)

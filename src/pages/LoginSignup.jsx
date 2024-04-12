@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { userService } from '../services/user.service'
 import { login, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { uploadFile } from '../services/cloudinary-service'
 
 export function LoginSignup() {
   const [isSignup, setIsSignup] = useState(false)
@@ -45,6 +46,22 @@ export function LoginSignup() {
     } finally {
       navigate('/board')
     }
+  }
+
+  async function handleAddImage(ev) {
+    try {
+      console.log('adding file')
+      const url = await uploadFile(ev)
+      console.log(url)
+      setCredentials(prevCreds => ({ ...prevCreds, imgUrl: url }))
+    } catch (err) {
+      console.log('Add profile image -> Has issues adding image', err)
+      showErrorMsg('Could not upload your image')
+    }
+  }
+
+  function getImage() {
+    return credentials.imgUrl ? credentials.imgUrl : '/assets/img/user-avatar.svg'
   }
 
   return (
@@ -102,7 +119,7 @@ export function LoginSignup() {
                 <span>Add profile picture</span>
 
                 <label htmlFor="img" className="label-container">
-                  <img src="/assets/img/user-avatar.svg" alt="User default image" />
+                  <img src={getImage()} alt="User default image" />
                 </label>
 
                 <input
@@ -110,7 +127,7 @@ export function LoginSignup() {
                   name="img"
                   id="img"
                   className="login-input"
-                  onChange={handleChange}
+                  onChange={handleAddImage}
                   hidden
                 />
               </div>
