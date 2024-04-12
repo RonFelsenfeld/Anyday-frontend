@@ -1,41 +1,46 @@
 .filter-person-edit-modal {
-    padding: 8px 20px 16px;
-    justify-content: flex-start;
-    width: 360px;
-    background-color: $main-bg-clr;
-    border-radius: $cmp-br;
+  padding: 8px 20px 16px;
+  justify-content: flex-start;
+  width: 360px;
+  background-color: $main-bg-clr;
+  border-radius: $cmp-br;
 
-    .suggested-people-title {
-        font-size: em(16px);
-        font-family: FigtreeRegular;
-        margin-bottom: 4px;
+  .suggested-people-title {
+    font-size: em(16px);
+    font-family: FigtreeRegular;
+        margin: 10px;
+    margin-bottom: 4px;
+  }
+
+  h5 {
+        margin-inline-start: 5px;
+    font-size: 14px;
+    font-family: FigtreeLight;
+    margin-block: 8px;
+  }
+
+  .suggested-people-list {
+    display: flex;
+
+    .suggested-person {
+      display: flex;
+      align-items: center;
+      padding-inline: 4px;
+      padding-block: 8px;
+      cursor: pointer;
+      border-radius: 50%;
+      :active {
+        border: 1px solid $text-color;
+      }
+
+      .person-initials {
+        @include userImg($size: 30px, $margin-inline: 2px);
+        @include personInitials;
+      }
     }
-    
-    h5 {
-        font-size: 14px;
-        font-family: FigtreeLight;
-        margin-block: 8px;
+    .suggested-person-img {
+      @include userImg($size: 30px, $margin-inline: 2px);
+      border: none;
     }
-    
-    .suggested-people-list {
-        display: flex;
-    
-        .suggested-person {
-            display: flex;
-            align-items: center;
-            padding-inline: 4px;
-            padding-block: 8px;
-            cursor: pointer;
-            border-radius: 50%;
-            :active{
-                border:1px solid $text-color;
-            }
-        }
-        .suggested-person-img {
-            @include userImg($size: 30px, $margin-inline: 2px);
-            border: none;
-    
-            
-        }
-    }
+  }
 }

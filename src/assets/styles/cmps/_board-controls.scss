@@ -1,4 +1,5 @@
 .board-header .board-controls {
+  width: 100%;
   grid-area: actions;
   gap: 4px;
 
@@ -10,7 +11,7 @@
     border-radius: $el-br;
 
     // For the tooltip hover to work only on the button itself
-    >* {
+    > * {
       pointer-events: none;
     }
   }
@@ -43,17 +44,18 @@
   }
 
   .filter-sort-btns {
-    
     form {
+      flex-grow: 1;
       height: 32px;
       width: 265px;
       outline-style: none;
       border: 1px solid $btn-compose-clr;
       border-radius: 4px;
+      margin-inline-end: 6px;
 
       svg {
         margin-block-start: 5px;
-        margin-inline-start: 5px
+        margin-inline-start: 5px;
       }
 
       input {
@@ -69,28 +71,33 @@
         padding-inline-end: 5px;
         padding-block-start: 3px;
         @include btn;
-        
-        &:hover{
+
+        &:hover {
           cursor: pointer;
         }
       }
 
-      .btn-title-person-padded{
+      .btn-title-person-padded {
         padding-inline-start: em(8px);
+      }
+
+      .person-initials {
+        @include userImg($size: 24px, $margin-inline: 0);
+        @include personInitials;
       }
     }
 
     .active {
-      @include activeLink
+      @include activeLink;
     }
 
-    .hidden{
+    .hidden {
       display: none;
     }
   }
 
   .filterby-img {
     @include userImg(24px);
-    border: none
+    border: none;
   }
 }
