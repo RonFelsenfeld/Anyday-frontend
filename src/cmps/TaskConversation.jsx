@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { CommentClock } from '../services/svg.service'
 import { utilService } from '../services/util.service'
 import { boardService } from '../services/board.service'
+import { useSelector } from 'react-redux'
 
 export function TaskConversation({ selectedTask, taskGroup }) {
-  console.log(taskGroup)
+//   console.log(taskGroup)
   const [currComment, setCurrComment] = useState(boardService.getEmptyComment())
+  const board = useSelector(storeState=>storeState.boardModule.currentBoard)
 
     function handleChange({ target }) {
         setCurrComment({ ...currComment, txt: target.value })
