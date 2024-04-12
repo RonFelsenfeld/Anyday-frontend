@@ -99,7 +99,7 @@ export function LoginSignup() {
 
             {isSignup && (
               <div className="img-input-container flex align-center">
-                <label>Add profile picture</label>
+                <span>Add profile picture</span>
 
                 <label htmlFor="img" className="label-container">
                   <img src="/assets/img/user-avatar.svg" alt="User default image" />
