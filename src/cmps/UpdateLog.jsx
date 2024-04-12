@@ -7,6 +7,7 @@ import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { TaskConversation } from './TaskConversation'
 import { showErrorMsg } from '../services/event-bus.service'
+import { saveTask } from '../store/actions/board.actions'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -48,7 +49,15 @@ export function UpdateLog() {
     return ''
   }
 
-  function addMsg() {}
+  async function addMsg(task) {
+    try {
+      await saveTask(board, taskGroup, task)
+    } catch (err) {
+      console.log('could not save error', err);
+    }
+  }
+
+  const taskPersons = selectedTask?.personsIds?.map(id => boardService.getPerson(board, id))
 
   if (!selectedTask) return
   return (
@@ -67,12 +76,12 @@ export function UpdateLog() {
       </div>
 
       <div className="img-options flex align-center">
-        {selectedTask.personsIds &&
-          !!selectedTask.personsIds.length &&
-          selectedTask.personsIds.map(id => (
-            <img key={id} src={`${boardService.getPersonUrl(board, id)}`} alt="" />
-          ))}
-
+        {taskPersons &&
+          !!taskPersons.length &&
+          taskPersons.map(person => (
+            <img key={person.id} src={`${person.imgUrl}`} alt={person.fullName} />
+          ))
+          }
         <div>
           <button className="menu-options-btn">
             <WorkSpaceOption />
@@ -104,7 +113,10 @@ export function UpdateLog() {
         </button>
       </div>
 
-      <TaskConversation selectedTask={selectedTask} taskGroup={taskGroup} />
+      <TaskConversation
+        addMsg={addMsg}
+        setSelectedTask={setSelectedTask}
+        selectedTask={selectedTask} />
     </div>
   )
 }

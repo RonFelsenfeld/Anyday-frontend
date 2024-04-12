@@ -86,30 +86,38 @@ function randomPastTime() {
 }
 
 function calcPastTime(timestamp) {
-  var current_time = new Date()
-  var past_time = new Date(timestamp * 1000) // Convert timestamp to milliseconds
-  var time_difference = current_time - past_time
+  // Current time in milliseconds
+  var currentTime = Date.now();
+  
+  var timeDifference = currentTime - timestamp;
+  
+  var minutes = Math.floor(timeDifference / (1000 * 60));
+  var hours = Math.floor(timeDifference / (1000 * 60 * 60));
+  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  var weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
+  var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
 
-  var minutes = Math.floor(time_difference / (1000 * 60))
-  var hours = Math.floor(minutes / 60)
-  var days = Math.floor(time_difference / (1000 * 60 * 60 * 24))
-
-  if (days === 0) {
-    if (hours === 0) {
-      return minutes + ' minutes ago'
-    } else {
-      return hours + ' hours ago'
-    }
+  if (minutes < 1) {
+      return 'just now';
+  } else if (minutes < 60) {
+      return minutes + ' minutes ago';
+  } else if (hours < 24) {
+      return hours + ' hours ago';
   } else if (days === 1) {
-    return 'past 24 hours'
-  } else if (days <= 7) {
-    return 'last week'
-  } else if (days <= 30) {
-    return 'last month'
+      return 'yesterday';
+  } else if (days < 7) {
+      return days + ' days ago';
+  } else if (weeks === 1) {
+      return 'last week';
+  } else if (weeks < 4) {
+      return weeks + ' weeks ago';
+  } else if (months === 1) {
+      return 'last month';
   } else {
-    return 'more than a month ago'
+      return 'more than a month ago';
   }
 }
+
 
 function getFormattedTimeline(timestamp1, timestamp2) {
   const date1 = new Date(timestamp1)

@@ -104,9 +104,11 @@ export async function removeTask(board, group, taskId) {
 }
 
 export async function saveTask(board, group, task, unshift) {
+  console.log(task)
   try {
     const savedBoard = await boardService.saveTask(board, group, task, unshift)
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
+    // console.log(savedBoard.groups[0].tasks[0].comments)
     return savedBoard
   } catch (err) {
     console.log('task action -> cannot save task', err)
