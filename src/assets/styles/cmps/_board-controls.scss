@@ -80,6 +80,11 @@
       .btn-title-person-padded {
         padding-inline-start: em(8px);
       }
+
+      .person-initials {
+        @include userImg($size: 24px, $margin-inline: 0);
+        @include personInitials;
+      }
     }
 
     .active {

@@ -1,12 +1,12 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+
 import { Filter, Hide, RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
+import { boardService } from '../services/board.service'
+import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 import { setGroupTaskFilterBy } from '../store/actions/board.actions'
-import { useSelector } from 'react-redux'
-import { utilService } from '../services/util.service'
-import { boardService } from '../services/board.service'
-// import { useSelector } from 'react-redux'
 
 export function BoardControls({ onAddNewTask }) {
   const [isFilterInput, setIsFilterInput] = useState(false)
@@ -27,6 +27,7 @@ export function BoardControls({ onAddNewTask }) {
 
     setGroupTaskFilterBy({ ...filterBy, person: personId })
     hideModal()
+    hideToolTip()
   }
 
   function onRemovePersonFilter({ currentTarget }) {
@@ -104,15 +105,23 @@ export function BoardControls({ onAddNewTask }) {
             onMouseLeave={() => hideToolTip()}
             onClick={handlePersonFilter}
           >
-            {!filterBy.person && (
+            {!person && (
               <div className=" flex filter-not-active">
                 <UserImg />
                 <span className="btn-title">Person</span>
               </div>
             )}
-            {filterBy.person && (
+
+            {person && person.imgUrl && (
               <div className="filter-active flex align-center">
                 <img className="filterby-img" src={`${person.imgUrl}`} />
+                <span className="btn-title-person-padded">Person</span>
+              </div>
+            )}
+
+            {person && !person.imgUrl && (
+              <div className="filter-active flex align-center">
+                <div className="person-initials">{utilService.getInitials(person.fullName)}</div>
                 <span className="btn-title-person-padded">Person</span>
               </div>
             )}

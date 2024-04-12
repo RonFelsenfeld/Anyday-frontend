@@ -1,3 +1,4 @@
+import { utilService } from '../services/util.service'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function FilterPersonPicker({ suggestedPersons, onAddPerson }) {
@@ -10,12 +11,23 @@ export function FilterPersonPicker({ suggestedPersons, onAddPerson }) {
         {suggestedPersons?.map(person => {
           return (
             <li key={person.id} onClick={() => onAddPerson(person.id)} className="suggested-person">
-              <img
-                className="suggested-person-img"
-                src={person.imgUrl}
-                onMouseEnter={ev => showToolTip(ev.currentTarget, `${person.fullName}`)}
-                onMouseLeave={() => hideToolTip()}
-              />
+              {person.imgUrl ? (
+                <img
+                  className="suggested-person-img"
+                  src={`${person.imgUrl || '/assets/img/avatar-user'}`}
+                  onMouseEnter={ev => showToolTip(ev.currentTarget, `${person.fullName}`)}
+                  onMouseLeave={() => hideToolTip()}
+                />
+              ) : (
+                <div
+                  className="person-initials"
+                  onMouseEnter={ev => showToolTip(ev.currentTarget, `${person.fullName}`)}
+                  onMouseLeave={() => hideToolTip()}
+                >
+                  {utilService.getInitials(person.fullName)}
+                </div>
+              )}
+
               {/* <h4 className="suggested-person-name">{person.fullName}</h4> */}
             </li>
           )
