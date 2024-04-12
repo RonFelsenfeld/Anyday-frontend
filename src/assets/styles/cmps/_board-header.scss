@@ -96,6 +96,10 @@
       margin-inline-end: 0px;
     }
 
+    @include for-small-layout {
+      font-size: em(26px);
+    }
+
     &:not(.editing):hover {
       border-color: $list-shadow-clr;
     }

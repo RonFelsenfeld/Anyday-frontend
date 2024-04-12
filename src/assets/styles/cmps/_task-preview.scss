@@ -4,6 +4,10 @@
   grid-auto-rows: $task-preview-height;
   position: relative;
 
+  @include for-small-layout {
+    grid-template-columns: 288px 100px repeat(4, 120px) 1fr;
+  }
+
   &.active {
     background-color: $active-btn-clr;
   }
@@ -40,6 +44,10 @@
     z-index: 1;
     grid-template-columns: 6px 32px 380px 65px;
     background-color: $main-bg-clr;
+
+    @include for-small-layout {
+      grid-template-columns: 6px 32px 185px 65px;
+    }
 
     &:hover:not(.active) {
       background-color: $img-border-clr;
@@ -118,6 +126,10 @@
       outline-style: none;
       margin-inline: 0;
 
+      @include for-small-layout {
+        font-size: 0.85714rem;
+      }
+
       &:hover {
         border-color: $secondary-border-clr;
       }
@@ -189,6 +201,10 @@
   .task-priority {
     color: $main-bg-clr;
     position: relative;
+
+    @include for-small-layout {
+      font-size: 0.85714rem;
+    }
 
     &::after {
       content: '';

@@ -31,8 +31,5 @@
 
   .board-list {
     padding: em(16px) em(16px) em(24px);
-
-    @include for-small-layout {
-    }
   }
 }
