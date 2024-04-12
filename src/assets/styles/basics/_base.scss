@@ -52,3 +52,42 @@ a {
 svg:focus {
   outline: none;
 }
+
+
+.loader-container-files {
+  display: grid;
+}
+
+.loader {
+  align-self: center;
+  justify-self: center;
+  border: 2.5px solid $secondary-border-clr ;
+  border-radius: 50%;
+  border-top: 2.5px solid $main-font-clr;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin .7s linear infinite;
+  /* Safari */
+  animation: spin .7s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

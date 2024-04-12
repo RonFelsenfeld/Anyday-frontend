@@ -363,11 +363,11 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712337170111,
               },
-              files: {
+              files: [{
                 type: 'url',
                 url: 'https://www.w3schools.com/howto/howto_css_modals.asp',
                 desc: 'How to modal',
-              },
+              }],
             },
             {
               id: 't104',
@@ -388,11 +388,11 @@ function _createDemoBoard() {
                 startDate: 1712337170111,
                 dueDate: 1712509970111,
               },
-              files: {
+              files: [{
                 type: 'img',
                 url: 'https://someImgUrl',
                 desc: 'your-canvas.png',
-              },
+              }],
             },
             {
               id: 't106',
@@ -425,11 +425,11 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712337170111,
               },
-              files: {
+              files: [{
                 type: 'url',
                 url: 'https://www.youtube.com/watch?v=1BfCnjr_Vjg&t=229s',
                 desc: 'how to',
-              },
+              }],
             },
             {
               id: 't202',
@@ -441,11 +441,11 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712164370111,
               },
-              files: {
+              files: [{
                 type: 'img',
                 url: 'https://someImgUrl',
                 desc: 'Forme 1.png',
-              },
+              }],
             },
             {
               id: 't203',
@@ -466,11 +466,11 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712250770111,
               },
-              files: {
+              files: [{
                 type: 'img',
                 url: 'https://someImgUrl',
                 desc: '11210022.JPG',
-              },
+              }],
             },
             {
               id: 't205',
@@ -564,11 +564,11 @@ function _createDemoBoard() {
                 startDate: 1712337170111,
                 dueDate: 1712337170111,
               },
-              files: {
+              files: [{
                 type: 'url',
                 url: 'https://www.mailjet.com/solutions/use-cases/newsletter-templates/?utm_source=google&utm_medium=cpc&utm_campaign=EU%20%7C%20EN%20%7C%20Search%20%7C%20NewsLetter&utm_id=20307673600&utm_content=154296662367&utm_term=newsletter%20templates&utm_term=newsletter%20templates&utm_campaign=20307673600&utm_content=&utm_source=google&utm_medium=cpc&creative=663440392699&keyword=newsletter%20templates&matchtype=b&network=g&device=c&gad_source=1&gclid=CjwKCAjw_LOwBhBFEiwAmSEQATtbImo87GYIN6ZPwCBb_rK-Q2CQgHQh0K8bSbCqP5y99Ix5foPpHBoC2g0QAvD_BwE',
                 desc: 'How to email templates',
-              },
+              }],
             },
             {
               id: 't306',
@@ -588,11 +588,11 @@ function _createDemoBoard() {
                 startDate: 1712855570111,
                 dueDate: 1713114770111,
               },
-              files: {
+              files: [{
                 type: 'url',
                 url: 'https://colorhunt.co/',
                 desc: 'Color pallete',
-              },
+              }],
             },
             {
               id: 't308',
@@ -625,11 +625,11 @@ function _createDemoBoard() {
                 startDate: 1712164370111,
                 dueDate: 1712337170111,
               },
-              files: {
+              files: [{
                 type: 'url',
                 url: 'https://jamie-burns.medium.com/a-short-guide-to-fixing-bugs-in-software-764fc31bb0e5',
                 desc: 'how to fix bugs',
-              },
+              }],
             },
             {
               id: 't402',
@@ -851,11 +851,11 @@ function getEmptyBoard() {
               startDate: 1711991570111,
               dueDate: 1712337170111,
             },
-            files: {
+            files: [{
               type: 'url',
               url: 'https://www.w3schools.com/howto/howto_css_modals.asp',
               desc: 'How to modal',
-            },
+            }],
           },
         ],
         style: {
@@ -875,11 +875,11 @@ function getEmptyBoard() {
               startDate: 1711991570111,
               dueDate: 1712337170111,
             },
-            files: {
+            files: [{
               type: 'url',
               url: 'https://www.youtube.com/watch?v=1BfCnjr_Vjg&t=229s',
               desc: 'how to',
-            },
+            }],
           },
           {
             id: utilService.makeId(),
@@ -890,11 +890,11 @@ function getEmptyBoard() {
               startDate: 1711991570111,
               dueDate: 1712164370111,
             },
-            files: {
+            files: [{
               type: 'img',
               url: 'https://someImgUrl',
               desc: 'Forme 1.png',
-            },
+            }],
           },
         ],
         style: {

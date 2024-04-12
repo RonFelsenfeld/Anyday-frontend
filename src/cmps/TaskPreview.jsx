@@ -14,6 +14,7 @@ import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { useDispatch } from 'react-redux'
 import { SET_ACTIVE_TASK_ID } from '../store/reducers/board.reducer'
+import { TaskFiles } from './TaskFiles'
 
 export function TaskPreview({
   group,
@@ -53,8 +54,6 @@ export function TaskPreview({
 
     showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
   }
-
-  function getFileType() { }
 
   const activeClass = task.id === activeTaskId ? 'active' : ''
 
@@ -96,8 +95,8 @@ export function TaskPreview({
       <TaskStatus group={group} task={task} />
       <TaskPriority group={group} task={task} />
       <TaskTimeline group={group} task={task} />
+      <TaskFiles group={group} task={task} />
 
-      <div className="task-row task-files">{task.files ? getFileType() : ''}</div>
       <div className="task-row add-new-col"></div>
     </article>
   )

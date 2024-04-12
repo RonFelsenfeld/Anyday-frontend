@@ -58,7 +58,7 @@
   .task-row {
     border-inline-start: 1px solid $secondary-border-clr;
 
-    &:not(.task-title) {
+    &:not(.task-title):not(.task-files) {
       align-items: center;
       justify-content: center;
     }
@@ -140,6 +140,7 @@
     .person-initials {
       @include userImg;
       @include personInitials;
+      border: 2px solid rgb(245, 246, 248);
     }
 
     .add-person-btn {
