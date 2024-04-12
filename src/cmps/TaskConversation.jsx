@@ -19,6 +19,9 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
     function onAddMsg(ev) {
         ev.preventDefault()
         if (!currComment.txt) return
+        //in the future:
+        // if (loggedInUser) return
+
         const newComment = { ...currComment, createdAt: Date.now(), id: utilService.makeId(), byPerson: loggedInUser }
         console.log(newComment);
         setCurrComment(newComment)
@@ -51,8 +54,10 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
                             <div className="comment-container">
                                 <div className="comment-header flex justify-between align-center">
                                     <div className="img-name-connected flex align-center">
-                                        <img className="user-img" src={`${comment.byPerson?.imgUrl}`} />
-                                        <span className="user-name">{`${comment.byPerson?.fullName}`}</span>
+                                        {loggedInUser && <img className="user-img" src={`${comment.byPerson?.imgUrl}`} />}
+                                        {loggedInUser &&<span className="user-name">{`${comment.byPerson?.fullName}`}</span>}
+                                        {!loggedInUser && <img className="user-img" src='/assets/img/user-avatar.svg' />}
+                                        {!loggedInUser &&<span className="user-name">Guest</span>}
                                         <div className="is-connected"></div>
                                     </div>
                                     <div className="clock-side flex">
