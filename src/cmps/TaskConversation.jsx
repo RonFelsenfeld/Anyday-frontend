@@ -7,7 +7,7 @@ export function TaskConversation({ selectedTask }) {
     const [currComment, setCurrComment] = useState(boardService.getEmptyComment())
 
     function handleChange({ target }) {
-        setCurrComment({...currComment,txt:target.value})
+        setCurrComment({ ...currComment, txt: target.value })
     }
 
     function onAddMsg(ev) {
@@ -24,7 +24,7 @@ export function TaskConversation({ selectedTask }) {
                 </div>
                 <button className="update-btn">Update</button>
             </form>
-            {selectedTask &&
+            {selectedTask.comments && selectedTask.comments.length &&
                 <ul className="comments-list clean-list">
                     {
                         selectedTask.comments.map(comment => <li key={comment.id}>

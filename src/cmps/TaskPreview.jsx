@@ -84,7 +84,7 @@ export function TaskPreview({
           />
         </div>
 
-        <Link to={`/board/${board._id}/task/${task.id}`}>
+        <Link  to={`/board/${board._id}/task/${task.id}`}>
           <span className="task-row msg-btn">
             <MsgIcon />
           </span>

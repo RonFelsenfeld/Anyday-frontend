@@ -250,7 +250,7 @@ function getEmptyComment() {
       fullName: 'Ido Yotvat',
       imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
     },
-    createdAt: utilService.getRandomTimestamp(),
+    createdAt: null,
     id: utilService.makeId()
   }
 }
