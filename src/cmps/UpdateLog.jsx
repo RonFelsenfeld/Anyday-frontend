@@ -6,11 +6,13 @@ import { HomeUpdates, WorkSpaceOption, Xbutton } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { TaskConversation } from './TaskConversation'
+import { showErrorMsg } from '../services/event-bus.service'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
   const [selectedTask, setSelectedTask] = useState(null)
+  const [taskGroup, setTaskGroup] = useState(null)
   const [activeView, setActiveView] = useState('updates')
 
   const taskLogRef = useRef()
@@ -21,13 +23,16 @@ export function UpdateLog() {
     if (taskId) loadTask()
   }, [])
 
-  async function loadTask() {
-    try {
-      const task = await boardService.getTaskById(board, taskId)
-      setSelectedTask(task)
-    } catch (err) {
+  function loadTask() {
+    const [taskGroup, task] = boardService.getTaskById(board, taskId)
+    if (!task || !taskGroup) {
       console.log('Task activity -> Has issues with loading task')
+      showErrorMsg('Could not load task details')
+      return navigate('/board')
     }
+
+    setSelectedTask(task)
+    setTaskGroup(taskGroup)
   }
 
   function handleCloseTaskLog() {
@@ -43,9 +48,7 @@ export function UpdateLog() {
     return ''
   }
 
-  function addMsg(){
-
-  }
+  function addMsg() {}
 
   if (!selectedTask) return
   return (
@@ -78,14 +81,13 @@ export function UpdateLog() {
       </div>
 
       <div className="menu-options flex align-center">
-        <Link to={`/board/${board._id}/task/${selectedTask.id}/updates`}>
-          <button
-            className={`btn-view updates-option flex align-center ${getIsActiveClass('updates')}`}
-            onClick={() => setActiveView('updates')}>
-            <HomeUpdates />
-            <span className="updates">Updates</span>
-          </button>
-        </Link>
+        <button
+          className={`btn-view updates-option flex align-center ${getIsActiveClass('updates')}`}
+          onClick={() => setActiveView('updates')}
+        >
+          <HomeUpdates />
+          <span className="updates">Updates</span>
+        </button>
 
         <button
           className={`btn-view files-option ${getIsActiveClass('files')}`}
@@ -102,15 +104,7 @@ export function UpdateLog() {
         </button>
       </div>
 
-      <TaskConversation
-      selectedTask={selectedTask}
-       />
-
-      {/* <div className="update-log-content">
-        <div className="updates-log-txt-area">
-          <input autoFocus className="txt-input-update-log" type="text" placeholder="Write an update..." />
-        </div>
-      </div> */}
+      <TaskConversation selectedTask={selectedTask} taskGroup={taskGroup} />
     </div>
   )
 }
