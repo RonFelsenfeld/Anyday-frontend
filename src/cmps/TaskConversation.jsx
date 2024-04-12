@@ -24,7 +24,7 @@ export function TaskConversation({ selectedTask }) {
                 </div>
                 <button className="update-btn">Update</button>
             </form>
-            {selectedTask.comments && selectedTask.comments.length &&
+            {selectedTask &&
                 <ul className="comments-list clean-list">
                     {
                         selectedTask.comments.map(comment => <li key={comment.id}>
