@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import {
@@ -9,9 +9,32 @@ import {
   UserImg,
   WorkspaceLogo,
 } from '../services/svg.service'
+import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
+import { showModal } from '../store/actions/system.actions'
+import { logout } from '../store/actions/user.actions'
 
 export function AppHeader() {
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
+  const navigate = useNavigate()
+
+  function handleAuthClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'optionsMenu',
+      options: [
+        {
+          title: `${user ? 'Logout' : 'Login'}`,
+          icon: 'login',
+          func: user ? logout : navigateToLoginPage,
+        },
+      ],
+    }
+
+    function navigateToLoginPage() {
+      navigate(`/auth`)
+    }
+
+    showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
+  }
 
   return (
     <header className="app-header flex align-center justify-between">
@@ -43,19 +66,20 @@ export function AppHeader() {
         </button>
 
         {!user && (
-          <Link to={'/auth'}>
-            <button className="btn">
-              <UserImg />
-            </button>
-          </Link>
+          <button className="btn" onClick={handleAuthClick}>
+            <UserImg />
+          </button>
         )}
 
         {user && (
-          <img
-            src={`${user.imgUrl ? user.imgUrl : '/assets/img/user-avatar.svg'}`}
-            alt="User profile picture"
-            className="user-img"
-          />
+          <div className="user-img-container flex align-center justify-center">
+            <img
+              src={`${user.imgUrl ? user.imgUrl : '/assets/img/user-avatar.svg'}`}
+              alt="User profile picture"
+              className="user-img"
+              onClick={handleAuthClick}
+            />
+          </div>
         )}
       </div>
     </header>

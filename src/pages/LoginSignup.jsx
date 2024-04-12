@@ -5,7 +5,7 @@ import { login, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function LoginSignup() {
-  const [isSignup, setIsSignup] = useState(true)
+  const [isSignup, setIsSignup] = useState(false)
   const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
   const navigate = useNavigate()
 

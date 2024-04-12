@@ -1,4 +1,14 @@
-import { AddGroup, ChangeColor, CollapseAll, CollapseThis, FavoriteSmall, OpenTask, RenamePencil, Trash } from '../services/svg.service'
+import {
+  AddGroup,
+  ChangeColor,
+  CollapseAll,
+  CollapseThis,
+  FavoriteSmall,
+  Login,
+  OpenTask,
+  RenamePencil,
+  Trash,
+} from '../services/svg.service'
 import { hideModal } from '../store/actions/system.actions'
 
 export function DynamicOptionsMenu({ options }) {
@@ -27,7 +37,16 @@ export function DynamicOptionsMenu({ options }) {
 
       case 'openTask':
         return <OpenTask />
+
+      case 'login':
+        return <Login />
     }
+  }
+
+  function getOptionStyle({ title }) {
+    if (title === 'Login') return { width: '100px' }
+    if (title === 'Logout') return { width: '100px' }
+    return { border: 'none' } // Just for the style get valid object
   }
 
   return (
@@ -37,9 +56,13 @@ export function DynamicOptionsMenu({ options }) {
       "
       >
         {options.map((option, idx) => (
-          <li key={`${option}${idx}`} className="option flex align-center">
+          <li
+            key={`${option}${idx}`}
+            className="option flex align-center"
+            style={getOptionStyle(option)}
+          >
             <button
-              className="btn-option flex"
+              className="btn-option flex align-center"
               onClick={() => {
                 option.func()
                 hideModal()
