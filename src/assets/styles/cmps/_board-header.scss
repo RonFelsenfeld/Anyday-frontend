@@ -9,6 +9,14 @@
 
   padding: em(12px) em(30px) em(17px) em(35px);
 
+  @include for-normal-layout {
+    @include board-header-layout-mobile;
+
+    .board-title {
+      margin-inline-end: 0;
+    }
+  }
+
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
     grid-template-rows: 40px 64px;
@@ -16,12 +24,25 @@
       'title views invite expand'
       'actions actions actions actions';
 
+    @include for-normal-layout {
+      @include board-header-layout-mobile;
+
+      .board-info.flex {
+        display: block;
+      }
+    }
+
     .board-title {
       margin-inline-end: 16px;
+
+      @include for-normal-layout {
+        margin-inline-end: 0px;
+      }
     }
 
     .views-container {
       align-self: end;
+
       .view-btn {
         &::before {
           bottom: 0;
@@ -45,6 +66,17 @@
     }
   }
 
+  .arrow-back-mobile {
+    display: none;
+    rotate: 180deg;
+
+    @include for-normal-layout {
+      display: block;
+      grid-area: back;
+      scale: 2;
+    }
+  }
+
   .board-title {
     grid-area: title;
     align-self: center;
@@ -58,6 +90,11 @@
     font-family: PoppinsMedium, RobotoRegular, sans-serif;
     font-weight: 500;
     letter-spacing: -0.1px;
+
+    @include for-normal-layout {
+      font-size: em(32px);
+      margin-inline-end: 0px;
+    }
 
     &:not(.editing):hover {
       border-color: $list-shadow-clr;
@@ -90,6 +127,10 @@
     font-size: em(15px);
     cursor: pointer;
 
+    @include for-normal-layout {
+      display: none;
+    }
+
     &:hover {
       background-color: $hover-clr;
     }
@@ -107,6 +148,10 @@
     grid-area: invite;
     place-self: center;
     gap: em(8px);
+
+    @include for-normal-layout {
+      display: none;
+    }
 
     .btn-invite {
       @include btn;
@@ -129,6 +174,10 @@
 
   .views-container {
     grid-area: views;
+
+    @include for-normal-layout {
+      display: none;
+    }
 
     .view-btn {
       @include btn;
@@ -153,14 +202,16 @@
 
     grid-area: expand;
     justify-self: end;
-
     width: em(30px);
     height: em(30px);
 
     border-radius: 50%;
     border: 1px solid $secondary-border-clr;
-
     transition: transform 0.3s;
+
+    @include for-normal-layout {
+      display: none;
+    }
 
     &:hover {
       svg {

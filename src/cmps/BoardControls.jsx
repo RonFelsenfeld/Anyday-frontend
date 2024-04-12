@@ -1,7 +1,15 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Filter, Hide, RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
+import {
+  AddBoardBtn,
+  Filter,
+  Hide,
+  RemovePersonFilter,
+  Search,
+  Sort,
+  UserImg,
+} from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
@@ -67,11 +75,14 @@ export function BoardControls({ onAddNewTask }) {
   const dynCloseFilterPersonBtn = filterBy.person ? '' : 'hidden'
   return (
     <section className="board-controls flex align-baseline">
-      <button onClick={onAddNewTask} className="btn btn-new-task">
-        New task
-      </button>
-
       <div className="filter-sort-btns flex align-center">
+        <button onClick={onAddNewTask} className="btn btn-new-task">
+          <span className="desktop-view">New task</span>
+          <span className="mobile-view">
+            <AddBoardBtn />
+          </span>
+        </button>
+
         {!isFilterInput && (
           <button
             onClick={() => setIsFilterInput(true)}

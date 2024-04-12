@@ -67,6 +67,7 @@
         }
 
         .board-title {
+          font-size: em(16px);
           font-family: FigtreeBold, RobotoBold, sans-serif;
 
           @include for-normal-layout {

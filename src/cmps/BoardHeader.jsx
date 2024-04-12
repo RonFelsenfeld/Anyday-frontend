@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowUp, Favorite, Home, Info, Invite, Options } from '../services/svg.service'
+import { ArrowUp, Favorite, GoToArrow, Home, Info, Invite, Options } from '../services/svg.service'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 import { BoardControls } from './BoardControls'
 import { EditableText } from './EditableText'
@@ -27,6 +27,10 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
 
   return (
     <header className={`board-header ${collapsedClass}`}>
+      <button className="arrow-back-mobile">
+        <GoToArrow />
+      </button>
+
       <h1
         className={`board-title ${isEditedClass}`}
         onClick={() => {

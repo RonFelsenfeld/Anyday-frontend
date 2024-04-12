@@ -1,6 +1,6 @@
 .update-log-container {
   overflow-y: scroll;
-    scrollbar-width: none;
+  scrollbar-width: none;
   position: fixed;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -14,7 +14,7 @@
   padding: 20px 20px 0 24px;
   width: 570px;
   height: 100%;
-  z-index: 9999;
+  z-index: 300;
 
   top: $main-header-height;
   right: 0;
@@ -82,7 +82,7 @@
     img {
       @include userImg($size: 26px);
     }
-    
+
     // .person-initials{
     //   @include userImg($size: 26px);
     //   @include personInitials;
