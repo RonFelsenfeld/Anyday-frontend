@@ -6,6 +6,10 @@
   padding-block-end: 50px;
   background-color: $main-bg-clr;
 
+  @include for-normal-layout {
+    grid-column: 1;
+  }
+
   .group-container {
     &.dragging-layout {
     }
