@@ -6,6 +6,10 @@
     'list';
   padding: 0 0 em(40px) em(38px);
 
+  @include for-mobile-layout {
+    padding: 0 0 em(40px) em(10px);
+  }
+
   &.collapsed {
     padding-block-end: em(14px);
 

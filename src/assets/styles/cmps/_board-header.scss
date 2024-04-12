@@ -17,6 +17,10 @@
     }
   }
 
+  @include for-mobile-layout {
+    padding: 0 0 em(40px) em(10px);
+  }
+
   &.collapsed {
     grid-template-columns: auto repeat(2, 1fr) auto;
     grid-template-rows: 40px 64px;
@@ -75,6 +79,10 @@
       grid-area: back;
       scale: 2;
     }
+
+    @include for-normal-layout {
+      scale: 1.5;
+    }
   }
 
   .board-title {
@@ -98,6 +106,10 @@
 
     @include for-small-layout {
       font-size: em(26px);
+    }
+
+    @include for-small-layout {
+      font-size: em(22px);
     }
 
     &:not(.editing):hover {

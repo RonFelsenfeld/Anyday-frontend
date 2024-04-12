@@ -4,6 +4,10 @@
   width: 100vw;
   height: 100dvh;
 
+  @include for-narrow-layout {
+    grid-template-columns: 1fr;
+  }
+
   .main-container {
     background-color: $main-bg-clr;
 
@@ -14,6 +18,10 @@
       font-family: PoppinsMedium, RobotoRegular, sans-serif;
       font-weight: 500;
       letter-spacing: -0.5px;
+
+      @include for-small-layout {
+        font-size: em(26px);
+      }
     }
 
     .secondary-title {
@@ -23,6 +31,10 @@
       font-family: PoppinsRegular, RobotoRegular, sans-serif;
       font-weight: 400;
       letter-spacing: -0.1px;
+
+      @include for-small-layout {
+        font-size: em(14px);
+      }
     }
 
     .form-container {
@@ -31,6 +43,10 @@
       .login-form {
         width: 400px;
         gap: em(16px);
+
+        @include for-small-layout {
+          width: 320px;
+        }
 
         > * {
           width: 100%;
@@ -115,5 +131,9 @@
     object-fit: cover;
     height: 100dvh;
     object-fit: cover;
+
+    @include for-narrow-layout {
+      display: none;
+    }
   }
 }
