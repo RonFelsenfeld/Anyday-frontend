@@ -20,6 +20,13 @@
 
 .comments-list {
     padding-block: 20px;
+    // overflow-y: scroll;
+    // scrollbar-width: none;
+    
+
+    li{
+        padding-block: 15px;
+    }
 
     .comment-container {
         position: relative;
