@@ -23,7 +23,7 @@ export function AppHeader() {
       options: [
         {
           title: `${user ? 'Logout' : 'Login'}`,
-          icon: 'login',
+          icon: `${user ? 'logout' : 'login'}`,
           func: user ? logout : navigateToLoginPage,
         },
       ],

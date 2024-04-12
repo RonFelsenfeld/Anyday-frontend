@@ -5,6 +5,7 @@ import {
   CollapseThis,
   FavoriteSmall,
   Login,
+  Logout,
   OpenTask,
   RenamePencil,
   Trash,
@@ -40,6 +41,9 @@ export function DynamicOptionsMenu({ options }) {
 
       case 'login':
         return <Login />
+
+      case 'logout':
+        return <Logout />
     }
   }
 

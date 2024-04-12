@@ -5,6 +5,7 @@ export const utilService = {
   getFormattedTimeline,
   debounce,
   randomPastTime,
+  calcPastTime,
   saveToStorage,
   loadFromStorage,
   animateCSS,
@@ -12,6 +13,7 @@ export const utilService = {
   calcPercentageOfElapsedTime,
   getNumOfDays,
   greetBasedOnHour,
+  getRandomTimestamp,
 }
 
 function makeId(length = 6) {
@@ -81,6 +83,32 @@ function randomPastTime() {
 
   const pastTime = getRandomIntInclusive(HOUR, WEEK)
   return Date.now() - pastTime
+}
+
+function calcPastTime(timestamp) {
+  var current_time = new Date()
+  var past_time = new Date(timestamp * 1000) // Convert timestamp to milliseconds
+  var time_difference = current_time - past_time
+
+  var minutes = Math.floor(time_difference / (1000 * 60))
+  var hours = Math.floor(minutes / 60)
+  var days = Math.floor(time_difference / (1000 * 60 * 60 * 24))
+
+  if (days === 0) {
+    if (hours === 0) {
+      return minutes + ' minutes ago'
+    } else {
+      return hours + ' hours ago'
+    }
+  } else if (days === 1) {
+    return 'past 24 hours'
+  } else if (days <= 7) {
+    return 'last week'
+  } else if (days <= 30) {
+    return 'last month'
+  } else {
+    return 'more than a month ago'
+  }
 }
 
 function getFormattedTimeline(timestamp1, timestamp2) {
@@ -175,4 +203,17 @@ function greetBasedOnHour() {
   } else {
     return 'Good night'
   }
+}
+
+function getRandomTimestamp() {
+  var currentTime = Date.now()
+
+  var twoMonthsAgo = new Date()
+  twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2)
+  var twoMonthsAgoTimestamp = twoMonthsAgo.getTime()
+
+  var randomTimestamp =
+    Math.floor(Math.random() * (currentTime - twoMonthsAgoTimestamp)) + twoMonthsAgoTimestamp
+
+  return randomTimestamp
 }
