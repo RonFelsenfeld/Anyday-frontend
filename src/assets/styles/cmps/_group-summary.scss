@@ -8,11 +8,21 @@
     height: 36px;
     border-block-end: 1px solid $secondary-border-clr;
     border-inline-start: 1px solid $secondary-border-clr;
-    box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.1);
 
     &.first-empty-article {
+      position: sticky;
+      left: 482px;
       grid-column: 2;
       border-bottom-left-radius: $cmp-br;
+    }
+
+    &.sticky-cell {
+      position: sticky;
+      left: 0; 
+      background-color: $main-bg-clr;
+      border: none;
+      box-shadow: none;
     }
   }
 
