@@ -1,4 +1,4 @@
-
+import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function FilterPersonPicker({ suggestedPersons, onAddPerson }) {
   // console.log(suggestedPersons)
@@ -10,7 +10,12 @@ export function FilterPersonPicker({ suggestedPersons, onAddPerson }) {
         {suggestedPersons?.map(person => {
           return (
             <li key={person.id} onClick={() => onAddPerson(person.id)} className="suggested-person">
-              <img className="suggested-person-img" src={person.imgUrl} />
+              <img
+                className="suggested-person-img"
+                src={person.imgUrl}
+                onMouseEnter={ev => showToolTip(ev.currentTarget, `${person.fullName}`)}
+                onMouseLeave={() => hideToolTip()}
+              />
               {/* <h4 className="suggested-person-name">{person.fullName}</h4> */}
             </li>
           )

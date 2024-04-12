@@ -21,6 +21,7 @@ export function BoardControls({ onAddNewTask }) {
   function handlePersonFilter({ currentTarget }) {
     console.log(currentTarget)
   }
+
   function onAddPerson(personId) {
     console.log('added', personId)
 
@@ -55,6 +56,10 @@ export function BoardControls({ onAddNewTask }) {
     // markFilteredTxt(value)
   }
 
+  function handleBlur() {
+    if (!filterBy.txt) setIsFilterInput(false)
+  }
+
   const person = boardService.getPerson(board, filterBy.person)
 
   const dynFilterClass = filterBy.person ? 'active' : ''
@@ -76,13 +81,17 @@ export function BoardControls({ onAddNewTask }) {
           </button>
         )}
         {isFilterInput && (
-          <form className="filter-form flex">
+          <form
+            className="filter-form flex"
+            style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
+          >
             <Search />
             <input
               onChange={handleChange}
               type="text"
               placeholder="Search this board "
-              onBlur={() => setIsFilterInput(false)}
+              onBlur={handleBlur}
+              style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
               // onFocus={focus}
               autoFocus
             />
