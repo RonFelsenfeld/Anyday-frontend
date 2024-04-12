@@ -60,6 +60,8 @@
       }
 
       .collapse-btn {
+        position: sticky;
+        left: 0;
         display: grid;
         justify-content: center;
         align-items: end;
@@ -69,6 +71,8 @@
       }
 
       .group-title {
+        position: sticky;
+        left: 30px;
         color: var(--group-clr-9);
         font-size: 1.3rem;
         margin-inline-end: 15px;

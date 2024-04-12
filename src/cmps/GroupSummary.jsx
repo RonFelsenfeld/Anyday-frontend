@@ -50,6 +50,7 @@ export function GroupSummary({ group }) {
 
   return (
     <section className="summary-row clean-list">
+      <article className='sticky-cell'></article>
       <article className="first-empty-article"></article>
       <article className="progress-container status-progress">
         <div className="progress-bar flex">
