@@ -89,6 +89,8 @@
   }
 
   .msg-btn {
+    border-inline-end: 1px solid $secondary-border-clr;
+
     svg {
       color: $secondary-font-clr;
 
@@ -135,6 +137,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
 
     img {
       @include userImg;

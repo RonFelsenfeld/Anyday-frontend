@@ -65,8 +65,12 @@
         position: sticky;
         left: 38px;
         background-color: $main-bg-clr;
+        border-inline-end: 1px solid $secondary-border-clr;
       }
 
+      .person {
+        border: none !important;
+      }
 
       .add-col-btn {
         justify-self: start;
