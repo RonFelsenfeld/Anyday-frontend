@@ -8,6 +8,19 @@
     background-color: $active-btn-clr;
   }
 
+  &:hover:not(.active) {
+    background-color: $img-border-clr;
+
+    .task-menu-btn {
+      opacity: 1;
+    }
+  }
+
+  &:hover .sticky-container {
+    background-color: $img-border-clr;
+    // box-shadow: 0 3px 6px -3px $list-shadow-clr;
+  }
+
   cursor: pointer;
   position: relative;
   border-bottom: 1px solid $secondary-border-clr;
@@ -22,12 +35,21 @@
 
   .sticky-container {
     position: sticky;
+    left: 0;
     display: grid;
+    z-index: 1;
     grid-template-columns: 6px 32px 380px 65px;
+    background-color: $main-bg-clr;
+
+    &:hover:not(.active) {
+      background-color: $img-border-clr;
+      // box-shadow: 0 3px 6px -3px $list-shadow-clr;
+    }
 
     &.active {
       // border: 1px solid $btn-compose-clr;
       border-inline-start: none;
+      background-color: $active-btn-clr;
     }
   }
 
@@ -44,14 +66,6 @@
     &:hover {
       opacity: 1;
       background-color: $selected-task-border-clr;
-    }
-  }
-
-  &:hover:not(.active) {
-    background-color: $list-hover-clr;
-
-    .task-menu-btn {
-      opacity: 1;
     }
   }
 

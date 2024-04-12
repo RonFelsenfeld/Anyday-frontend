@@ -3,7 +3,7 @@
 
   li:not(.group-first-row) {
     &:hover {
-      box-shadow: 4px 3px 6px -3px $list-shadow-clr;
+      // box-shadow: 4px 3px 6px -3px $list-shadow-clr;
 
       .task-status,
       .task-priority {
@@ -30,11 +30,10 @@
       z-index: 1;
       grid-column: 1 / -1;
       grid-row: 2;
-      border-top-left-radius: $cmp-br;
-      overflow: hidden;
+      // overflow: hidden;
       // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
-      & > * {
+      &>*:not(.checkbox-container) {
         display: grid;
         font-weight: lighter;
         font-size: 1rem;
@@ -46,10 +45,28 @@
         }
       }
 
+      .task-indicator {
+        position: sticky;
+        left: 0;
+        border-top-left-radius: $cmp-br;
+      }
+
+      input[name=all-tasks] {
+        position: sticky;
+        left: 14px;
+      }
+
       input:hover {
-        // checkbox
         border-color: $secondary-font-clr;
       }
+
+
+      .task-title {
+        position: sticky;
+        left: 38px;
+        background-color: $main-bg-clr;
+      }
+
 
       .add-col-btn {
         justify-self: start;
@@ -62,17 +79,30 @@
     }
 
     &.add-task-li {
+      position: sticky;
+      left: 0;
       border-bottom-left-radius: $cmp-br;
-      overflow: hidden;
+      // overflow: hidden;
       box-shadow: none;
 
-      .task-indicator,
+      .task-indicator {
+        position: sticky;
+        left: 0;
+        opacity: 0.4;
+        border-bottom-left-radius: $cmp-br;
+      }
+
+
       .add-task-checkbox {
+        position: sticky;
+        left: 14px;
         opacity: 0.4;
       }
 
       .add-task-container {
         border-inline-start: 1px solid $secondary-border-clr;
+        position: sticky;
+        left: 38px;
       }
 
       input[name='add-task'] {
