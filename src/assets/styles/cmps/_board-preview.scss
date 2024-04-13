@@ -103,9 +103,19 @@
       margin-block-start: 4px;
 
       .workspace-title {
+        @include overflow3Dots;
+
         margin-inline-start: 6px;
         line-height: em(21px);
         color: $secondary-font-clr;
+
+        @include for-normal-layout {
+          font-size: em(18px);
+        }
+
+        @include for-narrow-layout {
+          font-size: em(14px);
+        }
       }
     }
   }

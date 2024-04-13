@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { ArrowUp, Favorite, GoToArrow, Home, Info, Invite, Options } from '../services/svg.service'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
+import { saveBoard } from '../store/actions/board.actions'
+
 import { BoardControls } from './BoardControls'
 import { EditableText } from './EditableText'
-import { saveBoard } from '../store/actions/board.actions'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAddNewTask }) {
   const [isEditing, setIsEditing] = useState(false)
@@ -18,7 +21,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
       await saveBoard(board)
       setIsEditing(false)
     } catch (err) {
-      console.log('Could not update board name', err)
+      console.log('Could not update board  name', err)
     }
   }
 
@@ -27,9 +30,11 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
 
   return (
     <header className={`board-header ${collapsedClass}`}>
-      <button className="arrow-back-mobile">
-        <GoToArrow />
-      </button>
+      <Link to={'/board'} className="link-go-back">
+        <button className="arrow-back-mobile">
+          <GoToArrow />
+        </button>
+      </Link>
 
       <h1
         className={`board-title ${isEditedClass}`}

@@ -17,6 +17,10 @@
     }
   }
 
+  @include for-narrow-layout {
+    padding: em(12px) em(30px) em(17px) em(15px);
+  }
+
   @include for-mobile-layout {
     padding: 0 0 em(40px) em(10px);
   }
@@ -80,14 +84,19 @@
       scale: 2;
     }
 
-    @include for-normal-layout {
+    @include for-narrow-layout {
       scale: 1.5;
+    }
+
+    @include for-small-layout {
+      scale: 1;
     }
   }
 
   .board-title {
     grid-area: title;
     align-self: center;
+    @include overflow3Dots;
 
     padding: 4px;
     border: 1px solid transparent;
@@ -108,8 +117,8 @@
       font-size: em(26px);
     }
 
-    @include for-small-layout {
-      font-size: em(22px);
+    @include for-mobile-layout {
+      font-size: em(18px);
     }
 
     &:not(.editing):hover {
@@ -127,6 +136,10 @@
       height: em(32px);
 
       padding: 4px;
+
+      @include for-small-layout {
+        scale: 0.9;
+      }
     }
   }
 

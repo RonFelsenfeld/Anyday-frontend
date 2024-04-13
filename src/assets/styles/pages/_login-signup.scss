@@ -1,11 +1,29 @@
 .login-page {
   display: grid;
   grid-template-columns: auto 40%;
+  position: relative;
+
   width: 100vw;
   height: 100dvh;
 
   @include for-narrow-layout {
     grid-template-columns: 1fr;
+  }
+
+  .link-go-back {
+    position: absolute;
+    top: 30px;
+    left: 34px;
+
+    .btn-go-back {
+      @include btn;
+
+      rotate: 180deg;
+
+      width: 26px;
+      height: 26px;
+      scale: 2;
+    }
   }
 
   .main-container {

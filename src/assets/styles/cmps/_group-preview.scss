@@ -6,6 +6,10 @@
     'list';
   padding: 0 0 em(40px) em(38px);
 
+  @include for-narrow-layout {
+    padding: 0 0 em(40px) em(20px);
+  }
+
   @include for-mobile-layout {
     padding: 0 0 em(40px) em(10px);
   }
