@@ -1,6 +1,6 @@
 .login-page {
   display: grid;
-  grid-template-columns: auto 40%;
+  grid-template-columns: 1fr 40%;
   position: relative;
 
   width: 100vw;
@@ -80,7 +80,7 @@
           width: 320px;
         }
 
-        >* {
+        > * {
           width: 100%;
 
           border-radius: $el-br;
@@ -162,7 +162,7 @@
   .login-img {
     object-fit: cover;
     height: 100dvh;
-    object-fit: cover;
+    justify-self: stretch;
 
     @include for-narrow-layout {
       display: none;

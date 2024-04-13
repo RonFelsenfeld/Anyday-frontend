@@ -918,7 +918,6 @@ function _createDemoBoard() {
           byPerson: {
             _id: 'u101',
             fullName: 'Atar Mor',
-            imgUrl: 'http://some-img',
           },
           group: {
             id: 'g3',
