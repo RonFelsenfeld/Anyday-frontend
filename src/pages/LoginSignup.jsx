@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 import { userService } from '../services/user.service'
-import { login, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { uploadFile } from '../services/cloudinary-service'
+import { GoToArrow } from '../services/svg.service'
+import { login, signup } from '../store/actions/user.actions'
 
 export function LoginSignup() {
   const [isSignup, setIsSignup] = useState(false)
@@ -50,7 +52,6 @@ export function LoginSignup() {
 
   async function handleAddImage(ev) {
     try {
-      console.log('adding file')
       const url = await uploadFile(ev)
       console.log(url)
       setCredentials(prevCreds => ({ ...prevCreds, imgUrl: url }))
@@ -66,6 +67,12 @@ export function LoginSignup() {
 
   return (
     <section className="login-page">
+      <Link to={'/board'} className="link-go-back">
+        <button className="btn-go-back">
+          <GoToArrow />
+        </button>
+      </Link>
+
       <div className="main-container flex column ">
         <div className="form-container flex column align-center justify-center">
           <h1 className="main-title">Welcome to monday.com</h1>

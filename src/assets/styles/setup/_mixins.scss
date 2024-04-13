@@ -1,3 +1,41 @@
+// Layout mixins
+@mixin for-normal-layout {
+  @media (max-width: $break-normal) {
+    @content;
+  }
+}
+
+@mixin for-narrow-layout {
+  @media (max-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-small-layout {
+  @media (max-width: $break-small) {
+    @content;
+  }
+}
+
+@mixin for-mobile-layout {
+  @media (max-width: $break-mobile) {
+    @content;
+  }
+}
+
+@mixin board-header-layout-mobile {
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-rows: auto 70px;
+  grid-template-areas:
+    'back back info invite'
+    'title title title title';
+  align-items: center;
+  justify-items: center;
+  scrollbar-width: thin;
+}
+
+//////////////////////////////
+
 @mixin btn($color: $main-font-clr) {
   color: $color;
   border-radius: $el-br;
@@ -113,5 +151,32 @@
 @mixin scalableBtn() {
   &:active {
     scale: 0.95;
+  }
+}
+
+@mixin getStartedBtn($padding: 8px 14px 8px 16px, $font-size: 0.93rem) {
+  padding: $padding;
+  border-radius: 2em;
+  background-color: $btn-cta-clr;
+  gap: em(15px);
+  margin: auto;
+
+  &:hover {
+    background-color: $btn-cta-clr-hover;
+
+    svg {
+      transform: translateX(5px);
+    }
+  }
+
+  span {
+    font-size: $font-size;
+    font-family: PoppinsLight, RobotoRegular, sans-serif;
+    color: $main-bg-clr;
+  }
+
+  svg {
+    fill: white;
+    transition: transform 0.3s;
   }
 }

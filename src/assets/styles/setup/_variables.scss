@@ -13,6 +13,8 @@ $list-shadow-clr: rgb(195, 198, 212);
 $dragged-task-clr: rgb(235, 237, 242);
 $dragging-placeholder-border-clr: rgb(214, 216, 226);
 $user-add-profile-hover-clr: rgb(201, 201, 201);
+$homepage-bg-clr: rgb(240 243 255);
+$footer-bg-clr: rgb(24, 27, 52);
 
 // Task status colors
 $task-blank-clr: #c4c4c4;
@@ -25,8 +27,9 @@ $btn-compose-clr: rgb(0, 115, 234);
 $btn-compose-hover-clr: rgb(0, 96, 185);
 
 $workplace-btn: rgb(0, 154, 255);
-$btn-cta-clr: #6161ff;
-$btn-cta-clr-hover: #5151d5;
+$btn-cta-clr: rgb(97, 97, 255);
+$btn-cta-clr-hover: rgb(81, 81, 213);
+$log-in-font-clr: rgb(80 52 255);
 $login-link-clr: rgb(31, 118, 194);
 
 // Layout
@@ -35,6 +38,13 @@ $task-preview-height: 35px;
 $main-gap: 10px;
 $board-details-padding: 40px;
 $main-header-height: 48px;
+
+// Breakpoint
+
+$break-mobile: 450px;
+$break-small: 600px;
+$break-narrow: 750px;
+$break-normal: 1000px;
 
 // Border radius
 $cmp-br: 8px;
@@ -80,3 +90,12 @@ $update-hover-clr: rgb(0, 95, 184);
 
   --group-clr-91: rgba(87, 155, 252, 0.2);
 }
+
+// homepage
+$creative-clr: rgb(255, 21, 138);
+$ops-clr: rgb(255, 204, 0);
+$marketing-clr: rgb(240, 64, 149);
+$projects-clr: rgb(255, 153, 0);
+$tasks-clr: rgb(87, 155, 252);
+$hr-clr: rgb(255, 117, 117);
+$it-clr: rgb(0, 200, 117);
