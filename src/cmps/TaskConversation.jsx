@@ -4,10 +4,13 @@ import { useSelector } from 'react-redux'
 import { CommentClock } from '../services/svg.service'
 import { utilService } from '../services/util.service'
 import { boardService } from '../services/board.service'
+import { userService } from '../services/user.service'
 
 export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
 
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+    //For presentation 
+    const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
     const [currComment, setCurrComment] = useState(boardService.getEmptyComment())
 
 
@@ -22,7 +25,8 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
         //in the future:
         // if (loggedInUser) return
 
-        const newComment = { ...currComment, createdAt: Date.now(), id: utilService.makeId(), byPerson: loggedInUser }
+        //change this line after presentation
+        const newComment = { ...currComment, createdAt: Date.now(), id: utilService.makeId(), byPerson: loggedInUser || guest }
         console.log(newComment);
         setCurrComment(newComment)
         setSelectedTask(prev => ({ ...prev, comments: [...prev.comments, newComment] }))
@@ -54,10 +58,10 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
                             <div className="comment-container">
                                 <div className="comment-header flex justify-between align-center">
                                     <div className="img-name-connected flex align-center">
-                                        {loggedInUser && <img className="user-img" src={`${comment.byPerson?.imgUrl}`} />}
-                                        {loggedInUser &&<span className="user-name">{`${comment.byPerson?.fullName}`}</span>}
-                                        {!loggedInUser && <img className="user-img" src='/assets/img/user-avatar.svg' />}
-                                        {!loggedInUser &&<span className="user-name">Guest</span>}
+                                        <img className="user-img" src={`${comment.byPerson?.imgUrl}`} />
+                                        <span className="user-name">{`${comment.byPerson?.fullName}`}</span>
+                                        {/* {!loggedInUser && <img className="user-img" src='/assets/img/user-avatar.svg' />}
+                                        {!loggedInUser && <span className="user-name">Guest</span>} */}
                                         <div className="is-connected"></div>
                                     </div>
                                     <div className="clock-side flex">

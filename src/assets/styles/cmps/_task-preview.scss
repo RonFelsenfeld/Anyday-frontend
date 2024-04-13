@@ -98,6 +98,29 @@
         color: $btn-compose-clr;
       }
     }
+
+    .activ-msg-container {
+      position: relative;
+
+      .active-msg {
+        color: $btn-compose-clr;
+      }
+
+      .msg-num {
+        background-color: $btn-compose-clr;
+        color: white;
+        position: absolute;
+        left: 13px;
+        top: 10px;
+        line-height: 9px;
+        font-size: 10px;
+        font-weight: 400;
+        border-radius: 10px;
+        text-align: center;
+        padding: 2px 4px;
+      }
+    }
+
   }
 
   .edit-task {
