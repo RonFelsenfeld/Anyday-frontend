@@ -29,34 +29,48 @@
   .main-container {
     background-color: $main-bg-clr;
 
-    .main-title {
-      margin-block-end: rem(9.2px);
-
-      font-size: em(32px);
-      font-family: PoppinsMedium, RobotoRegular, sans-serif;
-      font-weight: 500;
-      letter-spacing: -0.5px;
-
-      @include for-small-layout {
-        font-size: em(26px);
-      }
-    }
-
-    .secondary-title {
-      margin-block-end: 48px;
-
-      font-size: em(16px);
-      font-family: PoppinsRegular, RobotoRegular, sans-serif;
-      font-weight: 400;
-      letter-spacing: -0.1px;
-
-      @include for-small-layout {
-        font-size: em(14px);
-      }
-    }
-
     .form-container {
       flex-grow: 1;
+
+      .title-container {
+        align-items: baseline;
+
+        .main-title,
+        .logo-title {
+          margin-block-end: rem(9px);
+
+          font-size: em(32px);
+          font-family: PoppinsMedium, RobotoRegular, sans-serif;
+          font-weight: 500;
+          letter-spacing: -0.5px;
+
+          @include for-small-layout {
+            font-size: em(26px);
+          }
+        }
+
+        .logo {
+          width: 60px;
+          padding-inline-start: 10px;
+        }
+
+        .logo-title {
+          font-family: PoppinsSemiBold, RobotoRegular, sans-serif;
+        }
+      }
+
+      .secondary-title {
+        margin-block-end: 48px;
+
+        font-size: em(16px);
+        font-family: PoppinsRegular, RobotoRegular, sans-serif;
+        font-weight: 400;
+        letter-spacing: -0.1px;
+
+        @include for-small-layout {
+          font-size: em(14px);
+        }
+      }
 
       .login-form {
         width: 400px;
@@ -66,7 +80,7 @@
           width: 320px;
         }
 
-        > * {
+        >* {
           width: 100%;
 
           border-radius: $el-br;

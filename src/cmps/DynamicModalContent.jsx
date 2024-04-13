@@ -1,6 +1,7 @@
 import { ColorPicker } from './ColorPicker'
 import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { DynamicOptionsMenu } from './DynamicOptionsMenu'
+import { FilePreview } from './FilePreview'
 import { FilterPersonPicker } from './FilterPersonPicker'
 import { PersonPicker } from './PersonPicker'
 import { TimelinePicker } from './TimelinePicker'
@@ -24,5 +25,8 @@ export function DynamicModalContent(cmp) {
 
     case 'timelinePicker':
       return <TimelinePicker {...cmp} />
+
+    case 'FilePreview':
+      return <FilePreview {...cmp} />
   }
 }

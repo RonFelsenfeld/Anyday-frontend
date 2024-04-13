@@ -1,6 +1,7 @@
 .app-header {
   padding-inline: em(4px) em(24px);
   grid-column: 1 / -1;
+  cursor: pointer;
 
   @include for-normal-layout {
     padding-inline: 0;
@@ -17,12 +18,13 @@
       letter-spacing: -0.2px;
 
       .btn-logo {
-        width: (33px);
-        height: (33px);
+        width: rem(35px);
+        height: rem(35px);
+        padding: 0;
       }
 
       .logo-main {
-        margin-inline: 6px 4px;
+        margin-inline-end: 6px;
         font-family: PoppinsBold, RobotoBold, sans-serif;
       }
 

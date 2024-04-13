@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import {
@@ -51,6 +51,7 @@ export function AppHeader() {
 
   return (
     <header className="app-header flex align-center justify-between">
+      <Link to="/">
       <div className="menu-logo-container">
         <button className="btn">
           <MenuGrid />
@@ -58,12 +59,13 @@ export function AppHeader() {
 
         <div className="logo-container flex align-center">
           <button className="btn-logo">
-            <WorkspaceLogo size={25} />
+            <img src="/assets/img/A-logo.png"/>
           </button>
-          <span className="logo-main">monday</span>
+          <span className="logo-main">nyday</span>
           <span className="logo-secondary">work management</span>
         </div>
       </div>
+      </Link>
 
       <div className="actions-container flex align-center">
         <button className="btn">

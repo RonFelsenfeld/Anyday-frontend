@@ -407,8 +407,8 @@ function _createDemoBoard() {
               activities: [],
               files: [
                 {
-                  type: 'url',
-                  url: 'https://www.w3schools.com/howto/howto_css_modals.asp',
+                  type: 'pdf',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713011807/or7snd8m1oxfh93v9wro.pdf',
                   desc: 'How to modal',
                 },
               ],
@@ -436,10 +436,15 @@ function _createDemoBoard() {
               },
               files: [
                 {
-                  type: 'img',
-                  url: 'https://someImgUrl',
+                  type: 'png',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713015920/gwh32kdm0guszyuv8nqb.png',
                   desc: 'your-canvas.png',
                 },
+                {
+                  type: 'jpg',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713019203/uc8cbiodqflqhewr2f8d.jpg',
+                  desc: 'how to',
+                }
               ],
               comments: [],
               activities: [],
@@ -481,8 +486,8 @@ function _createDemoBoard() {
               activities: [],
               files: [
                 {
-                  type: 'url',
-                  url: 'https://www.youtube.com/watch?v=1BfCnjr_Vjg&t=229s',
+                  type: 'jpg',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713019203/uc8cbiodqflqhewr2f8d.jpg',
                   desc: 'how to',
                 },
               ],
@@ -499,8 +504,8 @@ function _createDemoBoard() {
               },
               files: [
                 {
-                  type: 'img',
-                  url: 'https://someImgUrl',
+                  type: 'pdf',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713012001/r1u6pqgfhrbrj0mlxpiv.pdf',
                   desc: 'Forme 1.png',
                 },
               ],
@@ -528,8 +533,8 @@ function _createDemoBoard() {
               },
               files: [
                 {
-                  type: 'img',
-                  url: 'https://someImgUrl',
+                  type: 'jpg',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1712904587/qnwqevnelnowqrbaeisv.jpg',
                   desc: '11210022.JPG',
                 },
               ],
@@ -646,8 +651,8 @@ function _createDemoBoard() {
               activities: [],
               files: [
                 {
-                  type: 'url',
-                  url: 'https://www.mailjet.com/solutions/use-cases/newsletter-templates/?utm_source=google&utm_medium=cpc&utm_campaign=EU%20%7C%20EN%20%7C%20Search%20%7C%20NewsLetter&utm_id=20307673600&utm_content=154296662367&utm_term=newsletter%20templates&utm_term=newsletter%20templates&utm_campaign=20307673600&utm_content=&utm_source=google&utm_medium=cpc&creative=663440392699&keyword=newsletter%20templates&matchtype=b&network=g&device=c&gad_source=1&gclid=CjwKCAjw_LOwBhBFEiwAmSEQATtbImo87GYIN6ZPwCBb_rK-Q2CQgHQh0K8bSbCqP5y99Ix5foPpHBoC2g0QAvD_BwE',
+                  type: 'png',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713018403/cyz8y7v0hkz96tyziafy.png',
                   desc: 'How to email templates',
                 },
               ],
@@ -674,8 +679,8 @@ function _createDemoBoard() {
               },
               files: [
                 {
-                  type: 'url',
-                  url: 'https://colorhunt.co/',
+                  type: 'png',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713019203/uc8cbiodqflqhewr2f8d.jpg',
                   desc: 'Color pallete',
                 },
               ],
@@ -719,8 +724,8 @@ function _createDemoBoard() {
               activities: [],
               files: [
                 {
-                  type: 'url',
-                  url: 'https://jamie-burns.medium.com/a-short-guide-to-fixing-bugs-in-software-764fc31bb0e5',
+                  type: 'pdf',
+                  url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713012001/r1u6pqgfhrbrj0mlxpiv.pdf',
                   desc: 'how to fix bugs',
                 },
               ],
@@ -965,8 +970,8 @@ function getEmptyBoard() {
             activities: [],
             files: [
               {
-                type: 'url',
-                url: 'https://www.w3schools.com/howto/howto_css_modals.asp',
+                type: 'jpg',
+                url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713019203/uc8cbiodqflqhewr2f8d.jpg',
                 desc: 'How to modal',
               },
             ],
@@ -993,8 +998,8 @@ function getEmptyBoard() {
             activities: [],
             files: [
               {
-                type: 'url',
-                url: 'https://www.youtube.com/watch?v=1BfCnjr_Vjg&t=229s',
+                type: 'jpg',
+                url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713006218/nbgwkn5rga3yqmqc1tk9.jpg',
                 desc: 'how to',
               },
             ],
@@ -1012,8 +1017,8 @@ function getEmptyBoard() {
             activities: [],
             files: [
               {
-                type: 'img',
-                url: 'https://someImgUrl',
+                type: 'pdf',
+                url: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713011807/or7snd8m1oxfh93v9wro.pdf',
                 desc: 'Forme 1.png',
               },
             ],

@@ -3,11 +3,20 @@
     .files-container {
         width: 100%;
         height: 100%;
-        display: grid;
+        gap: 4px;
         align-items: center;
         justify-content: center;
         position: relative;
         cursor: pointer;
+
+        .file-input {
+            cursor: pointer;
+        }
+
+        .file-type-icon {
+            width: 20px;
+            height: 20px;
+          }
 
         .empty-file-icon {
             opacity: 0;
@@ -67,5 +76,21 @@
         &:hover .delete-file-btn {
             opacity: 1;
         }
+    }
+}
+
+.file-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+
+    .file-img {
+        max-width: 500px;
+        max-height: 500px;
+        padding: 30px;
+        object-fit: contain;
     }
 }
