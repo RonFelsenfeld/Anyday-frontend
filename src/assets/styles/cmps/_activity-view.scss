@@ -7,10 +7,11 @@
         // ju
 
         .task-title{
+            margin-inline-start: 10px;
             width:180px ;
         }
         .user-img{
-            @include userImg(30px)
+            @include userImg(30px,15px)
         }
 
 

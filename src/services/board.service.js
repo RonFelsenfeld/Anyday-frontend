@@ -369,12 +369,7 @@ function _createDemoBoard() {
               activities: [
                 {
                   id: utilService.makeId(),
-                  action: "Add person",
-                  personAdded: {
-                    id: 'u103',
-                    fullName: 'Ron Felsenfeld',
-                    imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
-                  },
+                  action: "Changed person",
                   createdAt: 1712995031424,
                   byPerson: {
                     id: 'u101',
@@ -387,7 +382,7 @@ function _createDemoBoard() {
                 //   id: utilService.makeId(),
                 //   action: "Change date",
                 //   changedDate:{
-                    
+
                 //   },
                 //   createdAt: 1712995031424,
                 //   byPerson: {
@@ -411,6 +406,7 @@ function _createDemoBoard() {
                 dueDate: 1712941970111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't103',
@@ -423,6 +419,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
               files: [
                 {
                   type: 'url',
@@ -442,6 +439,7 @@ function _createDemoBoard() {
                 dueDate: 1712077970111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't105',
@@ -459,6 +457,7 @@ function _createDemoBoard() {
                 },
               ],
               comments: [],
+              activities: [],
             },
             {
               id: 't106',
@@ -471,6 +470,7 @@ function _createDemoBoard() {
                 dueDate: 1712164370111,
               },
               comments: [],
+              activities: [],
             },
           ],
           style: {
@@ -493,6 +493,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
               files: [
                 {
                   type: 'url',
@@ -519,6 +520,7 @@ function _createDemoBoard() {
                 },
               ],
               comments: [],
+              activities: [],
             },
             {
               id: 't203',
@@ -547,6 +549,7 @@ function _createDemoBoard() {
                 },
               ],
               comments: [],
+              activities: [],
             },
             {
               id: 't205',
@@ -559,6 +562,7 @@ function _createDemoBoard() {
                 dueDate: 1712250770111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't206',
@@ -570,6 +574,7 @@ function _createDemoBoard() {
                 dueDate: 1713028370111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't207',
@@ -581,6 +586,7 @@ function _createDemoBoard() {
                 dueDate: 1712250770111,
               },
               comments: [],
+              activities: [],
             },
           ],
           style: {
@@ -603,6 +609,7 @@ function _createDemoBoard() {
                 dueDate: 1712164370111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't302',
@@ -615,6 +622,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't303',
@@ -626,6 +634,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't304',
@@ -638,6 +647,7 @@ function _createDemoBoard() {
                 dueDate: 1712164370111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't305',
@@ -648,6 +658,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
               files: [
                 {
                   type: 'url',
@@ -666,6 +677,7 @@ function _createDemoBoard() {
                 dueDate: 1712423570111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't307',
@@ -683,6 +695,7 @@ function _createDemoBoard() {
                 },
               ],
               comments: [],
+              activities: [],
             },
             {
               id: 't308',
@@ -695,6 +708,7 @@ function _createDemoBoard() {
                 dueDate: 1712164370111,
               },
               comments: [],
+              activities: [],
             },
           ],
           style: {
@@ -717,6 +731,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
               files: [
                 {
                   type: 'url',
@@ -736,6 +751,7 @@ function _createDemoBoard() {
                 dueDate: 1712164370111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't403',
@@ -746,6 +762,7 @@ function _createDemoBoard() {
                 dueDate: 1712250770111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't404',
@@ -758,6 +775,7 @@ function _createDemoBoard() {
                 dueDate: 1712337170111,
               },
               comments: [],
+              activities: [],
             },
           ],
           style: {
@@ -779,6 +797,7 @@ function _createDemoBoard() {
                 dueDate: 1712509970111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't502',
@@ -791,6 +810,7 @@ function _createDemoBoard() {
                 dueDate: 1712164370111,
               },
               comments: [],
+              activities: [],
             },
             {
               id: 't503',
@@ -803,6 +823,7 @@ function _createDemoBoard() {
                 dueDate: 1712423570111,
               },
               comments: [],
+              activities: [],
             },
           ],
           style: {
@@ -931,6 +952,8 @@ function getEmptyBoard() {
               startDate: 1712077970111,
               dueDate: 1712250770111,
             },
+            comments: [],
+            activities: [],
           },
           {
             id: utilService.makeId(),
@@ -941,6 +964,8 @@ function getEmptyBoard() {
               startDate: 1712164370111,
               dueDate: 1712941970111,
             },
+            comments: [],
+            activities: [],
           },
           {
             id: utilService.makeId(),
@@ -951,6 +976,8 @@ function getEmptyBoard() {
               startDate: 1711991570111,
               dueDate: 1712337170111,
             },
+            comments: [],
+            activities: [],
             files: [
               {
                 type: 'url',
@@ -977,6 +1004,8 @@ function getEmptyBoard() {
               startDate: 1711991570111,
               dueDate: 1712337170111,
             },
+            comments: [],
+            activities: [],
             files: [
               {
                 type: 'url',
@@ -994,6 +1023,8 @@ function getEmptyBoard() {
               startDate: 1711991570111,
               dueDate: 1712164370111,
             },
+            comments: [],
+            activities: [],
             files: [
               {
                 type: 'img',
@@ -1017,6 +1048,8 @@ function getEmptyTask() {
   return {
     title: '',
     personsId: [],
+    comments: [],
+    activities: [],
   }
 }
 

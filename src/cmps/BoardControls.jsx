@@ -125,7 +125,7 @@ export function BoardControls({ onAddNewTask }) {
             style={getStyle()}
           >
             {!person && (
-              <div className=" flex filter-not-active" style={getStyle()}>
+              <div className=" flex align-center filter-not-active" style={getStyle()}>
                 <UserImg />
                 <span className="btn-title">Person</span>
               </div>

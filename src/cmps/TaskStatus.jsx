@@ -8,6 +8,10 @@ import { utilService } from '../services/util.service'
 
 export function TaskStatus({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const user = useSelector(storeState => storeState.userModule.loggedInUser)
+
+  const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
+
   const statusPreviewRef = useRef()
 
   function getStatusBG(taskStatus) {
@@ -16,6 +20,8 @@ export function TaskStatus({ group, task }) {
   }
 
   async function onUpdateTaskStatus(status) {
+    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: `Changed status to ${status}`, createdAt: Date.now() }
+    const editedTask = { ...task, status, activities: [...task.activities, currActivity] }
     try {
       await saveTask(board, group, editedTask)
       if (status === 'Done') animateStatus()

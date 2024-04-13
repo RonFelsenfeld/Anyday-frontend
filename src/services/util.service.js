@@ -89,9 +89,9 @@ function randomPastTime() {
 function calcPastTime(timestamp) {
   // Current time in milliseconds
   var currentTime = Date.now();
-  
+
   var timeDifference = currentTime - timestamp;
-  
+
   var minutes = Math.floor(timeDifference / (1000 * 60));
   var hours = Math.floor(timeDifference / (1000 * 60 * 60));
   var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
@@ -99,37 +99,31 @@ function calcPastTime(timestamp) {
   var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
 
   if (minutes < 1) {
-      return 'just now';
+    return 'just now';
   } else if (minutes < 60) {
-      return minutes + ' minutes ago';
+    return minutes + ' minutes ago';
   } else if (hours < 24) {
-      return hours + ' hours ago';
+    return hours + ' hours ago';
   } else if (days === 1) {
-      return 'yesterday';
+    return 'yesterday';
   } else if (days < 7) {
-      return days + ' days ago';
+    return days + ' days ago';
   } else if (weeks === 1) {
-      return 'last week';
+    return 'last week';
   } else if (weeks < 4) {
-      return weeks + ' weeks ago';
+    return weeks + ' weeks ago';
   } else if (months === 1) {
-      return 'last month';
+    return 'last month';
   } else {
-      return 'more than a month ago';
+    return 'more than a month ago';
   }
-}
-
-function _formatDate(date) {
-  var day = date.getDate();
-  var month = date.toLocaleString('default', { month: 'short' });
-  return day + month.toLowerCase();
 }
 
 function calcPastTimeActivity(timestamp) {
   var currentTime = new Date().getTime();
-  
+
   var timeDifference = currentTime - timestamp;
-  
+
   var minutes = Math.floor(timeDifference / (1000 * 60));
   var hours = Math.floor(timeDifference / (1000 * 60 * 60));
   var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
@@ -138,26 +132,39 @@ function calcPastTimeActivity(timestamp) {
 
   var currentDate = new Date();
 
+  function formatDate(date) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    month = month < 10 ? '0' + month : month; 
+    return day + month;
+  }
+
   if (minutes < 1) {
-      return 'just now';
+    return 'just now';
   } else if (minutes < 60) {
-      return minutes + 'm';
+    return minutes + 'm ago';
   } else if (hours < 24) {
-      return hours + 'h';
+    return hours + 'h ago';
   } else if (days === 1) {
-      return 'yesterday';
+    return 'yesterday';
   } else if (days < 7) {
-      return days + 'd';
+    return days + 'd ago';
   } else if (weeks === 1) {
-      return 'last week';
+    return 'last week';
   } else if (weeks < 4) {
-      return weeks + 'w';
-  } else if (months === 1) {
-      return '1mo';
+    return weeks + 'w ago';
   } else {
-      return _formatDate(new Date(currentDate.getFullYear(), currentDate.getMonth()- 1, currentDate.getDate()))
+    var oneMonthAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()).getTime();
+
+    if (timestamp < oneMonthAgo) {
+      return formatDate(new Date(timestamp));
+    } else {
+      return 'This year';
+    }
   }
 }
+
+
 
 
 function getFormattedTimeline(timestamp1, timestamp2) {

@@ -7,14 +7,19 @@ import { utilService } from '../services/util.service'
 
 export function TaskPerson({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const user = useSelector(storeState => storeState.userModule.loggedInUser)
+  const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
+
 
   async function onAddPerson(personId) {
+    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: 'Change person', createdAt: Date.now() }
     const editedTask = task.personsIds
-      ? { ...task, personsIds: [...task.personsIds, personId] }
-      : { ...task, personsIds: [personId] }
+      ? { ...task, personsIds: [...task.personsIds, personId], activities: [...task.activities, currActivity] }
+      : { ...task, personsIds: [personId], activities: [...task.activities, currActivity] }
 
     try {
       await saveTask(board, group, editedTask)
+      console.log(editedTask);
       hideModal()
     } catch (err) {
       console.log('Had issues updating task persons', err)
@@ -22,7 +27,8 @@ export function TaskPerson({ group, task }) {
   }
 
   async function onRemovePerson(personId) {
-    const editedTask = { ...task, personsIds: task.personsIds.filter(id => id !== personId) }
+    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: 'Changed person', createdAt: Date.now() }
+    const editedTask = { ...task, personsIds: task.personsIds.filter(id => id !== personId), activities: [...task.activities, currActivity] }
 
     try {
       await saveTask(board, group, editedTask)

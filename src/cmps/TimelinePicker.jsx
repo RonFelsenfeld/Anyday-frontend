@@ -8,6 +8,9 @@ import { utilService } from '../services/util.service'
 
 export function TimelinePicker({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const user = useSelector(storeState => storeState.userModule.loggedInUser)
+
+  const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
 
   const [date, setStartDate] = useState(moment(task.timeline?.startDate) || null)
   const [dueDate, setEndDate] = useState(moment(task.timeline?.dueDate) || null)
@@ -20,9 +23,11 @@ export function TimelinePicker({ group, task }) {
 
     if (endDateTS < startDateTS) endDateTS = startDateTS + durationTS
     endDate = moment(endDateTS)
-    
+
     setStartDate(startDate)
     setEndDate(endDate)
+
+    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: `Changed Date`, createdAt: Date.now() }
 
     const editedTask = {
       ...task, timeline:
@@ -30,6 +35,7 @@ export function TimelinePicker({ group, task }) {
         startDate: parseInt(moment(startDate?._d).format("x")),
         dueDate: parseInt(moment(endDate?._d).format("x"))
       }
+      , activities: [...task.activities, currActivity]
     }
 
     try {

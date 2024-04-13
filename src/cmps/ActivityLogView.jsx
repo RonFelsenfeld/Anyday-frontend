@@ -1,10 +1,8 @@
 import { Activity } from "./Activity";
 
-export function ActivityLogView({ board, selectedTask, taskGroup }) {
+export function ActivityLogView({ selectedTask }) {
 
 
-
-    console.log(selectedTask);
     return (
         <div className="activity-view-container update-log-content">
             <div className="activiy-view">
@@ -22,10 +20,6 @@ export function ActivityLogView({ board, selectedTask, taskGroup }) {
                         })
                     }
                 </ul>
-                {/* <Activity />
-                <Activity />
-                <Activity />
-                <Activity /> */}
             </div>
         </div>
     )
