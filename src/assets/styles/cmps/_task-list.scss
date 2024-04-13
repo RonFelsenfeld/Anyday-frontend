@@ -34,6 +34,11 @@
       z-index: 1;
       grid-column: 1 / -1;
       grid-row: 2;
+
+      .task-indicator {
+        margin-block-end: -1px;
+      }
+
       // overflow: hidden;
       // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
