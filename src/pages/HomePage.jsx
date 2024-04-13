@@ -8,7 +8,7 @@ export function HomePage() {
       <HomePageHeader />
       <h1 className="main-title">Your go-to work platform</h1>
       <h2 className="secondary-title">
-        Run all your work on one platform with customizable <br /> products the scale with your
+        Run all your work on one platform with customizable products the scale with your
         needs.
       </h2>
 

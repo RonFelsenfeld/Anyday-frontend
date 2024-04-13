@@ -3,7 +3,7 @@ import { GoToArrow, MenuGrid, WorkspaceLogo } from "../services/svg.service";
 
 export function HomePageHeader() {
     return (
-        <header className="homepage-header flex align-center justify-between">
+        <header className="homepage-header flex justify-between">
             <div className="logo-container flex align-center">
                 <button className="btn-logo">
                     <WorkspaceLogo size={25} />
