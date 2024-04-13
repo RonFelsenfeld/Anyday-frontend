@@ -2,6 +2,10 @@
   padding-inline: em(4px) em(24px);
   grid-column: 1 / -1;
 
+  @include for-normal-layout {
+    padding-inline: 0;
+  }
+
   .menu-logo-container {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -24,6 +28,10 @@
 
       .logo-secondary {
         font-family: PoppinsLight, sans-serif;
+
+        @include for-small-layout {
+          display: none;
+        }
       }
     }
   }

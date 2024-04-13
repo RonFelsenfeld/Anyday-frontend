@@ -127,7 +127,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
         <ArrowUp />
       </button>
 
-      <BoardControls onAddNewTask={onAddNewTask}/>
+      <BoardControls onAddNewTask={onAddNewTask} />
     </header>
   )
 }

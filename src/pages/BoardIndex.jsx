@@ -22,7 +22,7 @@ export function BoardIndex() {
   return (
     <section className="board-index">
       <header className="index-header flex align-center">
-        <div>
+        <div className="greetings">
           <p className="user-greet">{userGreeting}</p>
           <h3 className="title">Quickly access your recent boards, Inbox and workspaces</h3>
         </div>

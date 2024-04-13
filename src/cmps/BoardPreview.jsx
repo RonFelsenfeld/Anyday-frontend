@@ -8,7 +8,7 @@ export function BoardPreview({ board }) {
         <img src="/assets/img/board-preview.svg" alt="Board preview" className="board-img" />
 
         <div className="board-container">
-          <div className="flex align-center justify-between">
+          <div className="board-title-container flex align-center justify-between">
             <div className="board-details-container flex align-center">
               <BoardIcon />
               <h2 className="board-title">{board.title}</h2>
@@ -27,7 +27,9 @@ export function BoardPreview({ board }) {
             <span>
               <WorkspaceLogo size={14} />
             </span>
-            <span className="workspace-title">Work management &#62; Main workspace</span>
+            <span className="workspace-title">
+              Work management <span>&#62;</span> Main workspace
+            </span>
           </div>
         </div>
       </div>

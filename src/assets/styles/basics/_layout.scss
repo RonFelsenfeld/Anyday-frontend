@@ -3,6 +3,10 @@
   grid-template-columns: minmax(30px, auto) 1fr;
   grid-template-rows: $main-header-height calc(100dvh - $main-header-height);
   column-gap: 10px;
+
+  @include for-normal-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .board-layout {
@@ -12,7 +16,15 @@
   gap: 20px;
   padding-inline: em(16px);
 
+  @include for-normal-layout {
+    grid-template-columns: 1fr;
+  }
+
   .board-preview-li {
     max-width: 400px;
+
+    @include for-normal-layout {
+      max-width: 100%;
+    }
   }
 }

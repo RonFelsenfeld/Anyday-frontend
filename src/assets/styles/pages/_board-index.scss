@@ -1,10 +1,26 @@
 .board-index {
   grid-column: 2;
-
   background-color: $board-index-bg-clr;
   border-top-left-radius: $cmp-br;
-
   overflow-y: scroll;
+
+  @include for-normal-layout {
+    grid-column: 1;
+    border-top-left-radius: 0px;
+    scrollbar-width: none;
+  }
+
+  @include for-narrow-layout {
+    font-size: 1rem;
+  }
+
+  @include for-small-layout {
+    font-size: 0.85714rem;
+  }
+
+  @include for-mobile-layout {
+    font-size: 0.71428rem;
+  }
 
   .index-header {
     height: em(75px);
@@ -12,9 +28,26 @@
     background-color: $main-bg-clr;
     padding-inline: em(20px);
 
+    @include for-normal-layout {
+      border-top-left-radius: 0px;
+    }
+
+    @include for-narrow-layout {
+      justify-content: space-between;
+      .user-greet {
+        font-size: em(16px);
+      }
+    }
+
+    .greetings {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
     .title {
       font-size: em(16px);
-      line-height: em(22px);
+
       font-family: FigtreeMedium;
       font-weight: normal;
     }
