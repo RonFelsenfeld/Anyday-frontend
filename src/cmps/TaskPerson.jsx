@@ -12,7 +12,7 @@ export function TaskPerson({ group, task }) {
 
 
   async function onAddPerson(personId) {
-    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: 'Change person', createdAt: Date.now() }
+    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: 'Changed person', createdAt: Date.now() }
     const editedTask = task.personsIds
       ? { ...task, personsIds: [...task.personsIds, personId], activities: [...task.activities, currActivity] }
       : { ...task, personsIds: [personId], activities: [...task.activities, currActivity] }
