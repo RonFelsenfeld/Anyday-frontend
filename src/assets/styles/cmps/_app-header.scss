@@ -1,6 +1,7 @@
 .app-header {
   padding-inline: em(4px) em(24px);
   grid-column: 1 / -1;
+  cursor: pointer;
 
   @include for-normal-layout {
     padding-inline: 0;

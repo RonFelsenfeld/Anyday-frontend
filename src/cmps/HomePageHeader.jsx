@@ -11,8 +11,12 @@ export function HomePageHeader() {
                 <span className="logo-main">monday</span>
                 <span className="logo-secondary">work management</span>
             </div>
+
             <div className="right-side-container flex">
-                <button className="log-in-btn">Log in</button>
+                <Link to={'/auth'}>
+                    <button className="log-in-btn">Log in</button>
+                </Link>
+
                 <Link to={'/board'}>
                     <button className="get-started-btn flex align-center">
                         <span>Get Started</span>
