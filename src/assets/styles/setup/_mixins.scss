@@ -153,3 +153,30 @@
     scale: 0.95;
   }
 }
+
+@mixin getStartedBtn($padding: 8px 14px 8px 16px, $font-size: 0.93rem) {
+  padding: $padding;
+  border-radius: 2em;
+  background-color: $btn-cta-clr;
+  gap: em(15px);
+  margin: auto;
+
+  &:hover {
+    background-color: $btn-cta-clr-hover;
+
+    svg {
+      transform: translateX(5px);
+    }
+  }
+
+  span {
+    font-size: $font-size;
+    font-family: PoppinsLight, RobotoRegular, sans-serif;
+    color: $main-bg-clr;
+  }
+
+  svg {
+    fill: white;
+    transition: transform 0.3s;
+  }
+}
