@@ -21,6 +21,7 @@ import { BoardHeader } from '../cmps/BoardHeader'
 import { Loader } from '../cmps/Loader'
 import { useSecondRender } from '../customHooks/useSecondRender'
 import { GroupPreview } from '../cmps/GroupPreview'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -127,7 +128,9 @@ export function BoardDetails() {
   async function onRemoveGroup(groupId) {
     try {
       await removeGroup(board, groupId)
+      showSuccessMsg(' We successfully deleted 1 item')
     } catch (err) {
+      showErrorMsg('Sorry, something wend wrong')
       console.log('Had issues removing group', err)
     }
   }

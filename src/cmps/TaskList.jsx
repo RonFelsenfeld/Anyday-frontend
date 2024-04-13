@@ -8,6 +8,7 @@ import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
 import { GroupSummary } from './GroupSummary'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function TaskList({ group }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -25,15 +26,18 @@ export function TaskList({ group }) {
       await saveTask(board, group, editedTask)
       setTaskToEdit(null)
     } catch (err) {
-      console.log('Had issues adding task')
+      showErrorMsg('Sorry, something went wrong')
+      // console.log('Had issues adding task')
     }
   }
 
   async function onRemoveTask(taskId) {
     try {
       await removeTask(board, group, taskId)
+      showSuccessMsg('We successfully deleted 1 item')
     } catch (err) {
-      console.log('Had issues removing task')
+      showErrorMsg('Sorry, something went wrong')
+      // console.log('Had issues removing task')
     }
   }
 
