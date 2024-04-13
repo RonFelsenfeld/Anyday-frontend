@@ -283,28 +283,34 @@ function getEmptyComment() {
 
 function _sortByPersons(board, group, sortBy) {
   const tasksWithFullUsers = group.tasks.map(task => {
-    const persons = task.personsIds?.map(id => {
-      const user = board.persons.find(p => p.id === id)
-      return user
-    })
+    let taskFullPersons = []
 
-    return { ...task, persons }
+    if (task.personsIds && task.personsIds.length) {
+      taskFullPersons = task.personsIds.map(id => getPerson(board, id))
+    } else {
+      taskFullPersons = []
+    }
+
+    return { ...task, personsDetails: taskFullPersons }
   })
 
-  tasksWithFullUsers.forEach(task => {
-    task.persons?.sort((p1, p2) => p1.fullName.localeCompare(p2.fullName))
-  })
+  tasksWithFullUsers.forEach(task =>
+    task.personsDetails?.sort((p1, p2) => p1.fullName.localeCompare(p2.fullName))
+  )
 
   const sortedTasks = tasksWithFullUsers.sort((t1, t2) => {
-    if ((!t1.persons || !t1.persons?.length) && sortBy.person > 0) return -1
-    if ((!t1.persons || !t1.persons?.length) && sortBy.person < 0) return 1
-    if ((!t2.persons || !t2.persons?.length) && sortBy.person > 0) return -1
-    if ((!t2.persons || !t2.persons?.length) && sortBy.person < 0) return 1
+    if (!t1.personsDetails.length && t2.personsDetails.length && sortBy.person > 0) return -1
+    if (!t1.personsDetails.length && !t2.personsDetails.length && sortBy.person > 0) return 1
+    if (t1.personsDetails.length && !t2.personsDetails.length && sortBy.person > 0) return 1
 
-    t1.persons[0]?.fullName.localeCompare(t2.persons[0]?.fullName) * sortBy.person
+    if (!t1.personsDetails.length && t2.personsDetails.length && sortBy.person < 0) return 1
+    if (!t1.personsDetails.length && !t2.personsDetails.length && sortBy.person < 0) return -1
+    if (t1.personsDetails.length && !t2.personsDetails.length && sortBy.person < 0) return -1
+
+    return t1.personsDetails[0].fullName.localeCompare(t2.personsDetails[0].fullName) * sortBy.task
   })
 
-  sortedTasks.forEach(task => delete task.persons)
+  sortedTasks.forEach(task => delete task.personsDetails)
   return sortedTasks
 }
 
