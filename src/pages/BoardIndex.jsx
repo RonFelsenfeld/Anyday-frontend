@@ -9,6 +9,7 @@ import { boardService } from '../services/board.service'
 
 import { BoardList } from '../cmps/BoardList'
 import { Loader } from '../cmps/Loader'
+import { showSuccessMsg } from '../services/event-bus.service'
 
 export function BoardIndex() {
   const user = useSelector(storeState => storeState.userModule.loggedInUser)

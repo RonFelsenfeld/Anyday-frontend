@@ -65,14 +65,12 @@ export function DynamicOptionsMenu({ options }) {
             key={`${option}${idx}`}
             className="option flex align-center"
             style={getOptionStyle(option)}
+            onClick={() => {
+              option.func()
+              hideModal()
+            }}
           >
-            <button
-              className="btn-option flex align-center"
-              onClick={() => {
-                option.func()
-                hideModal()
-              }}
-            >
+            <button className="btn-option flex align-center">
               <span>{getSvg(option.icon)}</span>
               <span className="option-title">{option.title}</span>
             </button>
