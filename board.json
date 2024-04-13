@@ -531,7 +531,7 @@
         }
     ],
     "cmpsOrder": [
-        "PersonsPicker",
+        "PersonPicker",
         "StatusPicker",
         "PriorityPicker",
         "TimelinePicker",

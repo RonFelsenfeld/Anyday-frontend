@@ -14,7 +14,7 @@
 
   background-color: $main-bg-clr;
   --animate-duration: 0.3s;
-  box-shadow: 0px 8px 16px 0px rgba(147, 147, 147, 0.32);
+  box-shadow: $modal-box-shadow;
 
   &.overflowing-width {
     right: 0;

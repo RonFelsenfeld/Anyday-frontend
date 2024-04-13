@@ -1,0 +1,26 @@
+.task-sort-modal {
+  width: 400px;
+  height: 174px;
+
+  padding: em(20px) em(16px);
+  background-color: $main-bg-clr;
+  border-radius: $el-br;
+
+  .sort-title {
+    @include sortTitle;
+  }
+
+  .sort-description {
+    margin-block-end: em(32px);
+    overflow: initial;
+    text-overflow: initial;
+    padding-inline-end: 20%;
+  }
+
+  .btn-add-sort {
+    @include btn;
+    @include scalableBtn;
+
+    padding: em(4px) em(8px);
+  }
+}

@@ -180,3 +180,36 @@
     transition: transform 0.3s;
   }
 }
+
+@mixin sortTitle {
+  font-size: em(15px);
+  font-weight: 500;
+  font-family: FigtreeMedium, RobotoRegular;
+  margin-block-end: em(24px);
+}
+
+@mixin dropdown {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  right: 0;
+
+  gap: 6px;
+  padding: 10px;
+  border-radius: $el-br;
+
+  background-color: $main-bg-clr;
+  box-shadow: $modal-box-shadow;
+}
+
+@mixin dropdownOption {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 38px;
+
+  padding: em(4px) em(4px) em(4px) em(18px);
+  border-radius: $el-br;
+  border: 1px solid $secondary-border-clr;
+}

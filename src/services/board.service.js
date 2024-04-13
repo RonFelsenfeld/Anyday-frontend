@@ -11,6 +11,7 @@ export const boardService = {
   save,
   getDefaultBoardFilter,
   getDefaultGroupTaskFilter,
+  getDefaultSortBy,
   getGroupById,
   removeGroup,
   saveGroup,
@@ -27,6 +28,7 @@ export const boardService = {
   getGroupColors,
   getTaskById,
   filterBoard,
+  sortBoard,
 }
 
 async function query(boardFilterBy) {
@@ -47,6 +49,18 @@ async function query(boardFilterBy) {
 async function getById(boardId) {
   var board = await storageService.get(BOARDS_KEY, boardId)
   return board
+}
+
+function remove(boardId) {
+  return storageService.remove(BOARDS_KEY, boardId)
+}
+
+function save(board) {
+  if (board._id) {
+    return storageService.put(BOARDS_KEY, board)
+  } else {
+    return storageService.post(BOARDS_KEY, board)
+  }
 }
 
 function filterBoard(board, filterBy) {
@@ -87,16 +101,24 @@ function filterBoard(board, filterBy) {
   return groupsToReturn
 }
 
-function remove(boardId) {
-  return storageService.remove(BOARDS_KEY, boardId)
-}
+function sortBoard(board, sortBy) {
+  let groupsToReturn = board.groups.slice()
 
-function save(board) {
-  if (board._id) {
-    return storageService.put(BOARDS_KEY, board)
-  } else {
-    return storageService.post(BOARDS_KEY, board)
-  }
+  groupsToReturn = groupsToReturn.map(group => {
+    let sortedTasks
+
+    if (sortBy.txt) {
+      sortedTasks = group.tasks.sort((t1, t2) => t1.title.localeCompare(t2.title) * sortBy.txt)
+    }
+
+    if (sortBy.person) {
+      sortedTasks = _sortByPersons(board, group, sortBy)
+    }
+
+    return { ...group, tasks: sortedTasks }
+  })
+
+  return groupsToReturn
 }
 
 function getPerson(board, personId) {
@@ -116,7 +138,7 @@ function getTotalTasksByBoard(board) {
 
 function getColTitle(cmp) {
   switch (cmp) {
-    case 'PersonsPicker':
+    case 'PersonPicker':
       return 'Person'
     case 'StatusPicker':
       return 'Status'
@@ -133,6 +155,10 @@ function getColTitle(cmp) {
 
 function getDefaultBoardFilter() {
   return { txt: '' }
+}
+
+function getDefaultSortBy() {
+  return { txt: 1 }
 }
 
 // * --------------------------------- GROUPS ---------------------------------
@@ -253,6 +279,35 @@ function getEmptyComment() {
   }
 }
 
+////////////////////////////////////////////////////
+
+function _sortByPersons(board, group, sortBy) {
+  const tasksWithFullUsers = group.tasks.map(task => {
+    const persons = task.personsIds?.map(id => {
+      const user = board.persons.find(p => p.id === id)
+      return user
+    })
+
+    return { ...task, persons }
+  })
+
+  tasksWithFullUsers.forEach(task => {
+    task.persons?.sort((p1, p2) => p1.fullName.localeCompare(p2.fullName))
+  })
+
+  const sortedTasks = tasksWithFullUsers.sort((t1, t2) => {
+    if ((!t1.persons || !t1.persons?.length) && sortBy.person > 0) return -1
+    if ((!t1.persons || !t1.persons?.length) && sortBy.person < 0) return 1
+    if ((!t2.persons || !t2.persons?.length) && sortBy.person > 0) return -1
+    if ((!t2.persons || !t2.persons?.length) && sortBy.person < 0) return 1
+
+    t1.persons[0]?.fullName.localeCompare(t2.persons[0]?.fullName) * sortBy.person
+  })
+
+  sortedTasks.forEach(task => delete task.persons)
+  return sortedTasks
+}
+
 // * --------------------------------- DEMO DATA ---------------------------------
 
 function _createDemoBoard() {
@@ -344,7 +399,7 @@ function _createDemoBoard() {
           archivedAt: null,
           tasks: [
             {
-              id: 't101',
+              id: 'p101',
               title: 'Implement responsive design for user dashboard',
               personsIds: ['u101'],
               status: 'Working on it',
@@ -369,11 +424,12 @@ function _createDemoBoard() {
               activities: [
                 {
                   id: utilService.makeId(),
-                  action: "Add person",
+                  action: 'Add person',
                   personAdded: {
                     id: 'u103',
                     fullName: 'Ron Felsenfeld',
-                    imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+                    imgUrl:
+                      'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
                   },
                   createdAt: 1712995031424,
                   byPerson: {
@@ -387,7 +443,7 @@ function _createDemoBoard() {
                 //   id: utilService.makeId(),
                 //   action: "Change date",
                 //   changedDate:{
-                    
+
                 //   },
                 //   createdAt: 1712995031424,
                 //   byPerson: {
@@ -397,11 +453,10 @@ function _createDemoBoard() {
                 //       'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
                 //   },
                 // },
-
               ],
             },
             {
-              id: 't102',
+              id: 'p102',
               title: 'Add drag-and-drop functionality',
               personsIds: ['u103'],
               status: 'Stuck',
@@ -831,7 +886,7 @@ function _createDemoBoard() {
         },
       ],
       cmpsOrder: [
-        'PersonsPicker',
+        'PersonPicker',
         'StatusPicker',
         'PriorityPicker',
         'TimelinePicker',
@@ -1009,7 +1064,7 @@ function getEmptyBoard() {
       },
     ],
     activities: [],
-    cmpsOrder: ['PersonsPicker', 'StatusPicker', 'PriorityPicker', 'TimelinePicker'],
+    cmpsOrder: ['PersonPicker', 'StatusPicker', 'PriorityPicker', 'TimelinePicker'],
   }
 }
 

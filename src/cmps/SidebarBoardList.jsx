@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { SidebarBoardPreview } from './SidebarBoardPreview'
 
-
-
 export function SidebarBoardList({
   boards,
   onDeleteBoard,
@@ -10,7 +8,6 @@ export function SidebarBoardList({
   boardToEdit,
   setBoardToEdit,
 }) {
- 
   return (
     <ul className="side-bar-boards-list clean-list">
       {boards.map(board => (
@@ -21,7 +18,8 @@ export function SidebarBoardList({
               setBoardToEdit={setBoardToEdit}
               board={board}
               onDeleteBoard={onDeleteBoard}
-              onEditBoardTitle={onEditBoardTitle} />
+              onEditBoardTitle={onEditBoardTitle}
+            />
           </li>
         </NavLink>
       ))}

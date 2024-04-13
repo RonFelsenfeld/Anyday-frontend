@@ -7,7 +7,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { boardService } from '../services/board.service'
 import {
   loadBoard,
-  onFilterBoard,
+  onFilterSortBoard,
   removeGroup,
   saveBoard,
   saveGroup,
@@ -26,6 +26,8 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
+  const sortBy = useSelector(storeState => storeState.boardModule.boardSortBy)
+
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
   const [isAllGroupsExpended, setIsAllGroupsExpended] = useState(true)
 
@@ -49,8 +51,8 @@ export function BoardDetails() {
   }, [boardId])
 
   useEffect(() => {
-    if (board) onFilterBoard(board._id, groupTaskFilterBy)
-  }, [groupTaskFilterBy])
+    if (board) onFilterSortBoard(board._id, groupTaskFilterBy, sortBy)
+  }, [groupTaskFilterBy, sortBy])
 
   function createObserver() {
     const headerObserver = new IntersectionObserver(handleIntersection, {

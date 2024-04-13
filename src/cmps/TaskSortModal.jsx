@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { TaskSort } from './TaskSort'
 
-export function TaskSort() {
+export function TaskSortModal() {
   const [isSorting, setIsSorting] = useState(false)
 
   return (
@@ -16,6 +17,8 @@ export function TaskSort() {
           </button>
         </>
       )}
+
+      {isSorting && <TaskSort />}
     </section>
   )
 }

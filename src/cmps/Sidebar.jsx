@@ -16,6 +16,7 @@ import { SidebarBoardList } from './SidebarBoardList'
 import { showSuccessMsg } from '../services/event-bus.service'
 
 export function Sidebar() {
+  const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
   const boards = useSelector(storeState => storeState.boardModule.boards)
   const boardFilterBy = useSelector(storeState => storeState.boardModule.boardFilterBy)
 
@@ -123,7 +124,7 @@ export function Sidebar() {
               </div>
             </NavLink>
 
-            <NavLink className="navlink" to={'/board'}>
+            <NavLink className="navlink" to={'/board'} end>
               <div className="my-work flex align-center">
                 <div className="my-work-svg svg">
                   <MyWork />
@@ -167,7 +168,8 @@ export function Sidebar() {
               boards={boards}
             />
           )}
-          {!boards.length && (
+
+          {!boards.length && !isLoading && (
             <div className="not-found-container">
               <img className="not-found-img" src="/assets/img/search_empty_state.svg" />
               <h3>No results found</h3>

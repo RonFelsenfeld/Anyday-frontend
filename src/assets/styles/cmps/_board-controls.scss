@@ -67,6 +67,7 @@
     @include btn;
     margin-inline-end: 6px;
     padding: 1px 5px;
+    gap: 5px;
 
     span {
       @include for-normal-layout {

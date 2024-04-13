@@ -1,29 +1,36 @@
-.task-sort-modal {
-  width: 400px;
-  height: 174px;
-
-  padding: em(20px) em(16px) em(16px) em(16px);
-  background-color: $main-bg-clr;
-  border-radius: $el-br;
-
-  .sort-title {
-    font-size: em(15px);
-    font-family: FigtreeMedium, RobotoRegular;
-    margin-block-end: em(24px);
-    font-weight: 500;
+.task-sort {
+  .sort-by-title {
+    @include sortTitle;
   }
 
-  .sort-description {
-    margin-block-end: em(32px);
-    overflow: initial;
-    text-overflow: initial;
-    padding-inline-end: 20%;
-  }
+  .dropdowns-container {
+    gap: 8px;
 
-  .btn-add-sort {
-    @include btn;
-    @include scalableBtn;
+    .active-sort-option,
+    .active-dir-option {
+      @include dropdownOption;
+      position: relative;
+      justify-content: space-between;
+      cursor: pointer;
+    }
 
-    padding: em(4px) em(8px);
+    .active-sort-option {
+      flex-grow: 1;
+    }
+
+    .sort-by-dropdown {
+      @include dropdown;
+
+      .dropdown-option {
+        @include dropdownOption;
+      }
+    }
+
+    .sort-dir-dropdown {
+      @include dropdown;
+      .dropdown-dir {
+        @include dropdownOption;
+      }
+    }
   }
 }

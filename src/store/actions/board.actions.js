@@ -7,9 +7,10 @@ import {
   SET_BOARDS,
   SET_BOARD_FILTER_BY,
   SET_GROUP_TASK_FILTER_BY,
+  SET_SORT_BY,
   // SET_MARKED_TEXT,
 } from '../reducers/board.reducer'
-import { SET_IS_LOADING, } from '../reducers/system.reducer'
+import { SET_IS_LOADING } from '../reducers/system.reducer'
 import { store } from '../store'
 
 export async function loadBoards() {
@@ -116,20 +117,28 @@ export async function saveTask(board, group, task, unshift) {
   }
 }
 
+// Filter & Sort
+
 export function setBoardFilterBy(boardFilterBy) {
   store.dispatch({ type: SET_BOARD_FILTER_BY, boardFilterBy })
 }
+
 export function setGroupTaskFilterBy(groupTaskFilterBy) {
   store.dispatch({ type: SET_GROUP_TASK_FILTER_BY, groupTaskFilterBy })
 }
 
-export async function onFilterBoard(boardId, filterBy) {
+export async function setSortBy(sortBy) {
+  store.dispatch({ type: SET_SORT_BY, sortBy })
+}
+
+export async function onFilterSortBoard(boardId, filterBy, sortBy) {
   try {
     const board = await boardService.getById(boardId)
     const filteredGroups = boardService.filterBoard(board, filterBy)
-    store.dispatch({ type: SET_BOARD, board: { ...board, groups: filteredGroups } })
+    board.groups = [...filteredGroups]
 
-
+    const sortedGroups = boardService.sortBoard(board, sortBy)
+    store.dispatch({ type: SET_BOARD, board: { ...board, groups: sortedGroups } })
   } catch (err) {
     console.log(err)
   }

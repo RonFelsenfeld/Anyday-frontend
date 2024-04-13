@@ -3,8 +3,8 @@ import { DynamicLabelPicker } from './DynamicLabelPicker'
 import { DynamicOptionsMenu } from './DynamicOptionsMenu'
 import { FilterPersonPicker } from './FilterPersonPicker'
 import { PersonPicker } from './PersonPicker'
-import { TaskSort } from './TaskSortModal'
 import { TimelinePicker } from './TimelinePicker'
+import { TaskSortModal } from './TaskSortModal'
 
 export function DynamicModalContent(cmp) {
   switch (cmp.type) {
@@ -27,6 +27,6 @@ export function DynamicModalContent(cmp) {
       return <TimelinePicker {...cmp} />
 
     case 'sortBoard':
-      return <TaskSort />
+      return <TaskSortModal />
   }
 }
