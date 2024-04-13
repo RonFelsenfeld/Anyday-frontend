@@ -13,7 +13,7 @@ import {
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
-import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
+import { BOTTOM_CENTER, BOTTOM_LEFT } from '../store/reducers/system.reducer'
 import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 
 export function BoardControls({ onAddNewTask }) {
@@ -57,6 +57,13 @@ export function BoardControls({ onAddNewTask }) {
     }
     // console.log(persons);
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
+  }
+
+  function handleSort({ currentTarget }) {
+    const cmpInfo = {
+      type: 'sortBoard',
+    }
+    showModal(currentTarget, BOTTOM_LEFT, cmpInfo, false)
   }
 
   function handleChange({ target }) {
@@ -125,7 +132,7 @@ export function BoardControls({ onAddNewTask }) {
             style={getStyle()}
           >
             {!person && (
-              <div className=" flex filter-not-active" style={getStyle()}>
+              <div className="flex filter-not-active" style={getStyle()}>
                 <UserImg />
                 <span className="btn-title">Person</span>
               </div>
@@ -166,6 +173,7 @@ export function BoardControls({ onAddNewTask }) {
 
         <button
           className="btn btn-action flex align-center"
+          onClick={handleSort}
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Sort board by any column')}
           onMouseLeave={() => hideToolTip()}
           style={getStyle()}
