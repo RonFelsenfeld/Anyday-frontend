@@ -10,7 +10,7 @@ export function ActivityLogView({ board, selectedTask, taskGroup }) {
             <div className="activiy-view">
                 <ul className="activity-list clean-list">
                     {
-                        selectedTask.activities.map(activity => {
+                        selectedTask.activities?.map(activity => {
                             return (
                                 <li key={activity.id}>
                                     {<Activity

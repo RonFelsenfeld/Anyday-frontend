@@ -1,14 +1,31 @@
 .board-list-section {
   border-radius: $cmp-br;
-  padding: em(24px) em(24px);
+  padding: em(24px);
   margin: em(16px) em(20px) em(52px);
   background-color: $main-bg-clr;
   box-shadow: 0px 3px 12px 0px rgb(230, 233, 239);
+
+  @include for-small-layout {
+    padding: em(24px) em(12px) em(12px) em(12px);
+  }
+
+  @include for-mobile-layout {
+    padding-inline: 0;
+    padding-block: 17px 5px;
+  }
 
   .board-list-header {
     .list-title {
       font-size: em(18px);
       font-family: FigtreeBold, RobotoBold, sans-serif;
+
+      @include for-normal-layout {
+        font-size: em(28px);
+      }
+
+      @include for-narrow-layout {
+        font-size: em(20px);
+      }
     }
   }
 

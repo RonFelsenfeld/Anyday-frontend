@@ -54,7 +54,7 @@ export function UpdateLog() {
     try {
       await saveTask(board, taskGroup, task)
     } catch (err) {
-      console.log('could not save error', err);
+      console.log('could not save error', err)
     }
   }
 
@@ -81,8 +81,7 @@ export function UpdateLog() {
           !!taskPersons.length &&
           taskPersons.map(person => (
             <img key={person.id} src={`${person.imgUrl}`} alt={person.fullName} />
-          ))
-        }
+          ))}
         <div>
           <button className="menu-options-btn">
             <WorkSpaceOption />
@@ -117,7 +116,8 @@ export function UpdateLog() {
         <TaskConversation
           addMsg={addMsg}
           setSelectedTask={setSelectedTask}
-          selectedTask={selectedTask} />}
+          selectedTask={selectedTask}
+      />}
 
       {activeView === 'activity' &&
         <ActivityLogView

@@ -16,8 +16,6 @@ export function TaskStatus({ group, task }) {
   }
 
   async function onUpdateTaskStatus(status) {
-    const editedTask = { ...task, status }
-
     try {
       await saveTask(board, group, editedTask)
       if (status === 'Done') animateStatus()

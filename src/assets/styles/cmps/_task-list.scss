@@ -18,6 +18,10 @@
     grid-auto-rows: $task-preview-height;
     border-bottom: 1px solid $secondary-border-clr;
 
+    @include for-small-layout {
+      grid-template-columns: 6px 32px 250px 100px repeat(4, 120px) 1fr;
+    }
+
     input:not([name='add-task']) {
       @include checkbox;
     }
@@ -33,14 +37,18 @@
       // overflow: hidden;
       // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
-      &>*:not(.checkbox-container) {
+      & > *:not(.checkbox-container) {
         display: grid;
         font-weight: lighter;
         font-size: 1rem;
         align-items: center;
         justify-content: center;
 
-        &:not(.task-indicator) {
+        @include for-small-layout {
+          font-size: 0.85714rem;
+        }
+
+        &:not(.task-indicator, input) {
           border-inline-start: 1px solid $secondary-border-clr;
         }
       }
@@ -51,7 +59,7 @@
         border-top-left-radius: $cmp-br;
       }
 
-      input[name=all-tasks] {
+      input[name='all-tasks'] {
         position: sticky;
         left: 14px;
       }
@@ -59,7 +67,6 @@
       input:hover {
         border-color: $secondary-font-clr;
       }
-
 
       .task-title {
         position: sticky;
@@ -96,7 +103,6 @@
         border-bottom-left-radius: $cmp-br;
       }
 
-
       .add-task-checkbox {
         position: sticky;
         left: 14px;
@@ -115,6 +121,10 @@
         opacity: 1;
         @include input;
         outline-style: none;
+
+        @include for-small-layout {
+          font-size: 0.85714rem;
+        }
 
         &:hover {
           border-color: $secondary-border-clr;

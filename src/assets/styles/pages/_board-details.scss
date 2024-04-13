@@ -1,10 +1,16 @@
 .board-details {
   grid-column: 2;
   border-radius: $cmp-br;
-  border-radius: $cmp-br;
   overflow-x: scroll;
   padding-block-end: 50px;
   background-color: $main-bg-clr;
+
+  @include for-normal-layout {
+    grid-column: 1;
+    border-radius: 0px;
+    scrollbar-width: thin;
+    padding-block-end: em(100px);
+  }
 
   .group-container {
     &.dragging-layout {
@@ -20,6 +26,14 @@
 
     &.header-collapsed {
       height: 133px;
+
+      @include for-normal-layout {
+        height: 80px;
+      }
+    }
+
+    @include for-normal-layout {
+      height: 80px;
     }
   }
 

@@ -10,8 +10,6 @@ import {
   saveBoard,
   setBoardFilterBy,
 } from '../store/actions/board.actions'
-import { showModal } from '../store/actions/system.actions'
-import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
 
 import { SidebarSearch } from './SidebarSearch'
 import { SidebarBoardList } from './SidebarBoardList'

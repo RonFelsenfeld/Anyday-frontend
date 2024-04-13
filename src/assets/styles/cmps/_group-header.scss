@@ -5,7 +5,15 @@
   z-index: 50;
   grid-area: header;
 
+  @include for-normal-layout {
+    top: 80px;
+  }
+
   &.header-expanded {
+    @include for-normal-layout {
+      top: 80px;
+    }
+
     top: 185px;
   }
 

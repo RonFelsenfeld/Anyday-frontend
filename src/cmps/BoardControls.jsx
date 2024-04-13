@@ -1,7 +1,15 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Filter, Hide, RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
+import {
+  AddBoardBtn,
+  Filter,
+  Hide,
+  RemovePersonFilter,
+  Search,
+  Sort,
+  UserImg,
+} from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
@@ -61,26 +69,36 @@ export function BoardControls({ onAddNewTask }) {
     if (!filterBy.txt) setIsFilterInput(false)
   }
 
+  // On narrow view, when the user filters by text --> hide the other btns
+  function getStyle() {
+    if (window.innerWidth < 1000 && isFilterInput) return { display: 'none' }
+  }
+
   const person = boardService.getPerson(board, filterBy.person)
 
   const dynFilterClass = filterBy.person ? 'active' : ''
   const dynCloseFilterPersonBtn = filterBy.person ? '' : 'hidden'
   return (
     <section className="board-controls flex align-baseline">
-      <button onClick={onAddNewTask} className="btn btn-new-task">
-        New task
-      </button>
-
       <div className="filter-sort-btns flex align-center">
+        <button onClick={onAddNewTask} className="btn btn-new-task" style={getStyle()}>
+          <span className="desktop-view">New task</span>
+          <span className="mobile-view">
+            <AddBoardBtn />
+          </span>
+        </button>
+
         {!isFilterInput && (
           <button
             onClick={() => setIsFilterInput(true)}
             className="btn btn-action flex align-center"
+            style={getStyle()}
           >
             <Search />
             <span className="btn-title">Search</span>
           </button>
         )}
+
         {isFilterInput && (
           <form
             className="filter-form flex"
@@ -104,23 +122,24 @@ export function BoardControls({ onAddNewTask }) {
             onMouseEnter={ev => showToolTip(ev.target, 'Filter board by person')}
             onMouseLeave={() => hideToolTip()}
             onClick={handlePersonFilter}
+            style={getStyle()}
           >
             {!person && (
-              <div className=" flex filter-not-active">
+              <div className=" flex filter-not-active" style={getStyle()}>
                 <UserImg />
                 <span className="btn-title">Person</span>
               </div>
             )}
 
             {person && person.imgUrl && (
-              <div className="filter-active flex align-center">
+              <div className="filter-active flex align-center" style={getStyle()}>
                 <img className="filterby-img" src={`${person.imgUrl}`} />
                 <span className="btn-title-person-padded">Person</span>
               </div>
             )}
 
             {person && !person.imgUrl && (
-              <div className="filter-active flex align-center">
+              <div className="filter-active flex align-center" style={getStyle()}>
                 <div className="person-initials">{utilService.getInitials(person.fullName)}</div>
                 <span className="btn-title-person-padded">Person</span>
               </div>
@@ -129,6 +148,7 @@ export function BoardControls({ onAddNewTask }) {
           <div
             className={`removing-person ${dynCloseFilterPersonBtn}`}
             onClick={onRemovePersonFilter}
+            style={getStyle()}
           >
             <RemovePersonFilter />
           </div>
@@ -138,6 +158,7 @@ export function BoardControls({ onAddNewTask }) {
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
           onMouseLeave={() => hideToolTip()}
+          style={getStyle()}
         >
           <Filter />
           <span className="btn-title">Filter</span>
@@ -147,6 +168,7 @@ export function BoardControls({ onAddNewTask }) {
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Sort board by any column')}
           onMouseLeave={() => hideToolTip()}
+          style={getStyle()}
         >
           <Sort />
           <span className="btn-title">Sort</span>
@@ -156,6 +178,7 @@ export function BoardControls({ onAddNewTask }) {
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Hidden columns')}
           onMouseLeave={() => hideToolTip()}
+          style={getStyle()}
         >
           <Hide />
           <span className="btn-title">Hide</span>
