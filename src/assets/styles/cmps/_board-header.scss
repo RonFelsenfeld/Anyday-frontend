@@ -36,7 +36,7 @@
       @include board-header-layout-mobile;
 
       .board-info.flex {
-        display: block;
+        display: flex;
       }
     }
 
@@ -58,7 +58,15 @@
       }
     }
 
-    .board-info,
+    .board-info {
+      display: none;
+
+      @include for-normal-layout {
+        gap: 10px;
+        margin-inline-end: 10px;
+      }
+    }
+
     .activity-container {
       display: none;
     }
@@ -66,6 +74,10 @@
     .invite-container {
       justify-self: end;
       margin-inline-end: 1em;
+
+      @include for-normal-layout {
+        margin-inline-end: 0;
+      }
     }
 
     .btn-collapse-header {
@@ -81,7 +93,11 @@
     @include for-normal-layout {
       display: block;
       grid-area: back;
-      scale: 2;
+      scale: 1.5;
+
+      svg {
+        fill: $secondary-font-clr;
+      }
     }
 
     @include for-narrow-layout {
@@ -111,6 +127,7 @@
     @include for-normal-layout {
       font-size: em(32px);
       margin-inline-end: 0px;
+      align-self: start;
     }
 
     @include for-small-layout {
@@ -129,6 +146,11 @@
   .board-info {
     grid-area: info;
 
+    @include for-normal-layout {
+      gap: 10px;
+      margin-inline-end: 10px;
+    }
+
     .btn {
       @include btn($secondary-font-clr);
 
@@ -136,6 +158,10 @@
       height: em(32px);
 
       padding: 4px;
+
+      @include for-normal-layout {
+        scale: 1.2;
+      }
 
       @include for-small-layout {
         scale: 0.9;
@@ -178,15 +204,15 @@
     place-self: center;
     gap: em(8px);
 
-    @include for-normal-layout {
-      display: none;
-    }
-
     .btn-invite {
       @include btn;
 
       padding: 4px 8px;
       border: 1px solid $list-shadow-clr;
+
+      @include for-normal-layout {
+        display: none;
+      }
 
       .invite {
         margin-inline-start: 8px;
@@ -198,6 +224,11 @@
 
       width: em(32px);
       height: em(32px);
+
+      @include for-normal-layout {
+        grid-area: info;
+        scale: 1.2;
+      }
     }
   }
 
