@@ -1,15 +1,18 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { ArrowUp, Favorite, GoToArrow, Home, Info, Invite, Options } from '../services/svg.service'
-import { hideToolTip, showToolTip } from '../store/actions/system.actions'
-import { saveBoard } from '../store/actions/board.actions'
+import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
+import { removeBoard, saveBoard } from '../store/actions/board.actions'
+import { showSuccessMsg } from '../services/event-bus.service'
+import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 import { BoardControls } from './BoardControls'
 import { EditableText } from './EditableText'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAddNewTask }) {
   const [isEditing, setIsEditing] = useState(false)
+  const navigate = useNavigate()
 
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
@@ -23,6 +26,32 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
     } catch (err) {
       console.log('Could not update board  name', err)
     }
+  }
+
+  async function onDeleteBoard() {
+    try {
+      await removeBoard(board._id)
+      showSuccessMsg('We successfully deleted the board')
+    } catch (err) {
+      console.log('Could not remove board', err)
+    } finally {
+      navigate(`/board/delete/${board._id}`)
+    }
+  }
+
+  function onOptionsClick({ currentTarget }) {
+    const cmpInfo = {
+      type: 'optionsMenu',
+      options: [
+        {
+          title: 'Delete Board',
+          icon: 'trash',
+          func: onDeleteBoard,
+        },
+      ],
+    }
+
+    showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
   }
 
   const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
@@ -114,6 +143,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
 
         <button
           className="btn-options flex align-center"
+          onClick={onOptionsClick}
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Options')}
           onMouseLeave={() => hideToolTip()}
         >

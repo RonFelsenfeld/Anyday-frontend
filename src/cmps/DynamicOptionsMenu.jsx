@@ -50,6 +50,7 @@ export function DynamicOptionsMenu({ options }) {
   function getOptionStyle({ title }) {
     if (title === 'Login') return { width: '100px' }
     if (title === 'Logout') return { width: '100px' }
+    if (title === 'Delete Board') return { width: '150px' }
     return { border: 'none' } // Just for the style get valid object
   }
 
