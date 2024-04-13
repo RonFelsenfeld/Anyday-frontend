@@ -1,6 +1,5 @@
 .homepage-header {
     margin-inline: 20px 20px;
-    align-items: baseline;
     padding-block: 10px;
 
     .logo-container {
@@ -8,19 +7,19 @@
         letter-spacing: -0.2px;
 
         .btn-logo {
-            width: (33px);
-            height: (33px);
-            position: absolute;
+            width: rem(35px);
+            height: rem(35px);
+            padding: 0;
         }
 
         .logo-main {
-            margin-inline: 6px 4px;
+            margin-inline-end: 6px;
             font-family: PoppinsBold, RobotoBold, sans-serif;
-            padding-inline-start: 40px;
         }
 
         .logo-secondary {
             font-family: PoppinsLight, sans-serif;
+
             @include for-small-layout {
                 display: none;
             }

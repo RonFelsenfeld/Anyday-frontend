@@ -66,7 +66,7 @@ export function TaskFiles({ group, task }) {
             :
             <label htmlFor="file-upload" className="files-container flex">
                 <button style={buttonPosition} className="add-file-btn fa-solid plus"></button>
-                <img className="empty-file-icon" src="https://cdn.monday.com/images/file-types/empty.svg" alt="No File"></img>
+                <img className="empty-file-icon" src="/assets/img/empty-file.svg" alt="No File"></img>
                 <input className="add-file-btn file-input" style={{opacity: '0', width: '100%', height: '100%'}} 
                 onChange={onAddFile} id="file-upload" type="file"></input>
             </label>

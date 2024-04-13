@@ -216,31 +216,25 @@
       }
 
       .logo-container {
-        gap: 16px;
-
-        @include for-small-layout {
-          gap: 10px;
-        }
-
         .logo {
-          width: 50px;
-          height: 50px;
+          height: 40px;
 
           @include for-narrow-layout {
-            width: 30px;
             height: 30px;
           }
 
           @include for-small-layout {
-            width: 20px;
             height: 20px;
           }
         }
 
         .logo-title {
-          color: $btn-cta-clr;
           font-size: 1.43rem;
-          font-family: PoppinsSemiBold, Roboto, Helvetica, Arial, sans-serif;
+          font-family: PoppinsLight, Roboto, Helvetica, Arial, sans-serif;
+
+          span {
+            font-family: PoppinsSemiBold, Roboto, Helvetica, Arial, sans-serif;
+          }
 
           @include for-narrow-layout {
             font-size: 1.2rem;
@@ -250,7 +244,6 @@
             font-size: 1rem;
           }
         }
-
       }
 
       .secondary-title {
@@ -360,25 +353,61 @@
       height: 150px;
     }
 
-    .main-title {
-      font-family: PoppinsLight, RobotoRegular, sans-serif;
-      font-size: 2rem;
+    .footer-title {
+      align-items: baseline;
 
-      @include for-narrow-layout {
-        font-size: 1.6rem;
+      .main-title {
+        font-family: PoppinsLight, RobotoRegular, sans-serif;
+        font-size: 2rem;
+
+        @include for-narrow-layout {
+          font-size: 1.6rem;
+        }
+
+        @include for-small-layout {
+          font-size: 1.4rem;
+        }
+
+        @include for-mobile-layout {
+          font-size: 1.2rem;
+        }
+
+        span {
+          font-family: PoppinsBold, RobotoRegular, sans-serif;
+        }
       }
 
-      @include for-small-layout {
-        font-size: 1.4rem;
+      .logo {
+        width: 50px;
+        padding-inline-start: 10px;
+
+        @include for-narrow-layout {
+          width: 40px;
+        }
+
+        @include for-mobile-layout {
+          width: 30px;
+        }
       }
 
-      @include for-mobile-layout {
-        font-size: 1.2rem;
-      }
-
-      span {
+      .logo-title {
         font-family: PoppinsBold, RobotoRegular, sans-serif;
+        font-size: 2rem;
+
+        @include for-narrow-layout {
+          font-size: 1.6rem;
+        }
+
+        @include for-small-layout {
+          font-size: 1.4rem;
+        }
+
+        @include for-mobile-layout {
+          font-size: 1.2rem;
+        }
+
       }
+
     }
 
     .secondary-title {

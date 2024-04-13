@@ -59,9 +59,9 @@ export function AppHeader() {
 
         <div className="logo-container flex align-center">
           <button className="btn-logo">
-            <WorkspaceLogo size={25} />
+            <img src="/assets/img/A-logo.png"/>
           </button>
-          <span className="logo-main">monday</span>
+          <span className="logo-main">nyday</span>
           <span className="logo-secondary">work management</span>
         </div>
       </div>

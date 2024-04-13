@@ -13,7 +13,7 @@ export function HomePage() {
       </h2>
 
       <ul className='management-options clean-list flex'>
-        <li className='creative'> 
+        <li className='creative'>
           <img src="/assets/img/creative.png" alt="Creative"></img>
           <h3>Creative & design</h3>
         </li>
@@ -70,9 +70,9 @@ export function HomePage() {
           <div className='content-container'>
             <section className='top-features'>
               <div className='logo-container flex align-center'>
-                <img className='logo' src="/assets/img/purple-logo.png" />
+                <img className='logo' src="/assets/img/A-logo.png" />
                 <h3 className='logo-title'>
-                  monday work management</h3>
+                  <span>nyday</span> work management</h3>
               </div>
               <h2 className='secondary-title'>Manage everything from strategy to tasks to exceed your goals</h2>
               <div className='top-features-container'>
@@ -113,7 +113,11 @@ export function HomePage() {
       </aside>
 
       <footer className='flex column align-center justify-center'>
-        <h2 className='main-title'>Deliver your best work <span>with monday.com</span></h2>
+        <div className='footer-title flex'>
+          <h2 className='main-title'>Deliver your best work <span>with</span></h2>
+          <img className="logo" src="/assets/img/A-logo.png" />
+          <h2 className='logo-title'>nyday</h2>
+        </div>
         <h3 className='secondary-title'>No credit card needed   ✦   Unlimited time on Free plan</h3>
         <Link to={'/board'}>
           <button className="get-started-btn flex align-center">
@@ -123,6 +127,5 @@ export function HomePage() {
         </Link>
       </footer>
     </main>
-
   )
 }

@@ -68,13 +68,16 @@ export function LoginSignup() {
     <section className="login-page">
       <div className="main-container flex column ">
         <div className="form-container flex column align-center justify-center">
-          <h1 className="main-title">Welcome to monday.com</h1>
+          <div className='title-container flex'>
+            <h1 className="main-title">Welcome to</h1>
+            <img className='logo' src="/assets/img/A-logo.png" />
+            <h1 className='logo-title'>nyday</h1>
+          </div>
           <h3 className="secondary-title">
-            {`${
-              isSignup
+            {`${isSignup
                 ? "Get started - it's free. No credit card needed."
                 : 'Log in to your account'
-            }`}
+              }`}
           </h3>
 
           <form onSubmit={handleSubmit} className="login-form flex column align-center">
@@ -139,15 +142,14 @@ export function LoginSignup() {
 
         <p className="already-user flex ">
           {`${isSignup ? 'Already have an account?' : "Don't have an account yet?"}`}
-          <span onClick={() => setIsSignup(!isSignup)}>{`${
-            isSignup ? 'Log in ' : 'Sign up'
-          }`}</span>
+          <span onClick={() => setIsSignup(!isSignup)}>{`${isSignup ? 'Log in ' : 'Sign up'
+            }`}</span>
         </p>
       </div>
 
       <img
         src="/assets/img/login-page-img.avif"
-        alt="Monday login page image"
+        alt="login page image"
         className="login-img"
       ></img>
     </section>
