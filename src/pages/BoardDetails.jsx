@@ -43,7 +43,6 @@ export function BoardDetails() {
   const dispatch = useDispatch()
 
   useSecondRender(createObserver)
-  console.log(sortBy)
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
