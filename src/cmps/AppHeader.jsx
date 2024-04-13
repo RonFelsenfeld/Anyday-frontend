@@ -52,19 +52,15 @@ export function AppHeader() {
   return (
     <header className="app-header flex align-center justify-between">
       <Link to="/">
-      <div className="menu-logo-container">
-        <button className="btn">
-          <MenuGrid />
-        </button>
-
-        <div className="logo-container flex align-center">
-          <button className="btn-logo">
-            <img src="/assets/img/A-logo.png"/>
-          </button>
-          <span className="logo-main">nyday</span>
-          <span className="logo-secondary">work management</span>
+        <div className="menu-logo-container">
+          <div className="logo-container flex align-center">
+            <button className="btn-logo">
+              <img src="/assets/img/A-logo.png" />
+            </button>
+            <span className="logo-main">nyday</span>
+            <span className="logo-secondary">work management</span>
+          </div>
         </div>
-      </div>
       </Link>
 
       <div className="actions-container flex align-center">
