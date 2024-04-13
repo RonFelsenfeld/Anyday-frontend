@@ -1,0 +1,44 @@
+.homepage-header {
+    margin-inline: 20px 20px;
+    height: em(72px);
+
+    .logo-container {
+        font-size: em(16px);
+        letter-spacing: -0.2px;
+
+        .btn-logo {
+            width: (33px);
+            height: (33px);
+        }
+
+        .logo-main {
+            margin-inline: 6px 4px;
+            font-family: PoppinsBold, RobotoBold, sans-serif;
+        }
+
+        .logo-secondary {
+            font-family: PoppinsLight, sans-serif;
+        }
+    }
+
+    .right-side-container {
+        gap: 8px;
+
+        .log-in-btn {
+            font-size: 1rem;
+            padding: em(8px) em(10px);
+            font-family: PoppinsLight, sans-serif;
+            border-radius: $cmp-br;
+
+            &:hover {
+                color: $log-in-font-clr;
+                background-color: $homepage-bg-clr;
+            }
+        }
+
+        .get-started-btn {
+            @include getStartedBtn;
+        }
+    }
+
+}

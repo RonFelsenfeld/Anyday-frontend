@@ -1,50 +1,215 @@
 .home-page {
   height: 100dvh;
-  padding-block-start: 3em;
   background-color: $main-bg-clr;
 
   .main-title {
     margin-block-end: 1.5vw;
 
-    font-size: em(60px);
+    font-size: rem(60px);
     font-family: PoppinsSemiBold, RobotoBold, sans-serif;
     font-weight: 600;
     text-align: center;
   }
 
   .secondary-title {
-    font-size: em(22px);
-    line-height: em(20px);
+    font-size: rem(20px);
+    line-height: 2;
     font-family: PoppinsLight, RobotoRegular, sans-serif;
     text-align: center;
-    margin-block-end: 1em; // ! REMOVE
   }
 
-  .btn-cta {
-    height: em(49px);
-    padding: 16px 20px 16px 31px;
-    border-radius: 2em;
-    background-color: $btn-cta-clr;
-    gap: em(15px);
-    margin: auto;
+  .management-options {
+    gap: 16px;
+    justify-content: center;
+    margin-block: 30px;
+    flex-wrap: wrap;
 
-    &:hover {
-      background-color: $btn-cta-clr-hover;
+    >* {
+      display: grid;
+      grid-template-rows: 2fr 1.7fr;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      line-height: 1.15;
+      border-radius: $cmp-br;
+      border: 1px solid $list-shadow-clr;
+      width: em(120px);
+      height: em(120px);
+      transition: border 200ms;
 
-      svg {
-        transform: translateX(5px);
+      img {
+        width: em(40px);
+        height: em(40px);
+        justify-self: center;
+        align-self: end;
+      }
+
+      h3 {
+        justify-self: center;
+        align-self: start;
+        text-align: center;
+        font-size: em(16px);
+      }
+
+      &:hover {
+        transition: border-color 300ms;
+      }
+    }
+    
+    .creative:hover {
+      border-color: $creative-clr;
+    }
+    .ops:hover {
+      border-color: $ops-clr;
+    }
+    .marketing:hover {
+      border-color: $marketing-clr;
+    }
+    .projects:hover {
+      border-color: $projects-clr;
+    }
+    .tasks:hover {
+      border-color: $tasks-clr;
+    }
+    .hr:hover {
+      border-color: $hr-clr;
+    }
+    .it:hover {
+      border-color: $it-clr;
+    }
+    .more:hover {
+      border-color: $btn-cta-clr;
+    }
+  }
+
+  .get-started-btn {
+    @include getStartedBtn($padding: 12px 20px 12px 31px, $font-size: 1.14rem);
+  }
+
+  .no-credit-card {
+    font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    text-align: center;
+    font-size: 0.93rem;
+    color: $secondary-font-clr;
+    margin: 10px 0 50px;
+  }
+
+  .middle-part {
+    background-color: $homepage-bg-clr;
+
+    >* {
+      font-family: PoppinsLight, RobotoRegular, sans-serif;
+    }
+
+    .middle-part-header {
+      font-family: PoppinsSemiBold, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 2.86rem;
+      line-height: 4rem;
+      text-align: center;
+      padding: 45px 90px;
+      max-width: 1150px;
+      margin: auto;
+
+      span {
+        color: $btn-cta-clr;
       }
     }
 
-    span {
-      font-size: em(16px);
-      font-family: PoppinsLight, RobotoRegular, sans-serif;
-      color: $main-bg-clr;
+    .middle-part-container {
+      justify-content: space-between;
+      background-color: $main-bg-clr;
+      padding: 56px 0 32px 48px;
+      margin: 0 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.1);
     }
 
-    svg {
-      fill: white;
-      transition: transform 0.3s;
+    .content-container {
+      .top-features {
+        display: grid;
+        gap: 32px;
+
+      }
+
+      .logo-container {
+        gap: 16px;
+
+        .logo {
+          width: 50px;
+          height: 50px;
+        }
+
+        .logo-title {
+          color: $btn-cta-clr;
+          font-size: 1.43rem;
+          font-family: PoppinsSemiBold, Roboto, Helvetica, Arial, sans-serif;
+        }
+      }
+
+      .secondary-title {
+        font-size: 2rem;
+        line-height: 2.375rem;
+        font-weight: 600;
+        font-family: PoppinsSemiBold, Roboto, Helvetica, Arial, sans-serif;
+        text-align: start;
+      }
+
+      .top-features-container {
+        display: grid;
+        gap: 25px; 
+
+        h3 {
+          font-size: 18px;
+        }
+
+        .top-fetures-list {
+          display: grid;
+          gap: 10px;
+
+          >* {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+          }
+
+          svg {
+            color: $btn-cta-clr;
+            width: 20px;
+            height: 20px;
+          }
+
+        }
+        .get-started-btn {
+          @include getStartedBtn($padding: 8px 14px 8px 16px, $font-size: 0.93rem);
+          margin: 0;
+        }
+      }
+    }
+
+    .img-container {
+      max-width: 600px;
+    }
+  }
+
+  footer {
+    height: 315px;
+    background-color: $footer-bg-clr;
+    color: $main-bg-clr;
+
+    .main-title {
+      font-family: PoppinsLight, RobotoRegular, sans-serif;
+      font-size: 2rem;
+
+      span {
+        font-family: PoppinsBold, RobotoRegular, sans-serif;
+      }
+    }
+
+    .get-started-btn {
+      @include getStartedBtn($padding: 12px 20px 12px 31px, $font-size: 1.14rem);
+      margin-block: 25px;
     }
   }
 }
