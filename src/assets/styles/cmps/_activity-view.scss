@@ -7,20 +7,26 @@
         // ju
 
         .task-title{
+            margin-inline-start: 10px;
             width:180px ;
         }
         .user-img{
-            @include userImg(30px)
+            @include userImg(30px,10px)
         }
 
+        .time-desc{
+            width:58px ;
+        }
 
         .action{
-            padding-inline: 15px;
-
             .user-img{
                 margin-inline: 10px;
 
             }
+        }
+
+        .activity-action{
+            width: 230px;
         }
     }
 }

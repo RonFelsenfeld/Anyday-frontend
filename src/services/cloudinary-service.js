@@ -13,8 +13,8 @@ export const uploadFile = async (ev) => {
             method: 'POST',
             body: FORM_DATA,
         })
-        const { url } = await res.json()
-        return url
+        const { url, format } = await res.json()
+        return { url, format }
     } catch (err) {
         console.error(err)
     }

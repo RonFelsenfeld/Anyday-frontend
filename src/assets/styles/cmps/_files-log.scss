@@ -1,0 +1,35 @@
+.files-log-container {
+    margin-block-start: 100px;
+    margin-inline: 40px;
+    // @include for-narrow-layout{
+    //     margin: 40px
+
+    // }
+    @include for-small-layout{
+        margin-block: 60px;
+        margin-inline-start: 50px;
+    }
+    
+    .upload-file-img {
+        width: 400px;
+        padding-bottom: 24px;
+    }
+
+    .files-msg {
+        padding: 15px 10px;
+        max-width: 450px;
+        text-align: center;
+
+
+        .files-title {
+            font-size: em(24px);
+            font-family: PoppinsMedium;
+
+        }
+
+        .files-desc {
+            font-size: em(16px);
+            margin-top: 16px;
+        }
+    }
+}

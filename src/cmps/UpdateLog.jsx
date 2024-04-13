@@ -9,6 +9,7 @@ import { TaskConversation } from './TaskConversation'
 import { showErrorMsg } from '../services/event-bus.service'
 import { saveTask } from '../store/actions/board.actions'
 import { ActivityLogView } from './ActivityLogView'
+import { FilesLog } from './FilesLog'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -61,6 +62,7 @@ export function UpdateLog() {
   const taskPersons = selectedTask?.personsIds?.map(id => boardService.getPerson(board, id))
 
   if (!selectedTask) return
+
   return (
     <div
       ref={taskLogRef}
@@ -117,10 +119,17 @@ export function UpdateLog() {
           addMsg={addMsg}
           setSelectedTask={setSelectedTask}
           selectedTask={selectedTask}
-      />}
+        />}
 
       {activeView === 'activity' &&
         <ActivityLogView
+          board={board}
+          selectedTask={selectedTask}
+          taskGroup={taskGroup}
+        />
+      }
+      {activeView === 'files' &&
+        <FilesLog
           board={board}
           selectedTask={selectedTask}
           taskGroup={taskGroup}
