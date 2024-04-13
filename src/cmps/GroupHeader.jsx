@@ -230,11 +230,13 @@ export function GroupHeader({
                     style={{ backgroundColor: group.style.color }}
                   ></div>
                   {/* <div className='checkbox-container'> */}
-                    <input type="checkbox" name="all-tasks" />
+                  <input type="checkbox" name="all-tasks" />
                   {/* </div> */}
-                  <h3 className='task-title'>Task</h3>
+                  <h3 className="task-title">Task</h3>
                   {board.cmpsOrder.map((cmp, idx) => (
-                    <h3 className={boardService.getColTitle(cmp).toLowerCase()} key={idx}>{boardService.getColTitle(cmp)}</h3>
+                    <h3 className={boardService.getColTitle(cmp).toLowerCase()} key={idx}>
+                      {boardService.getColTitle(cmp)}
+                    </h3>
                   ))}
                   <h3 className="add-col-btn">
                     <PlusIcon />

@@ -1,72 +1,73 @@
 .input-btn {
-    flex-direction: column;
-    align-items: end;
-     
+  flex-direction: column;
+  align-items: end;
 
-    .update-btn {
-        font-size: 14px;
-        padding: 4px 8px;
-        margin-block-start: 10px;
-        height: 32px;
-        border-radius: $el-br;
-        background-color: $btn-compose-clr;
-        color: $main-bg-clr;
+  .update-btn {
+    font-size: 14px;
+    padding: 4px 8px;
+    margin-block-start: 10px;
+    height: 32px;
+    border-radius: $el-br;
+    background-color: $btn-compose-clr;
+    color: $main-bg-clr;
 
-        &:hover{
-            background-color:$update-hover-clr;
-         }
+    &:hover {
+      background-color: $update-hover-clr;
     }
+  }
 }
 
 .comments-list {
-    padding-block: 20px;
-    // overflow-y: scroll;
-    // scrollbar-width: none;
-    
+  padding-block: 20px;
+  // overflow-y: scroll;
+  // scrollbar-width: none;
 
-    li{
-        padding-block: 15px;
+  li {
+    padding-block: 15px;
+  }
+
+  .comment-container {
+    position: relative;
+    width: em(526px);
+    height: em(180px);
+    border-radius: $cmp-br;
+    border: 1px solid $secondary-border-clr;
+
+    @include for-narrow-layout {
+      width: 100%;
+    }
+  }
+
+  .comment-header {
+    padding: em(16px) em(16px) em(8px);
+    height: 70px;
+
+    .img-name-connected {
+      gap: em(8px);
+
+      .user-img {
+        @include userImg(40px, 0);
+      }
+
+      .is-connected {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $is-connected-clr;
+      }
     }
 
-    .comment-container {
-        position: relative;
-        width: em(526px);
-        height: em(180px);
-        border-radius: $cmp-br;
-        border: 1px solid $secondary-border-clr;
+    .clock-side {
+      color: $secondary-font-clr;
+      margin-block-end: em(8px);
+      gap: 2px;
     }
+  }
 
-    .comment-header {
-        padding: em(16px) em(16px) em(8px);
-        height: 70px;
-
-        .img-name-connected {
-            gap: em(8px);
-
-
-            .user-img {
-                @include userImg(40px, 0)
-            }
-
-            .is-connected {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: $is-connected-clr ;
-            }
-        }
-
-        .clock-side {
-            color: $secondary-font-clr;
-            margin-block-end: em(8px);
-            gap: 2px;
-        }
+  .comment-body {
+    .comment-txt {
+      font-size: em(16px);
+      padding: 8px em(15px);
     }
-
-    .comment-body {
-        .comment-txt {
-            font-size: em(16px);
-            padding: 8px em(15px);
-        }
-    }
+  }
 }

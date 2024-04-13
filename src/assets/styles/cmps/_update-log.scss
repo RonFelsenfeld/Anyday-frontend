@@ -1,7 +1,11 @@
 .update-log-container {
-  overflow-y: scroll;
-    scrollbar-width: none;
   position: fixed;
+  top: $main-header-height;
+  right: 0;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto 36px 1fr;
@@ -11,13 +15,11 @@
     'views views'
     'info info';
   column-gap: 1em;
+
   padding: 20px 20px 0 24px;
   width: 570px;
   height: 100%;
-  z-index: 9999;
-
-  top: $main-header-height;
-  right: 0;
+  z-index: 300;
 
   --animate-duration: 0.2s;
 
@@ -25,8 +27,18 @@
   box-shadow: -1px 4px 6px 0px rgb(45 45 45 / 20%);
   transition: transform 0.3s;
 
-  &.open {
-    transform: translateX(0);
+  @include for-narrow-layout {
+    width: 100%;
+    left: 0;
+    padding: 20px;
+  }
+
+  @include for-small-layout {
+    font-size: 0.85714rem;
+  }
+
+  @include for-mobile-layout {
+    font-size: 0.71428rem;
   }
 
   .exit-button-container {
@@ -35,12 +47,20 @@
     margin-inline-start: -5px;
     grid-area: btn-close;
 
-    svg {
-      color: $secondary-font-clr;
+    @include for-narrow-layout {
+      margin-block-end: em(40px);
     }
 
     button {
       padding: 0px;
+      width: em(26px);
+      height: em(26px);
+
+      @include for-narrow-layout {
+        scale: 1.5;
+        margin-inline-start: 2px;
+        margin-block-start: 8px;
+      }
 
       &:hover {
         border-radius: $el-br;
@@ -51,6 +71,7 @@
 
   .title {
     grid-area: title;
+    align-self: center;
   }
 
   .img-options {
@@ -82,7 +103,7 @@
     img {
       @include userImg($size: 26px);
     }
-    
+
     // .person-initials{
     //   @include userImg($size: 26px);
     //   @include personInitials;
@@ -94,9 +115,14 @@
     grid-area: views;
     height: em(36px);
     margin-block-start: 16px;
+    border-block-end:1px solid $secondary-border-clr;
 
     .btn-view {
       position: relative;
+
+      @include for-small-layout {
+        font-size: em(16px);
+      }
 
       @include viewSeparator;
       font-size: 1rem;
@@ -139,7 +165,6 @@
 
   .update-log-content {
     grid-area: info;
-    height: 690px;
 
     .updates-log-txt-area {
       width: em(526px);
@@ -148,8 +173,13 @@
       border-radius: $cmp-br;
       border: 1px solid $btn-compose-clr;
 
+      @include for-narrow-layout {
+        width: 100%;
+        align-self: center;
+      }
+
       .txt-input-update-log {
-        width: em(400px);
+        width: 98%;
         margin: 2px;
         padding: 10px 20px;
         font-size: em(16px);

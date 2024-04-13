@@ -6,6 +6,7 @@ export const utilService = {
   debounce,
   randomPastTime,
   calcPastTime,
+  calcPastTimeActivity,
   saveToStorage,
   loadFromStorage,
   animateCSS,
@@ -115,6 +116,46 @@ function calcPastTime(timestamp) {
       return 'last month';
   } else {
       return 'more than a month ago';
+  }
+}
+
+function _formatDate(date) {
+  var day = date.getDate();
+  var month = date.toLocaleString('default', { month: 'short' });
+  return day + month.toLowerCase();
+}
+
+function calcPastTimeActivity(timestamp) {
+  var currentTime = new Date().getTime();
+  
+  var timeDifference = currentTime - timestamp;
+  
+  var minutes = Math.floor(timeDifference / (1000 * 60));
+  var hours = Math.floor(timeDifference / (1000 * 60 * 60));
+  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  var weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
+  var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+
+  var currentDate = new Date();
+
+  if (minutes < 1) {
+      return 'just now';
+  } else if (minutes < 60) {
+      return minutes + 'm';
+  } else if (hours < 24) {
+      return hours + 'h';
+  } else if (days === 1) {
+      return 'yesterday';
+  } else if (days < 7) {
+      return days + 'd';
+  } else if (weeks === 1) {
+      return 'last week';
+  } else if (weeks < 4) {
+      return weeks + 'w';
+  } else if (months === 1) {
+      return '1mo';
+  } else {
+      return _formatDate(new Date(currentDate.getFullYear(), currentDate.getMonth()- 1, currentDate.getDate()))
   }
 }
 

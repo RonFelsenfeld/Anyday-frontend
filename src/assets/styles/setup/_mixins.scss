@@ -23,6 +23,17 @@
   }
 }
 
+@mixin board-header-layout-mobile {
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-rows: auto 70px;
+  grid-template-areas:
+    'back back info invite'
+    'title title title title';
+  align-items: center;
+  justify-items: center;
+  scrollbar-width: thin;
+}
+
 //////////////////////////////
 
 @mixin btn($color: $main-font-clr) {

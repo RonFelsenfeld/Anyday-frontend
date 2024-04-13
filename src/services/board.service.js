@@ -249,7 +249,7 @@ function getEmptyComment() {
     txt: '',
     byPerson: null,
     createdAt: null,
-    id: null
+    id: null,
   }
 }
 
@@ -366,6 +366,39 @@ function _createDemoBoard() {
                   },
                 },
               ],
+              activities: [
+                {
+                  id: utilService.makeId(),
+                  action: "Add person",
+                  personAdded: {
+                    id: 'u103',
+                    fullName: 'Ron Felsenfeld',
+                    imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+                  },
+                  createdAt: 1712995031424,
+                  byPerson: {
+                    id: 'u101',
+                    fullName: 'Atar Mor',
+                    imgUrl:
+                      'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+                  },
+                },
+                // {
+                //   id: utilService.makeId(),
+                //   action: "Change date",
+                //   changedDate:{
+                    
+                //   },
+                //   createdAt: 1712995031424,
+                //   byPerson: {
+                //     id: 'u101',
+                //     fullName: 'Atar Mor',
+                //     imgUrl:
+                //       'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+                //   },
+                // },
+
+              ],
             },
             {
               id: 't102',
@@ -377,7 +410,7 @@ function _createDemoBoard() {
                 startDate: 1712164370111,
                 dueDate: 1712941970111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't103',
@@ -389,8 +422,7 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712337170111,
               },
-              comments: []
-              ,
+              comments: [],
               files: [
                 {
                   type: 'pdf',
@@ -409,7 +441,7 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712077970111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't105',
@@ -431,7 +463,7 @@ function _createDemoBoard() {
                   desc: 'how to',
                 }
               ],
-              comments: []
+              comments: [],
             },
             {
               id: 't106',
@@ -443,7 +475,7 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712164370111,
               },
-              comments: []
+              comments: [],
             },
           ],
           style: {
@@ -465,8 +497,7 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712337170111,
               },
-              comments: []
-              ,
+              comments: [],
               files: [
                 {
                   type: 'jpg',
@@ -492,7 +523,7 @@ function _createDemoBoard() {
                   desc: 'Forme 1.png',
                 },
               ],
-              comments: []
+              comments: [],
             },
             {
               id: 't203',
@@ -520,7 +551,7 @@ function _createDemoBoard() {
                   desc: '11210022.JPG',
                 },
               ],
-              comments: []
+              comments: [],
             },
             {
               id: 't205',
@@ -532,7 +563,7 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712250770111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't206',
@@ -543,7 +574,7 @@ function _createDemoBoard() {
                 startDate: 1712164370111,
                 dueDate: 1713028370111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't207',
@@ -554,7 +585,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712250770111,
               },
-              comments: []
+              comments: [],
             },
           ],
           style: {
@@ -576,7 +607,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712164370111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't302',
@@ -588,7 +619,7 @@ function _createDemoBoard() {
                 startDate: 1712164370111,
                 dueDate: 1712337170111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't303',
@@ -599,7 +630,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712337170111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't304',
@@ -611,7 +642,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712164370111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't305',
@@ -639,7 +670,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712423570111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't307',
@@ -656,7 +687,7 @@ function _createDemoBoard() {
                   desc: 'Color pallete',
                 },
               ],
-              comments: []
+              comments: [],
             },
             {
               id: 't308',
@@ -668,7 +699,7 @@ function _createDemoBoard() {
                 startDate: 1711991570111,
                 dueDate: 1712164370111,
               },
-              comments: []
+              comments: [],
             },
           ],
           style: {
@@ -709,7 +740,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712164370111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't403',
@@ -719,7 +750,7 @@ function _createDemoBoard() {
                 startDate: 1712164370111,
                 dueDate: 1712250770111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't404',
@@ -731,7 +762,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712337170111,
               },
-              comments: []
+              comments: [],
             },
           ],
           style: {
@@ -752,7 +783,7 @@ function _createDemoBoard() {
                 startDate: 1712337170111,
                 dueDate: 1712509970111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't502',
@@ -764,7 +795,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712164370111,
               },
-              comments: []
+              comments: [],
             },
             {
               id: 't503',
@@ -776,7 +807,7 @@ function _createDemoBoard() {
                 startDate: 1712077970111,
                 dueDate: 1712423570111,
               },
-              comments: []
+              comments: [],
             },
           ],
           style: {

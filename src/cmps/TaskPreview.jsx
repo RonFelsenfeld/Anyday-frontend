@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { MsgIcon, WorkSpaceOption } from '../services/svg.service'
+import { ActiveMsg, MsgIcon, WorkSpaceOption } from '../services/svg.service'
 
 import { EditableText } from './EditableText'
 import { TaskStatus } from './TaskStatus'
@@ -84,9 +84,15 @@ export function TaskPreview({
           />
         </div>
 
-        <Link  to={`/board/${board._id}/task/${task.id}`}>
+        <Link to={`/board/${board._id}/task/${task.id}`}>
           <span className="task-row msg-btn">
-            <MsgIcon />
+            {task.comments?.length ? (
+              <div className="activ-msg-container">
+                <ActiveMsg/>
+                <span className='msg-num'>{task.comments.length}</span>
+              </div>
+            ) : < MsgIcon />
+            }
           </span>
         </Link>
       </div>

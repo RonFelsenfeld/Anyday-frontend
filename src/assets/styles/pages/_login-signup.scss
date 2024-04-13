@@ -1,8 +1,30 @@
 .login-page {
   display: grid;
   grid-template-columns: auto 40%;
+  position: relative;
+
   width: 100vw;
   height: 100dvh;
+
+  @include for-narrow-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .link-go-back {
+    position: absolute;
+    top: 30px;
+    left: 34px;
+
+    .btn-go-back {
+      @include btn;
+
+      rotate: 180deg;
+
+      width: 26px;
+      height: 26px;
+      scale: 2;
+    }
+  }
 
   .main-container {
     background-color: $main-bg-clr;
@@ -12,13 +34,19 @@
 
       .title-container {
         align-items: baseline;
-        .main-title, .logo-title {
+
+        .main-title,
+        .logo-title {
           margin-block-end: rem(9px);
 
           font-size: em(32px);
           font-family: PoppinsMedium, RobotoRegular, sans-serif;
           font-weight: 500;
           letter-spacing: -0.5px;
+
+          @include for-small-layout {
+            font-size: em(26px);
+          }
         }
 
         .logo {
@@ -38,11 +66,19 @@
         font-family: PoppinsRegular, RobotoRegular, sans-serif;
         font-weight: 400;
         letter-spacing: -0.1px;
+
+        @include for-small-layout {
+          font-size: em(14px);
+        }
       }
 
       .login-form {
         width: 400px;
         gap: em(16px);
+
+        @include for-small-layout {
+          width: 320px;
+        }
 
         >* {
           width: 100%;
@@ -127,5 +163,9 @@
     object-fit: cover;
     height: 100dvh;
     object-fit: cover;
+
+    @include for-narrow-layout {
+      display: none;
+    }
   }
 }
