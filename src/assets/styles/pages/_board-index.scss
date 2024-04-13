@@ -57,4 +57,34 @@
       margin-inline-start: 12px;
     }
   }
+
+  .btn.btn-new-board {
+    @include scalableBtn;
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+
+    width: 70px;
+    height: 70px;
+
+    padding: 4px 8px;
+    border-radius: $cmp-br;
+
+    background-color: $btn-compose-clr;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.251);
+
+    &:hover {
+      background-color: $btn-compose-hover-clr;
+    }
+
+    svg {
+      scale: 1.5;
+      color: $main-bg-clr;
+    }
+
+    @include for-normal-layout {
+      display: block;
+    }
+  }
 }
