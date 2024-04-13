@@ -94,6 +94,7 @@
     grid-area: views;
     height: em(36px);
     margin-block-start: 16px;
+    border-block-end:1px solid $secondary-border-clr;
 
     .btn-view {
       position: relative;

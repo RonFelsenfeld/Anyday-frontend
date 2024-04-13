@@ -366,6 +366,39 @@ function _createDemoBoard() {
                   },
                 },
               ],
+              activities: [
+                {
+                  id: utilService.makeId(),
+                  action: "Add person",
+                  personAdded: {
+                    id: 'u103',
+                    fullName: 'Ron Felsenfeld',
+                    imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+                  },
+                  createdAt: 1712995031424,
+                  byPerson: {
+                    id: 'u101',
+                    fullName: 'Atar Mor',
+                    imgUrl:
+                      'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+                  },
+                },
+                // {
+                //   id: utilService.makeId(),
+                //   action: "Change date",
+                //   changedDate:{
+                    
+                //   },
+                //   createdAt: 1712995031424,
+                //   byPerson: {
+                //     id: 'u101',
+                //     fullName: 'Atar Mor',
+                //     imgUrl:
+                //       'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+                //   },
+                // },
+
+              ],
             },
             {
               id: 't102',

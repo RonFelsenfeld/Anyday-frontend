@@ -8,6 +8,7 @@ import { utilService } from '../services/util.service'
 import { TaskConversation } from './TaskConversation'
 import { showErrorMsg } from '../services/event-bus.service'
 import { saveTask } from '../store/actions/board.actions'
+import { ActivityLogView } from './ActivityLogView'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -81,7 +82,7 @@ export function UpdateLog() {
           taskPersons.map(person => (
             <img key={person.id} src={`${person.imgUrl}`} alt={person.fullName} />
           ))
-          }
+        }
         <div>
           <button className="menu-options-btn">
             <WorkSpaceOption />
@@ -112,11 +113,19 @@ export function UpdateLog() {
           <span>Activity Log</span>
         </button>
       </div>
+      {activeView === 'updates' &&
+        <TaskConversation
+          addMsg={addMsg}
+          setSelectedTask={setSelectedTask}
+          selectedTask={selectedTask} />}
 
-      <TaskConversation
-        addMsg={addMsg}
-        setSelectedTask={setSelectedTask}
-        selectedTask={selectedTask} />
+      {activeView === 'activity' &&
+        <ActivityLogView
+          board={board}
+          selectedTask={selectedTask}
+          taskGroup={taskGroup}
+        />
+      }
     </div>
   )
 }

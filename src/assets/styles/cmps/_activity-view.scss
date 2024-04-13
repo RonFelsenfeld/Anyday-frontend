@@ -1,0 +1,26 @@
+.activity-view-container{
+    padding-block: 20px;
+
+    .activity{
+        padding-block: 20px;
+        border-block-end: 1px solid $secondary-border-clr;
+        // ju
+
+        .task-title{
+            width:180px ;
+        }
+        .user-img{
+            @include userImg(30px)
+        }
+
+
+        .action{
+            padding-inline: 15px;
+
+            .user-img{
+                margin-inline: 10px;
+
+            }
+        }
+    }
+}
