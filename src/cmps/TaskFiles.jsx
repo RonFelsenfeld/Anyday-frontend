@@ -7,7 +7,7 @@ import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 export function TaskFiles({ group, task }) {
-  const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
+  const board = useSelector(stateStore => stateStore.boardModule.filteredBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }

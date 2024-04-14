@@ -24,7 +24,7 @@ import { GroupPreview } from '../cmps/GroupPreview'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function BoardDetails() {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
   const sortBy = useSelector(storeState => storeState.boardModule.boardSortBy)
 
@@ -51,7 +51,7 @@ export function BoardDetails() {
   }, [boardId])
 
   useEffect(() => {
-    if (board) onFilterSortBoard(board._id, groupTaskFilterBy, sortBy)
+    if (board) onFilterSortBoard(groupTaskFilterBy, sortBy)
   }, [groupTaskFilterBy, sortBy])
 
   function createObserver() {

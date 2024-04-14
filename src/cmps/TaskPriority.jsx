@@ -5,11 +5,10 @@ import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 import { utilService } from '../services/util.service'
 
 export function TaskPriority({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
-
 
   function getPriorityBG(taskPriority) {
     const priority = board.priorities?.find(p => p.title === taskPriority)
@@ -17,13 +16,18 @@ export function TaskPriority({ group, task }) {
   }
 
   async function onUpdateTaskPriority(priority) {
-    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: `Changed priority to ${priority}`, createdAt: Date.now() }
+    const currActivity = {
+      id: utilService.makeId(),
+      byPerson: user || guest,
+      action: `Changed priority to ${priority}`,
+      createdAt: Date.now(),
+    }
 
     const editedTask = { ...task, priority, activities: [...task.activities, currActivity] }
 
     try {
       await saveTask(board, group, editedTask)
-      console.log(editedTask);
+      console.log(editedTask)
     } catch (err) {
       console.log('Had issues updating task status')
     }

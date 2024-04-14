@@ -16,14 +16,8 @@ import { useDispatch } from 'react-redux'
 import { SET_ACTIVE_TASK_ID } from '../store/reducers/board.reducer'
 import { TaskFiles } from './TaskFiles'
 
-export function TaskPreview({
-  group,
-  task,
-  onSaveTask,
-  onRemoveTask,
-  setTaskToEdit,
-}) {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEdit }) {
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const activeTaskId = useSelector(storeState => storeState.boardModule.activeTaskId)
   const taskPreviewRef = useRef()
   const navigate = useNavigate()
@@ -40,16 +34,16 @@ export function TaskPreview({
           icon: 'openTask',
           func: () => {
             navigate(`/board/${board._id}/task/${task.id}`)
-          }
+          },
         },
         {
           title: 'Delete',
           icon: 'trash',
           func: () => {
             onRemoveTask(task.id)
-          }
-        }
-      ]
+          },
+        },
+      ],
     }
 
     showModal(currentTarget, BOTTOM_RIGHT, cmpInfo, false)
@@ -88,11 +82,12 @@ export function TaskPreview({
           <span className="task-row msg-btn">
             {task.comments?.length ? (
               <div className="activ-msg-container">
-                <ActiveMsg/>
-                <span className='msg-num'>{task.comments.length}</span>
+                <ActiveMsg />
+                <span className="msg-num">{task.comments.length}</span>
               </div>
-            ) : < MsgIcon />
-            }
+            ) : (
+              <MsgIcon />
+            )}
           </span>
         </Link>
       </div>

@@ -1,15 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import {
-  AddBoardBtn,
-  Filter,
-  Hide,
-  RemovePersonFilter,
-  Search,
-  Sort,
-  UserImg,
-} from '../services/svg.service'
+import { RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
@@ -19,7 +11,7 @@ import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 export function BoardControls({ onAddNewTask }) {
   const [isFilterInput, setIsFilterInput] = useState(false)
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
-  const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
+  const board = useSelector(stateStore => stateStore.boardModule.filteredBoard)
   const filterBy = useSelector(stateStore => stateStore.boardModule.groupTaskFilterBy)
 
   const [isSortOpen, setIsSortOpen] = useState(false)
@@ -40,13 +32,15 @@ export function BoardControls({ onAddNewTask }) {
     hideToolTip()
   }
 
-  function onRemovePersonFilter({ currentTarget }) {
-    // currentTarget.stopPropagation()
+  function onRemoveGroupTaskFilter() {
+    setGroupTaskFilterBy({ ...filterBy, txt: '' })
+    setIsFilterInput(false)
+  }
 
+  function onRemovePersonFilter() {
     setGroupTaskFilterBy({ ...filterBy, person: null })
   }
 
-  // console.log(filterBy);
   function handlePersonFilter({ currentTarget }) {
     const persons = board.persons
     const suggestedPersons = persons
@@ -55,9 +49,8 @@ export function BoardControls({ onAddNewTask }) {
       persons,
       suggestedPersons,
       onAddPerson,
-      // onRemovePerson
     }
-    // console.log(persons);
+
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
   }
 
@@ -112,7 +105,7 @@ export function BoardControls({ onAddNewTask }) {
 
         {isFilterInput && (
           <form
-            className="filter-form flex"
+            className="filter-form flex align-center"
             style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
           >
             <Search />
@@ -120,13 +113,19 @@ export function BoardControls({ onAddNewTask }) {
               onChange={handleChange}
               type="text"
               placeholder="Search this board "
+              value={filterBy.txt}
               onBlur={handleBlur}
-              style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
+              style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '', width: '85%' }}
               // onFocus={focus}
               autoFocus
             />
+
+            <div className={`removing-filter`} onClick={onRemoveGroupTaskFilter} style={getStyle()}>
+              <RemovePersonFilter />
+            </div>
           </form>
         )}
+
         <div className={`filter-by-person-container flex align-center ${dynFilterClass}`}>
           <button
             className={`flex align-center`}
@@ -159,6 +158,7 @@ export function BoardControls({ onAddNewTask }) {
               </div>
             )}
           </button>
+
           <div
             className={`removing-person ${dynCloseFilterPersonBtn}`}
             onClick={onRemovePersonFilter}

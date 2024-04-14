@@ -3,7 +3,7 @@ import { utilService } from '../services/util.service'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function GroupSummary({ group }) {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const { statuses, priorities } = board
 
   /// STATUS SUMMARY ///
@@ -50,7 +50,7 @@ export function GroupSummary({ group }) {
 
   return (
     <section className="summary-row clean-list">
-      <article className='sticky-cell'></article>
+      <article className="sticky-cell"></article>
       <article className="first-empty-article"></article>
       <article className="progress-container status-progress">
         <div className="progress-bar flex">

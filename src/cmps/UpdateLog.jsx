@@ -12,7 +12,7 @@ import { ActivityLogView } from './ActivityLogView'
 import { FilesLog } from './FilesLog'
 
 export function UpdateLog() {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
 
   const [selectedTask, setSelectedTask] = useState(null)
   const [taskGroup, setTaskGroup] = useState(null)
@@ -114,27 +114,20 @@ export function UpdateLog() {
           <span>Activity Log</span>
         </button>
       </div>
-      {activeView === 'updates' &&
+      {activeView === 'updates' && (
         <TaskConversation
           addMsg={addMsg}
           setSelectedTask={setSelectedTask}
           selectedTask={selectedTask}
-        />}
+        />
+      )}
 
-      {activeView === 'activity' &&
-        <ActivityLogView
-          board={board}
-          selectedTask={selectedTask}
-          taskGroup={taskGroup}
-        />
-      }
-      {activeView === 'files' &&
-        <FilesLog
-          board={board}
-          selectedTask={selectedTask}
-          taskGroup={taskGroup}
-        />
-      }
+      {activeView === 'activity' && (
+        <ActivityLogView board={board} selectedTask={selectedTask} taskGroup={taskGroup} />
+      )}
+      {activeView === 'files' && (
+        <FilesLog board={board} selectedTask={selectedTask} taskGroup={taskGroup} />
+      )}
     </div>
   )
 }

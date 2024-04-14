@@ -51,10 +51,14 @@
   }
 
   .btn-action {
-    @include btn;
     margin-inline-end: 6px;
-    padding: 1px 5px;
+    padding: 1px 10px;
     gap: 5px;
+    height: 100%;
+
+    &:not(.filter-not-active) {
+      @include btn;
+    }
 
     span {
       @include for-normal-layout {
@@ -74,7 +78,7 @@
       width: 100%;
     }
 
-    form {
+    .filter-form {
       flex-grow: 1;
       height: 32px;
       width: 265px;
@@ -95,9 +99,18 @@
         padding-inline-start: 5px;
         padding-block: 1px;
       }
+
+      .removing-filter {
+        margin-inline-end: 5px;
+        cursor: pointer;
+      }
     }
 
     .filter-by-person-container {
+      @include btn;
+      margin-inline-end: em(6px);
+      height: 100%;
+
       .removing-person {
         padding-inline-end: 5px;
         padding-block-start: 3px;
@@ -106,6 +119,11 @@
         &:hover {
           cursor: pointer;
         }
+      }
+
+      .filter-not-active {
+        height: 100%;
+        padding: 1px 10px;
       }
 
       .btn-title-person-padded {

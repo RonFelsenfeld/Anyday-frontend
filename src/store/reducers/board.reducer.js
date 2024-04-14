@@ -2,6 +2,7 @@ import { boardService } from '../../services/board.service'
 
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
+export const SET_FILTERED_BOARD = 'SET_FILTERED_BOARD'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const EDIT_BOARD = 'EDIT_BOARD'
@@ -17,6 +18,7 @@ export const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID'
 const initialState = {
   boards: [],
   currentBoard: null,
+  filteredBoard: null,
   boardFilterBy: boardService.getDefaultBoardFilter(),
   groupTaskFilterBy: boardService.getDefaultGroupTaskFilter(),
   boardSortBy: boardService.getDefaultSortBy(),
@@ -33,9 +35,17 @@ export function boardReducer(state = initialState, action = {}) {
       }
 
     case SET_BOARD:
+      console.log('setting board')
       return {
         ...state,
-        currentBoard: action.board,
+        currentBoard: { ...action.board },
+      }
+
+    case SET_FILTERED_BOARD:
+      console.log('setting filtered board')
+      return {
+        ...state,
+        filteredBoard: { ...action.board },
       }
 
     case REMOVE_BOARD:
@@ -51,10 +61,12 @@ export function boardReducer(state = initialState, action = {}) {
       }
 
     case EDIT_BOARD:
+      console.log('edit')
       return {
         ...state,
         boards: state.boards.map(board => (board._id === action.board._id ? action.board : board)),
         currentBoard: { ...action.board },
+        filteredBoard: { ...action.board },
       }
 
     case SET_BOARD_FILTER_BY:
@@ -81,11 +93,6 @@ export function boardReducer(state = initialState, action = {}) {
         activeTaskId: action.taskId,
       }
 
-    case SET_ACTIVE_TASK_ID:
-      return {
-        ...state,
-        activeTaskId: action.taskId,
-      }
     // case SET_MARKED_TEXT:
     //   return {
     //     ...state,

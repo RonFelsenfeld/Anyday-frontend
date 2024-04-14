@@ -5,7 +5,7 @@ import { ArrowDown } from '../services/svg.service'
 import { setSortBy } from '../store/actions/board.actions'
 
 export function TaskSort() {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const sortBy = useSelector(storeState => storeState.boardModule.boardSortBy)
 
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false)

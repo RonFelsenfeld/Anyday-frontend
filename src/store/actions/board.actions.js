@@ -6,6 +6,7 @@ import {
   SET_BOARD,
   SET_BOARDS,
   SET_BOARD_FILTER_BY,
+  SET_FILTERED_BOARD,
   SET_GROUP_TASK_FILTER_BY,
   SET_SORT_BY,
   // SET_MARKED_TEXT,
@@ -30,13 +31,11 @@ export async function loadBoards() {
 }
 
 export async function loadBoard(boardId) {
-  const groupTaskFilterBy = store.getState().boardModule.groupTaskFilterBy
-  // console.log(groupTaskFilterBy)
-
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
-    const board = await boardService.getById(boardId, groupTaskFilterBy)
+    const board = await boardService.getById(boardId)
     store.dispatch({ type: SET_BOARD, board })
+    store.dispatch({ type: SET_FILTERED_BOARD, board })
   } catch (err) {
     console.log('board action -> cannot load board', err)
     throw err
@@ -105,7 +104,6 @@ export async function removeTask(board, group, taskId) {
 }
 
 export async function saveTask(board, group, task, unshift) {
-  console.log(task)
   try {
     const savedBoard = await boardService.saveTask(board, group, task, unshift)
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
@@ -131,14 +129,15 @@ export async function setSortBy(sortBy) {
   store.dispatch({ type: SET_SORT_BY, sortBy })
 }
 
-export async function onFilterSortBoard(boardId, filterBy, sortBy) {
-  try {
-    const board = await boardService.getById(boardId)
-    const filteredGroups = boardService.filterBoard(board, filterBy)
-    board.groups = [...filteredGroups]
+export async function onFilterSortBoard(filterBy, sortBy) {
+  const board = store.getState().boardModule.currentBoard
 
-    const sortedGroups = boardService.sortBoard(board, sortBy)
-    store.dispatch({ type: SET_BOARD, board: { ...board, groups: sortedGroups } })
+  try {
+    const filteredGroups = boardService.filterBoard(board, filterBy)
+    const newFilteredBoard = { ...board, groups: [...filteredGroups] }
+
+    const sortedGroups = boardService.sortBoard(newFilteredBoard, sortBy)
+    store.dispatch({ type: SET_FILTERED_BOARD, board: { ...board, groups: sortedGroups } })
   } catch (err) {
     console.log(err)
   }
