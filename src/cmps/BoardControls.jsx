@@ -161,7 +161,7 @@ export function BoardControls({ onAddNewTask }) {
           </div>
         </div>
 
-        <button
+        {/* <button
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
           onMouseLeave={() => hideToolTip()}
@@ -169,7 +169,7 @@ export function BoardControls({ onAddNewTask }) {
         >
           <Filter />
           <span className="btn-title">Filter</span>
-        </button>
+        </button> */}
 
         <button
           className="btn btn-action flex align-center"
@@ -181,7 +181,7 @@ export function BoardControls({ onAddNewTask }) {
           <Sort />
           <span className="btn-title">Sort</span>
         </button>
-
+        {/* 
         <button
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Hidden columns')}
@@ -190,7 +190,7 @@ export function BoardControls({ onAddNewTask }) {
         >
           <Hide />
           <span className="btn-title">Hide</span>
-        </button>
+        </button> */}
       </div>
     </section>
   )

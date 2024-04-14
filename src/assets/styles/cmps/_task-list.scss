@@ -64,10 +64,10 @@
         border-top-left-radius: $cmp-br;
       }
 
-      input[name='all-tasks'] {
-        position: sticky;
-        left: 14px;
-      }
+      // input[name='all-tasks'] {
+      //   position: sticky;
+      //   left: 14px;
+      // }
 
       input:hover {
         border-color: $secondary-font-clr;
