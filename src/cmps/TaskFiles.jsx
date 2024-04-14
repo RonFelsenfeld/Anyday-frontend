@@ -67,6 +67,8 @@ export function TaskFiles({ group, task }) {
       type: 'FilePreview',
       file,
       task,
+      group,
+      board,
     }
 
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)

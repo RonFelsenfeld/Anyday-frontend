@@ -1,13 +1,28 @@
+import { showErrorMsg } from '../services/event-bus.service'
 import { Trash } from '../services/svg.service'
-import { hideToolTip, showToolTip } from '../store/actions/system.actions'
+import { saveTask } from '../store/actions/board.actions'
+import { hideModal, hideToolTip, showToolTip } from '../store/actions/system.actions'
 
-export function FilePreview({ file, task }) {
+export function FilePreview({ file, task, group, board }) {
   const isImg = file.type === 'png' || file.type === 'jpg'
   const isPDF = file.type === 'pdf'
-  console.log(task)
 
-  function onRemoveFile() {
-    console.log(file)
+  async function onRemoveFile() {
+    const fileToDeleteIdx = task.files.findIndex(currFile => currFile.url === file.url)
+    if (fileToDeleteIdx < 0) {
+      console.log('Remove file -> Could not find file to delete')
+      return showErrorMsg('Could not delete file, try again later.')
+    }
+
+    const taskToSave = { ...task, files: task.files.filter(currFile => currFile.url !== file.url) }
+    try {
+      await saveTask(board, group, taskToSave)
+      hideModal()
+      hideToolTip()
+    } catch (err) {
+      console.log('Remove file -> Could not find file to delete')
+      return showErrorMsg('Could not delete file, try again later.')
+    }
   }
 
   return (
