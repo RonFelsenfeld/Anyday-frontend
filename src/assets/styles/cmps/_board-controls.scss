@@ -125,6 +125,10 @@
     .hidden {
       display: none;
     }
+
+    .active-sort {
+      @include activeLink;
+    }
   }
 
   .filterby-img {

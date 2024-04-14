@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { TaskSort } from './TaskSort'
 
-export function TaskSortModal() {
+export function TaskSortModal({ func: removeSortFunc }) {
   const [isSorting, setIsSorting] = useState(false)
+  const modalRef = useRef()
 
   return (
-    <section className="task-sort-modal">
+    <section ref={modalRef} className="task-sort-modal">
       {!isSorting && (
         <>
           <h3 className="sort-title">Sort this board by column</h3>

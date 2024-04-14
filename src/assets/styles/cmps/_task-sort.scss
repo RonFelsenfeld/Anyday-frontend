@@ -7,12 +7,38 @@
     gap: 8px;
     margin-block-end: em(32px);
 
+    > * {
+      .active {
+        @include activeLink;
+      }
+    }
+
     .active-sort-option,
     .active-dir-option {
       @include dropdownOption;
       position: relative;
       justify-content: space-between;
       cursor: pointer;
+    }
+
+    .active-dir-option {
+      .dir-icon {
+        &::before {
+          font-family: faSolid;
+        }
+
+        &.ascend {
+          &::before {
+            content: '\f160';
+          }
+        }
+
+        &.descend {
+          &::before {
+            content: '\f161';
+          }
+        }
+      }
     }
 
     .active-sort-option {
@@ -31,6 +57,23 @@
       @include dropdown;
       .dropdown-dir {
         @include dropdownOption;
+
+        &::before {
+          font-family: faSolid;
+          margin-inline-end: 8px;
+        }
+
+        &.ascending {
+          &::before {
+            content: '\f160';
+          }
+        }
+
+        &.descending {
+          &::before {
+            content: '\f161';
+          }
+        }
       }
     }
   }
@@ -39,6 +82,6 @@
     @include btn;
     @include scalableBtn;
 
-    padding: em(4px) em(8px);
+    padding: em(8px);
   }
 }

@@ -22,6 +22,8 @@ export function BoardControls({ onAddNewTask }) {
   const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
   const filterBy = useSelector(stateStore => stateStore.boardModule.groupTaskFilterBy)
 
+  const [isSortOpen, setIsSortOpen] = useState(false)
+
   function onSetGroupTaskFilterBy(groupTaskFilterBy) {
     setGroupTaskFilterBy(groupTaskFilterBy)
   }
@@ -62,8 +64,11 @@ export function BoardControls({ onAddNewTask }) {
   function handleSort({ currentTarget }) {
     const cmpInfo = {
       type: 'sortBoard',
+      func: () => setIsSortOpen(false),
     }
+
     showModal(currentTarget, BOTTOM_LEFT, cmpInfo, false)
+    setIsSortOpen(true)
   }
 
   function handleChange({ target }) {
@@ -85,6 +90,8 @@ export function BoardControls({ onAddNewTask }) {
 
   const dynFilterClass = filterBy.person ? 'active' : ''
   const dynCloseFilterPersonBtn = filterBy.person ? '' : 'hidden'
+  // const dynSortClass = isSortOpen ? 'active-sort' : ''
+
   return (
     <section className="board-controls flex align-baseline">
       <div className="filter-sort-btns flex align-center">
@@ -172,7 +179,7 @@ export function BoardControls({ onAddNewTask }) {
         </button> */}
 
         <button
-          className="btn btn-action flex align-center"
+          className={`btn btn-action flex align-center`}
           onClick={handleSort}
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Sort board by any column')}
           onMouseLeave={() => hideToolTip()}

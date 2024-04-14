@@ -54,7 +54,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
   }
 
-  const collapsedClass = !isHeaderExpanded ? 'collapsed animate__animated animate__fadeIn' : ''
+  const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
   const isEditedClass = isEditing ? 'editing' : ''
 
   return (

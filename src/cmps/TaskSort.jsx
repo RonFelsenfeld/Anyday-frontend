@@ -19,7 +19,6 @@ export function TaskSort() {
 
   function onSetSortBy({ target }) {
     const { value } = target.dataset
-    console.log(value)
     const currSortDir = Object.values(sortBy)[0]
     setSortBy({ [value]: currSortDir })
   }
@@ -29,6 +28,28 @@ export function TaskSort() {
     setSortBy({ [currSortCriteria]: dir })
   }
 
+  function getActiveSortClass(option) {
+    const currSortCriteria = Object.keys(sortBy)[0]
+    if (currSortCriteria === option) return 'active'
+    return ''
+  }
+
+  function getActiveDirClass(dir) {
+    const currSortDir = Object.values(sortBy)[0]
+    if (currSortDir === dir) return 'active'
+    return ''
+  }
+
+  function getFormattedSortBy() {
+    const currentSort = Object.keys(sortBy)[0]
+    if (currentSort === 'txt') return 'Name'
+
+    const capitalizedSort = currentSort.charAt(0).toUpperCase() + currentSort.slice(1)
+    return capitalizedSort
+  }
+
+  const currentDir = Object.values(sortBy)[0] === 1 ? 'Ascending' : 'Descending'
+
   return (
     <article className="task-sort">
       <h3 className="sort-by-title">Sort this board by column</h3>
@@ -36,7 +57,7 @@ export function TaskSort() {
       <div className="dropdowns-container flex">
         <div className="active-sort-option" onClick={() => toggleDropdown('sort')}>
           <span className="sort-icon"></span>
-          <span>Name</span>
+          <span>{getFormattedSortBy()}</span>
           <button className="btn-open-dropdown">
             <ArrowDown />
           </button>
@@ -44,7 +65,7 @@ export function TaskSort() {
           {isSortDropdownOpen && (
             <div className="sort-by-dropdown flex column align-center">
               <span
-                className="dropdown-option flex align-center"
+                className={`dropdown-option flex align-center ${getActiveSortClass('txt')}`}
                 onClick={onSetSortBy}
                 data-value="txt"
               >
@@ -56,7 +77,7 @@ export function TaskSort() {
                 return (
                   <span
                     key={option}
-                    className="dropdown-option"
+                    className={`dropdown-option ${getActiveSortClass(formattedOption)}`}
                     onClick={onSetSortBy}
                     data-value={formattedOption.toLowerCase()}
                   >
@@ -69,18 +90,24 @@ export function TaskSort() {
         </div>
 
         <div className="active-dir-option" onClick={() => toggleDropdown('dir')}>
-          <span className="dir-icon"></span>
-          <span>Ascending</span>
+          <span className={`dir-icon ${currentDir === 1 ? 'ascend' : 'descend'}`}></span>
+          <span>{currentDir}</span>
           <button className="btn-open-dropdown">
             <ArrowDown />
           </button>
 
           {isDirDropdownOpen && (
             <div className="sort-dir-dropdown flex column align-center">
-              <span className="dropdown-dir" onClick={() => onSetSortDir(1)}>
+              <span
+                className={`dropdown-dir ascending ${getActiveDirClass(1)}`}
+                onClick={() => onSetSortDir(1)}
+              >
                 Ascending
               </span>
-              <span className="dropdown-dir" onClick={() => onSetSortDir(-1)}>
+              <span
+                className={`dropdown-dir descending ${getActiveDirClass(-1)}`}
+                onClick={() => onSetSortDir(-1)}
+              >
                 Descending
               </span>
             </div>
