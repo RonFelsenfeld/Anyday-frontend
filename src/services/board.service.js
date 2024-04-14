@@ -288,7 +288,7 @@ function _sortByPersons(board, group, sortBy) {
     if (task.personsIds && task.personsIds.length) {
       taskFullPersons = task.personsIds.map(id => getPerson(board, id))
     } else {
-      taskFullPersons = []
+      taskFullPersons = [{ fullName: 'zzzzz' }]
     }
 
     return { ...task, taskFullPersons }
@@ -298,25 +298,10 @@ function _sortByPersons(board, group, sortBy) {
     task.taskFullPersons?.sort((p1, p2) => p1.fullName.localeCompare(p2.fullName))
   )
 
-  console.log(tasksWithFullUsers)
-
-  const sortedTasks = tasksWithFullUsers.sort((t1, t2) => {
-    if (!t1.taskFullPersons.length && t2.taskFullPersons.length && sortBy.person > 0) return -1
-    if (!t1.taskFullPersons.length && !t2.taskFullPersons.length && sortBy.person > 0) return 1
-    if (t1.taskFullPersons.length && !t2.taskFullPersons.length && sortBy.person > 0) return 1
-
-    if (!t1.taskFullPersons.length && t2.taskFullPersons.length && sortBy.person < 0) return 1
-    if (!t1.taskFullPersons.length && !t2.taskFullPersons.length && sortBy.person < 0) return -1
-    if (t1.taskFullPersons.length && !t2.taskFullPersons.length && sortBy.person < 0) return -1
-
-    console.log(t1.taskFullPersons[0].fullName)
-    console.log(t2.taskFullPersons[0].fullName)
-
-    return (
-      t1.taskFullPersons[0].fullName.localeCompare(t2.taskFullPersons[0].fullName) * sortBy.task
-    )
-  })
-  console.log(sortedTasks)
+  const sortedTasks = tasksWithFullUsers.sort(
+    (t1, t2) =>
+      t1.taskFullPersons[0].fullName.localeCompare(t2.taskFullPersons[0].fullName) * sortBy.person
+  )
 
   sortedTasks.forEach(task => delete task.personsDetails)
   return sortedTasks
