@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { ArrowDown } from '../services/svg.service'
@@ -12,13 +12,17 @@ export function TaskSort() {
   const [isDirDropdownOpen, setIsDirDropdownOpen] = useState()
   const { cmpsOrder: sortByOptions } = board
 
+  useEffect(() => {
+    setSortBy({ txt: 1 })
+  }, [])
+
   function toggleDropdown(dropdown) {
     if (dropdown === 'sort') return setIsSortDropdownOpen(prev => !prev)
     return setIsDirDropdownOpen(prev => !prev)
   }
 
-  function onSetSortBy({ target }) {
-    const { value } = target.dataset
+  function onSetSortBy({ currentTarget }) {
+    const { value } = currentTarget.dataset
     const currSortDir = Object.values(sortBy)[0]
     setSortBy({ [value]: currSortDir })
   }
@@ -48,6 +52,20 @@ export function TaskSort() {
     return capitalizedSort
   }
 
+  function getImgSrc(option) {
+    if (option === 'status') {
+      return `/assets/img/sort-icons/priority.svg`
+    }
+
+    return `/assets/img/sort-icons/${option}.svg`
+  }
+
+  function getActiveSortImg() {
+    const currentSort = Object.keys(sortBy)[0]
+    const img = getImgSrc(currentSort)
+    return img
+  }
+
   const currentDir = Object.values(sortBy)[0] === 1 ? 'Ascending' : 'Descending'
 
   return (
@@ -56,33 +74,45 @@ export function TaskSort() {
 
       <div className="dropdowns-container flex">
         <div className="active-sort-option" onClick={() => toggleDropdown('sort')}>
-          <span className="sort-icon"></span>
+          <img
+            src={getActiveSortImg()}
+            alt="sorting icon"
+            className={`${getFormattedSortBy().toLowerCase()}`}
+          />
           <span>{getFormattedSortBy()}</span>
-          <button className="btn-open-dropdown">
+          <button className={`btn-open-dropdown ${isSortDropdownOpen ? 'open' : ''}`}>
             <ArrowDown />
           </button>
 
           {isSortDropdownOpen && (
             <div className="sort-by-dropdown flex column align-center">
-              <span
-                className={`dropdown-option flex align-center ${getActiveSortClass('txt')}`}
+              <div
+                className={`dropdown-option flex ${getActiveSortClass('txt')}`}
                 onClick={onSetSortBy}
                 data-value="txt"
               >
-                Name
-              </span>
+                <img src={getImgSrc('txt')} alt="sorting icon" className="txt" />
+                <span>Name</span>
+              </div>
 
               {sortByOptions.map(option => {
                 const formattedOption = option.replace('Picker', '')
+                const lowercasedOption = formattedOption.toLowerCase()
+
                 return (
-                  <span
+                  <div
                     key={option}
                     className={`dropdown-option ${getActiveSortClass(formattedOption)}`}
                     onClick={onSetSortBy}
-                    data-value={formattedOption.toLowerCase()}
+                    data-value={lowercasedOption}
                   >
-                    {formattedOption}
-                  </span>
+                    <img
+                      src={getImgSrc(lowercasedOption)}
+                      alt="sorting icon"
+                      className={`${lowercasedOption}`}
+                    />
+                    <span>{formattedOption}</span>
+                  </div>
                 )
               })}
             </div>
@@ -90,9 +120,9 @@ export function TaskSort() {
         </div>
 
         <div className="active-dir-option" onClick={() => toggleDropdown('dir')}>
-          <span className={`dir-icon ${currentDir === 1 ? 'ascend' : 'descend'}`}></span>
+          <span className={`dir-icon ${currentDir === 'Ascending' ? 'ascend' : 'descend'}`}></span>
           <span>{currentDir}</span>
-          <button className="btn-open-dropdown">
+          <button className={`btn-open-dropdown ${isDirDropdownOpen ? 'open' : ''}`}>
             <ArrowDown />
           </button>
 

@@ -13,7 +13,16 @@
       }
     }
 
-    .active-sort-option,
+    .active-sort-option {
+      @include dropdownOption;
+      position: relative;
+      cursor: pointer;
+
+      .btn-open-dropdown {
+        margin-inline-start: auto;
+      }
+    }
+
     .active-dir-option {
       @include dropdownOption;
       position: relative;
@@ -60,7 +69,7 @@
 
         &::before {
           font-family: faSolid;
-          margin-inline-end: 8px;
+          margin-inline-end: 10px;
         }
 
         &.ascending {
@@ -76,6 +85,18 @@
         }
       }
     }
+
+    .btn-open-dropdown {
+      svg {
+        rotate: 0deg;
+        transition: rotate 0.3s;
+      }
+      &.open {
+        svg {
+          rotate: 180deg;
+        }
+      }
+    }
   }
 
   .btn-remove-sort {
@@ -83,5 +104,37 @@
     @include scalableBtn;
 
     padding: em(8px);
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    border-radius: $el-br;
+    margin-inline-end: 10px;
+
+    &.name,
+    &.txt {
+      background-color: $name-sort-clr;
+    }
+
+    &.person {
+      background-color: $person-sort-clr;
+    }
+
+    &.status {
+      background-color: $status-sort-clr;
+    }
+
+    &.priority {
+      background-color: $status-sort-clr;
+    }
+
+    &.timeline {
+      background-color: $timeline-sort-clr;
+    }
+
+    &.files {
+      background-color: $person-sort-clr;
+    }
   }
 }
