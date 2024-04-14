@@ -88,7 +88,7 @@ export function TaskSort() {
         </div>
       </div>
 
-      <button>Remove sort</button>
+      <button className="btn-remove-sort">Remove sort</button>
     </article>
   )
 }

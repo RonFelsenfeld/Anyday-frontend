@@ -5,6 +5,7 @@
 
   .dropdowns-container {
     gap: 8px;
+    margin-block-end: em(32px);
 
     .active-sort-option,
     .active-dir-option {
@@ -32,5 +33,12 @@
         @include dropdownOption;
       }
     }
+  }
+
+  .btn-remove-sort {
+    @include btn;
+    @include scalableBtn;
+
+    padding: em(4px) em(8px);
   }
 }
