@@ -11,6 +11,7 @@
 
   @include for-normal-layout {
     @include board-header-layout-mobile;
+    animation: none !important;
 
     .board-title {
       margin-inline-end: 0;

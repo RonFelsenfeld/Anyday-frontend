@@ -90,9 +90,6 @@ export function BoardControls({ onAddNewTask }) {
       <div className="filter-sort-btns flex align-center">
         <button onClick={onAddNewTask} className="btn btn-new-task" style={getStyle()}>
           <span className="desktop-view">New task</span>
-          <span className="mobile-view">
-            <AddBoardBtn />
-          </span>
         </button>
 
         {!isFilterInput && (

@@ -18,9 +18,7 @@ export function DynamicModal() {
 
   useLayoutEffect(() => {
     if (isOpen && pos && targetDimensions) {
-      const { width, height } = modalRef.current.getBoundingClientRect()
-      const modalWidth = width
-      const modalHeight = height
+      const { width: modalWidth, height: modalHeight } = modalRef.current.getBoundingClientRect()
 
       let modalTop = pos.y
       let modalLeft = pos.x

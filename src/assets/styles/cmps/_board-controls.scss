@@ -45,21 +45,8 @@
       background-color: $btn-compose-hover-clr;
     }
 
-    .desktop-view {
-      @include for-normal-layout {
-        display: none;
-      }
-    }
-
-    .mobile-view {
+    @include for-normal-layout {
       display: none;
-      svg {
-        color: $main-bg-clr;
-      }
-
-      @include for-normal-layout {
-        display: block;
-      }
     }
   }
 

@@ -12,10 +12,10 @@
     padding-block-end: em(100px);
   }
 
-  .group-container {
-    &.dragging-layout {
-    }
-  }
+  // .group-container {
+  //   &.dragging-layout {
+  //   }
+  // }
 
   .sticky {
     position: sticky;
@@ -23,6 +23,7 @@
     z-index: 60;
     background-color: $main-bg-clr;
     height: 185px;
+    // transition: height 0.5s;
 
     &.header-collapsed {
       height: 133px;
