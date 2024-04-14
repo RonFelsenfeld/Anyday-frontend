@@ -35,8 +35,13 @@ export function DynamicModal() {
       }
 
       if (modalTop + modalHeight > viewportHeight) {
+        console.log('overlaping')
         var isOverflowingHeight = true
         modalTop = pos.y - modalHeight - targetDimensions.height
+        console.log(modalLeft)
+        console.log(targetDimensions.width)
+        modalLeft -= (modalWidth - targetDimensions.width) / 2
+
         const classList = isOverflowingWidth
           ? 'overflowing-width overflowing-height'
           : 'overflowing-height'

@@ -1,0 +1,12 @@
+.file-preview-container {
+  position: relative;
+
+  .btn-remove-file {
+    @include btn;
+    position: absolute;
+    inset: 20px auto auto 20px;
+
+    padding: 5px;
+    scale: 1.5;
+  }
+}
