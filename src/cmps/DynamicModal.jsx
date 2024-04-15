@@ -21,11 +21,11 @@ export function DynamicModal() {
     if (isOpen && pos && targetDimensions) {
       const { width: modalWidth, height: modalHeight } = modalRef.current.getBoundingClientRect()
 
-      let modalTop = pos.y
-      let modalLeft = pos.x
-
       const viewportWidth = window.innerWidth
       const viewportHeight = window.innerHeight
+
+      let modalTop = pos.y
+      let modalLeft = pos.x
 
       let isOverflowingWidth = false
       let isOverflowingHeight = false
