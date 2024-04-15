@@ -136,7 +136,7 @@ export async function onFilterSortBoard(filterBy, sortBy) {
 
   try {
     const filteredGroups = boardService.filterBoard(boardDeepCopy, filterBy)
-    const newFilteredBoard = { ...board, groups: [...filteredGroups] }
+    const newFilteredBoard = { ...boardDeepCopy, groups: [...filteredGroups] }
 
     let sortedGroups = null
 
@@ -146,7 +146,7 @@ export async function onFilterSortBoard(filterBy, sortBy) {
 
     store.dispatch({
       type: SET_FILTERED_BOARD,
-      board: { ...board, groups: sortedGroups || filteredGroups },
+      board: { ...boardDeepCopy, groups: sortedGroups || filteredGroups },
     })
   } catch (err) {
     console.log(err)
