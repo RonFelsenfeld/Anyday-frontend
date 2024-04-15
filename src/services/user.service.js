@@ -22,14 +22,14 @@ async function login({ username, password }) {
   }
 }
 
-async function signup({ username, password, fullName, imgUrl }) {
+async function signup({ username, password, fullName, imgUrl, phoneNumber }) {
   const fullNameSplit = fullName.split(' ')
 
   const capitalizedName = fullNameSplit
     .map(name => name.charAt(0).toUpperCase() + name.substring(1))
     .join(' ')
 
-  const user = { username, password, fullName: capitalizedName, imgUrl }
+  const user = { username, password, fullName: capitalizedName, imgUrl, phoneNumber }
   try {
     const savedUser = await httpService.post(BASE_URL + 'signup', user)
     if (savedUser) return _setLoggedInUser(user)
