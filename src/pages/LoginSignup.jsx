@@ -121,7 +121,6 @@ export function LoginSignup() {
                   placeholder="Enter your phone number"
                   value={credentials.phoneNumber}
                   onChange={handleChange}
-                  required
                   autoComplete="off"
                 />
               </>

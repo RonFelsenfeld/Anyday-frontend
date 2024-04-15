@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { userService } from '../services/user.service'
 import { showErrorMsg } from '../services/event-bus.service'
 import { whatsappService } from '../services/whatsapp.service'
+import { hideModal } from '../store/actions/system.actions'
 
 export function WhatsappPersonPicker({ options, setIsPersonMenuOpen }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -18,6 +19,7 @@ export function WhatsappPersonPicker({ options, setIsPersonMenuOpen }) {
 
     whatsappService.sendOnWhatsapp(loggedInUser, person, task)
     setIsPersonMenuOpen(false)
+    hideModal()
   }
 
   return (
