@@ -14,6 +14,7 @@ import {
 import { SidebarSearch } from './SidebarSearch'
 import { SidebarBoardList } from './SidebarBoardList'
 import { showSuccessMsg } from '../services/event-bus.service'
+import { hideModal } from '../store/actions/system.actions'
 
 export function Sidebar() {
   const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
@@ -67,7 +68,6 @@ export function Sidebar() {
     }
   }
 
-  function onOpenSidebarMenu(title) {}
 
   function calcSidebarWidth() {
     return isExpanded ? sidebarWidthRef.current : 30
@@ -85,6 +85,7 @@ export function Sidebar() {
     if (!isHovered) return
     setIsHovered(false)
     setIsExpanded(false)
+    hideModal()
   }
 
   function toggleIsExpanded() {
