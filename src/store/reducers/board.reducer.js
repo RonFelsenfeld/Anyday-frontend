@@ -35,17 +35,15 @@ export function boardReducer(state = initialState, action = {}) {
       }
 
     case SET_BOARD:
-      console.log('setting board')
       return {
         ...state,
-        currentBoard: { ...action.board },
+        currentBoard: action.board,
       }
 
     case SET_FILTERED_BOARD:
-      console.log('setting filtered board')
       return {
         ...state,
-        filteredBoard: { ...action.board },
+        filteredBoard: action.board,
       }
 
     case REMOVE_BOARD:
@@ -61,7 +59,6 @@ export function boardReducer(state = initialState, action = {}) {
       }
 
     case EDIT_BOARD:
-      console.log('edit')
       return {
         ...state,
         boards: state.boards.map(board => (board._id === action.board._id ? action.board : board)),
@@ -84,7 +81,7 @@ export function boardReducer(state = initialState, action = {}) {
     case SET_SORT_BY:
       return {
         ...state,
-        boardSortBy: { ...action.sortBy },
+        boardSortBy: action.sortBy ? { ...action.sortBy } : null,
       }
 
     case SET_ACTIVE_TASK_ID:

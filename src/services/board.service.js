@@ -158,7 +158,7 @@ function getDefaultBoardFilter() {
 }
 
 function getDefaultSortBy() {
-  return { txt: 1 }
+  return null
 }
 
 // * --------------------------------- GROUPS ---------------------------------

@@ -128,7 +128,7 @@ export function BoardControls({ onAddNewTask }) {
 
         <div className={`filter-by-person-container flex align-center ${dynFilterClass}`}>
           <button
-            className={`flex align-center`}
+            className={`btn-main flex align-center`}
             onMouseEnter={ev => showToolTip(ev.target, 'Filter board by person')}
             onMouseLeave={() => hideToolTip()}
             onClick={handlePersonFilter}

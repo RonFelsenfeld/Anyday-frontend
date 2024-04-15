@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { ArrowDown } from '../services/svg.service'
 import { setSortBy } from '../store/actions/board.actions'
 
-export function TaskSort() {
+export function TaskSort({ setIsSorting }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const sortBy = useSelector(storeState => storeState.boardModule.boardSortBy)
 
@@ -13,7 +13,7 @@ export function TaskSort() {
   const { cmpsOrder: sortByOptions } = board
 
   useEffect(() => {
-    setSortBy({ txt: 1 })
+    if (!sortBy) setSortBy({ txt: 1 })
   }, [])
 
   function toggleDropdown(dropdown) {
@@ -30,6 +30,11 @@ export function TaskSort() {
   function onSetSortDir(dir) {
     const currSortCriteria = Object.keys(sortBy)[0]
     setSortBy({ [currSortCriteria]: dir })
+  }
+
+  function onRemoveSort() {
+    setSortBy(null)
+    setIsSorting(false)
   }
 
   function getActiveSortClass(option) {
@@ -66,8 +71,11 @@ export function TaskSort() {
     return img
   }
 
-  const currentDir = Object.values(sortBy)[0] === 1 ? 'Ascending' : 'Descending'
+  if (sortBy) {
+    var currentDir = Object.values(sortBy)[0] === 1 ? 'Ascending' : 'Descending'
+  }
 
+  if (!sortBy) return
   return (
     <article className="task-sort">
       <h3 className="sort-by-title">Sort this board by column</h3>
@@ -145,7 +153,9 @@ export function TaskSort() {
         </div>
       </div>
 
-      <button className="btn-remove-sort">Remove sort</button>
+      <button className="btn-remove-sort" onClick={onRemoveSort}>
+        Remove sort
+      </button>
     </article>
   )
 }

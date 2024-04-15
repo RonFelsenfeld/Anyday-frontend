@@ -19,7 +19,7 @@ export function TaskSortModal({ func: removeSortFunc }) {
         </>
       )}
 
-      {isSorting && <TaskSort />}
+      {isSorting && <TaskSort setIsSorting={setIsSorting} />}
     </section>
   )
 }

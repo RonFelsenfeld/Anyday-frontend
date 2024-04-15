@@ -111,6 +111,10 @@
       margin-inline-end: em(6px);
       height: 100%;
 
+      .btn-main {
+        padding-inline: 0;
+      }
+
       .removing-person {
         padding-inline-end: 5px;
         padding-block-start: 3px;
@@ -124,6 +128,10 @@
       .filter-not-active {
         height: 100%;
         padding: 1px 10px;
+      }
+
+      .filter-active {
+        padding: 1px 6px;
       }
 
       .btn-title-person-padded {

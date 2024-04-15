@@ -35,7 +35,9 @@ export async function loadBoard(boardId) {
   try {
     const board = await boardService.getById(boardId)
     store.dispatch({ type: SET_BOARD, board })
-    store.dispatch({ type: SET_FILTERED_BOARD, board })
+
+    const boardDeepCopy = structuredClone(board)
+    store.dispatch({ type: SET_FILTERED_BOARD, board: boardDeepCopy })
   } catch (err) {
     console.log('board action -> cannot load board', err)
     throw err
@@ -131,13 +133,22 @@ export async function setSortBy(sortBy) {
 
 export async function onFilterSortBoard(filterBy, sortBy) {
   const board = store.getState().boardModule.currentBoard
+  const boardDeepCopy = structuredClone(board)
 
   try {
-    const filteredGroups = boardService.filterBoard(board, filterBy)
+    const filteredGroups = boardService.filterBoard(boardDeepCopy, filterBy)
     const newFilteredBoard = { ...board, groups: [...filteredGroups] }
 
-    const sortedGroups = boardService.sortBoard(newFilteredBoard, sortBy)
-    store.dispatch({ type: SET_FILTERED_BOARD, board: { ...board, groups: sortedGroups } })
+    let sortedGroups = null
+
+    if (sortBy) {
+      sortedGroups = boardService.sortBoard(newFilteredBoard, sortBy)
+    }
+
+    store.dispatch({
+      type: SET_FILTERED_BOARD,
+      board: { ...board, groups: sortedGroups || filteredGroups },
+    })
   } catch (err) {
     console.log(err)
   }

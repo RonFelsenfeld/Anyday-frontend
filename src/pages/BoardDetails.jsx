@@ -12,7 +12,6 @@ import {
   saveBoard,
   saveGroup,
   saveTask,
-  setBoardFilterBy,
 } from '../store/actions/board.actions'
 import { AddBoardBtn } from '../services/svg.service'
 import { SET_ACTIVE_TASK_ID, SET_BOARD } from '../store/reducers/board.reducer'
