@@ -15,6 +15,7 @@ import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { useDispatch } from 'react-redux'
 import { SET_ACTIVE_TASK_ID } from '../store/reducers/board.reducer'
 import { TaskFiles } from './TaskFiles'
+import { whatsappService } from '../services/whatsapp.service'
 
 export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEdit }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -41,6 +42,13 @@ export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEd
           icon: 'trash',
           func: () => {
             onRemoveTask(task.id)
+          },
+        },
+        {
+          title: 'Share on Whatsapp',
+          icon: 'whatsapp',
+          func: () => {
+            whatsappService.sendOnWhatsapp()
           },
         },
       ],

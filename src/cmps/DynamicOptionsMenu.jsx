@@ -1,5 +1,6 @@
 import {
   AddGroup,
+  ArrowRight,
   ChangeColor,
   CollapseAll,
   CollapseThis,
@@ -44,6 +45,9 @@ export function DynamicOptionsMenu({ options }) {
 
       case 'logout':
         return <Logout />
+
+      case 'whatsapp':
+        return <img src="/assets/img/whatsapp.svg" alt="Whataspp icon" className="whatsapp-icon" />
     }
   }
 
@@ -73,6 +77,12 @@ export function DynamicOptionsMenu({ options }) {
             <button className="btn-option flex align-center">
               <span>{getSvg(option.icon)}</span>
               <span className="option-title">{option.title}</span>
+
+              {option.icon === 'whatsapp' && (
+                <div className="whatsapp-arrow">
+                  <ArrowRight />
+                </div>
+              )}
             </button>
           </li>
         ))}
