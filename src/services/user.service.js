@@ -57,7 +57,14 @@ function getLoggedInUser() {
 }
 
 function _setLoggedInUser(user) {
-  const userToSave = { _id: user._id, fullName: user.fullName, imgUrl: user.imgUrl }
+  const userToSave = {
+    _id: user._id,
+    fullName: user.fullName,
+    imgUrl: user.imgUrl,
+    phoneNumber: user.phoneNumber,
+  }
+
+  console.log(userToSave)
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
   return userToSave
 }

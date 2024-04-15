@@ -1,21 +1,20 @@
 import { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { ActiveMsg, MsgIcon, WorkSpaceOption } from '../services/svg.service'
+
+import { useClickOutside } from '../customHooks/useClickOutside'
+import { showModal } from '../store/actions/system.actions'
+import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
+import { SET_ACTIVE_TASK_ID } from '../store/reducers/board.reducer'
 
 import { EditableText } from './EditableText'
 import { TaskStatus } from './TaskStatus'
 import { TaskPriority } from './TaskPriority'
 import { TaskPerson } from './TaskPerson'
 import { TaskTimeline } from './TaskTimeline'
-import { useSelector } from 'react-redux'
-import { useClickOutside } from '../customHooks/useClickOutside'
-import { showModal } from '../store/actions/system.actions'
-import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
-import { useDispatch } from 'react-redux'
-import { SET_ACTIVE_TASK_ID } from '../store/reducers/board.reducer'
 import { TaskFiles } from './TaskFiles'
-import { whatsappService } from '../services/whatsapp.service'
 
 export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEdit }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -47,9 +46,7 @@ export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEd
         {
           title: 'Share on Whatsapp',
           icon: 'whatsapp',
-          func: () => {
-            whatsappService.sendOnWhatsapp()
-          },
+          task,
         },
       ],
     }

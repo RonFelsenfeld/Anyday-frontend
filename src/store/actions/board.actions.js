@@ -132,6 +132,8 @@ export async function setSortBy(sortBy) {
 
 export async function onFilterSortBoard(filterBy, sortBy) {
   const board = store.getState().boardModule.currentBoard
+  if (!board) return
+
   const boardDeepCopy = structuredClone(board)
 
   try {
