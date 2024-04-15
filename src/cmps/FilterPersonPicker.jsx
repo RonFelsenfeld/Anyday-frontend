@@ -2,7 +2,6 @@ import { utilService } from '../services/util.service'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function FilterPersonPicker({ suggestedPersons, onAddPerson }) {
-  // console.log(suggestedPersons)
   return (
     <div className="filter-person-edit-modal flex column">
       <h3 className="suggested-people-title">Filter this board by Person</h3>

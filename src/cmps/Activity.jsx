@@ -2,10 +2,6 @@ import { CommentClock, UserImg } from "../services/svg.service";
 import { utilService } from "../services/util.service";
 
 export function Activity({ selectedTask, activity }) {
-
-    
-
-    // console.log(selectedTask);
     return (
         <div className="activity flex align-center justify-around">
             <div className="time flex align-center" >

@@ -11,7 +11,7 @@ import { GroupSummary } from './GroupSummary'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function TaskList({ group }) {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
 
   const [taskToEdit, setTaskToEdit] = useState(null)
   const [placeholderProps, setPlaceholderProps] = useState({})
@@ -90,7 +90,11 @@ export function TaskList({ group }) {
           <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
             <Droppable droppableId="tasks">
               {(provider, snapshot) => (
-                <div {...provider.droppableProps} ref={provider.innerRef} className="droppable-area">
+                <div
+                  {...provider.droppableProps}
+                  ref={provider.innerRef}
+                  className="droppable-area"
+                >
                   {group.tasks.map((task, idx) => {
                     return (
                       <Draggable key={task.id} draggableId={task.id} index={idx}>

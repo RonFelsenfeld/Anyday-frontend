@@ -29,7 +29,6 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
       id: utilService.makeId(),
       byPerson: loggedInUser || guest
     }
-    console.log(newComment)
     setCurrComment(newComment)
     setSelectedTask(prev => ({ ...prev, comments: [...prev.comments, newComment] }))
 

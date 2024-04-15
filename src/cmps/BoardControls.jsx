@@ -1,15 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import {
-  AddBoardBtn,
-  Filter,
-  Hide,
-  RemovePersonFilter,
-  Search,
-  Sort,
-  UserImg,
-} from '../services/svg.service'
+import { RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
@@ -19,8 +11,10 @@ import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 export function BoardControls({ onAddNewTask }) {
   const [isFilterInput, setIsFilterInput] = useState(false)
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
-  const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
+  const board = useSelector(stateStore => stateStore.boardModule.filteredBoard)
   const filterBy = useSelector(stateStore => stateStore.boardModule.groupTaskFilterBy)
+
+  const [isSortOpen, setIsSortOpen] = useState(false)
 
   function onSetGroupTaskFilterBy(groupTaskFilterBy) {
     setGroupTaskFilterBy(groupTaskFilterBy)
@@ -31,20 +25,20 @@ export function BoardControls({ onAddNewTask }) {
   }
 
   function onAddPerson(personId) {
-    console.log('added', personId)
-
     setGroupTaskFilterBy({ ...filterBy, person: personId })
     hideModal()
     hideToolTip()
   }
 
-  function onRemovePersonFilter({ currentTarget }) {
-    // currentTarget.stopPropagation()
+  function onRemoveGroupTaskFilter() {
+    setGroupTaskFilterBy({ ...filterBy, txt: '' })
+    setIsFilterInput(false)
+  }
 
+  function onRemovePersonFilter() {
     setGroupTaskFilterBy({ ...filterBy, person: null })
   }
 
-  // console.log(filterBy);
   function handlePersonFilter({ currentTarget }) {
     const persons = board.persons
     const suggestedPersons = persons
@@ -53,17 +47,19 @@ export function BoardControls({ onAddNewTask }) {
       persons,
       suggestedPersons,
       onAddPerson,
-      // onRemovePerson
     }
-    // console.log(persons);
+
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
   }
 
   function handleSort({ currentTarget }) {
     const cmpInfo = {
       type: 'sortBoard',
+      func: () => setIsSortOpen(false),
     }
+
     showModal(currentTarget, BOTTOM_LEFT, cmpInfo, false)
+    setIsSortOpen(true)
   }
 
   function handleChange({ target }) {
@@ -85,14 +81,13 @@ export function BoardControls({ onAddNewTask }) {
 
   const dynFilterClass = filterBy.person ? 'active' : ''
   const dynCloseFilterPersonBtn = filterBy.person ? '' : 'hidden'
+  // const dynSortClass = isSortOpen ? 'active-sort' : ''
+
   return (
     <section className="board-controls flex align-baseline">
       <div className="filter-sort-btns flex align-center">
         <button onClick={onAddNewTask} className="btn btn-new-task" style={getStyle()}>
           <span className="desktop-view">New task</span>
-          <span className="mobile-view">
-            <AddBoardBtn />
-          </span>
         </button>
 
         {!isFilterInput && (
@@ -108,7 +103,7 @@ export function BoardControls({ onAddNewTask }) {
 
         {isFilterInput && (
           <form
-            className="filter-form flex"
+            className="filter-form flex align-center"
             style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
           >
             <Search />
@@ -116,16 +111,22 @@ export function BoardControls({ onAddNewTask }) {
               onChange={handleChange}
               type="text"
               placeholder="Search this board "
+              value={filterBy.txt}
               onBlur={handleBlur}
-              style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
+              style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '', width: '85%' }}
               // onFocus={focus}
               autoFocus
             />
+
+            <div className={`removing-filter`} onClick={onRemoveGroupTaskFilter} style={getStyle()}>
+              <RemovePersonFilter />
+            </div>
           </form>
         )}
+
         <div className={`filter-by-person-container flex align-center ${dynFilterClass}`}>
           <button
-            className={`flex align-center`}
+            className={`btn-main flex align-center`}
             onMouseEnter={ev => showToolTip(ev.target, 'Filter board by person')}
             onMouseLeave={() => hideToolTip()}
             onClick={handlePersonFilter}
@@ -155,6 +156,7 @@ export function BoardControls({ onAddNewTask }) {
               </div>
             )}
           </button>
+
           <div
             className={`removing-person ${dynCloseFilterPersonBtn}`}
             onClick={onRemovePersonFilter}
@@ -164,7 +166,7 @@ export function BoardControls({ onAddNewTask }) {
           </div>
         </div>
 
-        <button
+        {/* <button
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Filter board by anything')}
           onMouseLeave={() => hideToolTip()}
@@ -172,10 +174,10 @@ export function BoardControls({ onAddNewTask }) {
         >
           <Filter />
           <span className="btn-title">Filter</span>
-        </button>
+        </button> */}
 
         <button
-          className="btn btn-action flex align-center"
+          className={`btn btn-action flex align-center`}
           onClick={handleSort}
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Sort board by any column')}
           onMouseLeave={() => hideToolTip()}
@@ -184,7 +186,7 @@ export function BoardControls({ onAddNewTask }) {
           <Sort />
           <span className="btn-title">Sort</span>
         </button>
-
+        {/* 
         <button
           className="btn btn-action flex align-center"
           onMouseEnter={ev => showToolTip(ev.currentTarget, 'Hidden columns')}
@@ -193,7 +195,7 @@ export function BoardControls({ onAddNewTask }) {
         >
           <Hide />
           <span className="btn-title">Hide</span>
-        </button>
+        </button> */}
       </div>
     </section>
   )

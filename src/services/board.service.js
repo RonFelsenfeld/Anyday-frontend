@@ -93,7 +93,7 @@ function sortBoard(board, sortBy) {
   let groupsToReturn = board.groups.slice()
 
   groupsToReturn = groupsToReturn.map(group => {
-    let sortedTasks
+    let sortedTasks = null
 
     if (sortBy.txt) {
       sortedTasks = group.tasks.sort((t1, t2) => t1.title.localeCompare(t2.title) * sortBy.txt)
@@ -103,7 +103,7 @@ function sortBoard(board, sortBy) {
       sortedTasks = _sortByPersons(board, group, sortBy)
     }
 
-    return { ...group, tasks: sortedTasks }
+    return { ...group, tasks: sortedTasks || group.tasks }
   })
 
   return groupsToReturn
@@ -146,7 +146,7 @@ function getDefaultBoardFilter() {
 }
 
 function getDefaultSortBy() {
-  return { txt: 1 }
+  return null
 }
 
 // * --------------------------------- GROUPS ---------------------------------
@@ -204,7 +204,6 @@ function removeTask(board, group, taskId) {
 }
 
 function saveTask(board, group, task, unshift) {
-  // console.log(task)
   if (task.id) {
     return _updateTask(board, group, task)
   } else {

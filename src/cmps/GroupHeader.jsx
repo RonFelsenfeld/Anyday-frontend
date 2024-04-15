@@ -24,7 +24,7 @@ export function GroupHeader({
   idx,
   draggableDOMref,
 }) {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const [isHeaderIntersecting, setIsHeaderIntersecting] = useState(false)
   const groupHeaderRef = useRef()
   const sentinelRef = useRef()
@@ -229,9 +229,9 @@ export function GroupHeader({
                     className="task-indicator"
                     style={{ backgroundColor: group.style.color }}
                   ></div>
-                  {/* <div className='checkbox-container'> */}
-                  <input type="checkbox" name="all-tasks" />
-                  {/* </div> */}
+                  <div className="checkbox-container flex align-center justify-center">
+                    <input type="checkbox" name="all-tasks" />
+                  </div>
                   <h3 className="task-title">Task</h3>
                   {board.cmpsOrder.map((cmp, idx) => (
                     <h3 className={boardService.getColTitle(cmp).toLowerCase()} key={idx}>

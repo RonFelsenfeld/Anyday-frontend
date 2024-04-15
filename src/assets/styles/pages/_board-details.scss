@@ -4,6 +4,7 @@
   overflow-x: scroll;
   padding-block-end: 50px;
   background-color: $main-bg-clr;
+  position: relative;
 
   @include for-normal-layout {
     grid-column: 1;
@@ -12,9 +13,18 @@
     padding-block-end: em(100px);
   }
 
-  .group-container {
-    &.dragging-layout {
-    }
+  // .group-container {
+  //   &.dragging-layout {
+  //   }
+  // }
+
+  .sentinel {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 20px;
+    height: 50px;
   }
 
   .sticky {
@@ -23,6 +33,7 @@
     z-index: 60;
     background-color: $main-bg-clr;
     height: 185px;
+    transition: height 0.2s;
 
     &.header-collapsed {
       height: 133px;

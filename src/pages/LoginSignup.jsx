@@ -52,8 +52,7 @@ export function LoginSignup() {
 
   async function handleAddImage(ev) {
     try {
-      const url = await uploadFile(ev)
-      console.log(url)
+      const { url } = await uploadFile(ev)
       setCredentials(prevCreds => ({ ...prevCreds, imgUrl: url }))
     } catch (err) {
       console.log('Add profile image -> Has issues adding image', err)

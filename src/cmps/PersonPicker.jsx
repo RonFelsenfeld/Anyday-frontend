@@ -2,19 +2,19 @@ import { SmallSearchIcon, Xbutton } from '../services/svg.service'
 import { utilService } from '../services/util.service'
 
 export function PersonPicker({ taskPersons, suggestedPersons, onAddPerson, onRemovePerson }) {
-  console.log(suggestedPersons)
   return (
     <div className="person-edit-modal">
       <ul className="task-persons clean-list">
         {taskPersons?.map(person => {
           return (
             <li key={person.id} className="task-person">
-              {person.imgUrl ?
-                <img className="person-img" src={person.imgUrl} alt="" /> :
+              {person.imgUrl ? (
+                <img className="person-img" src={person.imgUrl} alt="" />
+              ) : (
                 <div key={person.id} className="person-initials">
                   {utilService.getInitials(person.fullName)}
                 </div>
-              }
+              )}
               <h4 className="person-name">{person.fullName}</h4>
               <button onClick={() => onRemovePerson(person.id)} className="delete-person-btn">
                 <Xbutton />
@@ -34,11 +34,13 @@ export function PersonPicker({ taskPersons, suggestedPersons, onAddPerson, onRem
         {suggestedPersons?.map(person => {
           return (
             <li key={person.id} onClick={() => onAddPerson(person.id)} className="suggested-person">
-              {person.imgUrl ? <img className="suggested-person-img" src={person.imgUrl} alt=""/> :
+              {person.imgUrl ? (
+                <img className="suggested-person-img" src={person.imgUrl} alt="" />
+              ) : (
                 <div key={person.id} className="person-initials">
                   {utilService.getInitials(person.fullName)}
                 </div>
-              }
+              )}
               <h4 className="suggested-person-name">{person.fullName}</h4>
             </li>
           )

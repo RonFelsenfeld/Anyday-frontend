@@ -216,7 +216,6 @@ function removeTask(board, group, taskId) {
 }
 
 function saveTask(board, group, task, unshift) {
-  // console.log(task)
   if (task.id) {
     return _updateTask(board, group, task)
   } else {

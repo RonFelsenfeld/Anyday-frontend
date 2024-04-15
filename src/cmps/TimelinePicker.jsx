@@ -7,7 +7,7 @@ import { saveTask } from '../store/actions/board.actions'
 import { utilService } from '../services/util.service'
 
 export function TimelinePicker({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.currentBoard)
+  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
@@ -17,9 +17,10 @@ export function TimelinePicker({ group, task }) {
 
   async function onUpdateTimeline({ startDate, endDate }) {
     if (!endDate) endDate = dueDate
-    let startDateTS = parseInt(moment(startDate?._d).format("x"))
-    let endDateTS = parseInt(moment(endDate?._d).format("x"))
-    let durationTS = parseInt(moment(dueDate?._d).format("x")) - parseInt(moment(date?._d).format("x"))
+    let startDateTS = parseInt(moment(startDate?._d).format('x'))
+    let endDateTS = parseInt(moment(endDate?._d).format('x'))
+    let durationTS =
+      parseInt(moment(dueDate?._d).format('x')) - parseInt(moment(date?._d).format('x'))
 
     if (endDateTS < startDateTS) endDateTS = startDateTS + durationTS
     endDate = moment(endDateTS)
@@ -27,15 +28,20 @@ export function TimelinePicker({ group, task }) {
     setStartDate(startDate)
     setEndDate(endDate)
 
-    const currActivity = { id: utilService.makeId(), byPerson: user || guest, action: `Changed Date`, createdAt: Date.now() }
+    const currActivity = {
+      id: utilService.makeId(),
+      byPerson: user || guest,
+      action: `Changed Date`,
+      createdAt: Date.now(),
+    }
 
     const editedTask = {
-      ...task, timeline:
-      {
-        startDate: parseInt(moment(startDate?._d).format("x")),
-        dueDate: parseInt(moment(endDate?._d).format("x"))
-      }
-      , activities: [...task.activities, currActivity]
+      ...task,
+      timeline: {
+        startDate: parseInt(moment(startDate?._d).format('x')),
+        dueDate: parseInt(moment(endDate?._d).format('x')),
+      },
+      activities: [...task.activities, currActivity],
     }
 
     try {

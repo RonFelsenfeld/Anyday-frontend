@@ -31,6 +31,6 @@ export function DynamicModalContent(cmp) {
       return <FilePreview {...cmp} />
 
     case 'sortBoard':
-      return <TaskSortModal />
+      return <TaskSortModal {...cmp} />
   }
 }

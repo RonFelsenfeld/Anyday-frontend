@@ -31,9 +31,7 @@ async function signup({ username, password, fullName, imgUrl }) {
 
     const user = { username, password, fullName: capitalizedName, imgUrl }
     try {
-        console.log('user',user)
         const savedUser = await httpService.post(BASE_URL + 'signup', user)
-        console.log('savedUser',savedUser)
         if (savedUser) return _setLoggedInUser(user)
         else return Promise.reject('Invalid signup')
     } catch (err) {

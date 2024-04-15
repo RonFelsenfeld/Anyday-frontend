@@ -133,6 +133,13 @@
 
     .group-first-row {
       border-top-left-radius: $cmp-br;
+
+      .checkbox-container {
+        position: sticky;
+        left: 6px;
+        width: 100%;
+        background-color: $main-bg-clr;
+      }
     }
   }
 }

@@ -7,12 +7,47 @@
     gap: 8px;
     margin-block-end: em(32px);
 
-    .active-sort-option,
+    > * {
+      .active {
+        @include activeLink;
+      }
+    }
+
+    .active-sort-option {
+      @include dropdownOption;
+      position: relative;
+      cursor: pointer;
+
+      .btn-open-dropdown {
+        margin-inline-start: auto;
+      }
+    }
+
     .active-dir-option {
       @include dropdownOption;
       position: relative;
       justify-content: space-between;
       cursor: pointer;
+    }
+
+    .active-dir-option {
+      .dir-icon {
+        &::before {
+          font-family: faSolid;
+        }
+
+        &.ascend {
+          &::before {
+            content: '\f160';
+          }
+        }
+
+        &.descend {
+          &::before {
+            content: '\f161';
+          }
+        }
+      }
     }
 
     .active-sort-option {
@@ -31,6 +66,35 @@
       @include dropdown;
       .dropdown-dir {
         @include dropdownOption;
+
+        &::before {
+          font-family: faSolid;
+          margin-inline-end: 10px;
+        }
+
+        &.ascending {
+          &::before {
+            content: '\f160';
+          }
+        }
+
+        &.descending {
+          &::before {
+            content: '\f161';
+          }
+        }
+      }
+    }
+
+    .btn-open-dropdown {
+      svg {
+        rotate: 0deg;
+        transition: rotate 0.3s;
+      }
+      &.open {
+        svg {
+          rotate: 180deg;
+        }
       }
     }
   }
@@ -39,6 +103,38 @@
     @include btn;
     @include scalableBtn;
 
-    padding: em(4px) em(8px);
+    padding: em(8px);
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    border-radius: $el-br;
+    margin-inline-end: 10px;
+
+    &.name,
+    &.txt {
+      background-color: $name-sort-clr;
+    }
+
+    &.person {
+      background-color: $person-sort-clr;
+    }
+
+    &.status {
+      background-color: $status-sort-clr;
+    }
+
+    &.priority {
+      background-color: $status-sort-clr;
+    }
+
+    &.timeline {
+      background-color: $timeline-sort-clr;
+    }
+
+    &.files {
+      background-color: $person-sort-clr;
+    }
   }
 }
