@@ -1,7 +1,20 @@
-import { BoardIcon, Favorite, WorkspaceLogo } from '../services/svg.service'
+import { showErrorMsg } from '../services/event-bus.service'
+import { BoardIcon, Favorite, FullStar, WorkspaceLogo } from '../services/svg.service'
+import { saveBoard } from '../store/actions/board.actions'
 import { hideToolTip, showToolTip } from '../store/actions/system.actions'
 
 export function BoardPreview({ board }) {
+  async function onToggleFavorite() {
+    board.isStarred = !board.isStarred
+
+    try {
+      await saveBoard(board)
+    } catch (err) {
+      console.log('Favorite --> Had issues favorite board')
+      showErrorMsg('Could not preform the action, try again later.')
+    }
+  }
+
   return (
     <article className="board-preview">
       <div className="preview-container">
@@ -16,10 +29,11 @@ export function BoardPreview({ board }) {
 
             <button
               className="btn-favorite flex align-center"
+              onClick={onToggleFavorite}
               onMouseEnter={ev => showToolTip(ev.currentTarget, 'Add to favorites')}
               onMouseLeave={() => hideToolTip()}
             >
-              <Favorite />
+              {board.isStarred ? <FullStar /> : <Favorite />}
             </button>
           </div>
 
