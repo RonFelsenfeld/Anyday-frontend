@@ -13,7 +13,6 @@ export function ActivityLogView({ selectedTask }) {
                                 <li key={activity.id}>
                                     {<Activity
                                     activity={activity}
-                                    selectedTask={selectedTask}
                                     />}
                                 </li>
                                 ) 

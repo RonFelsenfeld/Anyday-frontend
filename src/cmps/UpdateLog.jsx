@@ -52,6 +52,7 @@ export function UpdateLog() {
   }
 
   async function addMsg(task) {
+    console.log('task',task)
     try {
       await saveTask(board, taskGroup, task)
     } catch (err) {
