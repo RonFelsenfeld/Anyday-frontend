@@ -2,6 +2,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { store } from './store/store'
+import { hideModal } from './store/actions/system.actions'
 
 import { HomePage } from './pages/HomePage'
 import { WorkspaceIndex } from './pages/WorkspaceIndex'
@@ -20,7 +21,7 @@ export function App() {
     <Provider store={store}>
       <Router>
         <section className="app">
-          <main>
+          <main onScroll={() => console.log('h')}>
             <Routes>
               <Route element={<HomePage />} path="/" />
               <Route element={<LoginSignup />} path="/auth" />

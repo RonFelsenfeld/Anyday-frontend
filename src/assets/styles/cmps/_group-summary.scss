@@ -3,6 +3,10 @@
   grid-template-columns: 483px 100px repeat(4, 140px) 1fr;
   align-items: center;
 
+  @include for-small-layout {
+    grid-template-columns: 288px 100px repeat(4, 120px) 1fr;
+  }
+
   article {
     width: 100%;
     height: 36px;
@@ -19,7 +23,7 @@
 
     &.sticky-cell {
       position: sticky;
-      left: 0; 
+      left: 0;
       background-color: $main-bg-clr;
       border: none;
       box-shadow: none;

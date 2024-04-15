@@ -32,23 +32,23 @@ export const boardService = {
 }
 
 function query(boardFilterBy) {
-    return httpService.get('board', boardFilterBy)
+  return httpService.get('board', boardFilterBy)
 }
 
 function getById(boardId) {
-    return httpService.get(`board/${boardId}`)
+  return httpService.get(`board/${boardId}`)
 }
 
 function remove(boardId) {
-    return httpService.delete(`board/${boardId}`)
+  return httpService.delete(`board/${boardId}`)
 }
 
 function save(board) {
   if (board._id) {
     return httpService.put(`board/${board._id}`, board)
-} else {
+  } else {
     return httpService.post('board', board)
-}
+  }
 }
 
 function filterBoard(board, filterBy) {
@@ -290,7 +290,7 @@ function _sortByPersons(board, group, sortBy) {
       t1.taskFullPersons[0].fullName.localeCompare(t2.taskFullPersons[0].fullName) * sortBy.person
   )
 
-  sortedTasks.forEach(task => delete task.personsDetails)
+  sortedTasks.forEach(task => delete task.taskFullPersons)
   return sortedTasks
 }
 

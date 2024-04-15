@@ -11,7 +11,6 @@
 
   @include for-normal-layout {
     @include board-header-layout-mobile;
-    animation: none !important;
 
     .board-title {
       margin-inline-end: 0;
@@ -100,7 +99,6 @@
         fill: $secondary-font-clr;
       }
     }
-
     @include for-narrow-layout {
       scale: 1.5;
     }
@@ -129,6 +127,7 @@
       font-size: em(32px);
       margin-inline-end: 0px;
       align-self: start;
+      transform: translateY(-50%);
     }
 
     @include for-small-layout {
@@ -137,6 +136,7 @@
 
     @include for-mobile-layout {
       font-size: em(18px);
+      transform: translateY(0);
     }
 
     &:not(.editing):hover {
