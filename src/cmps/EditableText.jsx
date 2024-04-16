@@ -23,10 +23,10 @@ export function EditableText({
 
   function onSubmit(ev) {
     ev.preventDefault()
-    console.log('onsubmit',txt)
 
     if (txt) {
       func(txt)
+      inputRef.current.blur()
       if (isNew) setTxt('')
     }
   }
@@ -39,7 +39,7 @@ export function EditableText({
   return (
     <form className={className || ''} onSubmit={onSubmit}>
       {btnInfo && (
-        <input 
+        <input
           className={btnInfo.className}
           style={{ ...btnInfo.style, marginInlineEnd: '3px' }}
           onClick={btnInfo.onClick}
@@ -54,7 +54,7 @@ export function EditableText({
         onChange={handleChange}
         onBlur={onSubmit}
         value={txt}
-        autoComplete='off'
+        autoComplete="off"
       ></input>
     </form>
   )

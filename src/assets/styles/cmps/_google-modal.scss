@@ -7,8 +7,7 @@
   width: 100vw;
   height: 100dvh;
 
-  backdrop-filter: blur(3px);
-  background-color: #8b8b8b3b;
+  // background-color: $backdrop-clr;
   --animate-duration: 0.2s;
 }
 
@@ -26,6 +25,7 @@
   background-color: $main-bg-clr;
   z-index: 999;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 9px 3px #70707075;
   --animate-duration: 0.2s;
 
   @include for-small-layout {

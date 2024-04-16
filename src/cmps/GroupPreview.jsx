@@ -26,9 +26,10 @@ export function GroupPreview({
     else setIsExpanded(false)
   }, [snapshot.isDraggingOver])
 
-  useEffect(()=>{       //collapse all groups
+  useEffect(() => {
+    //collapse all groups
     if (!isAllGroupsExpended) setIsExpanded(false)
-  }, [isAllGroupsExpended]) 
+  }, [isAllGroupsExpended])
 
   function toggleIsExpanded() {
     setIsExpanded(prevIsExpanded => !prevIsExpanded)
