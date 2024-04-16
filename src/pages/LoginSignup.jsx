@@ -6,6 +6,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { uploadFile } from '../services/cloudinary-service'
 import { GoToArrow } from '../services/svg.service'
 import { login, signup } from '../store/actions/user.actions'
+import { socketService } from '../services/socket-service'
 
 export function LoginSignup() {
   const [isSignup, setIsSignup] = useState(false)
@@ -29,6 +30,7 @@ export function LoginSignup() {
   async function handleLogin(credentials) {
     try {
       const user = await login(credentials)
+      socketService.login(user._id)
       showSuccessMsg(`Welcome back, ${user.fullName}`)
     } catch (err) {
       console.log('Login -> Has issues login', err)

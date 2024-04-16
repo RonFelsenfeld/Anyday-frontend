@@ -13,6 +13,7 @@ import { BOTTOM_RIGHT } from '../store/reducers/system.reducer'
 import { showModal } from '../store/actions/system.actions'
 import { logout } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { socketService } from '../services/socket-service'
 
 export function AppHeader() {
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
@@ -37,6 +38,7 @@ export function AppHeader() {
     async function handleLogout() {
       try {
         await logout()
+        socketService.logout()
         showSuccessMsg('See you soon!')
       } catch (err) {
         console.log('Logout -> Has issues logging out', err)

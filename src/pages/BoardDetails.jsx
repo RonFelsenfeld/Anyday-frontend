@@ -14,13 +14,14 @@ import {
   saveTask,
 } from '../store/actions/board.actions'
 import { AddBoardBtn } from '../services/svg.service'
-import { SET_ACTIVE_TASK_ID, SET_BOARD } from '../store/reducers/board.reducer'
+import { EDIT_BOARD, SET_ACTIVE_TASK_ID, SET_BOARD } from '../store/reducers/board.reducer'
 
 import { BoardHeader } from '../cmps/BoardHeader'
 import { Loader } from '../cmps/Loader'
 import { useSecondRender } from '../customHooks/useSecondRender'
 import { GroupPreview } from '../cmps/GroupPreview'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { SOCKET_EVENT_BOARD_UPDATED, socketService } from '../services/socket-service'
 
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -45,6 +46,12 @@ export function BoardDetails() {
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)
+
+
+    socketService.on(SOCKET_EVENT_BOARD_UPDATED, (board) => {
+      dispatch({ type: EDIT_BOARD, board })
+    })
+
 
     return () => dispatch({ type: SET_BOARD, board: null })
   }, [boardId])
@@ -168,9 +175,8 @@ export function BoardDetails() {
               <div
                 {...provider.droppableProps}
                 ref={provider.innerRef}
-                className={`group-container droppable-area ${
-                  snapshot.isDraggingOver ? 'dragging-layout' : ''
-                }`}
+                className={`group-container droppable-area ${snapshot.isDraggingOver ? 'dragging-layout' : ''
+                  }`}
               >
                 {board.groups.map((group, idx) => (
                   <GroupPreview
