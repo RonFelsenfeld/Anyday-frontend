@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react'
 
 import {
   ArrowUp,
@@ -28,60 +27,6 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
   const [isEditing, setIsEditing] = useState(false)
   const [isIntegrationModalOpen, setIsIntegrationModalOpen] = useState(false)
   const navigate = useNavigate()
-
-  const session = useSession() // tokens, when session exist, we have a user
-  const supabase = useSupabaseClient() // Communicate with Supabase
-  const { isLoading } = useSessionContext()
-  // if (isLoading) return <></> // Prevent app from flickering till the session is loaded
-
-  async function googleSignIn() {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        scopes:
-          'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
-      },
-    })
-
-    if (error) {
-      console.error('Log in to Google --> Has issues logging in to Google')
-      showErrorMsg('Failed logging in to Google, try again later.')
-    }
-  }
-
-  async function googleSignOut() {
-    await supabase.auth.signOut()
-  }
-
-  async function createGoogleCalendarEvent() {
-    const event = {
-      summary: 'TITLE',
-      start: {
-        dateTime: new Date().toISOString(),
-        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Get's the user's timezone
-      },
-      end: {
-        dateTime: new Date().toISOString(),
-        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Get's the user's timezone
-      },
-    }
-
-    await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + session.provider_token, // Access token for Google
-      },
-      body: JSON.stringify(event),
-    })
-      .then(data => {
-        console.log(data)
-        return data.json()
-      })
-      .then(res => {
-        console.log(res)
-        alert('EVENT CREATED!')
-      })
-  }
 
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
@@ -133,8 +78,6 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
 
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, false)
   }
-
-  console.log(session)
 
   const collapsedClass = !isHeaderExpanded ? 'collapsed' : ''
   const isEditedClass = isEditing ? 'editing' : ''
@@ -224,7 +167,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
       </button>
 
       <div className="invite-container flex align-center">
-        <button className="btn-invite flex align-center" onClick={createGoogleCalendarEvent}>
+        <button className="btn-invite flex align-center">
           <Invite />
           <span className="invite">Invite / 1</span>
         </button>
@@ -262,9 +205,14 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
         <ArrowUp />
       </button>
 
-      <BoardControls onAddNewTask={onAddNewTask} />
+      <BoardControls
+        onAddNewTask={onAddNewTask}
+        setIsIntegrationModalOpen={setIsIntegrationModalOpen}
+      />
 
-      {isIntegrationModalOpen && <GoogleModal />}
+      {isIntegrationModalOpen && (
+        <GoogleModal setIsIntegrationModalOpen={setIsIntegrationModalOpen} />
+      )}
     </header>
   )
 }

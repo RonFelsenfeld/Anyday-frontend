@@ -2,9 +2,13 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
+
   width: 100vw;
   height: 100dvh;
 
+  backdrop-filter: blur(3px);
+  background-color: #8b8b8b3b;
   --animate-duration: 0.2s;
 }
 
@@ -12,7 +16,83 @@
   position: fixed;
   top: 50%;
   left: 50%;
+
+  gap: 15px;
+  width: 500px;
+
+  border-radius: $cmp-br;
+  padding: em(20px);
+
+  background-color: $main-bg-clr;
+  z-index: 999;
   transform: translate(-50%, -50%);
-  background-color: red;
   --animate-duration: 0.2s;
+
+  @include for-small-layout {
+    width: 450px;
+  }
+
+  @include for-mobile-layout {
+    font-size: 12px;
+    width: 350px;
+  }
+
+  .modal-header {
+    @include for-small-layout {
+      flex-direction: column;
+    }
+
+    .modal-logo {
+      width: 150px;
+
+      @include for-small-layout {
+        margin-block-end: 20px;
+      }
+
+      @include for-mobile-layout {
+        width: 100px;
+      }
+    }
+
+    .main-modal-title {
+      margin-block-start: 5px;
+      font-size: em(18px);
+      font-family: FigtreeMedium, RobotoBold;
+      font-weight: 500;
+    }
+  }
+
+  .secondary-modal-title {
+    font-size: em(16px);
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .btn-sign-in {
+    @include btn;
+    width: 100%;
+    gap: 10px;
+
+    padding-block: 15px;
+    border: 1px solid $secondary-border-clr;
+    border-radius: $el-br;
+
+    svg {
+      scale: 1.5;
+    }
+
+    span {
+      font-size: em(16px);
+    }
+  }
+
+  .integration-desc {
+    font-size: 1rem;
+    font-size: $secondary-font-clr;
+    text-align: center;
+
+    span {
+      font-family: FigtreeSemiBold, RobotoBold, sans-serif;
+    }
+  }
 }

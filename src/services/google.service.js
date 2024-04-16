@@ -1,4 +1,5 @@
-import { showErrorMsg } from './event-bus.service'
+import { showErrorMsg, showSuccessMsg } from './event-bus.service'
+import { userService } from './user.service'
 
 export const googleService = {
   signIn,
@@ -26,31 +27,40 @@ async function signOut(supabase) {
 }
 
 async function addEventToGoogleCalendar(session, task) {
+  if (!session) return showErrorMsg('Require linked Google account')
+
+  // ! Activate
+  // const loggedInUser = userService.getLoggedInUser()
+  // if (!loggedInUser) return showErrorMsg('Login to access this feature')
+
+  const { title, timeline } = task
+  if (!timeline) return showErrorMsg('Task do not have timeline')
+
+  const { startDate, dueDate } = timeline
+
   const event = {
-    summary: 'TITLE',
+    summary: `${title}`,
     start: {
-      dateTime: new Date().toISOString(),
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Get's the user's timezone
+      dateTime: new Date(startDate).toISOString(),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
     end: {
-      dateTime: new Date().toISOString(),
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Get's the user's timezone
+      dateTime: new Date(dueDate).toISOString(),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
   }
 
-  await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-    method: 'POST',
-    headers: {
-      Authorization: 'Bearer ' + session.provider_token, // Access token for Google
-    },
-    body: JSON.stringify(event),
-  })
-    .then(data => {
-      console.log(data)
-      return data.json()
+  try {
+    await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + session.provider_token, // Access token for Google
+      },
+      body: JSON.stringify(event),
     })
-    .then(res => {
-      console.log(res)
-      alert('EVENT CREATED!')
-    })
+    showSuccessMsg('Event added to your Google calendar')
+  } catch (err) {
+    console.log('Had issues with adding event to google calendar')
+    showErrorMsg('Could not add an event at the moment')
+  }
 }

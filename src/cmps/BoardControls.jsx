@@ -8,12 +8,13 @@ import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions
 import { BOTTOM_CENTER, BOTTOM_LEFT } from '../store/reducers/system.reducer'
 import { setGroupTaskFilterBy } from '../store/actions/board.actions'
 
-export function BoardControls({ onAddNewTask }) {
+import { GoogleModal } from './GoogleModal'
+
+export function BoardControls({ onAddNewTask, setIsIntegrationModalOpen }) {
   const [isFilterInput, setIsFilterInput] = useState(false)
   // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
   const board = useSelector(stateStore => stateStore.boardModule.filteredBoard)
   const filterBy = useSelector(stateStore => stateStore.boardModule.groupTaskFilterBy)
-
   const [isSortOpen, setIsSortOpen] = useState(false)
 
   function onSetGroupTaskFilterBy(groupTaskFilterBy) {
@@ -187,7 +188,10 @@ export function BoardControls({ onAddNewTask }) {
           <span className="btn-title">Sort</span>
         </button>
 
-        <button className="btn btn-integrate flex align-center">
+        <button
+          className="btn btn-integrate flex align-center"
+          onClick={() => setIsIntegrationModalOpen(true)}
+        >
           <Integrate />
         </button>
 
