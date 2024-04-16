@@ -121,7 +121,12 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
         <button
           className="btn"
           onClick={onToggleFavorite}
-          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Add to favorites')}
+          onMouseEnter={ev =>
+            showToolTip(
+              ev.currentTarget,
+              !board.isStarred ? 'Add to favorites' : 'Remove from favorites'
+            )
+          }
           onMouseLeave={() => hideToolTip()}
         >
           {board.isStarred ? <FullStar /> : <Favorite />}
