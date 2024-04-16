@@ -9,30 +9,35 @@ import { utilService } from '../services/util.service'
 export function TaskStatus({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
-
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
-
   const statusPreviewRef = useRef()
+  
+  function getStatus() {
+    return board.statuses.find(s => {
+      return s.id === task.status})
+  }
 
-  function getStatusBG(taskStatus) {
-    const status = board.statuses?.find(s => s.title === taskStatus)
+  const { title, color } = getStatus() || ''
+
+  function getStatusBG(statusId) {
+    const status = board.statuses?.find(s => s.id === statusId)
     return { backgroundColor: status?.color }
   }
 
-  async function onUpdateTaskStatus(status) {
+  async function onUpdateTaskStatus({id, title}) {
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: `Changed status to ${status}`,
+      action: `Changed status to ${title}`,
       createdAt: Date.now(),
     }
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
-    const editedTask = { ...task, status, activities }
-    if (!status) delete editedTask.status
-    
+    const editedTask = { ...task, status: id, activities }
+    // if (!status) delete editedTask.status
+
     try {
       await saveTask(board, group, editedTask)
-      if (status === 'Done') animateStatus()
+      if (id === 's101') animateStatus()
     } catch (err) {
       console.log('Had issues updating task status')
     }
@@ -51,7 +56,7 @@ export function TaskStatus({ group, task }) {
 
   function handlePickerClick({ currentTarget }) {
     const cmpInfo = {
-      type: 'labelPicker',
+      type: 'labelPicker', 
       options: board.statuses,
       submitFunc: onUpdateTaskStatus,
       styleFunc: getStatusBG,
@@ -63,11 +68,11 @@ export function TaskStatus({ group, task }) {
   return (
     <div
       onClick={handlePickerClick}
-      style={getStatusBG(task.status || '')}
+      style={{backgroundColor: color ? color : ''}}
       className="task-row task-status"
       ref={statusPreviewRef}
     >
-      {task.status ? task.status : ''}
+      {title}
     </div>
   )
 }

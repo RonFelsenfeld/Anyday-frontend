@@ -296,7 +296,6 @@ function _sortByPersons(board, group, sortBy) {
 
 function getEmptyBoard() {
   return {
-    // _id: utilService.makeId(),
     title: 'New Board',
     isStarred: false,
     archivedAt: null,
@@ -369,14 +368,15 @@ function getEmptyBoard() {
     groups: [
       {
         id: utilService.makeId(),
-        title: 'Group1',
+        title: 'Group 1',
         archivedAt: null,
         tasks: [
           {
             id: utilService.makeId(),
             title: 'task 1',
             personsIds: ['u101'],
-            status: 'Working on it',
+            status: 's102',
+            priority: 'pri104',
             timeline: {
               startDate: 1712077970111,
               dueDate: 1712250770111,
@@ -388,7 +388,8 @@ function getEmptyBoard() {
             id: utilService.makeId(),
             title: 'task 2',
             personsIds: ['u103'],
-            status: 'Done',
+            status: 's101',
+            priority: 'pri103',
             timeline: {
               startDate: 1712164370111,
               dueDate: 1712941970111,
@@ -400,7 +401,8 @@ function getEmptyBoard() {
             id: utilService.makeId(),
             title: 'task 3',
             personsIds: ['u101', 'u102', 'u103'],
-            status: 'Stuck',
+            status: 's103',
+            priority: 'pri105',
             timeline: {
               startDate: 1711991570111,
               dueDate: 1712337170111,
@@ -422,12 +424,14 @@ function getEmptyBoard() {
       },
       {
         id: utilService.makeId(),
-        title: 'group 2',
+        title: 'Group 2',
         archivedAt: null,
         tasks: [
           {
             id: utilService.makeId(),
             title: 'task 1',
+            status: 's104',
+            priority: 'pri105',
             personsIds: ['u101', 'u103'],
             timeline: {
               startDate: 1711991570111,
@@ -447,7 +451,8 @@ function getEmptyBoard() {
             id: utilService.makeId(),
             title: 'task 2',
             personsIds: ['u102'],
-            status: 'Stuck',
+            status: 's104',
+            priority: 'pri105',
             timeline: {
               startDate: 1711991570111,
               dueDate: 1712164370111,
@@ -473,10 +478,12 @@ function getEmptyBoard() {
   }
 }
 
-function getEmptyTask() {
+function getEmptyTask(title = '') {
   return {
-    title: '',
+    title,
     personsId: [],
+    status: 's104',
+    priority: 'pri105',
     comments: [],
     activities: [],
   }

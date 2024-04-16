@@ -1,0 +1,26 @@
+.edit-labels-container {
+    padding: 20px;
+    display: grid;
+        gap: 8px;
+
+    .edit-labels-form {
+        display: flex;
+        padding: 4px;
+        border: 1px solid $secondary-border-clr;
+        border-radius: $el-br;
+        
+        .change-label-color-btn {
+            width: 24px;
+            height: 24px;
+            outline-style: none;
+            border: none;
+            border-radius: $el-br;
+        }
+
+        input[name='label-title-input'] {
+            outline-style: none;
+            border: none;
+        }
+
+    }
+}

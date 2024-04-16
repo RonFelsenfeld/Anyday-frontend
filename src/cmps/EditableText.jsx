@@ -23,6 +23,7 @@ export function EditableText({
 
   function onSubmit(ev) {
     ev.preventDefault()
+    console.log('onsubmit',txt)
 
     if (txt) {
       func(txt)
@@ -38,7 +39,7 @@ export function EditableText({
   return (
     <form className={className || ''} onSubmit={onSubmit}>
       {btnInfo && (
-        <input
+        <input 
           className={btnInfo.className}
           style={{ ...btnInfo.style, marginInlineEnd: '3px' }}
           onClick={btnInfo.onClick}

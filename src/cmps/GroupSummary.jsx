@@ -60,16 +60,15 @@ export function GroupSummary({ group }) {
               onMouseEnter={ev =>
                 showToolTip(
                   ev.currentTarget,
-                  `${groupStatusMap[s.title === '' ? 'undefined' : s.title]}/${group.tasks.length
-                  } \u00A0 
-                                ${statusPercantageMap[s.title === '' ? 'undefined' : s.title]}`
+                  `${groupStatusMap[s.id]}/${group.tasks.length
+                  } \u00A0 ${statusPercantageMap[s.id]}`
                 )
               }
               onMouseLeave={() => hideToolTip()}
               style={{
                 backgroundColor: s.color,
                 color: s.color,
-                width: statusPercantageMap[s.title === '' ? 'undefined' : s.title],
+                width: statusPercantageMap[s.id],
               }}
             ></div>
           ))}
@@ -84,16 +83,16 @@ export function GroupSummary({ group }) {
               onMouseEnter={ev =>
                 showToolTip(
                   ev.currentTarget,
-                  `${groupPriorityMap[p.title === '' ? 'undefined' : p.title]}/${group.tasks.length
+                  `${groupPriorityMap[p.id]}/${group.tasks.length
                   } \u00A0 
-                            ${priorityPercantageMap[p.title === '' ? 'undefined' : p.title]}`
+                            ${priorityPercantageMap[p.id]}`
                 )
               }
               onMouseLeave={() => hideToolTip()}
               style={{
                 backgroundColor: p.color,
                 color: p.color,
-                width: priorityPercantageMap[p.title === '' ? 'undefined' : p.title],
+                width: priorityPercantageMap[p.id],
               }}
             ></div>
           ))}
