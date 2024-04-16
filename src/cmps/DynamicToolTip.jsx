@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux'
 
 export function DynamicToolTip() {
   const tooltip = useSelector(storeState => storeState.systemModule.tooltip)
-  const { isOpen, pos, txt, targetDimensions } = tooltip
+  const { pos, txt, targetDimensions } = tooltip
+  let { isOpen } = tooltip
+
+  // In mobile view --> disable tooltip
+  if (window.innerWidth < 600) isOpen = false
 
   if (isOpen) {
     pos.x += targetDimensions.width / 2

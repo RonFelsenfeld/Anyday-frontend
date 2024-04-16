@@ -1,0 +1,23 @@
+.whatsapp-person-picker {
+  position: absolute;
+  left: 102%;
+  transform: translateY(-20px);
+  width: max-content;
+
+  padding: em(8px);
+  border-radius: $el-br;
+
+  background-color: $main-bg-clr;
+  box-shadow: $modal-box-shadow;
+
+  .person {
+    @include btn;
+    cursor: pointer;
+    gap: 10px;
+    padding: em(8px);
+
+    .person-img {
+      @include userImg;
+    }
+  }
+}

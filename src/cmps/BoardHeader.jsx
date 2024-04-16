@@ -1,21 +1,43 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { ArrowUp, Favorite, GoToArrow, Home, Info, Invite, Options } from '../services/svg.service'
+import {
+  ArrowUp,
+  Favorite,
+  FullStar,
+  GoToArrow,
+  Home,
+  Info,
+  Invite,
+  Options,
+} from '../services/svg.service'
 import { hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { removeBoard, saveBoard } from '../store/actions/board.actions'
-import { showSuccessMsg } from '../services/event-bus.service'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 import { BoardControls } from './BoardControls'
 import { EditableText } from './EditableText'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAddNewTask }) {
+  const currentBoard = useSelector(storeState => storeState.boardModule.currentBoard)
   const [isEditing, setIsEditing] = useState(false)
   const navigate = useNavigate()
 
   function toggleExpanded() {
     setIsHeaderExpanded(prevIsExpanded => !prevIsExpanded)
+  }
+
+  async function onToggleFavorite() {
+    board.isStarred = !board.isStarred
+
+    try {
+      await saveBoard(board)
+    } catch (err) {
+      console.log('Favorite --> Had issues favorite board')
+      showErrorMsg('Could not preform the action, try again later.')
+    }
   }
 
   async function onEditBoardTitle(newTitle) {
@@ -98,10 +120,16 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
 
         <button
           className="btn"
-          onMouseEnter={ev => showToolTip(ev.currentTarget, 'Add to favorites')}
+          onClick={onToggleFavorite}
+          onMouseEnter={ev =>
+            showToolTip(
+              ev.currentTarget,
+              !board.isStarred ? 'Add to favorites' : 'Remove from favorites'
+            )
+          }
           onMouseLeave={() => hideToolTip()}
         >
-          <Favorite />
+          {board.isStarred ? <FullStar /> : <Favorite />}
         </button>
       </div>
 
