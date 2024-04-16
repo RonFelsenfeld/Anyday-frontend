@@ -155,6 +155,18 @@
     .active-sort {
       @include activeLink;
     }
+
+    .btn-integrate {
+      display: none;
+
+      svg {
+        color: $main-font-clr;
+      }
+
+      @include for-normal-layout {
+        display: block;
+      }
+    }
   }
 
   .filterby-img {

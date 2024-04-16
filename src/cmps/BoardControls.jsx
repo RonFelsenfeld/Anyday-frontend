@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
+import { Integrate, RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
@@ -186,6 +186,11 @@ export function BoardControls({ onAddNewTask }) {
           <Sort />
           <span className="btn-title">Sort</span>
         </button>
+
+        <button className="btn btn-integrate flex align-center">
+          <Integrate />
+        </button>
+
         {/* 
         <button
           className="btn btn-action flex align-center"

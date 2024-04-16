@@ -9,6 +9,7 @@ import {
   GoToArrow,
   Home,
   Info,
+  Integrate,
   Invite,
   Options,
 } from '../services/svg.service'
@@ -189,6 +190,11 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
           <span>Main Table</span>
         </button>
       </div>
+
+      <button className="btn-integrate flex align-center">
+        <Integrate />
+        <span>Integrate</span>
+      </button>
 
       <button className="btn-collapse-header flex align-center" onClick={toggleExpanded}>
         <ArrowUp />

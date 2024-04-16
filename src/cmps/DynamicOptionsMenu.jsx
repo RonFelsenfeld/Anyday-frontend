@@ -6,6 +6,8 @@ import {
   CollapseAll,
   CollapseThis,
   FavoriteSmall,
+  Gmail,
+  GoogleCalender,
   Login,
   Logout,
   OpenTask,
@@ -53,6 +55,20 @@ export function DynamicOptionsMenu({ options }) {
 
       case 'whatsapp':
         return <img src="/assets/img/whatsapp.svg" alt="Whataspp icon" className="whatsapp-icon" />
+
+      case 'gmail':
+        return (
+          <div className="flex align-center">
+            <Gmail />
+          </div>
+        )
+
+      case 'calender':
+        return (
+          <div className="flex align-center">
+            <GoogleCalender />
+          </div>
+        )
     }
   }
 
