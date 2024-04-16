@@ -26,17 +26,10 @@ export function TaskFiles({ group, task }) {
       setIsLoading(true)
       const { url, format } = await uploadFile(ev)
 
-      const updatedTask = task.files
-        ? {
-            ...task,
-            files: [...task.files, { type: format, url }],
-            activities: [...task.activities, currActivity],
-          }
-        : {
-            ...task,
-            files: [{ type: format, url }],
-            activities: [...task.activities, currActivity],
-          }
+      const files = task.files ? [...task.files, { type: format, url }] : [{ type: format, url }]
+      const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
+
+      const updatedTask = { ...task, files, activities }
 
       await saveTask(board, group, updatedTask)
 

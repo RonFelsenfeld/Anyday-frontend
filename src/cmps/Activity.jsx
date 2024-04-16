@@ -1,14 +1,17 @@
 import { CommentClock, UserImg } from "../services/svg.service";
 import { utilService } from "../services/util.service";
 
-export function Activity({ selectedTask, activity }) {
+export function Activity({ activity }) {
     return (
         <div className="activity flex align-center justify-around">
             <div className="time flex align-center" >
                 <CommentClock />
                 <span className="time-desc">{utilService.calcPastTimeActivity(activity.createdAt)}</span>
             </div>
-            <img className="user-img" src={activity.byPerson.imgUrl} alt="user-image" />
+            {activity.byPerson.imgUrl ?
+                <img className="user-img" src={activity.byPerson.imgUrl} alt="user-image" /> :
+                <div className="user-initials">{utilService.getInitials(activity.byPerson.fullName)}</div>
+            }
             <span className="task-title">{activity.byPerson.fullName}</span>
             <div className="action-type flex align-center ">
                 <div className="flex align-center">

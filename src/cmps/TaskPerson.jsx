@@ -17,13 +17,11 @@ export function TaskPerson({ group, task }) {
       action: 'Changed person',
       createdAt: Date.now(),
     }
-    const editedTask = task.personsIds
-      ? {
-          ...task,
-          personsIds: [...task.personsIds, personId],
-          activities: [...task.activities, currActivity],
-        }
-      : { ...task, personsIds: [personId], activities: [...task.activities, currActivity] }
+
+    const personsIds = task.personsIds ? [...task.personsIds, personId] : [personId]
+    const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
+
+    const editedTask = {...task, personsIds, activities}
 
     try {
       await saveTask(board, group, editedTask)

@@ -29,10 +29,12 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
       id: utilService.makeId(),
       byPerson: loggedInUser || guest
     }
-    setCurrComment(newComment)
-    setSelectedTask(prev => ({ ...prev, comments: [...prev.comments, newComment] }))
 
-    addMsg({ ...selectedTask, comments: [...selectedTask.comments, newComment] })
+    const comments = selectedTask.comments ? [ ...selectedTask.comments, newComment ] : [newComment]
+    setCurrComment(newComment)
+    setSelectedTask(prev => ({ ...prev, comments }))
+
+    addMsg({ ...selectedTask, comments })
     setCurrComment(boardService.getEmptyComment())
   }
 

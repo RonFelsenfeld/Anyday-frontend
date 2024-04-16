@@ -23,7 +23,9 @@ export function TaskPriority({ group, task }) {
       createdAt: Date.now(),
     }
 
-    const editedTask = { ...task, priority, activities: [...task.activities, currActivity] }
+    const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
+    const editedTask = { ...task, priority, activities }
+    if (!priority) delete editedTask.priority
 
     try {
       await saveTask(board, group, editedTask)

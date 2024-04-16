@@ -35,13 +35,15 @@ export function TimelinePicker({ group, task }) {
       createdAt: Date.now(),
     }
 
+    const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
+
     const editedTask = {
       ...task,
       timeline: {
         startDate: parseInt(moment(startDate?._d).format('x')),
         dueDate: parseInt(moment(endDate?._d).format('x')),
       },
-      activities: [...task.activities, currActivity],
+      activities,
     }
 
     try {

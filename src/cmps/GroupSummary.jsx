@@ -60,8 +60,7 @@ export function GroupSummary({ group }) {
               onMouseEnter={ev =>
                 showToolTip(
                   ev.currentTarget,
-                  `${groupStatusMap[s.title === '' ? 'undefined' : s.title]}/${
-                    group.tasks.length
+                  `${groupStatusMap[s.title === '' ? 'undefined' : s.title]}/${group.tasks.length
                   } \u00A0 
                                 ${statusPercantageMap[s.title === '' ? 'undefined' : s.title]}`
                 )
@@ -85,8 +84,7 @@ export function GroupSummary({ group }) {
               onMouseEnter={ev =>
                 showToolTip(
                   ev.currentTarget,
-                  `${groupPriorityMap[p.title === '' ? 'undefined' : p.title]}/${
-                    group.tasks.length
+                  `${groupPriorityMap[p.title === '' ? 'undefined' : p.title]}/${group.tasks.length
                   } \u00A0 
                             ${priorityPercantageMap[p.title === '' ? 'undefined' : p.title]}`
                 )

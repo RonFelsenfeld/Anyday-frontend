@@ -26,7 +26,10 @@ export function TaskStatus({ group, task }) {
       action: `Changed status to ${status}`,
       createdAt: Date.now(),
     }
-    const editedTask = { ...task, status, activities: [...task.activities, currActivity] }
+    const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
+    const editedTask = { ...task, status, activities }
+    if (!status) delete editedTask.status
+    
     try {
       await saveTask(board, group, editedTask)
       if (status === 'Done') animateStatus()
