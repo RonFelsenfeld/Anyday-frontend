@@ -1,0 +1,18 @@
+.google-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+
+  --animate-duration: 0.2s;
+}
+
+.google-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  --animate-duration: 0.2s;
+}
