@@ -19,7 +19,7 @@
 
     &.sticky-cell {
       position: sticky;
-      left: 0; 
+      left: 0;
       background-color: $main-bg-clr;
       border: none;
       box-shadow: none;
@@ -39,13 +39,18 @@
       display: flex;
       height: 24px;
       width: 120px;
-      transition: height 0.2s ease-in-out;
 
-      > *:hover {
+      >* {
+        height: 24px;
+        // width: 120px;
+        transition: height 0.2s;
+      }
+
+      >*:hover {
         align-self: center;
         border-radius: 2px;
         height: 30px;
-        // transition: all 0.2s ease-in-out;
+        transition: height 0.2s;
       }
     }
 
