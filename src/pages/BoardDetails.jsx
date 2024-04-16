@@ -53,7 +53,10 @@ export function BoardDetails() {
     })
 
 
-    return () => dispatch({ type: SET_BOARD, board: null })
+    return () => {
+      dispatch({ type: SET_BOARD, board: null })
+      socketService.off(SOCKET_EVENT_BOARD_UPDATED)
+    }
   }, [boardId])
 
   useEffect(() => {

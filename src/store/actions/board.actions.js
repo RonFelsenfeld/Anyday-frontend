@@ -120,7 +120,7 @@ export async function saveTask(board, group, task, unshift) {
     const savedBoard = await boardService.saveTask(board, group, task, unshift)
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
-
+    
     return savedBoard
   } catch (err) {
     console.log('task action -> cannot save task', err)

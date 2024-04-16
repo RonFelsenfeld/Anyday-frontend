@@ -2,6 +2,9 @@ import { io } from "socket.io-client"
 import { userService } from "./user.service"
 
 export const SOCKET_EMIT_SET_BOARD = 'set-board'
+export const SOCKET_EMIT_SET_TASK = 'set-task'
+
+
 export const SOCKET_EVENT_BOARD_UPDATED = 'board-updated'
 export const SOCKET_EMIT_UPDATE_BOARD = 'update-board'
 
