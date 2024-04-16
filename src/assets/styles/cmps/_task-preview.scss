@@ -75,6 +75,14 @@
       opacity: 1;
       background-color: $selected-task-border-clr;
     }
+
+    @include for-narrow-layout {
+      transform: translate(-26.5px, 7px);
+    }
+
+    @include for-mobile-layout {
+      transform: translate(-27px, 7px);
+    }
   }
 
   .task-row {
@@ -128,7 +136,6 @@
         padding: 2px 4px;
       }
     }
-
   }
 
   .edit-task {

@@ -74,16 +74,17 @@ export function LoginSignup() {
 
       <div className="main-container flex column ">
         <div className="form-container flex column align-center justify-center">
-          <div className='title-container flex'>
+          <div className="title-container flex">
             <h1 className="main-title">Welcome to</h1>
-            <img className='logo' src="/assets/img/A-logo.png" />
-            <h1 className='logo-title'>nyday</h1>
+            <img className="logo" src="/assets/img/A-logo.png" />
+            <h1 className="logo-title">nyday</h1>
           </div>
           <h3 className="secondary-title">
-            {`${isSignup
+            {`${
+              isSignup
                 ? "Get started - it's free. No credit card needed."
                 : 'Log in to your account'
-              }`}
+            }`}
           </h3>
 
           <form onSubmit={handleSubmit} className="login-form flex column align-center">
@@ -100,16 +101,29 @@ export function LoginSignup() {
             />
 
             {isSignup && (
-              <input
-                type="text"
-                name="fullName"
-                className="login-input"
-                placeholder="Enter your full name"
-                value={credentials.fullName}
-                onChange={handleChange}
-                required
-                autoComplete="off"
-              />
+              <>
+                <input
+                  type="text"
+                  name="fullName"
+                  className="login-input"
+                  placeholder="Enter your full name"
+                  value={credentials.fullName}
+                  onChange={handleChange}
+                  required
+                  autoComplete="off"
+                />
+
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  pattern="^05\d{8}$"
+                  className="login-input"
+                  placeholder="Enter your phone number"
+                  value={credentials.phoneNumber}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+              </>
             )}
 
             <input
@@ -148,16 +162,13 @@ export function LoginSignup() {
 
         <p className="already-user flex ">
           {`${isSignup ? 'Already have an account?' : "Don't have an account yet?"}`}
-          <span onClick={() => setIsSignup(!isSignup)}>{`${isSignup ? 'Log in ' : 'Sign up'
-            }`}</span>
+          <span onClick={() => setIsSignup(!isSignup)}>{`${
+            isSignup ? 'Log in ' : 'Sign up'
+          }`}</span>
         </p>
       </div>
 
-      <img
-        src="/assets/img/login-page-img.avif"
-        alt="login page image"
-        className="login-img"
-      ></img>
+      <img src="/assets/img/login-page-img.avif" alt="login page image" className="login-img"></img>
     </section>
   )
 }

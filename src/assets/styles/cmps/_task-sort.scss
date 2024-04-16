@@ -57,6 +57,10 @@
     .sort-by-dropdown {
       @include dropdown;
 
+      @include for-normal-layout {
+        top: -290px;
+      }
+
       .dropdown-option {
         @include dropdownOption;
       }
@@ -64,6 +68,11 @@
 
     .sort-dir-dropdown {
       @include dropdown;
+
+      @include for-normal-layout {
+        top: -114px;
+      }
+
       .dropdown-dir {
         @include dropdownOption;
 
@@ -91,6 +100,7 @@
         rotate: 0deg;
         transition: rotate 0.3s;
       }
+
       &.open {
         svg {
           rotate: 180deg;

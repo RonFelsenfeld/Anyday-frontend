@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import {
   AddGroup,
+  ArrowRight,
   ChangeColor,
   CollapseAll,
   CollapseThis,
@@ -10,9 +12,13 @@ import {
   RenamePencil,
   Trash,
 } from '../services/svg.service'
+
 import { hideModal } from '../store/actions/system.actions'
+import { WhatsappPersonPicker } from './WhatsappPersonPicker'
 
 export function DynamicOptionsMenu({ options }) {
+  const [isPersonMenuOpen, setIsPersonMenuOpen] = useState(false)
+
   function getSvg(iconName) {
     switch (iconName) {
       case 'pencil':
@@ -44,7 +50,19 @@ export function DynamicOptionsMenu({ options }) {
 
       case 'logout':
         return <Logout />
+
+      case 'whatsapp':
+        return <img src="/assets/img/whatsapp.svg" alt="Whataspp icon" className="whatsapp-icon" />
     }
+  }
+
+  function handleOptionClick(option) {
+    if (option.title !== 'Share on Whatsapp') {
+      option.func()
+      return hideModal()
+    }
+
+    setIsPersonMenuOpen(true)
   }
 
   function getOptionStyle({ title }) {
@@ -63,20 +81,29 @@ export function DynamicOptionsMenu({ options }) {
         {options.map((option, idx) => (
           <li
             key={`${option}${idx}`}
-            className="option flex align-center"
+            className="option flex align-center justify-between"
             style={getOptionStyle(option)}
-            onClick={() => {
-              option.func()
-              hideModal()
-            }}
+            onClick={() => handleOptionClick(option)}
           >
-            <button className="btn-option flex align-center">
-              <span>{getSvg(option.icon)}</span>
-              <span className="option-title">{option.title}</span>
+            <button className="btn-option flex">
+              <div className="flex align-center">
+                <span>{getSvg(option.icon)}</span>
+                <span className="option-title">{option.title}</span>
+              </div>
             </button>
+
+            {option.icon === 'whatsapp' && (
+              <div className="whatsapp-arrow flex align-center">
+                <ArrowRight />
+              </div>
+            )}
           </li>
         ))}
       </ul>
+
+      {isPersonMenuOpen && (
+        <WhatsappPersonPicker options={options} setIsPersonMenuOpen={setIsPersonMenuOpen} />
+      )}
     </article>
   )
 }
