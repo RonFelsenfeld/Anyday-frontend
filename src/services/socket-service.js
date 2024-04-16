@@ -1,16 +1,20 @@
-import { io } from "socket.io-client";
+import { io } from "socket.io-client"
 import { userService } from "./user.service"
 
-//task-conversation
-export const SOCKET_EVENT_ADD_MSG = 'conversation-add-msg'
-export const SOCKET_EMIT_SEND_MSG = 'conversation-send-msg'
+export const SOCKET_EMIT_SET_BOARD = 'set-board'
+export const SOCKET_EMIT_SET_TASK = 'set-task'
 
-export const SOCKET_EMIT_SET_TASK= 'conversation-set-task'
+
+export const SOCKET_EVENT_BOARD_UPDATED = 'board-updated'
+export const SOCKET_EMIT_UPDATE_BOARD = 'update-board'
+
+export const SOCKET_EMIT_ADD_COMMENT = 'add-comment'
+export const SOCKET_EVENT_COMMENT_ADDED = 'comment-added'
+
 
 
 //if time permits- activity-log
-export const SOCKET_EVENT_ACTIVITY_UPDATED = 'activity-updated'
-
+// export const SOCKET_EVENT_ACTIVITY_UPDATED = 'activity-updated'
 
 //user
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
@@ -20,6 +24,9 @@ const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030
 export const socketService = createSocketService()
 
 socketService.setup()
+socketService.on('connection', () => {
+    console.log('connected!')
+})
 
 function createSocketService() {
     var socket = null
@@ -45,7 +52,7 @@ function createSocketService() {
             socket.emit(SOCKET_EMIT_LOGIN, userId)
         },
         logout() {
-            socket(SOCKET_EMIT_LOGOUT)
+            socket.emit(SOCKET_EMIT_LOGOUT)
         },
         terminate() {
             socket = null

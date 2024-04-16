@@ -10,6 +10,7 @@ import { showErrorMsg } from '../services/event-bus.service'
 import { saveTask } from '../store/actions/board.actions'
 import { ActivityLogView } from './ActivityLogView'
 import { FilesLog } from './FilesLog'
+import { SOCKET_EMIT_ADD_COMMENT, SOCKET_EMIT_SET_TASK, SOCKET_EVENT_COMMENT_ADDED, socketService } from '../services/socket-service'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -24,6 +25,10 @@ export function UpdateLog() {
 
   useEffect(() => {
     if (taskId) loadTask()
+    socketService.emit(SOCKET_EMIT_SET_TASK, selectedTask)
+    socketService.on(SOCKET_EVENT_COMMENT_ADDED, setSelectedTask)
+
+    return () => socketService.off(SOCKET_EMIT_SET_TASK)
   }, [taskId])
 
   function loadTask() {
@@ -55,6 +60,7 @@ export function UpdateLog() {
     console.log('task',task)
     try {
       await saveTask(board, taskGroup, task)
+      socketService.emit(SOCKET_EMIT_ADD_COMMENT, task)
     } catch (err) {
       console.log('could not save error', err)
     }
