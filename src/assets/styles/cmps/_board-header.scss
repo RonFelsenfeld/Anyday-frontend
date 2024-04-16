@@ -1,11 +1,11 @@
 .board-header {
   display: grid;
-  grid-template-columns: auto repeat(2, 1fr) auto;
+  grid-template-columns: auto repeat(2, 1fr) auto auto;
   grid-template-rows: 56px 36px 64px;
   grid-template-areas:
-    'title info activity invite'
-    'views views views expand'
-    'actions actions actions actions';
+    'title info activity invite invite'
+    'views views views integrate expand'
+    'actions actions actions actions actions';
 
   padding: em(12px) em(30px) em(17px) em(35px);
 
@@ -258,10 +258,30 @@
     }
   }
 
+  .btn-integrate {
+    @include btn;
+    @include scalableBtn;
+
+    grid-area: integrate;
+    align-self: center;
+    gap: 8px;
+
+    padding: 8px;
+
+    @include for-normal-layout {
+      display: none;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+
   .btn-collapse-header {
     @include btn;
 
     grid-area: expand;
+    align-self: center;
     justify-self: end;
     width: em(30px);
     height: em(30px);

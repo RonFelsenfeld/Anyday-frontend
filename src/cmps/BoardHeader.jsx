@@ -9,6 +9,7 @@ import {
   GoToArrow,
   Home,
   Info,
+  Integrate,
   Invite,
   Options,
 } from '../services/svg.service'
@@ -19,10 +20,12 @@ import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 import { BoardControls } from './BoardControls'
 import { EditableText } from './EditableText'
+import { GoogleModal } from './GoogleModal'
 
 export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAddNewTask }) {
   const currentBoard = useSelector(storeState => storeState.boardModule.currentBoard)
   const [isEditing, setIsEditing] = useState(false)
+  const [isIntegrationModalOpen, setIsIntegrationModalOpen] = useState(false)
   const navigate = useNavigate()
 
   function toggleExpanded() {
@@ -190,11 +193,26 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
         </button>
       </div>
 
+      <button
+        className="btn-integrate flex align-center"
+        onClick={() => setIsIntegrationModalOpen(true)}
+      >
+        <Integrate />
+        <span>Integrate</span>
+      </button>
+
       <button className="btn-collapse-header flex align-center" onClick={toggleExpanded}>
         <ArrowUp />
       </button>
 
-      <BoardControls onAddNewTask={onAddNewTask} />
+      <BoardControls
+        onAddNewTask={onAddNewTask}
+        setIsIntegrationModalOpen={setIsIntegrationModalOpen}
+      />
+
+      {isIntegrationModalOpen && (
+        <GoogleModal setIsIntegrationModalOpen={setIsIntegrationModalOpen} />
+      )}
     </header>
   )
 }

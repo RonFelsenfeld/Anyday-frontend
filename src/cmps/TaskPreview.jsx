@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { useSession } from '@supabase/auth-helpers-react'
 
 import { ActiveMsg, MsgIcon, WorkSpaceOption } from '../services/svg.service'
 
@@ -15,6 +16,7 @@ import { TaskPriority } from './TaskPriority'
 import { TaskPerson } from './TaskPerson'
 import { TaskTimeline } from './TaskTimeline'
 import { TaskFiles } from './TaskFiles'
+import { googleService } from '../services/google.service'
 
 export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEdit }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -23,6 +25,7 @@ export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEd
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const session = useSession() // tokens, when session exist, we have a user
   useClickOutside(taskPreviewRef, () => dispatch({ type: SET_ACTIVE_TASK_ID, taskId: null }))
 
   function onTaskMenuClick({ currentTarget }) {
@@ -41,6 +44,18 @@ export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEd
           icon: 'trash',
           func: () => {
             onRemoveTask(task.id)
+          },
+        },
+        {
+          title: 'Send as mail',
+          icon: 'gmail',
+          task,
+        },
+        {
+          title: 'Add to calender',
+          icon: 'calender',
+          func: () => {
+            googleService.addEventToGoogleCalendar(session, task)
           },
         },
         {
