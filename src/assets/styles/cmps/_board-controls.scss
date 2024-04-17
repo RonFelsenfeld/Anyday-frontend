@@ -51,7 +51,7 @@
   }
 
   .btn-action {
-    margin-inline-end: 6px;
+    margin-inline: 6px;
     padding: 1px 10px;
     gap: 5px;
     height: 100%;
@@ -108,7 +108,6 @@
 
     .filter-by-person-container {
       @include btn;
-      margin-inline-end: em(6px);
       height: 100%;
 
       .btn-main {

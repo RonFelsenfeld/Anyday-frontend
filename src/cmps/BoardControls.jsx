@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux'
 import { Integrate, RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
+
 import { hideModal, hideToolTip, showModal, showToolTip } from '../store/actions/system.actions'
 import { BOTTOM_CENTER, BOTTOM_LEFT } from '../store/reducers/system.reducer'
 import { setGroupTaskFilterBy } from '../store/actions/board.actions'
-
-import { GoogleModal } from './GoogleModal'
 
 export function BoardControls({ onAddNewTask, setIsIntegrationModalOpen }) {
   const [isFilterInput, setIsFilterInput] = useState(false)

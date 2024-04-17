@@ -12,6 +12,7 @@ export function TaskTimeline({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
 
   function handlePickerClick({ target, currentTarget }) {
+    // ! Event propagation doesn't work
     if (target.nodeName === 'svg' || target.nodeName === 'path') return
 
     const cmpInfo = {
