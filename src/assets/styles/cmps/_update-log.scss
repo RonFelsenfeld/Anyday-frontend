@@ -18,7 +18,7 @@
 
   padding: 20px 20px 0 24px;
   // width: 570px;
-  width: 610px;
+  width: 620px;
   height: 100%;
   z-index: 300;
 
@@ -168,7 +168,7 @@
     grid-area: info;
 
     .updates-log-txt-area {
-      width: em(565px);
+      width: 100%;
       min-height: em(40px);
       margin-block-start: em(37px);
       border-radius: $cmp-br;
@@ -180,8 +180,7 @@
       }
 
       .txt-input-update-log {
-        width: 98%;
-        // width: 570px;
+        // width: 100%;
         margin: 2px;
         padding: 10px 20px;
         font-size: em(16px);

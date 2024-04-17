@@ -23,6 +23,12 @@
   }
 }
 
+@mixin for-activity-log-medium {
+  @media(max-width:$break-activity-medium){
+    @content;
+  }
+}
+
 @mixin board-header-layout-mobile {
   grid-template-columns: auto 1fr auto auto;
   grid-template-rows: auto 70px;
