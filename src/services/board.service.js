@@ -103,6 +103,18 @@ function sortBoard(board, sortBy) {
       sortedTasks = _sortByPersons(board, group, sortBy)
     }
 
+    if (sortBy.status) {
+      sortedTasks = _sortByStatus(group, sortBy)
+    }
+
+    if (sortBy.priority) {
+      sortedTasks = _sortByPriority(group, sortBy)
+    }
+
+    if (sortBy.timeline) {
+      sortedTasks = _sortByTimeline(group, sortBy)
+    }
+
     return { ...group, tasks: sortedTasks || group.tasks }
   })
 
@@ -291,6 +303,36 @@ function _sortByPersons(board, group, sortBy) {
   )
 
   sortedTasks.forEach(task => delete task.taskFullPersons)
+  return sortedTasks
+}
+
+function _sortByStatus(group, sortBy) {
+  const sortedTasks = group.tasks.sort(
+    (t1, t2) => t1.status.localeCompare(t2.status) * sortBy.status
+  )
+
+  return sortedTasks
+}
+
+function _sortByPriority(group, sortBy) {
+  const sortedTasks = group.tasks.sort(
+    (t1, t2) => t1.priority.localeCompare(t2.priority) * sortBy.priority
+  )
+
+  return sortedTasks
+}
+
+function _sortByTimeline(group, sortBy) {
+  const sortedTasks = group.tasks.sort((t1, t2) => {
+    const task1Copy = structuredClone(t1)
+    const task2Copy = structuredClone(t2)
+
+    if (!t1.timeline) task1Copy.timeline = { startDate: 0 }
+    if (!t2.timeline) task2Copy.timeline = { startDate: 0 }
+
+    return (task2Copy.timeline.startDate - task1Copy.timeline.startDate) * sortBy.timeline
+  })
+
   return sortedTasks
 }
 

@@ -1,5 +1,9 @@
 import { boardService } from '../../services/board.service'
-import {  SOCKET_EMIT_SET_BOARD, SOCKET_EMIT_UPDATE_BOARD, socketService } from '../../services/socket-service'
+import {
+  SOCKET_EMIT_SET_BOARD,
+  SOCKET_EMIT_UPDATE_BOARD,
+  socketService,
+} from '../../services/socket-service'
 import {
   ADD_BOARD,
   EDIT_BOARD,
@@ -38,7 +42,6 @@ export async function loadBoard(boardId) {
     store.dispatch({ type: SET_BOARD, board })
     socketService.emit(SOCKET_EMIT_SET_BOARD, board)
 
-
     const boardDeepCopy = structuredClone(board)
     store.dispatch({ type: SET_FILTERED_BOARD, board: boardDeepCopy })
   } catch (err) {
@@ -53,7 +56,6 @@ export async function removeBoard(boardId) {
   try {
     await boardService.remove(boardId)
     store.dispatch({ type: REMOVE_BOARD, boardId })
-
   } catch (err) {
     console.log('board action -> cannot remove board', err)
     throw err
@@ -120,7 +122,7 @@ export async function saveTask(board, group, task, unshift) {
     const savedBoard = await boardService.saveTask(board, group, task, unshift)
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
-    
+
     return savedBoard
   } catch (err) {
     console.log('task action -> cannot save task', err)
@@ -165,8 +167,6 @@ export async function onFilterSortBoard(filterBy, sortBy) {
     console.log(err)
   }
 }
-
-
 
 // export function markFilteredTxt(markedTxt) {
 //   store.dispatch({ type: SET_MARKED_TEXT, markedTxt })
