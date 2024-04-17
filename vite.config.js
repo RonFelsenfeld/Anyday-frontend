@@ -7,6 +7,7 @@ export default defineConfig({
   build: {
     outDir: '../Anyday-backend/public',
     emptyOutDir: true,
+    global: {}
   },
   define: {
     global: {},

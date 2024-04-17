@@ -13,18 +13,19 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 export function TaskList({ group }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
 
-  const [taskToEdit, setTaskToEdit] = useState(null)
+  const [taskToEdit, setTaskToEdit] = useState(boardService.getEmptyTask())
   const [placeholderProps, setPlaceholderProps] = useState({})
 
   const draggableDOMref = useRef()
 
   async function onSaveTask(title) {
+    console.log('on save task taskToEdit',taskToEdit)
     if (!taskToEdit) return
     const editedTask = { ...taskToEdit, title }
 
     try {
       await saveTask(board, group, editedTask)
-      setTaskToEdit(null)
+      setTaskToEdit(boardService.getEmptyTask())
     } catch (err) {
       showErrorMsg('Sorry, something went wrong')
       // console.log('Had issues adding task')
@@ -146,7 +147,7 @@ export function TaskList({ group }) {
           <input disabled className="add-task-checkbox" type="checkbox" name="task" />
           <div
             className="add-task-container"
-            onClick={() => setTaskToEdit(boardService.getEmptyTask())}
+            // onClick={() => setTaskToEdit(boardService.getEmptyTask())}
           >
             <EditableText name="add-task" placeholder="+ Add task" func={onSaveTask} isNew={true} />
           </div>

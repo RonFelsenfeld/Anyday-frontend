@@ -23,10 +23,10 @@ export function EditableText({
 
   function onSubmit(ev) {
     ev.preventDefault()
-
+console.log('txt from on submit',txt)
     if (txt) {
       func(txt)
-      inputRef.current.blur()
+      // inputRef.current.blur()
       if (isNew) setTxt('')
     }
   }
