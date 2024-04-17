@@ -19,13 +19,13 @@ export function TaskList({ group }) {
   const draggableDOMref = useRef()
 
   async function onSaveTask(title) {
-    console.log('on save task taskToEdit',taskToEdit)
+    console.log('on save task taskToEdit', taskToEdit)
     if (!taskToEdit) return
     const editedTask = { ...taskToEdit, title }
 
     try {
       await saveTask(board, group, editedTask)
-      setTaskToEdit(boardService.getEmptyTask())
+      setTaskToEdit(null)
     } catch (err) {
       showErrorMsg('Sorry, something went wrong')
       // console.log('Had issues adding task')
