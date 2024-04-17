@@ -10,7 +10,12 @@ import { showErrorMsg } from '../services/event-bus.service'
 import { saveTask } from '../store/actions/board.actions'
 import { ActivityLogView } from './ActivityLogView'
 import { FilesLog } from './FilesLog'
-import { SOCKET_EMIT_ADD_COMMENT, SOCKET_EMIT_SET_TASK, SOCKET_EVENT_COMMENT_ADDED, socketService } from '../services/socket-service'
+import {
+  SOCKET_EMIT_ADD_COMMENT,
+  SOCKET_EMIT_SET_TASK,
+  SOCKET_EVENT_COMMENT_ADDED,
+  socketService,
+} from '../services/socket-service'
 
 export function UpdateLog() {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -57,7 +62,7 @@ export function UpdateLog() {
   }
 
   async function addMsg(task) {
-    console.log('task',task)
+    console.log('task', task)
     try {
       await saveTask(board, taskGroup, task)
       socketService.emit(SOCKET_EMIT_ADD_COMMENT, task)
@@ -132,9 +137,7 @@ export function UpdateLog() {
       {activeView === 'activity' && (
         <ActivityLogView board={board} selectedTask={selectedTask} taskGroup={taskGroup} />
       )}
-      {activeView === 'files' && (
-        <FilesLog board={board} selectedTask={selectedTask} taskGroup={taskGroup} />
-      )}
+      {activeView === 'files' && <FilesLog selectedTask={selectedTask} />}
     </div>
   )
 }
