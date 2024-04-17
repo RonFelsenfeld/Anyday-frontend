@@ -9,7 +9,6 @@
         align-items: center;
         justify-items: center;
         grid-template-columns: 95px 50px 130px 100px 90px 20px 90px;
-        // gap: 10px;
 
         svg {
             color: gray;
@@ -44,7 +43,6 @@
         }
 
         .user-img {
-            // @include userImg(30px, 0)
             padding-inline-end: 20px;
 
             @include for-activity-log-medium {
@@ -52,7 +50,6 @@
             }
             @include for-mobile-layout {
                 padding-inline-end: 15px;
-                // justify-self: self-start;
             }
         }
 
@@ -69,11 +66,6 @@
                 justify-self: self-start;
             }
 
-        }
-
-
-        .time-desc {
-            // width: 58px;
         }
 
         .action {
@@ -93,12 +85,10 @@
 
             @include for-mobile-layout {
                 padding-inline-end: 10px;
-                // justify-self: self-start;
             }
         }
 
         .activity-action {
-            // width: 70px;
             @include overflow3Dots();
         }
     }
