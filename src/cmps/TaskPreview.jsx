@@ -47,16 +47,16 @@ export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEd
           },
         },
         {
-          title: 'Send as mail',
-          icon: 'gmail',
-          task,
-        },
-        {
           title: 'Add to calender',
           icon: 'calender',
           func: () => {
             googleService.addEventToGoogleCalendar(session, task)
           },
+        },
+        {
+          title: 'Send as mail',
+          icon: 'gmail',
+          task,
         },
         {
           title: 'Share on Whatsapp',

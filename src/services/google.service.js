@@ -12,7 +12,7 @@ async function signIn(supabase) {
     provider: 'google',
     options: {
       scopes:
-        'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
+        'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events ',
     },
   })
 

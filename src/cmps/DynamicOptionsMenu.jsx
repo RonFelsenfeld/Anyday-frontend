@@ -16,10 +16,11 @@ import {
 } from '../services/svg.service'
 
 import { hideModal } from '../store/actions/system.actions'
-import { WhatsappPersonPicker } from './WhatsappPersonPicker'
+import { DynamicShareToPersonPicker } from './DynamicShareToPersonPicker'
 
 export function DynamicOptionsMenu({ options }) {
   const [isPersonMenuOpen, setIsPersonMenuOpen] = useState(false)
+  const [selectedShareOption, setSelectedShareOption] = useState(null)
 
   function getSvg(iconName) {
     switch (iconName) {
@@ -73,12 +74,18 @@ export function DynamicOptionsMenu({ options }) {
   }
 
   function handleOptionClick(option) {
-    if (option.title !== 'Share on Whatsapp') {
+    const { title } = option
+    if (title !== 'Share on Whatsapp' && title !== 'Send as mail') {
       option.func()
       return hideModal()
     }
 
+    setSelectedShareOption(option)
     setIsPersonMenuOpen(true)
+  }
+
+  function isShareOption({ icon }) {
+    return icon === 'whatsapp' || icon === 'gmail'
   }
 
   function getOptionStyle({ title }) {
@@ -108,7 +115,7 @@ export function DynamicOptionsMenu({ options }) {
               </div>
             </button>
 
-            {option.icon === 'whatsapp' && (
+            {isShareOption(option) && (
               <div className="whatsapp-arrow flex align-center">
                 <ArrowRight />
               </div>
@@ -118,7 +125,11 @@ export function DynamicOptionsMenu({ options }) {
       </ul>
 
       {isPersonMenuOpen && (
-        <WhatsappPersonPicker options={options} setIsPersonMenuOpen={setIsPersonMenuOpen} />
+        <DynamicShareToPersonPicker
+          options={options}
+          setIsPersonMenuOpen={setIsPersonMenuOpen}
+          selectedShareOption={selectedShareOption}
+        />
       )}
     </article>
   )

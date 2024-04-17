@@ -64,7 +64,6 @@ function _setLoggedInUser(user) {
     phoneNumber: user.phoneNumber,
   }
 
-  console.log(userToSave)
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
   return userToSave
 }
