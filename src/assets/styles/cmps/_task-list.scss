@@ -18,9 +18,16 @@
     grid-auto-rows: $task-preview-height;
     border-bottom: 1px solid $secondary-border-clr;
 
+    @include for-narrow-layout {
+      grid-template-columns: 6px 32px 365px 100px repeat(4, 120px) 1fr;
+    }
+
     @include for-small-layout {
       grid-template-columns: 6px 32px 250px 100px repeat(4, 120px) 1fr;
     }
+
+    @include for-mobile-layout {
+      grid-template-columns: 6px 32px 200px 100px repeat(4, 120px) 1fr;    }
 
     input:not([name='add-task']) {
       @include checkbox;

@@ -888,7 +888,7 @@ export function SmallSearchIcon() {
 
 export function GoToArrow() {
   return (
-    <svg width="16" height="12" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="10" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

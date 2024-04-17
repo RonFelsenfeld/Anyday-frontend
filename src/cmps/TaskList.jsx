@@ -147,7 +147,7 @@ export function TaskList({ group }) {
           <input disabled className="add-task-checkbox" type="checkbox" name="task" />
           <div
             className="add-task-container"
-            // onClick={() => setTaskToEdit(boardService.getEmptyTask())}
+            onClick={() => setTaskToEdit(boardService.getEmptyTask())}
           >
             <EditableText name="add-task" placeholder="+ Add task" func={onSaveTask} isNew={true} />
           </div>
