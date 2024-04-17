@@ -69,12 +69,12 @@ export function TimelinePicker({ group, task }) {
       </header>
       <DialogContentContainer className="timeline-dialog" style={{ boxShadow: 'none' }}>
         <DatePicker
-          numberOfMonths={2}
-          data-testid="date-picker"
+          numberOfMonths={1}
+          data-testid="date-picker2"
           date={moment(date?._d)}
           endDate={moment(dueDate?._d)}
           onPickDate={d => onUpdateTimeline(d)}
-          range
+          range={true}
         />
       </DialogContentContainer>
     </article>

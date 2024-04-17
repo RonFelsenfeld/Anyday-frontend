@@ -714,13 +714,13 @@ export function HomeUpdates() {
   )
 }
 
-export function Xbutton() {
+export function Xbutton({ size = 26 }) {
   return (
     <svg
       viewBox="0 0 20 20"
       fill="currentColor"
-      width="26"
-      height="26"
+      width={size}
+      height={size}
       aria-hidden="true"
       className="Icon-module_icon"
       data-testid="icon"
@@ -888,7 +888,7 @@ export function SmallSearchIcon() {
 
 export function GoToArrow() {
   return (
-    <svg width="16" height="12" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg">
+    <svg width="16" height="10" viewBox="0 0 9 7" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

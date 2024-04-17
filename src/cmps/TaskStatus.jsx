@@ -14,9 +14,7 @@ export function TaskStatus({ group, task }) {
   const statusPreviewRef = useRef()
 
   function getStatus(statusId = task.status) {
-    return board.statuses.find(s => {
-      return s.id === statusId
-    })
+    return board.statuses.find(s => s.id === statusId)
   }
 
 

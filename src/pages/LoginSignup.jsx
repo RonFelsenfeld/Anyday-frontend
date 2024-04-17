@@ -48,6 +48,7 @@ export function LoginSignup() {
       console.log('Signup -> Has issues signup', err)
       showErrorMsg('Could not sign-in, try again later.')
     } finally {
+      console.log('hi')
       navigate('/board')
     }
   }
@@ -103,29 +104,16 @@ export function LoginSignup() {
             />
 
             {isSignup && (
-              <>
-                <input
-                  type="text"
-                  name="fullName"
-                  className="login-input"
-                  placeholder="Enter your full name"
-                  value={credentials.fullName}
-                  onChange={handleChange}
-                  required
-                  autoComplete="off"
-                />
-
-                <input
-                  type="tel"
-                  name="phoneNumber"
-                  pattern="^05\d{8}$"
-                  className="login-input"
-                  placeholder="Enter your phone number"
-                  value={credentials.phoneNumber}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-              </>
+              <input
+                type="text"
+                name="fullName"
+                className="login-input"
+                placeholder="Enter your full name"
+                value={credentials.fullName}
+                onChange={handleChange}
+                required
+                autoComplete="off"
+              />
             )}
 
             <input
@@ -138,6 +126,31 @@ export function LoginSignup() {
               required
               autoComplete="off"
             />
+
+            {isSignup && (
+              <>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  pattern="^05\d{8}$"
+                  className="login-input"
+                  placeholder="Enter your phone number (optional)"
+                  value={credentials.phoneNumber}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  className="login-input"
+                  placeholder="Enter your email address (optional)"
+                  value={credentials.email}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+              </>
+            )}
 
             {isSignup && (
               <div className="img-input-container flex align-center">

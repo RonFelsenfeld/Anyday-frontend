@@ -209,7 +209,6 @@ export function GroupHeader({
                         func={onEditGroupTitle}
                         className={'group-title-input'}
                         isFocused={true}
-                        isSubmitOnBlur={false}
                         btnInfo={{
                           className: 'btn-change-group-color',
                           style: { backgroundColor: group.style.color },

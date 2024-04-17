@@ -4,8 +4,9 @@ import { userService } from '../services/user.service'
 import { showErrorMsg } from '../services/event-bus.service'
 import { whatsappService } from '../services/whatsapp.service'
 import { hideModal } from '../store/actions/system.actions'
+import { googleService } from '../services/google.service'
 
-export function WhatsappPersonPicker({ options, setIsPersonMenuOpen }) {
+export function DynamicShareToPersonPicker({ options, setIsPersonMenuOpen, selectedShareOption }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const { persons } = board
 
@@ -13,20 +14,31 @@ export function WhatsappPersonPicker({ options, setIsPersonMenuOpen }) {
     const loggedInUser = userService.getLoggedInUser()
     if (!loggedInUser) return showErrorMsg('Login first')
 
-    // Extracting the whatsapp option, for getting the task
-    const whatsappOption = options.find(option => option.icon === 'whatsapp')
-    const { task } = whatsappOption
+    const { task } = selectedShareOption
 
-    whatsappService.sendOnWhatsapp(loggedInUser, person, task)
+    if (selectedShareOption.icon === 'whatsapp') {
+      whatsappService.sendOnWhatsapp(loggedInUser, person, task)
+    } else if (selectedShareOption.icon === 'gmail') {
+      googleService.sendViaGmail(loggedInUser, person, task)
+    }
+
     setIsPersonMenuOpen(false)
     hideModal()
   }
 
+  function getCondition(person) {
+    if (selectedShareOption.icon === 'whatsapp') return person.phoneNumber
+    if (selectedShareOption.icon === 'gmail') return person.email
+  }
+
   return (
-    <section className="whatsapp-person-picker">
+    <section
+      className="dynamic-share-to-person-picker"
+      style={{ transform: selectedShareOption.icon === 'gmail' ? 'translateY(-55px)' : '' }}
+    >
       <ul className="clean-list">
         {persons.map(person => {
-          if (person.phoneNumber) {
+          if (getCondition(person)) {
             return (
               <li
                 key={person.id}

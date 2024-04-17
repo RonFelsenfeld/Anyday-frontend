@@ -66,7 +66,7 @@ export function AppHeader() {
       </Link>
 
       <div className="actions-container flex align-center">
-        {/* <button className="btn">
+        <button className="btn">
           <NotificationBell />
         </button>
 
@@ -76,7 +76,7 @@ export function AppHeader() {
 
         <button className="btn">
           <Help />
-        </button> */}
+        </button>
 
         {!user && (
           <button className="btn" onClick={handleAuthClick}>

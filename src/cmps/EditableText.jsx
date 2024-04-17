@@ -11,11 +11,16 @@ export function EditableText({
   btnInfo = null,
 }) {
   const [txt, setTxt] = useState(prevTxt || '')
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const inputRef = useRef()
 
   useEffect(() => {
     if (isFocused) inputRef.current.focus()
   }, [])
+
+  useEffect(() => {
+    if (isSubmitted) inputRef.current.blur()
+  }, [isSubmitted])
 
   function handleChange({ target }) {
     setTxt(target.value)
@@ -24,17 +29,23 @@ export function EditableText({
   function onSubmit(ev) {
     ev.preventDefault()
 
+    if (!txt) setTxt(prevTxt)
+    
     if (txt) {
       func(txt)
-      // inputRef.current.blur()
+      setIsSubmitted(true)
+
       if (isNew) setTxt('')
     }
   }
 
-  // function handleBlur(ev) {
-  //   if (btnInfo && ev.target.type === 'text') return
-  //   onSubmit(ev)
-  // }
+  function handleBlur(ev) {
+    if (isSubmitted) return setIsSubmitted(false)
+
+    onSubmit(ev)
+    setIsSubmitted(false)
+    return
+  }
 
   return (
     <form className={className || ''} onSubmit={onSubmit}>
@@ -52,7 +63,7 @@ export function EditableText({
         name={name || ''}
         placeholder={placeholder || ''}
         onChange={handleChange}
-        onBlur={onSubmit}
+        onBlur={handleBlur}
         value={txt}
         autoComplete="off"
       ></input>

@@ -19,7 +19,6 @@ export function TaskList({ group }) {
   const draggableDOMref = useRef()
 
   async function onSaveTask(title) {
-    console.log('on save task taskToEdit', taskToEdit)
     if (!taskToEdit) return
     const editedTask = { ...taskToEdit, title }
 
@@ -147,7 +146,7 @@ export function TaskList({ group }) {
           <input disabled className="add-task-checkbox" type="checkbox" name="task" />
           <div
             className="add-task-container"
-            // onClick={() => setTaskToEdit(boardService.getEmptyTask())}
+            onClick={() => setTaskToEdit(boardService.getEmptyTask())}
           >
             <EditableText name="add-task" placeholder="+ Add task" func={onSaveTask} isNew={true} />
           </div>
