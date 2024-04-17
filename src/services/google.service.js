@@ -67,10 +67,14 @@ async function addEventToGoogleCalendar(session, task) {
 }
 
 async function sendViaGmail(loggedInUser, toUser, task) {
+  const currentURL = window.location.href
+  const taskURL = `${currentURL}/task/${task.id}`
+
   const msgInfo = {
     from_name: loggedInUser.fullName,
     to_name: toUser.fullName,
     message: task.title,
+    url: taskURL,
     to_email: toUser.email,
   }
 
