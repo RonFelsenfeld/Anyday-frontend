@@ -326,16 +326,22 @@ function getEmptyBoard() {
         id: 'u101',
         fullName: 'Atar Mor',
         imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+        phoneNumber: '0545613742',
+        email: 'atarmor92@gmail.com',
       },
       {
         id: 'u102',
         fullName: 'Ido Yotvat',
         imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168994/ido_ds25mn.jpg',
+        phoneNumber: '0506398851',
+        email: 'idooy11@gmail.com',
       },
       {
         id: 'u103',
         fullName: 'Ron Felsenfeld',
         imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/ron_hzfvru.jpg',
+        phoneNumber: '0544419922',
+        email: 'ronfelsenfeld@gmail.com',
       },
     ],
     priorities: [

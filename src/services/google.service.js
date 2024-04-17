@@ -1,10 +1,11 @@
+import emailjs from '@emailjs/browser'
 import { showErrorMsg, showSuccessMsg } from './event-bus.service'
-import { userService } from './user.service'
 
 export const googleService = {
   signIn,
   signOut,
   addEventToGoogleCalendar,
+  sendViaGmail,
 }
 
 async function signIn(supabase) {
@@ -62,5 +63,24 @@ async function addEventToGoogleCalendar(session, task) {
   } catch (err) {
     console.log('Had issues with adding event to google calendar')
     showErrorMsg('Could not add an event at the moment')
+  }
+}
+
+async function sendViaGmail(loggedInUser, toUser, task) {
+  const msgInfo = {
+    from_name: loggedInUser.fullName,
+    to_name: toUser.fullName,
+    message: task.title,
+    to_email: toUser.email,
+  }
+
+  try {
+    await emailjs.send('service_urtju63', 'template_2u2rj9i', msgInfo, {
+      publicKey: 'VEhtb69W7gXPp42W2',
+    })
+
+    showSuccessMsg(`Email sent to ${toUser.fullName}`)
+  } catch (err) {
+    console.log('FAILED...', err)
   }
 }

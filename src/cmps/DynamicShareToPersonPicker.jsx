@@ -4,6 +4,7 @@ import { userService } from '../services/user.service'
 import { showErrorMsg } from '../services/event-bus.service'
 import { whatsappService } from '../services/whatsapp.service'
 import { hideModal } from '../store/actions/system.actions'
+import { googleService } from '../services/google.service'
 
 export function DynamicShareToPersonPicker({ options, setIsPersonMenuOpen, selectedShareOption }) {
   const board = useSelector(storeState => storeState.boardModule.currentBoard)
@@ -18,10 +19,16 @@ export function DynamicShareToPersonPicker({ options, setIsPersonMenuOpen, selec
     if (selectedShareOption.icon === 'whatsapp') {
       whatsappService.sendOnWhatsapp(loggedInUser, person, task)
     } else if (selectedShareOption.icon === 'gmail') {
+      googleService.sendViaGmail(loggedInUser, person, task)
     }
 
     setIsPersonMenuOpen(false)
     hideModal()
+  }
+
+  function getCondition(person) {
+    if (selectedShareOption.icon === 'whatsapp') return person.phoneNumber
+    if (selectedShareOption.icon === 'gmail') return person.email
   }
 
   return (
@@ -31,7 +38,7 @@ export function DynamicShareToPersonPicker({ options, setIsPersonMenuOpen, selec
     >
       <ul className="clean-list">
         {persons.map(person => {
-          if (person.phoneNumber) {
+          if (getCondition(person)) {
             return (
               <li
                 key={person.id}

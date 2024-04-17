@@ -22,14 +22,14 @@ async function login({ username, password }) {
   }
 }
 
-async function signup({ username, password, fullName, imgUrl, phoneNumber }) {
+async function signup({ username, password, fullName, imgUrl, phoneNumber, email }) {
   const fullNameSplit = fullName.split(' ')
 
   const capitalizedName = fullNameSplit
     .map(name => name.charAt(0).toUpperCase() + name.substring(1))
     .join(' ')
 
-  const user = { username, password, fullName: capitalizedName, imgUrl, phoneNumber }
+  const user = { username, password, fullName: capitalizedName, imgUrl, phoneNumber, email }
   try {
     const savedUser = await httpService.post(BASE_URL + 'signup', user)
     if (savedUser) return _setLoggedInUser(user)
@@ -62,6 +62,7 @@ function _setLoggedInUser(user) {
     fullName: user.fullName,
     imgUrl: user.imgUrl,
     phoneNumber: user.phoneNumber,
+    email: user.email,
   }
 
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
@@ -74,6 +75,7 @@ function getEmptyCredentials() {
     password: '',
     fullName: '',
     phoneNumber: '',
+    email: '',
     imgUrl: '',
   }
 }
