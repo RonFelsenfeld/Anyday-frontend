@@ -480,7 +480,7 @@ function getEmptyBoard() {
       },
     ],
     activities: [],
-    cmpsOrder: ['PersonPicker', 'StatusPicker', 'PriorityPicker', 'TimelinePicker'],
+    cmpsOrder: ['PersonPicker', 'StatusPicker', 'PriorityPicker', 'TimelinePicker', 'FilesPicker'],
   }
 }
 

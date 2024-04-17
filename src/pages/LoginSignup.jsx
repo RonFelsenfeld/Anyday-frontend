@@ -48,6 +48,7 @@ export function LoginSignup() {
       console.log('Signup -> Has issues signup', err)
       showErrorMsg('Could not sign-in, try again later.')
     } finally {
+      console.log('hi')
       navigate('/board')
     }
   }

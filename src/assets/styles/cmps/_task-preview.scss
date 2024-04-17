@@ -267,12 +267,37 @@
       display: none;
     }
 
-    &:hover .progress-bar {
-      display: none;
+    &:hover {
+      .progress-bar {
+        display: none;
+      }
+
+      .days-num {
+        display: grid;
+      }
+
+      .btn-remove-timeline {
+        opacity: 1;
+      }
     }
 
-    &:hover .days-num {
-      display: grid;
+    .btn-remove-timeline {
+      position: absolute;
+      inset: 50% -6px auto auto;
+      // display: grid;
+      // align-items: center;
+      // justify-content: center;
+
+      width: 16px;
+      height: 16px;
+
+      padding: 0;
+      border-radius: $el-br;
+
+      color: $main-font-clr;
+      background-color: $btn-remove-timeline-clr;
+      transform: translateY(-50%);
+      opacity: 0;
     }
   }
 }

@@ -714,13 +714,13 @@ export function HomeUpdates() {
   )
 }
 
-export function Xbutton() {
+export function Xbutton({ size = 26 }) {
   return (
     <svg
       viewBox="0 0 20 20"
       fill="currentColor"
-      width="26"
-      height="26"
+      width={size}
+      height={size}
       aria-hidden="true"
       className="Icon-module_icon"
       data-testid="icon"
