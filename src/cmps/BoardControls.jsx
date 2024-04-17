@@ -105,6 +105,7 @@ export function BoardControls({ onAddNewTask, setIsIntegrationModalOpen }) {
           <form
             className="filter-form flex align-center"
             style={{ backgroundColor: filterBy.txt ? '#cce5ff' : '' }}
+            onSubmit={ev => ev.preventDefault()}
           >
             <Search />
             <input
