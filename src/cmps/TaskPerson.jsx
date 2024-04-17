@@ -14,14 +14,16 @@ export function TaskPerson({ group, task }) {
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: 'Changed person',
+      action: 'Person',
       createdAt: Date.now(),
+      title: 'Added',
+      to: boardService.getPerson(board, personId)
     }
 
     const personsIds = task.personsIds ? [...task.personsIds, personId] : [personId]
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
 
-    const editedTask = {...task, personsIds, activities}
+    const editedTask = { ...task, personsIds, activities }
 
     try {
       await saveTask(board, group, editedTask)
@@ -35,8 +37,10 @@ export function TaskPerson({ group, task }) {
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: 'Changed person',
+      action: 'Person',
       createdAt: Date.now(),
+      title: 'Removed',
+      to: boardService.getPerson(board, personId)
     }
     const editedTask = {
       ...task,

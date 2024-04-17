@@ -5,17 +5,20 @@ import { saveTask } from '../store/actions/board.actions'
 import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 import { utilService } from '../services/util.service'
+import { boardService } from '../services/board.service'
 
 export function TaskStatus({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
   const statusPreviewRef = useRef()
-  
-  function getStatus() {
+
+  function getStatus(statusId = task.status) {
     return board.statuses.find(s => {
-      return s.id === task.status})
+      return s.id === statusId
+    })
   }
+
 
   const { title, color } = getStatus() || ''
 
@@ -24,12 +27,16 @@ export function TaskStatus({ group, task }) {
     return { backgroundColor: status?.color }
   }
 
-  async function onUpdateTaskStatus({id, title}) {
+  async function onUpdateTaskStatus({ id }) {
+    const toStatus = getStatus()
+
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: `Changed status to ${title}`,
+      action: `Status`,
       createdAt: Date.now(),
+      from: getStatus(task.status),
+      to: getStatus(id)
     }
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
     const editedTask = { ...task, status: id, activities }
@@ -42,6 +49,8 @@ export function TaskStatus({ group, task }) {
       console.log('Had issues updating task status')
     }
   }
+
+
 
   function animateStatus() {
     const animationClasses = ['confetti', 'balloon', 'crazy-balls']
@@ -56,7 +65,7 @@ export function TaskStatus({ group, task }) {
 
   function handlePickerClick({ currentTarget }) {
     const cmpInfo = {
-      type: 'labelPicker', 
+      type: 'labelPicker',
       options: board.statuses,
       submitFunc: onUpdateTaskStatus,
       styleFunc: getStatusBG,
@@ -68,7 +77,7 @@ export function TaskStatus({ group, task }) {
   return (
     <div
       onClick={handlePickerClick}
-      style={{backgroundColor: color ? color : ''}}
+      style={{ backgroundColor: color ? color : '' }}
       className="task-row task-status"
       ref={statusPreviewRef}
     >

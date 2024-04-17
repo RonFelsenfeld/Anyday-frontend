@@ -18,8 +18,9 @@ export function TaskFiles({ group, task }) {
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: `Updated a file`,
+      action: `Files`,
       createdAt: Date.now(),
+      title: 'Added'
     }
 
     try {
@@ -43,8 +44,10 @@ export function TaskFiles({ group, task }) {
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: `Updated a file`,
+      action: `Files`,
       createdAt: Date.now(),
+      title: 'Removed'
+
     }
 
     try {

@@ -10,8 +10,8 @@ export function TaskPriority({ group, task }) {
 
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
 
-  function getPriority() {
-    return board.priorities?.find(p => p.id === task.priority)
+  function getPriority(priorityId = task.priority) {
+    return board.priorities?.find(p => p.id === priorityId)
   }
 
   const { title, color } = getPriority() || ''
@@ -21,12 +21,14 @@ export function TaskPriority({ group, task }) {
     return { backgroundColor: priority?.color }
   }
 
-  async function onUpdateTaskPriority({id, title}) {
+  async function onUpdateTaskPriority({ id }) {
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: `Changed priority to ${title}`,
+      action: 'Priority',
       createdAt: Date.now(),
+      from: getPriority(task.priority),
+      to: getPriority(id)
     }
 
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
@@ -54,7 +56,7 @@ export function TaskPriority({ group, task }) {
   return (
     <div
       onClick={handlePickerClick}
-      style={{backgroundColor: color ? color : ''}}
+      style={{ backgroundColor: color ? color : '' }}
       className="task-row task-priority"
     >
       {title}

@@ -897,7 +897,7 @@ function _createDemoBoard() {
       activities: [
         {
           id: 'a101',
-          txt: 'Changed Color',
+          txt: 'Color',
           createdAt: 1712163768641,
           byPerson: {
             _id: 'u101',

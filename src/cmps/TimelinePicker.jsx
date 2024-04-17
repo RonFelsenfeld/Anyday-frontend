@@ -28,12 +28,21 @@ export function TimelinePicker({ group, task }) {
     setStartDate(startDate)
     setEndDate(endDate)
 
+    let newTimeLine = {
+      startDate: startDateTS,
+      dueDate: endDateTS
+    }
+
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
-      action: `Changed Date`,
+      action: `Timeline`,
       createdAt: Date.now(),
+      color: group.style.color,
+      oldTimeLine: task.timeline,
+      newTimeLine
     }
+
 
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
 

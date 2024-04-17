@@ -1,32 +1,73 @@
-.activity-view-container{
+.activity-view-container {
     padding-block: 20px;
+    margin-block-end: 50px;
 
-    .activity{
+    .activity {
         padding-block: 20px;
         border-block-end: 1px solid $secondary-border-clr;
-        // ju
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        grid-template-columns: 75px 45px 160px 80px 90px 20px 90px;
+        ;
 
-        .task-title{
-            margin-inline-start: 10px;
-            width:180px ;
-        }
-        .user-img{
-            @include userImg(30px,10px)
-        }
-
-        .time-desc{
-            width:58px ;
+        .action-changer {
+            width: 75px;
         }
 
-        .action{
-            .user-img{
+        .task-title {
+            width: 130px;
+            @include overflow3Dots();
+            margin-inline-end: 15px
+        }
+
+        .user-img {
+            @include userImg(30px, 10px)
+        }
+
+        .time-desc {
+            width: 58px;
+        }
+
+        .action {
+            gap: 3px;
+
+            .user-img {
                 margin-inline: 10px;
 
             }
         }
 
-        .activity-action{
-            width: 230px;
+        .activity-action {
+            width: 70px;
+            @include overflow3Dots();
         }
+    }
+
+    .from {
+        height: 30px;
+        width: 100%;
+        color: white;
+    }
+
+    .to {
+        color: white;
+        width: 100%;
+        height: 30px;
+    }
+
+    .add-person {
+        @include userImg(24px)
+    }
+
+    .timeline-action {
+        width: 100%;
+        height: 27px;
+        border-radius: 30px;
+        color: white;
+    }
+
+    .file-img {
+        width: 15px;
     }
 }
