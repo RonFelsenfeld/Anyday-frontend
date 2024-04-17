@@ -4,8 +4,16 @@
   grid-auto-rows: $task-preview-height;
   position: relative;
 
+  @include for-narrow-layout {
+    grid-template-columns: 403px 100px repeat(4, 120px) 1fr;
+  }
+
   @include for-small-layout {
     grid-template-columns: 288px 100px repeat(4, 120px) 1fr;
+  }
+
+  @include for-mobile-layout {
+    grid-template-columns: 238px 100px repeat(4, 120px) 1fr;
   }
 
   &.active {
@@ -45,8 +53,16 @@
     grid-template-columns: 6px 32px 380px 65px;
     background-color: $main-bg-clr;
 
+    @include for-narrow-layout {
+      grid-template-columns: 6px 32px 300px 65px;
+    }
+
     @include for-small-layout {
       grid-template-columns: 6px 32px 185px 65px;
+    }
+
+    @include for-mobile-layout {
+      grid-template-columns: 6px 32px 150px 50px;
     }
 
     &:hover:not(.active) {
@@ -142,6 +158,10 @@
     display: grid;
     border-inline-start: 1px solid $secondary-border-clr;
     padding-inline-start: em(30px);
+
+    @include for-mobile-layout {
+      padding-inline-start: em(5px);
+    }
 
     input {
       @include input;

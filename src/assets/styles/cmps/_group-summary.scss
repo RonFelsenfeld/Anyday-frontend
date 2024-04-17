@@ -3,8 +3,16 @@
   grid-template-columns: 483px 100px repeat(4, 140px) 1fr;
   align-items: center;
 
+  @include for-narrow-layout {
+    grid-template-columns: 403px 100px repeat(4, 120px) 1fr;
+  }
+
   @include for-small-layout {
     grid-template-columns: 288px 100px repeat(4, 120px) 1fr;
+  }
+
+  @include for-mobile-layout {
+    grid-template-columns: 238px 100px repeat(4, 120px) 1fr;
   }
 
   article {
@@ -19,6 +27,18 @@
       left: 482px;
       grid-column: 2;
       border-bottom-left-radius: $cmp-br;
+
+      @include for-narrow-layout {
+        left: 402px;
+      }
+
+      @include for-small-layout {
+        left: 287px;
+      }
+
+      @include for-mobile-layout {
+        left: 238px;
+      }
     }
 
     &.sticky-cell {
@@ -43,6 +63,14 @@
       display: flex;
       height: 24px;
       width: 120px;
+
+      @include for-narrow-layout {
+        width: 105px;
+      }
+
+      @include for-mobile-layout {
+        width: 105px;
+      }
 
       >* {
         height: 24px;

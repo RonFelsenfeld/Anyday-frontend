@@ -29,6 +29,8 @@ export function EditableText({
   function onSubmit(ev) {
     ev.preventDefault()
 
+    if (!txt) setTxt(prevTxt)
+    
     if (txt) {
       func(txt)
       setIsSubmitted(true)

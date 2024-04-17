@@ -13,8 +13,7 @@ export function TaskStatus({ group, task }) {
   const statusPreviewRef = useRef()
   
   function getStatus() {
-    return board.statuses.find(s => {
-      return s.id === task.status})
+    return board.statuses.find(s => s.id === task.status)
   }
 
   const { title, color } = getStatus() || ''

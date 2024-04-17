@@ -58,6 +58,10 @@
     margin-inline-start: 38px;
     border: 1px solid $secondary-border-clr;
     @include btn;
+
+    @include for-narrow-layout {
+      margin-inline-start: 30px;
+    }
   }
 
   .group-header-sentinel {

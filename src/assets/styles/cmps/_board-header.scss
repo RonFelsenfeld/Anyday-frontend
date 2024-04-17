@@ -128,14 +128,10 @@
     letter-spacing: -0.1px;
 
     @include for-normal-layout {
-      font-size: em(32px);
+      font-size: em(26px);
       margin-inline-end: 0px;
       align-self: start;
       transform: translateY(-50%);
-    }
-
-    @include for-small-layout {
-      font-size: em(26px);
     }
 
     @include for-mobile-layout {
