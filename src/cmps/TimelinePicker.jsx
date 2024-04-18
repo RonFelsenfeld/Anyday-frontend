@@ -1,36 +1,51 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { DialogContentContainer, DatePicker } from 'monday-ui-react-core'
-import moment from 'moment'
+import { DayPicker } from 'react-day-picker'
+import 'react-day-picker/dist/style.css'
 
 import { saveTask } from '../store/actions/board.actions'
 import { utilService } from '../services/util.service'
+import { useEffectUpdate } from '../customHooks/useEffectUpdate'
 
 export function TimelinePicker({ group, task }) {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
-  const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
+  const [range, setRange] = useState(null)
+  const prevRangeRef = useRef()
 
-  const [date, setStartDate] = useState(moment(task.timeline?.startDate) || null)
-  const [dueDate, setEndDate] = useState(moment(task.timeline?.dueDate) || null)
+  useEffect(() => {
+    if (task.timeline) {
+      const currentTimeLine = {
+        from: new Date(task.timeline.startDate),
+        to: new Date(task.timeline.dueDate),
+      }
+      setRange({ ...currentTimeLine })
+      prevRangeRef.current = { ...currentTimeLine }
+    }
+  }, [])
 
-  async function onUpdateTimeline({ startDate, endDate }) {
-    if (!endDate) endDate = dueDate
-    let startDateTS = parseInt(moment(startDate?._d).format('x'))
-    let endDateTS = parseInt(moment(endDate?._d).format('x'))
-    let durationTS =
-      parseInt(moment(dueDate?._d).format('x')) - parseInt(moment(date?._d).format('x'))
+  useEffectUpdate(() => {
+    if (!range) {
+      const { from } = prevRangeRef.current
 
-    if (endDateTS < startDateTS) endDateTS = startDateTS + durationTS
-    endDate = moment(endDateTS)
+      setRange({ from, to: from })
+      return
+    }
 
-    setStartDate(startDate)
-    setEndDate(endDate)
+    prevRangeRef.current = { ...range }
+    updateTaskTimeline(range)
+  }, [range])
 
-    let newTimeLine = {
-      startDate: startDateTS,
-      dueDate: endDateTS
+  async function updateTaskTimeline({ from, to }) {
+    if (!to) to = from
+
+    const startDate = new Date(from).getTime()
+    const dueDate = new Date(to).getTime()
+
+    const newTimeLine = {
+      startDate,
+      dueDate,
     }
 
     const currActivity = {
@@ -40,18 +55,14 @@ export function TimelinePicker({ group, task }) {
       createdAt: Date.now(),
       color: group.style.color,
       oldTimeLine: task.timeline,
-      newTimeLine
+      newTimeLine,
     }
-
 
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
 
     const editedTask = {
       ...task,
-      timeline: {
-        startDate: parseInt(moment(startDate?._d).format('x')),
-        dueDate: parseInt(moment(endDate?._d).format('x')),
-      },
+      timeline: { ...newTimeLine },
       activities,
     }
 
@@ -62,21 +73,23 @@ export function TimelinePicker({ group, task }) {
     }
   }
 
+  const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
+
   return (
     <article className="timeline-picker">
       <header className="timeline-header flex align-center">
         <h2 className="timeline-title">Set Dates</h2>
       </header>
-      <DialogContentContainer className="timeline-dialog" style={{ boxShadow: 'none' }}>
-        <DatePicker
-          numberOfMonths={1}
-          data-testid="date-picker2"
-          date={moment(date?._d)}
-          endDate={moment(dueDate?._d)}
-          onPickDate={d => onUpdateTimeline(d)}
-          range={true}
-        />
-      </DialogContentContainer>
+
+      <DayPicker
+        mode="range"
+        showOutsideDays
+        selected={range}
+        onSelect={setRange}
+        modifiersStyles={{
+          selected: { backgroundColor: '#0073ea', border: 'none !important' },
+        }}
+      />
     </article>
   )
 }
