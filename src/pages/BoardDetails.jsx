@@ -170,8 +170,12 @@ export function BoardDetails() {
           onAddNewTask={onAddNewTask}
         />
       </div>
-
-      <div>
+      {!board.groups || !board.groups.length &&<div className='not-found'>
+         <img className='no-board-img' src="/assets/img/search_empty_state.svg" />
+         <h2 className='txt not-found-title'>No results found</h2>
+         <p className='txt'>Try using a different search term, configuring the search options or <br />use ”Search Everything” to search across the entire account</p>
+      </div>}
+      {<div>
         <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
           <Droppable droppableId="groups">
             {(provider, snapshot) => (
@@ -213,7 +217,7 @@ export function BoardDetails() {
             )}
           </Droppable>
         </DragDropContext>
-      </div>
+      </div>}
 
       <button className="add-group-btn" onClick={onAddGroup}>
         <AddBoardBtn /> Add new group

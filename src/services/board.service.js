@@ -367,7 +367,7 @@ function getEmptyBoard() {
       {
         id: 'u101',
         fullName: 'Atar Mor',
-        imgUrl: 'https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg',
+        imgUrl: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713439122/of43ydrlcijxmzwcpmsd.jpg',
         phoneNumber: '0545613742',
         email: 'atarmor92@gmail.com',
       },

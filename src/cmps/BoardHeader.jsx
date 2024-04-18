@@ -141,7 +141,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
 
         <div className="img-container flex">
           <img
-            src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1712168995/atar_ofxln7.jpg"
+            src="https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713439122/of43ydrlcijxmzwcpmsd.jpg"
             alt="User img"
             className="user-img"
             onMouseEnter={ev => showToolTip(ev.currentTarget, 'Atar Mor')}
