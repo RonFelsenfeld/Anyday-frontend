@@ -99,7 +99,7 @@ export function BoardHeader({ board, isHeaderExpanded, setIsHeaderExpanded, onAd
         onMouseEnter={ev => {
           showToolTip(ev.currentTarget, 'Click to edit')
         }}
-        onMouseLeave={() => hideToolTip()} // ! MOVE BELOW HEADING
+        onMouseLeave={() => hideToolTip()}
       >
         {!isEditing && board.title}
         {isEditing && (
