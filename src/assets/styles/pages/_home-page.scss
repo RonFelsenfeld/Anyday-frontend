@@ -216,6 +216,10 @@
         @include for-small-layout {
           gap: 10px;
         }
+
+        .btn-cta-container {
+          justify-content: flex-start;
+        }
       }
 
       .logo-container {

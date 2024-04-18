@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Integrate, RemovePersonFilter, Search, Sort, UserImg } from '../services/svg.service'
+import {
+  Integrate,
+  RemovePersonFilter,
+  Search,
+  Sort,
+  UserImg,
+  Xbutton,
+} from '../services/svg.service'
 import { boardService } from '../services/board.service'
 import { utilService } from '../services/util.service'
 
@@ -120,7 +127,7 @@ export function BoardControls({ onAddNewTask, setIsIntegrationModalOpen }) {
             />
 
             <div className={`removing-filter`} onClick={onRemoveGroupTaskFilter} style={getStyle()}>
-              <RemovePersonFilter />
+              <Xbutton size={16} />
             </div>
           </form>
         )}

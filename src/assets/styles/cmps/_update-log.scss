@@ -116,7 +116,7 @@
     grid-area: views;
     height: em(36px);
     margin-block-start: 16px;
-    border-block-end:1px solid $secondary-border-clr;
+    border-block-end: 1px solid $secondary-border-clr;
 
     .btn-view {
       position: relative;
@@ -132,6 +132,10 @@
 
       &.active {
         @include viewIndicator(-4px);
+
+        @include for-small-layout {
+          @include viewIndicator(2px);
+        }
       }
 
       &.updates-option {
