@@ -8,7 +8,7 @@ import { userService } from '../services/user.service'
 
 export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
   const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
-  //For presentation 
+  //For presentation
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
   const [currComment, setCurrComment] = useState(boardService.getEmptyComment())
 
@@ -27,10 +27,10 @@ export function TaskConversation({ setSelectedTask, selectedTask, addMsg }) {
       ...currComment,
       createdAt: Date.now(),
       id: utilService.makeId(),
-      byPerson: loggedInUser || guest
+      byPerson: loggedInUser || guest,
     }
 
-    const comments = selectedTask.comments ? [ ...selectedTask.comments, newComment ] : [newComment]
+    const comments = selectedTask.comments ? [newComment, ...selectedTask.comments] : [newComment]
     setCurrComment(newComment)
     setSelectedTask(prev => ({ ...prev, comments }))
 
