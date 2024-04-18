@@ -99,6 +99,7 @@
   border-radius: 50%;
   border: 2px solid $img-border-clr;
   margin: 0 $margin-inline;
+  object-fit: cover;
 }
 
 @mixin personInitials {

@@ -53,11 +53,14 @@
             border-radius: 50%;
             margin-inline-end: 20px;
             height: 30px;
+            width: 30px;
             
             @include for-activity-log-medium {
                 margin-inline-end: 5px;
                 // margin-inline-end: 0px;
                 height: 26px;
+                width: 26px;
+
             }
             @include for-mobile-layout {
                 margin-inline-end: 0px;

@@ -70,7 +70,9 @@
         .board-title {
           font-size: em(16px);
           font-family: FigtreeBold, RobotoBold, sans-serif;
-
+          @include overflow3Dots;
+          width: 180px;
+          
           @include for-normal-layout {
             font-size: em(24px);
           }
