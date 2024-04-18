@@ -88,84 +88,85 @@ function randomPastTime() {
 
 function calcPastTime(timestamp) {
   // Current time in milliseconds
-  var currentTime = Date.now();
+  var currentTime = Date.now()
 
-  var timeDifference = currentTime - timestamp;
+  var timeDifference = currentTime - timestamp
 
-  var minutes = Math.floor(timeDifference / (1000 * 60));
-  var hours = Math.floor(timeDifference / (1000 * 60 * 60));
-  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  var weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
-  var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+  var minutes = Math.floor(timeDifference / (1000 * 60))
+  var hours = Math.floor(timeDifference / (1000 * 60 * 60))
+  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+  var weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7))
+  var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30))
 
   if (minutes < 1) {
-    return 'just now';
+    return 'just now'
   } else if (minutes < 60) {
-    return minutes + ' minutes ago';
+    return minutes + ' minutes ago'
   } else if (hours < 24) {
-    return hours + ' hours ago';
+    return hours + ' hours ago'
   } else if (days === 1) {
-    return 'yesterday';
+    return 'yesterday'
   } else if (days < 7) {
-    return days + ' days ago';
+    return days + ' days ago'
   } else if (weeks === 1) {
-    return 'last week';
+    return 'last week'
   } else if (weeks < 4) {
-    return weeks + ' weeks ago';
+    return weeks + ' weeks ago'
   } else if (months === 1) {
-    return 'last month';
+    return 'last month'
   } else {
-    return 'more than a month ago';
+    return 'more than a month ago'
   }
 }
 
 function calcPastTimeActivity(timestamp) {
-  var currentTime = new Date().getTime();
+  var currentTime = new Date().getTime()
 
-  var timeDifference = currentTime - timestamp;
+  var timeDifference = currentTime - timestamp
 
-  var minutes = Math.floor(timeDifference / (1000 * 60));
-  var hours = Math.floor(timeDifference / (1000 * 60 * 60));
-  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  var weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
-  var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+  var minutes = Math.floor(timeDifference / (1000 * 60))
+  var hours = Math.floor(timeDifference / (1000 * 60 * 60))
+  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+  var weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7))
+  var months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30))
 
-  var currentDate = new Date();
+  var currentDate = new Date()
 
   function formatDate(date) {
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    month = month < 10 ? '0' + month : month; 
-    return day + month;
+    var day = date.getDate()
+    var month = date.getMonth() + 1
+    month = month < 10 ? '0' + month : month
+    return day + month
   }
 
   if (minutes < 1) {
-    return 'just now';
+    return 'just now'
   } else if (minutes < 60) {
-    return minutes + 'm ago';
+    return minutes + 'm ago'
   } else if (hours < 24) {
-    return hours + 'h ago';
+    return hours + 'h ago'
   } else if (days === 1) {
-    return 'yesterday';
+    return 'yesterday'
   } else if (days < 7) {
-    return days + 'd ago';
+    return days + 'd ago'
   } else if (weeks === 1) {
-    return 'last week';
+    return 'last week'
   } else if (weeks < 4) {
-    return weeks + 'w ago';
+    return weeks + 'w ago'
   } else {
-    var oneMonthAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()).getTime();
+    var oneMonthAgo = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1,
+      currentDate.getDate()
+    ).getTime()
 
     if (timestamp < oneMonthAgo) {
-      return formatDate(new Date(timestamp));
+      return formatDate(new Date(timestamp))
     } else {
-      return 'This year';
+      return 'This year'
     }
   }
 }
-
-
-
 
 function getFormattedTimeline(timestamp1, timestamp2) {
   const date1 = new Date(timestamp1)
@@ -173,9 +174,14 @@ function getFormattedTimeline(timestamp1, timestamp2) {
 
   const day1 = date1.getDate()
   const day2 = date2.getDate()
+
+  const month1 = date1.toLocaleString('default', { month: 'short' })
   const month2 = date2.toLocaleString('default', { month: 'short' })
 
-  const formattedDateRange = `${day1} - ${day2} ${month2}`
+  let formattedDateRange =
+    month1 === month2 ? `${day1} - ${day2} ${month2}` : `${day1} ${month1} - ${day2} ${month2}`
+
+  if (timestamp1 === timestamp2) formattedDateRange = `${day1} ${month1}`
   return formattedDateRange
 }
 
