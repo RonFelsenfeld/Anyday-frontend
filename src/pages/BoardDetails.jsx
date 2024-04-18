@@ -47,11 +47,9 @@ export function BoardDetails() {
   useEffect(() => {
     if (boardId) loadBoard(boardId)
 
-
-    socketService.on(SOCKET_EVENT_BOARD_UPDATED, (board) => {
+    socketService.on(SOCKET_EVENT_BOARD_UPDATED, board => {
       dispatch({ type: EDIT_BOARD, board })
     })
-
 
     return () => {
       dispatch({ type: SET_BOARD, board: null })
@@ -69,19 +67,17 @@ export function BoardDetails() {
       threshold: 0.9999,
     })
 
-    headerObserver.observe(sentinelRef.current)
+    if (sentinelRef.current) {
+      headerObserver.observe(sentinelRef.current)
+    } else {
+      headerObserver.unobserve(sentinelRef.current)
+    }
 
     function handleIntersection(entries) {
       entries.forEach(entry => {
         const { isIntersecting } = entry
         setIsHeaderExpanded(isIntersecting)
       })
-    }
-
-    document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
-
-    return () => {
-      headerObserver.disconnect()
     }
   }
 
@@ -170,54 +166,63 @@ export function BoardDetails() {
           onAddNewTask={onAddNewTask}
         />
       </div>
-      {!board.groups || !board.groups.length &&<div className='not-found'>
-         <img className='no-board-img' src="/assets/img/search_empty_state.svg" />
-         <h2 className='txt not-found-title'>No results found</h2>
-         <p className='txt'>Try using a different search term, configuring the search options or <br />use ”Search Everything” to search across the entire account</p>
-      </div>}
-      {<div>
-        <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
-          <Droppable droppableId="groups">
-            {(provider, snapshot) => (
-              <div
-                {...provider.droppableProps}
-                ref={provider.innerRef}
-                className={`group-container droppable-area ${snapshot.isDraggingOver ? 'dragging-layout' : ''
+      {!board.groups ||
+        (!board.groups.length && (
+          <div className="not-found">
+            <img className="no-board-img" src="/assets/img/search_empty_state.svg" />
+            <h2 className="txt not-found-title">No results found</h2>
+            <p className="txt">
+              Try using a different search term, configuring the search options or <br />
+              use ”Search Everything” to search across the entire account
+            </p>
+          </div>
+        ))}
+      {
+        <div>
+          <DragDropContext onDragEnd={handleOnDragEnd} onDragUpdate={handleOnDragUpdate}>
+            <Droppable droppableId="groups">
+              {(provider, snapshot) => (
+                <div
+                  {...provider.droppableProps}
+                  ref={provider.innerRef}
+                  className={`group-container droppable-area ${
+                    snapshot.isDraggingOver ? 'dragging-layout' : ''
                   }`}
-              >
-                {board.groups.map((group, idx) => (
-                  <GroupPreview
-                    key={group.id}
-                    group={group}
-                    isHeaderExpanded={isHeaderExpanded}
-                    onAddGroup={onAddGroup}
-                    onRemoveGroup={onRemoveGroup}
-                    setGroupToEdit={setGroupToEdit}
-                    groupToEdit={groupToEdit}
-                    snapshot={snapshot}
-                    draggableDOMref={draggableDOMref}
-                    idx={idx}
-                    isAllGroupsExpended={isAllGroupsExpended}
-                    setIsAllGroupsExpended={setIsAllGroupsExpended}
-                  />
-                ))}
-                {provider.placeholder}
-                {snapshot.isDraggingOver && (
-                  <div
-                    className="dragging-placeholder"
-                    style={{
-                      top: placeholderProps.clientY,
-                      left: placeholderProps.clientX + 6 + 'px',
-                      height: placeholderProps.clientHeight,
-                      width: placeholderProps.clientWidth,
-                    }}
-                  />
-                )}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>}
+                >
+                  {board.groups.map((group, idx) => (
+                    <GroupPreview
+                      key={group.id}
+                      group={group}
+                      isHeaderExpanded={isHeaderExpanded}
+                      onAddGroup={onAddGroup}
+                      onRemoveGroup={onRemoveGroup}
+                      setGroupToEdit={setGroupToEdit}
+                      groupToEdit={groupToEdit}
+                      snapshot={snapshot}
+                      draggableDOMref={draggableDOMref}
+                      idx={idx}
+                      isAllGroupsExpended={isAllGroupsExpended}
+                      setIsAllGroupsExpended={setIsAllGroupsExpended}
+                    />
+                  ))}
+                  {provider.placeholder}
+                  {snapshot.isDraggingOver && (
+                    <div
+                      className="dragging-placeholder"
+                      style={{
+                        top: placeholderProps.clientY,
+                        left: placeholderProps.clientX + 6 + 'px',
+                        height: placeholderProps.clientHeight,
+                        width: placeholderProps.clientWidth,
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
+      }
 
       <button className="add-group-btn" onClick={onAddGroup}>
         <AddBoardBtn /> Add new group

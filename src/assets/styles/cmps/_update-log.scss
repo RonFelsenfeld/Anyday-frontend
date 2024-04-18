@@ -105,11 +105,22 @@
       @include userImg($size: 26px);
     }
 
-    // .person-initials{
-    //   @include userImg($size: 26px);
-    //   @include personInitials;
+    .person-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include userImg($size: 25px);
+      border: none;
+      background-color: $text-color;
+      color: $main-bg-clr;
+      font-size: 12px;
+    }
 
-    // }
+    .person-initials {
+      @include userImg;
+      @include personInitials;
+      border: 2px solid rgb(245, 246, 248);
+    }
   }
 
   .menu-options {

@@ -39,6 +39,8 @@ export async function loadBoard(boardId) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true })
   try {
     const board = await boardService.getById(boardId)
+    document.title = `(${boardService.getTotalTasksByBoard(board)}) ${board.title}`
+
     store.dispatch({ type: SET_BOARD, board })
     socketService.emit(SOCKET_EMIT_SET_BOARD, board)
 

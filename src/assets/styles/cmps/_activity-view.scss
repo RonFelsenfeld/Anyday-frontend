@@ -1,135 +1,137 @@
 .activity-view-container {
+  padding-block: 20px;
+  margin-block-end: 50px;
+
+  .activity {
     padding-block: 20px;
-    margin-block-end: 50px;
+    border-block-end: 1px solid $secondary-border-clr;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 95px 50px 130px 100px 90px 20px 90px;
 
-    .activity {
-        padding-block: 20px;
-        border-block-end: 1px solid $secondary-border-clr;
-        display: grid;
-        align-items: center;
-        justify-items: center;
-        grid-template-columns: 95px 50px 130px 100px 90px 20px 90px;
-
-        svg {
-            color: gray;
-        }
-
-        @include for-activity-log-medium {
-            grid-template-columns: 70px 30px 85px 78px 70px 19px 70px;
-        }
-
-        @include for-mobile-layout {
-            padding-block: 6px;
-            grid-template-columns: 70px 35px 70px 70px 20px 70px;
-            gap: 0px;
-
-
-        }
-
-        // .user-img {
-        //     border-radius: 50%;
-        //     @include userImg(30px,0);
-        //     margin-inline: 10px;
-
-        // }
-
-
-        .task-title {
-            width: 100%;
-            padding-inline-end: 20px;
-
-            @include overflow3Dots();
-
-            @include for-activity-log-medium {
-                padding-inline-end: 5px;
-            }
-
-            @include for-mobile-layout {
-                display: none;
-            }
-        }
-
-        .user-img {
-            border-radius: 50%;
-            margin-inline-end: 20px;
-            height: 30px;
-            width: 30px;
-            
-            @include for-activity-log-medium {
-                margin-inline-end: 5px;
-                // margin-inline-end: 0px;
-                height: 26px;
-                width: 26px;
-
-            }
-            @include for-mobile-layout {
-                margin-inline-end: 0px;
-                margin-inline-end: 15px;
-            }
-        }
-
-        .time {
-            padding-inline-end: 20px;
-
-            @include for-activity-log-medium {
-                padding-inline-end: 0px;
-                justify-self: self-start;
-            }
-
-            @include for-mobile-layout {
-                padding-inline-end: 10px;
-                justify-self: self-start;
-            }
-
-        }
-
-        .action {
-            gap: 5px;
-            justify-self: self-start;
-            padding-inline-end: 20px;
-
-            @include for-activity-log-medium {
-                padding-inline-end: 5px;
-            }
-
-
-            
-
-            @include for-mobile-layout {
-                padding-inline-end: 10px;
-            }
-        }
-
-        .activity-action {
-            @include overflow3Dots();
-        }
+    svg {
+      color: gray;
     }
 
-    .from {
-        height: 30px;
-        width: 100%;
-        color: white;
+    @include for-activity-log-medium {
+      grid-template-columns: 70px 30px 85px 78px 70px 19px 70px;
     }
 
-    .to {
-        color: white;
-        width: 100%;
-        height: 30px;
+    @include for-mobile-layout {
+      padding-block: 6px;
+      grid-template-columns: 70px 35px 70px 70px 20px 70px;
+      gap: 0px;
     }
 
-    .add-person {
-        @include userImg(30px);
-        border: none;
+    // .user-img {
+    //     border-radius: 50%;
+    //     @include userImg(30px,0);
+    //     margin-inline: 10px;
+
+    // }
+
+    .task-title {
+      width: 100%;
+      padding-inline-end: 20px;
+
+      @include overflow3Dots();
+
+      @include for-activity-log-medium {
+        padding-inline-end: 5px;
+      }
+
+      @include for-mobile-layout {
+        display: none;
+      }
     }
 
-    .timeline-action {
-        width: 100%;
-        height: 27px;
-        border-radius: 30px;
-        color: white;
+    .user-img {
+      border-radius: 50%;
+      margin-inline-end: 20px;
+      height: 30px;
+      width: 30px;
+
+      @include for-activity-log-medium {
+        margin-inline-end: 5px;
+        // margin-inline-end: 0px;
+        height: 26px;
+        width: 26px;
+      }
+      @include for-mobile-layout {
+        margin-inline-end: 0px;
+        margin-inline-end: 15px;
+      }
     }
 
-    .file-img {
-        width: 15px;
+    .user-initials,
+    .user-initials-to {
+      @include userImg(30px, 0px);
+      @include personInitials;
     }
+
+    .user-initials {
+      justify-self: start;
+    }
+
+    .time {
+      padding-inline-end: 20px;
+
+      @include for-activity-log-medium {
+        padding-inline-end: 0px;
+        justify-self: self-start;
+      }
+
+      @include for-mobile-layout {
+        padding-inline-end: 10px;
+        justify-self: self-start;
+      }
+    }
+
+    .action {
+      gap: 5px;
+      justify-self: self-start;
+      padding-inline-end: 20px;
+
+      @include for-activity-log-medium {
+        padding-inline-end: 5px;
+      }
+
+      @include for-mobile-layout {
+        padding-inline-end: 10px;
+      }
+    }
+
+    .activity-action {
+      @include overflow3Dots();
+    }
+  }
+
+  .from {
+    height: 30px;
+    width: 100%;
+    color: white;
+  }
+
+  .to {
+    color: white;
+    width: 100%;
+    height: 30px;
+  }
+
+  .add-person {
+    @include userImg(30px);
+    border: none;
+  }
+
+  .timeline-action {
+    width: 100%;
+    height: 27px;
+    border-radius: 30px;
+    color: white;
+  }
+
+  .file-img {
+    width: 15px;
+  }
 }

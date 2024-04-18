@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { HomeUpdates, WorkSpaceOption, Xbutton } from '../services/svg.service'
 import { boardService } from '../services/board.service'
@@ -91,11 +91,38 @@ export function UpdateLog() {
       </div>
 
       <div className="img-options flex align-center">
+        {taskPersons && taskPersons.length > 2 && (
+          <>
+            {taskPersons[0].imgUrl ? (
+              <>
+                <img
+                  key={taskPersons[0].id}
+                  src={taskPersons[0].imgUrl}
+                  alt={taskPersons[0].fullName}
+                />
+              </>
+            ) : (
+              <div className="person-initials">
+                {utilService.getInitials(taskPersons[0].fullName)}
+              </div>
+            )}
+            <span className="person-count">+{taskPersons.length - 1}</span>
+          </>
+        )}
+
         {taskPersons &&
           !!taskPersons.length &&
-          taskPersons.map(person => (
-            <img key={person.id} src={`${person.imgUrl}`} alt={person.fullName} />
-          ))}
+          taskPersons.length <= 2 &&
+          taskPersons.map(person => {
+            if (person.imgUrl) {
+              return <img key={person.id} src={`${person.imgUrl}`} alt={person.fullName} />
+            } else {
+              return (
+                <div className="person-initials">{utilService.getInitials(person.fullName)}</div>
+              )
+            }
+          })}
+
         <div>
           <button className="menu-options-btn">
             <WorkSpaceOption />
