@@ -210,6 +210,11 @@
       padding: 9px 8px;
       border-radius: $el-br;
 
+      span {
+        @include overflow3Dots;
+        width: 170px;
+      }
+
       path {
         color: $secondary-font-clr;
       }
