@@ -4,6 +4,7 @@ import { utilService } from "../services/util.service";
 
 export function Activity({ activity, selectedTask }) {
 
+    if (!activity) return
     return (
         <div className="activity">
             <div className="time flex align-center" >
