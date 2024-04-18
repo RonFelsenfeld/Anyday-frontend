@@ -9,7 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     global: {}
   },
-  define: {
-    global: {},
-  },
+  // define: {
+  //   global: 'globalThis',
+  // },
 })
