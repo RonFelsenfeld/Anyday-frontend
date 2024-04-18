@@ -22,6 +22,7 @@ import { useSecondRender } from '../customHooks/useSecondRender'
 import { GroupPreview } from '../cmps/GroupPreview'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { SOCKET_EVENT_BOARD_UPDATED, socketService } from '../services/socket-service'
+import { useScroll } from '../customHooks/useScroll'
 
 export function BoardDetails() {
   const board = useSelector(storeState => storeState.boardModule.filteredBoard)
@@ -43,6 +44,7 @@ export function BoardDetails() {
   const dispatch = useDispatch()
 
   useSecondRender(createObserver)
+  useScroll(boardDetailsRef.current)
 
   useEffect(() => {
     if (boardId) loadBoard(boardId)

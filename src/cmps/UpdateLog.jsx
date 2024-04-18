@@ -102,7 +102,7 @@ export function UpdateLog() {
                 />
               </>
             ) : (
-              <div className="person-initials">
+              <div key={taskPersons[0].id} className="person-initials">
                 {utilService.getInitials(taskPersons[0].fullName)}
               </div>
             )}

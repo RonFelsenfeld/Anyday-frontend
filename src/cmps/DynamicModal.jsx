@@ -1,5 +1,5 @@
 import 'animate.css'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
@@ -75,7 +75,7 @@ export function DynamicModal() {
           return setModalInfo({ x: modalLeft, y: modalTop })
       }
     }
-  }, [isOpen])
+  }, [isOpen, pos])
 
   return (
     <dialog

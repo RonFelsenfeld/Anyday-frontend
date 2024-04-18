@@ -28,6 +28,10 @@ export function showModal(currentTarget, alignment, cmp, hasCaret) {
 }
 
 export function hideModal() {
+  // For the useScroll to not activate in each scroll
+  const modal = store.getState().systemModule.modal
+  if (!modal.isOpen) return
+
   store.dispatch({
     type: SHOW_MODAL,
     modal: {

@@ -1,11 +1,19 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { hideModal } from '../store/actions/system.actions'
 
-export function useScroll(el, cb) {
+export function useScroll(el) {
+  const modal = useSelector(storeState => storeState.systemModule.modal)
+
   useEffect(() => {
-    el.addEventListener('scroll', cb)
+    if (!modal.isOpen) return
+
+    el.addEventListener('scroll', () => {
+      if (modal.isOpen) hideModal()
+    })
 
     return () => {
-      el.removeEventListener('scroll', cb)
+      el.removeEventListener('scroll', hideModal)
     }
-  }, [cb])
+  }, [modal.isOpen])
 }
