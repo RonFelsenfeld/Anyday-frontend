@@ -19,7 +19,6 @@ export function TaskTimeline({ group, task }) {
       type: 'timelinePicker',
       group,
       task,
-      // submitFunc: onUpdateTaskStatus,
     }
 
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, true)
@@ -35,17 +34,26 @@ export function TaskTimeline({ group, task }) {
     }
   }
 
-  const percentage = utilService.calcPercentageOfElapsedTime(
-    task?.timeline?.startDate,
-    task?.timeline?.dueDate
-  )
+  function getTimelineColor() {
+    if (!task.timeline || (!task.timeline.startDate && !task.timeline.dueDate)) {
+      return 'rgb(196, 196, 196)'
+    }
+
+    const percentage = utilService.calcPercentageOfElapsedTime(
+      task?.timeline?.startDate,
+      task?.timeline?.dueDate
+    )
+
+    return `linear-gradient(to right, ${group.style.color} ${percentage}%, #333333 ${percentage}%)`
+  }
+
   const numOfDays = utilService.getNumOfDays(task?.timeline?.startDate, task?.timeline?.dueDate)
   const hoverDisplay = task.timeline ? `${numOfDays} days` : 'Set days'
 
   return (
     <div
       style={{
-        background: `linear-gradient(to right, ${group.style.color} ${percentage}%, #333333 ${percentage}%)`,
+        background: getTimelineColor(),
       }}
       className="task-row task-timeline"
       onClick={handlePickerClick}

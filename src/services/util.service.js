@@ -15,6 +15,7 @@ export const utilService = {
   getNumOfDays,
   greetBasedOnHour,
   getRandomTimestamp,
+  getFormattedRegex,
 }
 
 function makeId(length = 6) {
@@ -278,4 +279,8 @@ function getRandomTimestamp() {
     Math.floor(Math.random() * (currentTime - twoMonthsAgoTimestamp)) + twoMonthsAgoTimestamp
 
   return randomTimestamp
+}
+
+function getFormattedRegex(str) {
+  return str.replace(/[.*+?^${}(|[\]\\]/g, '\\$&')
 }
