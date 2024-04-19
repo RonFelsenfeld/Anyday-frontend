@@ -26,6 +26,8 @@ export const boardService = {
   getTotalTasksByBoard,
   getColTitle,
   getGroupColors,
+  getLabelColors,
+  getRandLabelColor,
   getTaskById,
   filterBoard,
   sortBoard,
@@ -266,6 +268,48 @@ function getGroupColors() {
     'rgb(127, 83, 71)',
     'rgb(196, 196, 196)',
     'rgb(117, 117, 117)',
+  ]
+}
+
+
+function getLabelColors() {
+  return [
+    '#037f4c',
+    '#00c875',
+    '#9cd326',
+    '#cab641',
+    '#ffcb00',
+    '#fdab3d',
+    '#ff6d3b',
+    '#ffadad',
+    '#ff7575',
+    '#bb3354',
+    '#df2f4a',
+    '#e50073',
+    '#ff5ac4',
+    '#faa1f1',
+    '#9d50dd',
+    '#784bd1',
+    '#7e3b8a',
+    '#401694',
+    '#5559df',
+    '#225091',
+    '#579bfc',
+    '#007eb5',
+    '#4eccc6',
+    '#66ccff',
+    '#74afcc',
+    '#9aadbd',
+    '#757575',
+    '#333333',
+    '#e484bd',
+    '#bca58a',
+    '#a1e3f6',
+    '#216edf',
+    '#175a63',
+    '#bda8f9',
+    '#a9bee8',
+    '#9d99b9'
   ]
 }
 
@@ -546,6 +590,12 @@ function getEmptyGroup() {
       color: _getRandGroupColor(),
     },
   }
+}
+
+function getRandLabelColor() {
+  const colors = getLabelColors()
+  return colors[utilService.getRandomIntInclusive(0, colors.length - 1)]
+
 }
 
 function _getRandGroupColor() {
