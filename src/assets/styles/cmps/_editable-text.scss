@@ -1,0 +1,32 @@
+.editable-text {
+  .text-input-container {
+    position: relative;
+    width: 100%;
+
+    .microphone-icon {
+      &::after {
+        content: '\f130';
+        position: absolute;
+        top: 50%;
+        right: 25px;
+
+        font-size: em(12px);
+        color: $secondary-font-clr;
+        font-family: faSolid;
+
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+
+      &.listening {
+        &::after {
+          animation: micListening 1.2s infinite ease-in-out;
+        }
+      }
+    }
+
+    input {
+      padding-inline-end: 30px;
+    }
+  }
+}

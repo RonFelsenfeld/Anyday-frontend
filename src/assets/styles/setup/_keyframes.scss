@@ -80,3 +80,9 @@
   animation: crazy-balls 3s steps(75);
   animation-fill-mode: forwards;
 }
+
+@keyframes micListening {
+  50% {
+    color: rgb(234, 141, 141);
+  }
+}

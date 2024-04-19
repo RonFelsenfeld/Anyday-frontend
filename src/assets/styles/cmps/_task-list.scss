@@ -27,7 +27,8 @@
     }
 
     @include for-mobile-layout {
-      grid-template-columns: 6px 32px 200px 100px repeat(4, 120px) 1fr;    }
+      grid-template-columns: 6px 32px 200px 100px repeat(4, 120px) 1fr;
+    }
 
     input:not([name='add-task']) {
       @include checkbox;
@@ -125,6 +126,18 @@
         border-inline-start: 1px solid $secondary-border-clr;
         position: sticky;
         left: 38px;
+
+        .editable-text {
+          &:hover {
+            .microphone-icon {
+              opacity: 1;
+            }
+          }
+
+          .microphone-icon {
+            opacity: 0;
+          }
+        }
       }
 
       input[name='add-task'] {

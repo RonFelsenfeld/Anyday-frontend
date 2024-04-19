@@ -75,6 +75,18 @@
       border-inline-start: none;
       background-color: $active-btn-clr;
     }
+
+    .editable-text {
+      &:hover {
+        .microphone-icon {
+          opacity: 1;
+        }
+      }
+
+      .microphone-icon {
+        opacity: 0;
+      }
+    }
   }
 
   .task-menu-btn {

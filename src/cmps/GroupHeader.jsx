@@ -198,7 +198,7 @@ export function GroupHeader({
                     hideToolTip()
                   }}
                   onMouseEnter={ev => isExpanded && showToolTip(ev.currentTarget, 'Click to edit')}
-                  onMouseLeave={() => isExpanded && hideToolTip()} // ! MOVE BELOW HEADING
+                  onMouseLeave={() => isExpanded && hideToolTip()}
                   className="group-title"
                 >
                   {!isEditingCurrGroup(group) && group.title}
