@@ -6,7 +6,7 @@ export function useScroll(el) {
   const modal = useSelector(storeState => storeState.systemModule.modal)
 
   useEffect(() => {
-    if (!modal.isOpen) return
+    if (!modal.isOpen || !el) return
 
     el.addEventListener('scroll', () => {
       if (modal.isOpen) hideModal()

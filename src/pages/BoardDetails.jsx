@@ -64,6 +64,8 @@ export function BoardDetails() {
   }, [groupTaskFilterBy, sortBy])
 
   function createObserver() {
+    if (!boardDetailsRef.current) return
+
     const headerObserver = new IntersectionObserver(handleIntersection, {
       root: boardDetailsRef.current,
       threshold: 0.9999,
