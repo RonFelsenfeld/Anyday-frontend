@@ -51,6 +51,7 @@ export function BoardDetails() {
     if (boardId) loadBoard(boardId)
 
     socketService.on(SOCKET_EVENT_BOARD_UPDATED, board => {
+      console.log(board)
       dispatch({ type: EDIT_BOARD, board })
     })
 
@@ -62,7 +63,7 @@ export function BoardDetails() {
 
   useEffect(() => {
     if (fullBoard) onFilterSortBoard(fullBoard, groupTaskFilterBy, sortBy)
-  }, [groupTaskFilterBy, sortBy])
+  }, [fullBoard, groupTaskFilterBy, sortBy])
 
   function createObserver() {
     if (!boardDetailsRef.current) return

@@ -96,7 +96,7 @@ export function DynamicOptionsMenu({ options }) {
     if (title === 'Logout') return { width: '100px' }
     if (title === 'Delete Board') return { width: '150px' }
     if (title === 'Ido Yotvat' || title === 'Atar Mor' || title === 'Ron Felsenfeld')
-      return { width: 'max-content' }
+      return { width: '100%' }
     return { border: 'none' } // Just for the style get valid object
   }
 
@@ -113,9 +113,9 @@ export function DynamicOptionsMenu({ options }) {
             style={getOptionStyle(option)}
             onClick={() => handleOptionClick(option)}
           >
-            <button className="btn-option flex">
+            <button className="btn-option flex align-center">
               <div className="flex align-center">
-                <span>{getSvg(option.icon)}</span>
+                <span className="flex align-center justify-between">{getSvg(option.icon)}</span>
                 <span className="option-title">{option.title}</span>
               </div>
             </button>

@@ -11,6 +11,7 @@
       .btn-option {
         .option-title {
           margin-inline-start: 8px;
+          padding-inline-end: 2px;
         }
       }
     }
@@ -26,6 +27,6 @@
   }
 
   .user-img {
-    @include userImg(30px, 0px);
+    @include userImg(28px, 0px);
   }
 }
