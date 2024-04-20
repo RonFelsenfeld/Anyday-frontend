@@ -7,6 +7,8 @@ import { BOTTOM_LEFT } from '../store/reducers/system.reducer'
 
 import { EditableText } from './EditableText'
 import { useClickOutside } from '../customHooks/useClickOutside'
+import { saveBoard } from '../store/actions/board.actions'
+import { showErrorMsg } from '../services/event-bus.service'
 
 export function SidebarBoardPreview({
   board,
@@ -20,6 +22,17 @@ export function SidebarBoardPreview({
   const menuBtnRef = useRef()
 
   useClickOutside(menuBtnRef, () => setIsMenuOpen(false))
+
+  async function onToggleFavorite() {
+    board.isStarred = !board.isStarred
+
+    try {
+      await saveBoard(board)
+    } catch (err) {
+      console.log('Favorite --> Had issues favorite board')
+      showErrorMsg('Could not preform the action, try again later.')
+    }
+  }
 
   const options = [
     {
@@ -39,11 +52,12 @@ export function SidebarBoardPreview({
       },
     },
     {
-      title: 'Add to favorites',
+      title: !board.isStarred ? 'Add to favorites' : 'Remove from favorites',
       icon: 'favorite',
       func: () => {
+        onToggleFavorite()
         setIsMenuOpen(false)
-      }, // ! ADD REAL FUNCTION
+      },
     },
   ]
 
@@ -61,32 +75,32 @@ export function SidebarBoardPreview({
 
   return (
     // <NavLink className="navlink" to={`/board/${board._id}`} key={board._id}>
-      <div className="board-li flex align-center">
-        <MiniBoard className="mini-board-svg" />
+    <div className="board-li flex align-center">
+      <MiniBoard className="mini-board-svg" />
 
-        <div key={board._id} className="board-title-options flex align-center">
-          {!isEditing && <span className="board-title-span">{board.title}</span>}
+      <div key={board._id} className="board-title-options flex align-center">
+        {!isEditing && <span className="board-title-span">{board.title}</span>}
 
-          {isEditing && (
-            <EditableText
-              boardId={boardToEdit._id}
-              prevTxt={boardToEdit.title}
-              className={'board-title-input'}
-              setBoardToEdit={setBoardToEdit}
-              func={onEditBoardTitle}
-              isFocused={true}
-            />
-          )}
+        {isEditing && (
+          <EditableText
+            boardId={boardToEdit._id}
+            prevTxt={boardToEdit.title}
+            className={'board-title-input'}
+            setBoardToEdit={setBoardToEdit}
+            func={onEditBoardTitle}
+            isFocused={true}
+          />
+        )}
 
-          <button
-            className={`options-menu-btn flex justify-center align-center ${openMenuClass}`}
-            onClick={handleOptionsClick}
-            ref={menuBtnRef}
-          >
-            <Options />
-          </button>
-        </div>
+        <button
+          className={`options-menu-btn flex justify-center align-center ${openMenuClass}`}
+          onClick={handleOptionsClick}
+          ref={menuBtnRef}
+        >
+          <Options />
+        </button>
       </div>
+    </div>
     // {/* </NavLink> */}
   )
 }
