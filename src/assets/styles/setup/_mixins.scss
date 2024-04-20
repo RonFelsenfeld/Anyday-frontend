@@ -24,7 +24,7 @@
 }
 
 @mixin for-activity-log-medium {
-  @media(max-width:$break-activity-medium){
+  @media (max-width: $break-activity-medium) {
     @content;
   }
 }
@@ -219,4 +219,31 @@
   padding: em(4px) em(4px) em(4px) em(18px);
   border-radius: $el-br;
   border: 1px solid $secondary-border-clr;
+}
+
+@mixin backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  width: 100vw;
+  height: 100dvh;
+
+  background-color: $backdrop-clr;
+  --animate-duration: 0.2s;
+}
+
+@mixin modal($padding: 20px) {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  border-radius: $cmp-br;
+  padding: em($padding);
+
+  background-color: $main-bg-clr;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  --animate-duration: 0.2s;
 }

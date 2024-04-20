@@ -1,32 +1,11 @@
 .google-modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-
-  width: 100vw;
-  height: 100dvh;
-
-  background-color: $backdrop-clr;
-  --animate-duration: 0.2s;
+  @include backdrop;
 }
 
 .google-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-
+  @include modal;
   gap: 15px;
   width: 500px;
-
-  border-radius: $cmp-br;
-  padding: em(20px);
-
-  background-color: $main-bg-clr;
-  z-index: 999;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 9px 3px #70707075;
-  --animate-duration: 0.2s;
 
   @include for-small-layout {
     width: 450px;

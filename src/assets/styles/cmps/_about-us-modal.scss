@@ -1,0 +1,42 @@
+.about-us-modal-backdrop {
+  @include backdrop;
+}
+
+.about-us-modal {
+  @include modal(30px);
+
+  .main-title {
+    margin-block-end: 20px;
+
+    font-size: em(32px);
+    font-family: FigtreeMedium, RobotoBold, sans-serif;
+    text-align: center;
+  }
+
+  .content-container {
+    gap: 10px;
+    margin-block-end: 20px;
+
+    .content-paragraph {
+      font-size: em(16px);
+      line-height: 1.5;
+    }
+  }
+
+  .contact-container {
+    gap: 1em;
+    margin: auto;
+
+    .btn-contact {
+      &:hover {
+        svg {
+          opacity: 0.7;
+        }
+      }
+
+      svg {
+        fill: $secondary-font-clr;
+      }
+    }
+  }
+}

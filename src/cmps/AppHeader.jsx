@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import {
+  AboutUs,
   Help,
   Inbox,
   MenuGrid,
@@ -14,9 +16,11 @@ import { showModal } from '../store/actions/system.actions'
 import { logout } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { socketService } from '../services/socket-service'
+import { AboutUsModal } from './AboutUsModal'
 
 export function AppHeader() {
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
+  const [isAboutUsModalOpen, setIsAboutUsModalOpen] = useState(false)
   const navigate = useNavigate()
 
   function handleAuthClick({ currentTarget }) {
@@ -78,6 +82,10 @@ export function AppHeader() {
           <Help />
         </button>
 
+        <button className="btn" onClick={() => setIsAboutUsModalOpen(true)}>
+          <AboutUs />
+        </button>
+
         {!user && (
           <button className="btn" onClick={handleAuthClick}>
             <UserImg />
@@ -95,6 +103,8 @@ export function AppHeader() {
           </div>
         )}
       </div>
+
+      {isAboutUsModalOpen && <AboutUsModal setIsAboutUsModalOpen={setIsAboutUsModalOpen} />}
     </header>
   )
 }
