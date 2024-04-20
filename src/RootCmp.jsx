@@ -22,8 +22,40 @@ import { UpdateLog } from './cmps/UpdateLog'
 import { DynamicToolTip } from './cmps/DynamicToolTip'
 import { DynamicModal } from './cmps/DynamicModal'
 import { UserMsg } from './cmps/UserMsg'
+import { useEffect, useRef } from 'react'
 
 export function App() {
+  const isLogMsgPrinted = useRef(false)
+  useEffect(() => {
+
+    printLogMsg()
+
+  }, [])
+
+  function printLogMsg() {
+
+
+    if (isLogMsgPrinted.current) return
+    console.log(
+      `%cLooking for web developers?\n%cWe're looking for a job. Contact us!\n\n
+%c Ido Yotvat: %chttps://www.linkedin.com/in/ido-yotvat-52940020b/\n
+%c Atar Mor: %chttps://www.linkedin.com/in/atar-mor-535388103/\n
+%c Ron Felsenfeld: %chttps://www.linkedin.com/in/ron-felsenfeld-73553a261/\n`,
+      "color: #6161ff; font-size:20px;",
+      "color: #FFCE04; font-size:14px;",
+      "color: #F6335A; font-size:14px;",
+      "color: #F6335A; font-size:14px;",
+      "color: #FFCE04; font-size:14px;",
+      "color: #FFCE04; font-size:14px;",
+      "color: #04CC77; font-size:14px;",
+      "color: #04CC77; font-size:14px;"
+    );
+
+
+    isLogMsgPrinted.current = true
+
+  }
+
   return (
     <Provider store={store}>
       <SessionContextProvider supabaseClient={supabase}>

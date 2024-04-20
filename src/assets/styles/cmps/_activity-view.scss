@@ -87,6 +87,7 @@
             gap: 5px;
             justify-self: self-start;
             padding-inline-end: 20px;
+            align-items: end;
 
             @include for-activity-log-medium {
                 padding-inline-end: 5px;
