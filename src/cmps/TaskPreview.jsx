@@ -21,7 +21,7 @@ import { TaskTimeline } from './TaskTimeline'
 import { TaskFiles } from './TaskFiles'
 
 export function TaskPreview({ group, task, onSaveTask, onRemoveTask, setTaskToEdit }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const activeTaskId = useSelector(storeState => storeState.boardModule.activeTaskId)
   const filterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
 

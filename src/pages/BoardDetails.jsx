@@ -25,7 +25,8 @@ import { SOCKET_EVENT_BOARD_UPDATED, socketService } from '../services/socket-se
 import { useScroll } from '../customHooks/useScroll'
 
 export function BoardDetails() {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const fullBoard = useSelector(storeState => storeState.boardModule.currentBoard)
+  const filteredBoard = useSelector(storeState => storeState.boardModule.filteredBoard)
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
   const sortBy = useSelector(storeState => storeState.boardModule.boardSortBy)
 
@@ -54,13 +55,13 @@ export function BoardDetails() {
     })
 
     return () => {
-      dispatch({ type: SET_BOARD, board: null })
+      // dispatch({ type: SET_BOARD, board: null })
       socketService.off(SOCKET_EVENT_BOARD_UPDATED)
     }
   }, [boardId])
 
   useEffect(() => {
-    if (board) onFilterSortBoard(groupTaskFilterBy, sortBy)
+    if (fullBoard) onFilterSortBoard(fullBoard, groupTaskFilterBy, sortBy)
   }, [groupTaskFilterBy, sortBy])
 
   function createObserver() {
@@ -113,15 +114,15 @@ export function BoardDetails() {
   async function handleOnDragEnd(result) {
     if (!result.destination) return
 
-    const items = Array.from(board.groups)
+    const items = Array.from(fullBoard.groups)
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
-    board.groups = [...items]
+    fullBoard.groups = [...items]
 
     setPlaceholderProps({})
 
     try {
-      await saveBoard(board)
+      await saveBoard(fullBoard)
     } catch (err) {
       console.log('Dragging -> Had issues saving board')
     }
@@ -130,7 +131,7 @@ export function BoardDetails() {
   async function onAddGroup() {
     const newGroup = boardService.getEmptyGroup()
     try {
-      await saveGroup(board, newGroup)
+      await saveGroup(fullBoard, newGroup)
     } catch (err) {
       console.log('Had issues adding group', err)
     }
@@ -138,7 +139,7 @@ export function BoardDetails() {
 
   async function onRemoveGroup(groupId) {
     try {
-      await removeGroup(board, groupId)
+      await removeGroup(fullBoard, groupId)
       showSuccessMsg(' We successfully deleted 1 item')
     } catch (err) {
       showErrorMsg('Sorry, something wend wrong')
@@ -149,29 +150,32 @@ export function BoardDetails() {
   async function onAddNewTask() {
     const newTask = boardService.getEmptyTask()
     newTask.title = 'New task'
+
+    const groupToSave = fullBoard.groups?.find(g => g.id === filteredBoard?.groups[0].id)
+
     try {
-      await saveTask(board, board.groups[0], newTask, true) // true => add at the beggining
-      dispatch({ type: SET_ACTIVE_TASK_ID, taskId: board.groups[0].tasks[0].id })
+      await saveTask(fullBoard, groupToSave, newTask, true) // true => add at the beggining
+      dispatch({ type: SET_ACTIVE_TASK_ID, taskId: filteredBoard.groups[0].tasks[0].id })
     } catch (err) {
       console.log('Had issues adding task', err)
     }
   }
 
-  if (!board) return <Loader />
+  if (!fullBoard) return <Loader />
   return (
     <section className="board-details" ref={boardDetailsRef}>
       <div className="sentinel" ref={sentinelRef}></div>
 
       <div className={`sticky ${!isHeaderExpanded ? 'header-collapsed' : ''}`}>
         <BoardHeader
-          board={board}
+          board={filteredBoard}
           isHeaderExpanded={isHeaderExpanded}
           setIsHeaderExpanded={setIsHeaderExpanded}
           onAddNewTask={onAddNewTask}
         />
       </div>
-      {!board.groups ||
-        (!board.groups.length && (
+      {!filteredBoard.groups ||
+        (!filteredBoard.groups.length && (
           <div className="not-found">
             <img className="no-board-img" src="/assets/img/search_empty_state.svg" />
             <h2 className="txt not-found-title">No results found</h2>
@@ -193,7 +197,7 @@ export function BoardDetails() {
                     snapshot.isDraggingOver ? 'dragging-layout' : ''
                   }`}
                 >
-                  {board.groups.map((group, idx) => (
+                  {filteredBoard.groups.map((group, idx) => (
                     <GroupPreview
                       key={group.id}
                       group={group}
@@ -228,7 +232,11 @@ export function BoardDetails() {
         </div>
       }
 
-      <button className="add-group-btn" onClick={onAddGroup}>
+      <button
+        className="add-group-btn"
+        onClick={onAddGroup}
+        disabled={groupTaskFilterBy.txt || groupTaskFilterBy.person}
+      >
         <AddBoardBtn /> Add new group
       </button>
 

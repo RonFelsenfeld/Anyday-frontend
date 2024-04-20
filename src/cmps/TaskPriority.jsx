@@ -9,7 +9,7 @@ import { SET_LABEL_IN_EDITING } from '../store/reducers/board.reducer'
 import { utilService } from '../services/util.service'
 
 export function TaskPriority({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
   const labelInEditing = useSelector(storeState => storeState.boardModule.labelInEditing)
 
@@ -19,9 +19,13 @@ export function TaskPriority({ group, task }) {
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
 
   useEffect(() => {
-    if (openStatusModal &&
+    if (
+      openStatusModal &&
       labelInEditing.taskId === task.id &&
-      labelInEditing.labelType === 'priority') handlePickerClick(openStatusModal)
+      labelInEditing.labelType === 'priority'
+    ) {
+      handlePickerClick(openStatusModal)
+    }
   }, [board.priorities])
 
   function getPriority(priorityId = task.priority) {
@@ -42,15 +46,16 @@ export function TaskPriority({ group, task }) {
       action: 'Priority',
       createdAt: Date.now(),
       from: getPriority(task.priority),
-      to: getPriority(id)
+      to: getPriority(id),
     }
 
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
     const editedTask = { ...task, priority: id, activities }
+    const groupToSave = board.groups.find(g => g.id === group.id)
 
     setOpenStatusModal(null)
     try {
-      await saveTask(board, group, editedTask)
+      await saveTask(board, groupToSave, editedTask)
     } catch (err) {
       console.log('Had issues updating task status')
     }
@@ -65,7 +70,7 @@ export function TaskPriority({ group, task }) {
       options: board.priorities,
       submitFunc: onUpdateTaskPriority,
       styleFunc: getPriorityBG,
-      from: 'priorities'
+      from: 'priorities',
     }
 
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, true)

@@ -93,7 +93,12 @@ export function BoardControls({ onAddNewTask, setIsIntegrationModalOpen }) {
   return (
     <section className="board-controls flex align-baseline">
       <div className="filter-sort-btns flex align-center">
-        <button onClick={onAddNewTask} className="btn btn-new-task" style={getStyle()}>
+        <button
+          onClick={onAddNewTask}
+          className="btn btn-new-task"
+          style={getStyle()}
+          disabled={filterBy.txt || filterBy.person}
+        >
           <span className="desktop-view">New task</span>
         </button>
 

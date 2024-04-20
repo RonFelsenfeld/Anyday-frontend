@@ -15,8 +15,10 @@ export function FilePreview({ file, task, group, board }) {
     }
 
     const taskToSave = { ...task, files: task.files.filter(currFile => currFile.url !== file.url) }
+    const groupToSave = board.groups.find(g => g.id === group.id)
+
     try {
-      await saveTask(board, group, taskToSave)
+      await saveTask(board, groupToSave, taskToSave)
       hideModal()
       hideToolTip()
     } catch (err) {

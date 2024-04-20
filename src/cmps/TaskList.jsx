@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { boardService } from '../services/board.service'
-import { saveTask, removeTask, saveBoard } from '../store/actions/board.actions'
+import { saveTask, removeTask, saveGroup } from '../store/actions/board.actions'
 
 import { EditableText } from './EditableText'
 import { TaskPreview } from './TaskPreview'
@@ -11,7 +11,7 @@ import { GroupSummary } from './GroupSummary'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function TaskList({ group }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
   const [taskToEdit, setTaskToEdit] = useState(boardService.getEmptyTask())
   const [placeholderProps, setPlaceholderProps] = useState({})
@@ -21,9 +21,10 @@ export function TaskList({ group }) {
   async function onSaveTask(title) {
     if (!taskToEdit) return
     const editedTask = { ...taskToEdit, title }
+    const groupToSave = board.groups.find(g => g.id === group.id)
 
     try {
-      await saveTask(board, group, editedTask)
+      await saveTask(board, groupToSave, editedTask)
       setTaskToEdit(null)
     } catch (err) {
       showErrorMsg('Sorry, something went wrong')
@@ -32,8 +33,10 @@ export function TaskList({ group }) {
   }
 
   async function onRemoveTask(taskId) {
+    const groupToSave = board.groups.find(g => g.id === group.id)
+
     try {
-      await removeTask(board, group, taskId)
+      await removeTask(board, groupToSave, taskId)
       showSuccessMsg('We successfully deleted 1 item')
     } catch (err) {
       showErrorMsg('Sorry, something went wrong')
@@ -72,12 +75,15 @@ export function TaskList({ group }) {
     const items = Array.from(group.tasks)
     const [reorderedItem] = items.splice(result.source.index, 1)
     items.splice(result.destination.index, 0, reorderedItem)
+
+    let groupToSave = board.groups.find(g => g.id === group.id)
+    groupToSave = { ...group, tasks: [...items] }
     group.tasks = [...items]
 
     setPlaceholderProps({})
 
     try {
-      await saveBoard(board)
+      await saveGroup(board, groupToSave)
     } catch (err) {
       console.log('Dragging -> Had issues saving board')
     }

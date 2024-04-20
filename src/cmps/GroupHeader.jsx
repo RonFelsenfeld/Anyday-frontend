@@ -24,7 +24,7 @@ export function GroupHeader({
   idx,
   draggableDOMref,
 }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const [isHeaderIntersecting, setIsHeaderIntersecting] = useState(false)
   const groupHeaderRef = useRef()
   const sentinelRef = useRef()

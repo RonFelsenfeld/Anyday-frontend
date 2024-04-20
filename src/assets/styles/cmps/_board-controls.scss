@@ -41,6 +41,10 @@
     color: $main-bg-clr;
     background-color: $btn-compose-clr;
 
+    &:disabled {
+      @include disabledBtn;
+    }
+
     &:hover {
       background-color: $btn-compose-hover-clr;
     }

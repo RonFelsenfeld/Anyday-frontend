@@ -18,7 +18,7 @@ import {
 } from '../services/socket-service'
 
 export function UpdateLog() {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
   const [selectedTask, setSelectedTask] = useState(null)
   const [taskGroup, setTaskGroup] = useState(null)
@@ -62,9 +62,10 @@ export function UpdateLog() {
   }
 
   async function addMsg(task) {
-    console.log('task', task)
+    const groupToSave = board.groups.find(g => g.id === taskGroup.id)
+
     try {
-      await saveTask(board, taskGroup, task)
+      await saveTask(board, groupToSave, task)
       socketService.emit(SOCKET_EMIT_ADD_COMMENT, task)
     } catch (err) {
       console.log('could not save error', err)

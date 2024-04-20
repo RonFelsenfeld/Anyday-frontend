@@ -75,6 +75,10 @@
     border: 1px solid $secondary-border-clr;
     @include btn;
 
+    &:disabled {
+      @include disabledBtn;
+    }
+
     @include for-narrow-layout {
       margin-inline-start: 30px;
     }

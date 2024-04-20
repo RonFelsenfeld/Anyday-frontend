@@ -9,7 +9,7 @@ import { SET_LABEL_IN_EDITING } from '../store/reducers/board.reducer'
 import { utilService } from '../services/util.service'
 
 export function TaskStatus({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
   const labelInEditing = useSelector(storeState => storeState.boardModule.labelInEditing)
 
@@ -20,9 +20,13 @@ export function TaskStatus({ group, task }) {
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
 
   useEffect(() => {
-    if (openStatusModal &&
+    if (
+      openStatusModal &&
       labelInEditing.taskId === task.id &&
-      labelInEditing.labelType === 'status') handlePickerClick(openStatusModal)
+      labelInEditing.labelType === 'status'
+    ) {
+      handlePickerClick(openStatusModal)
+    }
   }, [board.statuses])
 
   function getStatus(statusId = task.status) {
@@ -37,23 +41,23 @@ export function TaskStatus({ group, task }) {
   }
 
   async function onUpdateTaskStatus({ id }) {
-    const toStatus = getStatus()
-
     const currActivity = {
       id: utilService.makeId(),
       byPerson: user || guest,
       action: `Status`,
       createdAt: Date.now(),
       from: getStatus(task.status),
-      to: getStatus(id)
+      to: getStatus(id),
     }
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
     const editedTask = { ...task, status: id, activities }
 
     setOpenStatusModal(null)
 
+    const groupToSave = board.groups.find(g => g.id === group.id)
+
     try {
-      await saveTask(board, group, editedTask)
+      await saveTask(board, groupToSave, editedTask)
       if (id === 's101') animateStatus()
     } catch (err) {
       console.log('Had issues updating task status')
@@ -80,7 +84,7 @@ export function TaskStatus({ group, task }) {
       options: board.statuses,
       submitFunc: onUpdateTaskStatus,
       styleFunc: getStatusBG,
-      from: 'statuses'
+      from: 'statuses',
     }
 
     showModal(currentTarget, BOTTOM_CENTER, cmpInfo, true)

@@ -235,8 +235,9 @@ function getTaskById(board, taskId) {
 
 function _addTask(board, group, task, unshift = false) {
   task.id = utilService.makeId()
+
   unshift ? group.tasks.unshift(task) : group.tasks.push(task)
-  return save(board)
+  return saveGroup(board, group)
 }
 
 function _updateTask(board, group, task) {
@@ -270,7 +271,6 @@ function getGroupColors() {
     'rgb(117, 117, 117)',
   ]
 }
-
 
 function getLabelColors() {
   return [
@@ -309,7 +309,7 @@ function getLabelColors() {
     '#175a63',
     '#bda8f9',
     '#a9bee8',
-    '#9d99b9'
+    '#9d99b9',
   ]
 }
 
@@ -411,7 +411,8 @@ function getEmptyBoard() {
       {
         id: 'u101',
         fullName: 'Atar Mor',
-        imgUrl: 'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713439122/of43ydrlcijxmzwcpmsd.jpg',
+        imgUrl:
+          'https://res.cloudinary.com/dkmvaqxkl/image/upload/v1713439122/of43ydrlcijxmzwcpmsd.jpg',
         phoneNumber: '0545613742',
         email: 'atarmor92@gmail.com',
       },
@@ -595,7 +596,6 @@ function getEmptyGroup() {
 function getRandLabelColor() {
   const colors = getLabelColors()
   return colors[utilService.getRandomIntInclusive(0, colors.length - 1)]
-
 }
 
 function _getRandGroupColor() {

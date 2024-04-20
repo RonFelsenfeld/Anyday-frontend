@@ -6,7 +6,7 @@ import { saveTask } from '../store/actions/board.actions'
 import { utilService } from '../services/util.service'
 
 export function TaskPerson({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
 
@@ -17,16 +17,17 @@ export function TaskPerson({ group, task }) {
       action: 'Person',
       createdAt: Date.now(),
       title: 'Added',
-      to: boardService.getPerson(board, personId)
+      to: boardService.getPerson(board, personId),
     }
 
     const personsIds = task.personsIds ? [...task.personsIds, personId] : [personId]
     const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
 
     const editedTask = { ...task, personsIds, activities }
+    const groupToSave = board.groups.find(g => g.id === group.id)
 
     try {
-      await saveTask(board, group, editedTask)
+      await saveTask(board, groupToSave, editedTask)
       hideModal()
     } catch (err) {
       console.log('Had issues updating task persons', err)
@@ -40,7 +41,7 @@ export function TaskPerson({ group, task }) {
       action: 'Person',
       createdAt: Date.now(),
       title: 'Removed',
-      to: boardService.getPerson(board, personId)
+      to: boardService.getPerson(board, personId),
     }
     const editedTask = {
       ...task,
@@ -48,8 +49,10 @@ export function TaskPerson({ group, task }) {
       activities: [...task.activities, currActivity],
     }
 
+    const groupToSave = board.groups.find(g => g.id === group.id)
+
     try {
-      await saveTask(board, group, editedTask)
+      await saveTask(board, groupToSave, editedTask)
       hideModal()
     } catch (err) {
       console.log('Had issues updating task persons', err)

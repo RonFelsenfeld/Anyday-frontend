@@ -83,8 +83,11 @@ export async function saveBoard(board) {
 export async function removeGroup(board, groupId) {
   try {
     const savedBoard = await boardService.removeGroup(board, groupId)
+
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
+    onFilterSortBoard(savedBoard)
+
     return savedBoard
   } catch (err) {
     console.log('group action -> cannot remove group', err)
@@ -95,8 +98,10 @@ export async function removeGroup(board, groupId) {
 export async function saveGroup(board, group) {
   try {
     const savedBoard = await boardService.saveGroup(board, group)
+
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
+    onFilterSortBoard(savedBoard)
 
     return savedBoard
   } catch (err) {
@@ -110,8 +115,11 @@ export async function saveGroup(board, group) {
 export async function removeTask(board, group, taskId) {
   try {
     const savedBoard = await boardService.removeTask(board, group, taskId)
+
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
+    onFilterSortBoard(savedBoard)
+
     return savedBoard
   } catch (err) {
     console.log('task action -> cannot remove task', err)
@@ -122,8 +130,10 @@ export async function removeTask(board, group, taskId) {
 export async function saveTask(board, group, task, unshift) {
   try {
     const savedBoard = await boardService.saveTask(board, group, task, unshift)
+
     store.dispatch({ type: EDIT_BOARD, board: savedBoard })
     socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
+    onFilterSortBoard(savedBoard)
 
     return savedBoard
   } catch (err) {
@@ -146,9 +156,20 @@ export async function setSortBy(sortBy) {
   store.dispatch({ type: SET_SORT_BY, sortBy })
 }
 
-export async function onFilterSortBoard(filterBy, sortBy) {
-  const board = store.getState().boardModule.currentBoard
+export async function onFilterSortBoard(board = null, filterBy = null, sortBy = null) {
+  if (!board) {
+    board = store.getState().boardModule.currentBoard
+  }
+
   if (!board) return
+
+  if (!filterBy) {
+    filterBy = store.getState().boardModule.groupTaskFilterBy
+  }
+
+  if (!sortBy) {
+    sortBy = store.getState().boardModule.boardSortBy
+  }
 
   const boardDeepCopy = structuredClone(board)
   try {

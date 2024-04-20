@@ -247,3 +247,12 @@
   transform: translate(-50%, -50%);
   --animate-duration: 0.2s;
 }
+
+@mixin disabledBtn {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  &:active {
+    scale: 1;
+  }
+}

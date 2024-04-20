@@ -1,3 +1,4 @@
+import { SET_LABEL_IN_EDITING } from '../reducers/board.reducer'
 import { SHOW_MODAL, SHOW_TOOLTIP } from '../reducers/system.reducer'
 import { store } from '../store'
 
@@ -43,4 +44,7 @@ export function hideModal() {
       hasCaret: false,
     },
   })
+
+  const labelInEditing = store.getState().boardModule.labelInEditing
+  if (labelInEditing) store.dispatch({ type: SET_LABEL_IN_EDITING, labelInEditing: null })
 }

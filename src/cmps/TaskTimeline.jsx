@@ -9,7 +9,7 @@ import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 export function TaskTimeline({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
 
   function handlePickerClick({ target, currentTarget }) {
     // ! Event propagation doesn't work
@@ -26,9 +26,10 @@ export function TaskTimeline({ group, task }) {
 
   async function onRemoveTimeline() {
     const taskToSave = { ...task, timeline: null }
+    const groupToSave = board.groups.find(g => g.id === group.id)
 
     try {
-      await saveTask(board, group, taskToSave)
+      await saveTask(board, groupToSave, taskToSave)
     } catch (err) {
       showErrorMsg('Sorry, something went wrong')
     }
@@ -51,29 +52,29 @@ export function TaskTimeline({ group, task }) {
   const hoverDisplay = task.timeline ? `${numOfDays} days` : 'Set days'
 
   return (
-    <div className='timeline-container task-row flex align-center justify-center'>
-    <div
-      style={{
-        background: getTimelineColor(),
-      }}
-      className="task-row task-timeline"
-      onClick={handlePickerClick}
-    >
-      <div className="progress-bar">
-        {task.timeline
-          ? utilService.getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate)
-          : '-'}
-      </div>
-
-      <button
-        className="btn-remove-timeline flex align-center justify-center"
-        style={{ display: task.timeline ? 'block' : 'none' }}
-        onClick={onRemoveTimeline}
+    <div className="timeline-container task-row flex align-center justify-center">
+      <div
+        style={{
+          background: getTimelineColor(),
+        }}
+        className="task-row task-timeline"
+        onClick={handlePickerClick}
       >
-        <Xbutton size={16} />
-      </button>
-      <div className="days-num">{hoverDisplay}</div>
-    </div>
+        <div className="progress-bar">
+          {task.timeline
+            ? utilService.getFormattedTimeline(task.timeline.startDate, task.timeline.dueDate)
+            : '-'}
+        </div>
+
+        <button
+          className="btn-remove-timeline flex align-center justify-center"
+          style={{ display: task.timeline ? 'block' : 'none' }}
+          onClick={onRemoveTimeline}
+        >
+          <Xbutton size={16} />
+        </button>
+        <div className="days-num">{hoverDisplay}</div>
+      </div>
     </div>
   )
 }

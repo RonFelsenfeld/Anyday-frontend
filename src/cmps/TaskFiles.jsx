@@ -7,7 +7,7 @@ import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 export function TaskFiles({ group, task }) {
-  const board = useSelector(stateStore => stateStore.boardModule.filteredBoard)
+  const board = useSelector(stateStore => stateStore.boardModule.currentBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
   const guest = { fullName: 'Guest', imgUrl: '/assets/img/user-avatar.svg', id: 'guest101' }
@@ -20,7 +20,7 @@ export function TaskFiles({ group, task }) {
       byPerson: user || guest,
       action: `Files`,
       createdAt: Date.now(),
-      title: 'Added'
+      title: 'Added',
     }
 
     try {
@@ -31,8 +31,9 @@ export function TaskFiles({ group, task }) {
       const activities = task.activities ? [...task.activities, currActivity] : [currActivity]
 
       const updatedTask = { ...task, files, activities }
+      const groupToSave = board.groups.find(g => g.id === group.id)
 
-      await saveTask(board, group, updatedTask)
+      await saveTask(board, groupToSave, updatedTask)
 
       setIsLoading(false)
     } catch (err) {
@@ -46,13 +47,14 @@ export function TaskFiles({ group, task }) {
       byPerson: user || guest,
       action: `Files`,
       createdAt: Date.now(),
-      title: 'Removed'
-
+      title: 'Removed',
     }
 
     try {
       const updatedTask = { ...task, files: [], activities: [...task.activities, currActivity] }
-      await saveTask(board, group, updatedTask)
+      const groupToSave = board.groups.find(g => g.id === group.id)
+
+      await saveTask(board, groupToSave, updatedTask)
     } catch (err) {
       console.log(err)
     }

@@ -8,7 +8,7 @@ import { utilService } from '../services/util.service'
 import { useEffectUpdate } from '../customHooks/useEffectUpdate'
 
 export function TimelinePicker({ group, task }) {
-  const board = useSelector(storeState => storeState.boardModule.filteredBoard)
+  const board = useSelector(storeState => storeState.boardModule.currentBoard)
   const user = useSelector(storeState => storeState.userModule.loggedInUser)
 
   const [range, setRange] = useState(null)
@@ -65,9 +65,10 @@ export function TimelinePicker({ group, task }) {
       timeline: { ...newTimeLine },
       activities,
     }
+    const groupToSave = board.groups.find(g => g.id === group.id)
 
     try {
-      await saveTask(board, group, editedTask)
+      await saveTask(board, groupToSave, editedTask)
     } catch (err) {
       console.log('Had issues updating task timeline')
     }

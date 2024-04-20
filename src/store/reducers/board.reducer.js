@@ -24,7 +24,7 @@ const initialState = {
   groupTaskFilterBy: boardService.getDefaultGroupTaskFilter(),
   boardSortBy: boardService.getDefaultSortBy(),
   activeTaskId: null,
-  labelInEditing: null
+  labelInEditing: null,
   // markedTxt: ''
 }
 
@@ -65,7 +65,6 @@ export function boardReducer(state = initialState, action = {}) {
         ...state,
         boards: state.boards.map(board => (board._id === action.board._id ? action.board : board)),
         currentBoard: { ...action.board },
-        filteredBoard: { ...action.board },
       }
 
     case SET_BOARD_FILTER_BY:
