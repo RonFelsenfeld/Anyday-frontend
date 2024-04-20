@@ -70,6 +70,9 @@ export function DynamicOptionsMenu({ options }) {
             <GoogleCalender />
           </div>
         )
+
+      default:
+        return iconName
     }
   }
 
@@ -92,6 +95,8 @@ export function DynamicOptionsMenu({ options }) {
     if (title === 'Login') return { width: '100px' }
     if (title === 'Logout') return { width: '100px' }
     if (title === 'Delete Board') return { width: '150px' }
+    if (title === 'Ido Yotvat' || title === 'Atar Mor' || title === 'Ron Felsenfeld')
+      return { width: 'max-content' }
     return { border: 'none' } // Just for the style get valid object
   }
 

@@ -5,7 +5,7 @@ import { showSuccessMsg } from '../services/event-bus.service'
 
 import { useClickOutside } from '../customHooks/useClickOutside'
 
-import { hideModal, showModal } from '../store/actions/system.actions'
+import { showModal } from '../store/actions/system.actions'
 import { BOTTOM_CENTER } from '../store/reducers/system.reducer'
 
 export function AboutUsModal({ setIsAboutUsModalOpen }) {
@@ -65,18 +65,21 @@ export function AboutUsModal({ setIsAboutUsModalOpen }) {
   const githubOptions = [
     {
       title: 'Ido Yotvat',
+      icon: <img src={users.ido.imgUrl} className="user-img" />,
       func: () => {
         navToLink(users.ido.github)
       },
     },
     {
       title: 'Atar Mor',
+      icon: <img src={users.atar.imgUrl} className="user-img" />,
       func: () => {
         navToLink(users.atar.github)
       },
     },
     {
       title: 'Ron Felsenfeld',
+      icon: <img src={users.ron.imgUrl} className="user-img" />,
       func: () => {
         navToLink(users.ron.github)
       },
@@ -86,18 +89,21 @@ export function AboutUsModal({ setIsAboutUsModalOpen }) {
   const linkedinOptions = [
     {
       title: 'Ido Yotvat',
+      icon: <img src={users.ido.imgUrl} className="user-img" />,
       func: () => {
         navToLink(users.ido.linkedin)
       },
     },
     {
       title: 'Atar Mor',
+      icon: <img src={users.atar.imgUrl} className="user-img" />,
       func: () => {
         navToLink(users.atar.linkedin)
       },
     },
     {
       title: 'Ron Felsenfeld',
+      icon: <img src={users.ron.imgUrl} className="user-img" />,
       func: () => {
         navToLink(users.ron.linkedin)
       },
@@ -107,14 +113,17 @@ export function AboutUsModal({ setIsAboutUsModalOpen }) {
   const emailOptions = [
     {
       title: 'Ido Yotvat',
+      icon: <img src={users.ido.imgUrl} className="user-img" />,
       func: () => onEmailClick(users.ido.email, 'Ido'),
     },
     {
       title: 'Atar Mor',
+      icon: <img src={users.atar.imgUrl} className="user-img" />,
       func: () => onEmailClick(users.atar.email, 'Atar'),
     },
     {
       title: 'Ron Felsenfeld',
+      icon: <img src={users.ron.imgUrl} className="user-img" />,
       func: () => onEmailClick(users.ron.email, 'Ron'),
     },
   ]

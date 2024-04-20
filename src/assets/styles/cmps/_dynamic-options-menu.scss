@@ -24,4 +24,8 @@
   .whatsapp-arrow {
     width: 20px;
   }
+
+  .user-img {
+    @include userImg(30px, 0px);
+  }
 }
