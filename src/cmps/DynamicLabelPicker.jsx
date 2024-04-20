@@ -3,10 +3,10 @@ import { EditPencil } from '../services/svg.service'
 import { hideModal } from '../store/actions/system.actions'
 import { EditLabels } from './EditLabels'
 
-export function DynamicLabelPicker({ options, submitFunc, styleFunc }) {
+export function DynamicLabelPicker({ options, submitFunc, styleFunc, from }) {
   const [isEditMode, setIsEditMode] = useState(false)
 
-  if (isEditMode) return <EditLabels options={options}/>
+  if (isEditMode) return <EditLabels options={options} from={from}/>
   return (
     <article className="label-picker-container">
       <div className="options-container">

@@ -51,6 +51,7 @@ export function TaskTimeline({ group, task }) {
   const hoverDisplay = task.timeline ? `${numOfDays} days` : 'Set days'
 
   return (
+    <div className='timeline-container task-row flex align-center justify-center'>
     <div
       style={{
         background: getTimelineColor(),
@@ -72,6 +73,7 @@ export function TaskTimeline({ group, task }) {
         <Xbutton size={16} />
       </button>
       <div className="days-num">{hoverDisplay}</div>
+    </div>
     </div>
   )
 }

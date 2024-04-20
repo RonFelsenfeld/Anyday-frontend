@@ -12,6 +12,7 @@ export const SET_GROUP_TASK_FILTER_BY = 'SET_GROUP_TASK_FILTER_BY'
 export const SET_SORT_BY = 'SET_SORT_BY'
 
 export const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID'
+export const SET_LABEL_IN_EDITING = 'SET_LABEL_IN_EDITING'
 
 // export const SET_MARKED_TEXT = 'SET_MARKED_TEXT'
 
@@ -23,6 +24,7 @@ const initialState = {
   groupTaskFilterBy: boardService.getDefaultGroupTaskFilter(),
   boardSortBy: boardService.getDefaultSortBy(),
   activeTaskId: null,
+  labelInEditing: null
   // markedTxt: ''
 }
 
@@ -88,6 +90,12 @@ export function boardReducer(state = initialState, action = {}) {
       return {
         ...state,
         activeTaskId: action.taskId,
+      }
+
+    case SET_LABEL_IN_EDITING:
+      return {
+        ...state,
+        labelInEditing: { taskId: action.taskId, labelType: action.labelType },
       }
 
     // case SET_MARKED_TEXT:
