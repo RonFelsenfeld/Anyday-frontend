@@ -115,7 +115,7 @@ export function UpdateLog() {
           !!taskPersons.length &&
           taskPersons.length <= 2 && taskPersons.length > 0 &&
           taskPersons.map(person => {
-            if (person.imgUrl) {
+            if (person?.imgUrl) {
               return <img key={person.id} src={`${person.imgUrl}`} alt={person.fullName} />
             } else {
               return (
