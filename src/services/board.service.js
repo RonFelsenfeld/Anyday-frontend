@@ -134,7 +134,7 @@ function getPersonUrl(board, personId) {
 
 function getTotalTasksByBoard(board) {
   let totalTasks = 0
-  board.groups.forEach(group => (totalTasks += group.tasks.length))
+  board?.groups.forEach(group => (totalTasks += group.tasks.length))
   return totalTasks
 }
 

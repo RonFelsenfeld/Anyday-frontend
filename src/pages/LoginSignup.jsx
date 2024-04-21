@@ -64,7 +64,7 @@ export function LoginSignup() {
   }
 
   function getImage() {
-    return credentials.imgUrl ? credentials.imgUrl : '/assets/img/user-avatar.svg'
+    return credentials?.imgUrl ? credentials.imgUrl : '/assets/img/user-avatar.svg'
   }
 
   return (

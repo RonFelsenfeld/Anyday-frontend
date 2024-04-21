@@ -1,5 +1,5 @@
 import 'animate.css'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT } from '../store/reducers/system.reducer'
@@ -16,7 +16,6 @@ export function DynamicModal() {
 
   useClickOutside(modalRef)
 
-  // Hook that fires before the browser rerender the screen
   useLayoutEffect(() => {
     if (isOpen && pos && targetDimensions) {
       const { width: modalWidth, height: modalHeight } = modalRef.current.getBoundingClientRect()
@@ -30,7 +29,6 @@ export function DynamicModal() {
       let isOverflowingWidth = false
       let isOverflowingHeight = false
 
-      // Checking if the modal's overflowing the screen width
       if (modalLeft + modalWidth > viewportWidth) {
         isOverflowingWidth = true
 
@@ -40,7 +38,6 @@ export function DynamicModal() {
         setModalInfo({ x: modalLeft, y: modalTop, class: 'overflow-width' })
       }
 
-      // Checking if the modal's overflowing the screen height
       if (modalTop + modalHeight > viewportHeight) {
         isOverflowingHeight = true
 

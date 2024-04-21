@@ -15,7 +15,7 @@ export function Activity({ activity, selectedTask }) {
         <CommentClock />
         <span className="time-desc">{utilService.calcPastTimeActivity(activity.createdAt)}</span>
       </div>
-      {activity.byPerson.imgUrl ? (
+      {activity.byPerson?.imgUrl ? (
         <img className="user-img" src={activity.byPerson.imgUrl} alt="user-image" />
       ) : (
         <div className="user-initials">{utilService.getInitials(activity.byPerson.fullName)}</div>
@@ -75,7 +75,7 @@ export function Activity({ activity, selectedTask }) {
           <div className="person-action flex align-center justify-center">{activity.title}</div>
           <ArrowRight />
 
-          {activity.to.imgUrl ? (
+          {activity.to?.imgUrl ? (
             <img className="add-person" src={activity.to.imgUrl} alt="user img" />
           ) : (
             <div className="user-initials-to">{utilService.getInitials(activity.to.fullName)}</div>
