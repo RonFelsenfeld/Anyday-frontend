@@ -100,7 +100,7 @@ export function TaskPerson({ group, task }) {
         </>
       )}
       {taskPersons &&
-        taskPersons.length <= 2 &&
+        taskPersons.length <= 2 && taskPersons.length > 0 &&
         taskPersons.map(person =>
           person.imgUrl ? (
             <img key={person.id} src={person.imgUrl} alt={person.fullName} />
