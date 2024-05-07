@@ -69,7 +69,11 @@ export async function saveBoard(board) {
   try {
     const savedBoard = await boardService.save(board)
     store.dispatch({ type, board: savedBoard })
-    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
+
+    // ! Only if updating board (and not adding), emit socket event
+    if (type !== ADD_BOARD) {
+      socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
+    }
 
     return savedBoard
   } catch (err) {

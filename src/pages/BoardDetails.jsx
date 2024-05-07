@@ -30,7 +30,6 @@ export function BoardDetails() {
   const groupTaskFilterBy = useSelector(storeState => storeState.boardModule.groupTaskFilterBy)
   const sortBy = useSelector(storeState => storeState.boardModule.boardSortBy)
 
-  // const markedTxt = useSelector(storeState => storeState.boardModule.markedTxt)
   const [isAllGroupsExpended, setIsAllGroupsExpended] = useState(true)
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
@@ -51,12 +50,11 @@ export function BoardDetails() {
     if (boardId) loadBoard(boardId)
 
     socketService.on(SOCKET_EVENT_BOARD_UPDATED, board => {
-      console.log(board)
       dispatch({ type: EDIT_BOARD, board })
     })
 
     return () => {
-      // dispatch({ type: SET_BOARD, board: null })
+      dispatch({ type: SET_BOARD, board: null })
       socketService.off(SOCKET_EVENT_BOARD_UPDATED)
     }
   }, [boardId])
