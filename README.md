@@ -4,6 +4,9 @@
 Anyday is a dynamic web application inspired by the popular project management platform 'Monday.' Designed with flexibility and collaboration in mind, Anyday offers users a customizable workspace to plan, track, and execute tasks with ease. Whether managing personal projects or leading a team, Anyday provides a robust toolkit to streamline workflows and foster productive teamwork. <br><br>
 This is our final project in Coding Academy's bootcamp, developed with React, Redux, SASS, NodeJS & MongoDB.
 
+## Live Version
+Anyday is available for all right <a href="https://anyday-lodf.onrender.com" target="_blank">here</a>.
+
 ## Main Features
 > * **Task Management with Boards and Groups:** Organize tasks into customizable boards and groups for efficient project management. Assign tasks, set timeline, add files and track progress within dedicated task groups.
 
@@ -39,7 +42,12 @@ This is our final project in Coding Academy's bootcamp, developed with React, Re
   * Socket.io - For web sockets.
   * Bcrypt & Cryptr - For encryption and decryption of user's passwords.
   * Cookie-parser - For cookie support.
- 
+
+## Showcase
+<img width="600px" src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1715780356/Screenshot_2024-05-15_at_16.34.41_aqhuyv.png" />
+<img width="600px"  src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1715780366/Screenshot_2024-05-15_at_16.36.16_clvm3n.png" />
+<img width="600px"  src="https://res.cloudinary.com/df6vvhhoj/image/upload/v1715780363/Screenshot_2024-05-15_at_16.35.05_anwos2.png" />
+
 ## Local Installation
 **1. Clone the repo:**
 ```
