@@ -6,10 +6,15 @@ This is our final project in Coding Academy's bootcamp, developed with React, Re
 
 ## Main Features
 > * **Task Management with Boards and Groups:** Organize tasks into customizable boards and groups for efficient project management. Assign tasks, set timeline, add files and track progress within dedicated task groups.
+
 > * **Authentication:** Ensure secure access with easy login and logout processes.
+
 > * **Real-Time Updates:** Enable real-time updates for seamless team collaboration.
+
 > * **Speech-to-Text:** Increase productivity with speech-to-text functionality, allowing you to create tasks hands-free by simply speaking into your device. Convert spoken tasks into actionable items within Anyday, streamlining task creation and enhancing accessibility.
+
 > * **Integrations:** Send tasks directly via Gmail or Whatsapp to enhance productivity and optimizing communication. Add tasks and deadlines directly to Google Calendar from Anyday, ensuring efficient scheduling and visibility of project milestones.
+
 > * **Real-Time Messaging and Collaboration:** Members can comment, share updates, and ask questions directly within task cards, ensuring focused and contextual communication.
 
 ## Technologies
@@ -53,12 +58,15 @@ npm run dev
 ## Authors
 **Ron Felsenfeld**
 > [Linkedin](https://www.linkedin.com/in/atarmor/)<br>
+
 > [Github](https://github.com/RonFelsenfeld)
 
 **Ido Yotvat**
 > [Linkedin](https://www.linkedin.com/in/idoyotvat/)<br>
+
 > [Github](https://github.com/yotvat)
 
 **Atar Mor**
 > [Linkedin](https://www.linkedin.com/in/ron-felsenfeld/)<br>
+
 > [Github](https://github.com/AtarMor)
