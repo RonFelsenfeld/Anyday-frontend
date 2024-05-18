@@ -65,7 +65,7 @@ npm run dev
 ```
 ## Authors
 **Ron Felsenfeld**
-> [Linkedin](https://www.linkedin.com/in/atarmor/)<br>
+> [Linkedin](https://www.linkedin.com/in/ron-felsenfeld/)<br>
 
 > [Github](https://github.com/RonFelsenfeld)
 
@@ -75,6 +75,6 @@ npm run dev
 > [Github](https://github.com/yotvat)
 
 **Atar Mor**
-> [Linkedin](https://www.linkedin.com/in/ron-felsenfeld/)<br>
+> [Linkedin](https://www.linkedin.com/in/atarmor/)<br>
 
 > [Github](https://github.com/AtarMor)
